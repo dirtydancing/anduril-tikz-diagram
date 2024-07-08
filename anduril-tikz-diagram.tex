@@ -1,0 +1,2364 @@
+% Diagram for the Anduril 2 user interface for flashlights
+% Copyright (C) 2024 Guido dirtydancing
+% SPDX-License-Identifier: GPL-3.0-or-later
+
+\documentclass[8pt]{extarticle}
+% \documentclass[10pt]{article} % default font size: 10pt
+
+\usepackage[
+    a4paper,
+    landscape
+]
+{geometry}
+
+% \PassOptionsToPackage{gray}{xcolor} % for grayscale output
+
+% \usepackage[dvipsnames]{xcolor} % for additional color names
+
+\usepackage{fontspec}
+\setmainfont{Source Sans 3}
+
+\usepackage{setspace}
+\setstretch{0.9}
+
+\usepackage{array} % for table fixed width
+
+\usepackage{makecell} % for line breaks within table cells
+\renewcommand\cellalign{tl}
+% for makecell package: vertical top, horizontal left for cells
+\renewcommand\cellgape{\Gape[0.35ex]}
+% for makecell package: vertical spaces around cells
+\renewcommand\theadalign{tl}
+% for makecell package: vertical top, horizontal left for column heads
+\renewcommand\theadgape{\Gape[0.65ex]}
+% for makecell package: vertical spaces around column heads
+\renewcommand\theadfont{\bfseries\normalsize}
+% for makecell package: default font size for column heads
+
+\setlength{\tabcolsep}{0pt} % default: 6pt
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % for Stealth arrow tip
+\usetikzlibrary{bending} % for flexing and bending arrows
+% with bending library, default: flex
+% without bending library, default: quick
+\usetikzlibrary{positioning} % for relative positioning
+\usetikzlibrary{shapes.misc} % for rounded rectangle
+\usetikzlibrary{fit} % for fitting a node
+\usetikzlibrary{backgrounds} % for background frames
+
+\definecolor{yellow-1}{HTML}{FFEC30}
+\definecolor{cyan-1}{HTML}{3EFFEC}
+
+\tikzset{
+    >={
+        Stealth[
+            round,
+            scale length=1.25,
+            scale width=1.25
+        ]
+    }
+}
+\tikzset{
+    rampstepped/.style={
+        rectangle,
+        draw=none,
+        minimum width=0.8cm,
+        minimum height=0.8cm,
+        inner sep=0cm,
+        outer sep=0cm
+    },
+    rampsmooth/.style={
+        rampstepped,
+        minimum width=0.8cm,
+        minimum height=5.6cm % 5.6cm = 7 x 0.8cm
+    },
+    rampcombined/.style={
+        rectangle,
+        draw=black,
+        thin, % thin = 0.4pt (default)
+        fill=none,
+        inner sep=0cm,
+        minimum width=1.6cm,
+        minimum height=5.6cm
+    },
+    turbocombined/.style={
+        rectangle,
+        above=-0.41pt, % 0.01pt more than line thickness
+        draw=black,
+        thin,
+        densely dotted,
+        fill=white,
+        inner sep=0cm,
+        minimum width=1.6cm,
+        minimum height=1.2cm
+    }
+}
+\tikzset{
+    anyline/.style={
+        draw=black,
+        thin
+    },
+    anyline basic use/.style={
+        anyline
+    },
+    anyline momentary/.style={
+        anyline,
+        densely dashed
+    },
+    anybutton/.style={
+        draw=black,
+        thin,
+        solid,
+        fill=white,
+        text=black,
+        font=\normalsize,
+        inner sep=0.075cm,
+        rounded corners
+    },
+    anybutton basic use/.style={
+        anybutton,
+        ultra thick, % ultra thick = 1.6pt
+        fill=cyan-1!55,
+        font=\bfseries
+    },
+    anyconfig/.style={
+        draw=black,
+        thin,
+        solid,
+        fill=yellow-1!55,
+        inner sep=0.1cm,
+        rounded corners,
+        align=left
+    },
+    anymode/.style={
+        anyconfig
+    }
+}
+\tikzset{
+    advancedline/.style={
+        anyline
+    },
+    advancedline longer/.style={
+        advancedline,
+        shorten <=-0.2pt
+    },
+     advancedline momentary/.style={
+        advancedline,
+        densely dashed
+    },
+    advancedbutton/.style={
+        anybutton,
+        draw=none
+    },
+     advancedconfig/.style={
+        anyconfig,
+        densely dotted,
+        fill=gray!8
+    },
+    advancedmode/.style={
+        advancedconfig,
+        fill=blue!8
+    },
+    advancedfit/.style={
+        advancedconfig,
+        loosely dotted,
+        fill=none,
+        inner sep=0.3cm
+    },
+    advancedtable/.style={
+        advancedconfig
+    },
+    advancedUI/.style={
+        advancedconfig,
+        font=\bfseries\LARGE
+    }
+}
+\tikzset{
+    simpleline/.style={
+        anyline
+    },
+    simpleline momentary/.style={
+        anyline momentary
+    },
+    simplebutton/.style={
+        anybutton,
+        double
+    },
+    simpleUI/.style={
+        anyconfig,
+        font=\bfseries\LARGE
+    }
+}
+\tikzset{
+    ontoggle/.style={
+        draw=black,
+        thin,
+        fill=white,
+        text=black,
+        font=\bfseries\normalsize,
+        inner xsep=0.325cm,
+        inner ysep=0.065cm,
+        rounded rectangle
+    },
+    onoff/.style={
+        ontoggle,
+        font=\bfseries\Huge,
+        on grid
+    }
+}
+\tikzset{
+    generalconfig/.style={
+        advancedconfig,
+        loosely dotted,
+        fill=white
+    },
+    andurilinfo/.style={
+        generalconfig
+    }
+}
+\tikzset{
+    legendconfig/.style={
+        rectangle,
+        draw=none,
+        sharp corners,
+        minimum width=0.8cm,
+        minimum height=0.33cm,
+        inner sep=0cm,
+        outer sep=0cm,
+        align=left
+    },
+    legendfit/.style={
+        advancedfit,
+        inner sep=0.1cm
+    }
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{tikzpicture}[
+    remember picture, % for referencing the current page node
+    overlay, % for referencing the current page node
+    font=\footnotesize
+]
+
+% tikzpicture - Table of Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ramp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Momentary Mode from OFF ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Strobe / Mood Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tactical Mode from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Blinky / Utility Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Next Channel Mode from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ramp Config from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Simple UI Ramp Config from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Momentary Moon from Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Aux LED Color from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Factory Reset from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Advanced UI switch from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Anduril 2 UI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Ramp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Ramp Smooth 1)
+at (current page.center)[
+    rampsmooth,
+    anchor=east,
+    top color=gray!0,
+    bottom color=gray!48
+]
+{};
+\node (Ramp Stepped 4)
+at (current page.center)[
+    rampstepped,
+    anchor=west,
+    top color=gray!32,
+    bottom color=gray!24
+]
+{};
+\node (Ramp Stepped 3)[
+    rampstepped,
+    below=0cm of Ramp Stepped 4.south,
+    anchor=north,
+    top color=gray!40,
+    bottom color=gray!32
+]
+{};
+\node (Ramp Stepped 2)[
+    rampstepped,
+    below=0cm of Ramp Stepped 3.south,
+    anchor=north,
+    top color=gray!48,
+    bottom color=gray!40
+]
+{};
+\node (Ramp Stepped 1)[
+    rampstepped,
+    below=0cm of Ramp Stepped 2.south,
+    anchor=north,
+    top color=gray!56,
+    bottom color=gray!48
+]
+{};
+\node (Ramp Stepped 5)[
+    rampstepped,
+    above=0cm of Ramp Stepped 4.north,
+    anchor=south,
+    top color=gray!24,
+    bottom color=gray!16
+]
+{};
+\node (Ramp Stepped 6)[
+    rampstepped,
+    above=0cm of Ramp Stepped 5.north,
+    anchor=south,
+    top color=gray!16,
+    bottom color=gray!8
+]
+{};
+\node (Ramp Stepped 7)[
+    rampstepped,
+    above=0cm of Ramp Stepped 6.north,
+    anchor=south,
+    top color=gray!8,
+    bottom color=gray!0
+]
+{};
+
+\node (Ramp)
+at (current page.center)[
+    rampcombined
+]
+{};
+\node (Ramp 0pt)
+at (current page.center)[
+    rampcombined,
+    draw=none,
+    line width=0pt
+]
+{};
+
+\node (Ramp Memory) at (Ramp.center) {\bfseries\normalsize Memory};
+\node (Ramp Ceiling) at (Ramp.north)[below] {\bfseries\normalsize Ceiling};
+\node (Ramp Floor) at (Ramp.south)[above] {\bfseries\normalsize Floor};
+\node (Ramp Style Smooth)[
+    below right=0.05cm and 0.36cm of Ramp.south west,
+    anchor=north,
+    align=center
+]
+{Smooth};
+\node (Ramp Style Stepped)[
+    below left=0.05cm and 0.36cm+0.02cm of Ramp.south east, % +0.02cm
+    % for vertical alignment
+    anchor=north,
+    align=center
+]
+{Stepped};
+\node (Ramp Styles fit)[
+    inner sep=0,
+    fit=(Ramp Style Smooth) (Ramp Style Stepped)
+]
+{};
+
+\draw (Ramp Memory.north) edge[
+    arrows={<[open, fill=white]->},
+    anyline basic use,
+    cap=round
+]
+node[
+    anybutton basic use,
+    pos=0.5,
+    label={
+        [align=left, xshift=0.5cm, yshift=-0.025cm]right:{
+            \begin{tabular}{l}
+                Ramp up\\
+                (floor\textendash{}ceiling),\\
+                with reversal\\
+                if released\\
+                and held again\\
+                within 1s
+            \end{tabular}
+        }
+    }
+]
+{1H} (Ramp Ceiling.south);
+\draw (Ramp Memory.south) edge[
+    arrows={->},
+    anyline,
+    cap=round
+]
+node[
+    anybutton,
+    pos=0.415,
+    label={
+        [align=left, xshift=0.5cm+0.8pt, % +0.8pt for vertical alignment
+        yshift=-0.025cm]right:{
+            \begin{tabular}{l}
+                Ramp down\\
+                (ceiling\textendash{}floor)
+            \end{tabular}
+        }
+    }
+]
+{2H} (Ramp Floor.north);
+
+% Turbo
+\begin{scope}[on background layer]
+    \node (Turbo)[
+        turbocombined
+    ]
+    at (Ramp.north){};
+    \node (Turbo text)[
+        below,
+        fill=none
+    ]
+    at (Turbo.north) {\bfseries\normalsize Turbo};
+
+    \node (Turbo 0pt)[
+        turbocombined,
+        above=0pt,
+        draw=none,
+        fill=none,
+        line width=0pt
+    ]
+    at (Ramp 0pt.north){};
+\end{scope}
+
+\draw (Ramp 0pt.north west) edge[
+    {<[scale width=0.75]->[scale width=0.75]},
+    advancedline,
+    shorten >=0.4pt,
+    shorten <=0.4pt,
+    bend left=30
+]
+node[
+    advancedbutton,
+    left=-0.125cm
+]
+{2C} (Turbo 0pt.north west);
+\draw (Ramp 0pt.west) edge[
+    {<[scale width=0.75]->[scale width=0.75]},
+    anyline,
+    shorten >=0.4pt,
+    shorten <=0.4pt,
+    bend left=30
+]
+node[
+    anybutton,
+    left=-0.125cm
+]
+{2C} (Ramp 0pt.north west);
+
+% Toggle Ramp Style from ON
+\node (Toggle Ramp Style from ON)[
+    advancedconfig,
+    below=0.8cm of Ramp.south,
+    anchor=north,
+    align=center
+]
+{\bfseries\normalsize Toggle Ramp Style*};
+\node (Toggle Ramp Style extra node ON)[
+    ontoggle,
+    below=0.8cm of Toggle Ramp Style from ON.west,
+    anchor=center
+]
+{ON};
+\node (Toggle Ramp Style extra node 6C)[
+    advancedbutton,
+    below=0.8cm of Toggle Ramp Style from ON.center,
+    anchor=center,
+    label={
+        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
+            \begin{tabular}{l}
+                3C if only one\\
+                channel mode
+            \end{tabular}
+        }
+    }
+]
+{6C};
+
+\draw (Toggle Ramp Style extra node ON.east) edge[
+    -,
+    advancedline,
+    out=0,
+    in=180,
+    looseness=0
+]
+(Toggle Ramp Style extra node 6C.west);
+\draw (Toggle Ramp Style extra node 6C.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=0
+]
+(Toggle Ramp Style from ON.south);
+
+\begin{scope}[on background layer]
+    \draw (Toggle Ramp Style from ON.north) edge[
+        ->,
+        advancedline,
+        cap=round,
+        out=150,
+        in=325,
+        looseness=0
+    ]
+    (Ramp Styles fit.325);
+    \draw (Toggle Ramp Style from ON.north) edge[
+        ->,
+        advancedline,
+        cap=round,
+        out=30,
+        in=215,
+        looseness=0
+    ]
+    (Ramp Styles fit.215);
+\end{scope}
+
+% OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (OFF)[
+    onoff,
+    left=3.8cm of Ramp
+]
+{OFF};
+
+\draw (OFF.north) edge[
+    ->,
+    advancedline momentary,
+    shorten >=0.2pt,
+    out=90,
+    in=180,
+    looseness=1.4
+]
+node[
+    advancedbutton,
+    pos=0.8
+]
+{2H} (Turbo 0pt.north west);
+\draw (OFF.north) edge[
+    ->,
+    anyline,
+    shorten >=0.2pt,
+    out=90,
+    in=180,
+    looseness=1.3
+]
+node[
+    anybutton,
+    pos=0.7,
+]
+{2C}
+(Ramp 0pt.north west);
+\draw (OFF.north east) edge[
+    -, % no extra arrow tip
+    simpleline momentary,
+    shorten >=0.2pt,
+    out=90,
+    in=180,
+    out looseness=1.1,
+    in looseness=0.7
+]
+node[
+    simplebutton,
+    pos=0.2
+]
+{2H} (Ramp 0pt.north west);
+\draw (OFF.south) edge[
+    ->,
+    anyline,
+    shorten >=0.2pt,
+    out=270,
+    in=180,
+    looseness=1.3
+]
+node[
+    anybutton,
+    pos=0.7
+]
+{1H} (Ramp 0pt.south west);
+\draw (OFF.east) edge[
+    <->,
+    anyline basic use,
+    shorten >=0.2pt
+]
+node[
+    anybutton basic use,
+    pos=0.5
+]
+{1C} (Ramp 0pt.west);
+
+% Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Lockout)[
+    onoff,
+    right=3.8cm of Ramp
+]
+{LOCK\footnotesize OUT};
+
+\draw (Lockout.north) edge[
+    ->,
+    anyline,
+    shorten >=0.2pt,
+    out=90,
+    in=0,
+    looseness=1.3
+]
+node[
+    anybutton,
+    pos=0.7
+]
+{5C} (Ramp 0pt.north east);
+\draw (Lockout.south) edge[
+    ->,
+    anyline,
+    shorten >=0.2pt,
+    out=270,
+    in=0,
+    looseness=1.3
+]
+node[
+    anybutton,
+    pos=0.7
+]
+{4H} (Ramp 0pt.south east);
+\draw (Lockout.west) edge[
+    <->,
+    anyline,
+    shorten >=0.2pt
+]
+node[
+    anybutton,
+    pos=0.5
+]
+{4C} (Ramp 0pt.east);
+
+% ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (ON)[
+    onoff,
+    left=4.4cm of OFF
+]
+{ON};
+
+\draw (ON.east) edge[
+    <->,
+    anyline
+]
+node[
+    anybutton,
+    pos=0.5
+]
+{1C} (OFF.west);
+
+% OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (OFF right)[
+    onoff,
+    right=6.4cm of Lockout
+]
+{OFF};
+
+\draw (Lockout.east) edge[
+    <->,
+    anyline
+]
+node[
+    anybutton,
+    pos=0.4,
+    label={
+        [align=center, xshift=0cm, yshift=-0.1cm]above:{
+        \normalsize \char"2192{}
+        }
+    }
+]
+{3C}
+node[
+    anybutton,
+    pos=0.6,
+    label={
+        [align=center, xshift=0cm, yshift=0.1cm]below:{
+        \normalsize \char"2190{}
+        }
+    }
+]
+{4C} (OFF right.west);
+
+% Momentary Mode from OFF ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Momentary Mode from OFF ON)[
+    advancedconfig,
+    below left=1.2cm and 2.2cm of OFF.center,
+    anchor=north,
+    align=left
+]
+{
+    \bfseries\normalsize Momentary Mode\\[1.0ex]
+    Exit: Disconnect power
+};
+
+\draw (OFF.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=0,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{5C} (Momentary Mode from OFF ON.east);
+\draw (ON.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{5C} (Momentary Mode from OFF ON.west);
+
+% Strobe / Mood Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Lightning Storm from Police Strobe
+\node (Lightning Storm from Police Strobe)
+at (current page.south west)[ 
+    advancedmode,
+    xshift=1.3cm,
+    yshift=5.15cm,
+    anchor=south west
+]
+{\bfseries\normalsize Lightning Storm};
+
+% Police Strobe from Tactical Strobe
+\node (Police Strobe from Tactical Strobe)[
+    advancedmode,
+    below=0.8cm of Lightning Storm from Police Strobe.south,
+    anchor=north
+]
+{\bfseries\normalsize Police Strobe};
+
+\draw (Police Strobe from Tactical Strobe.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Lightning Storm from Police Strobe.south);
+
+% Tactical Strobe from Party Strobe
+\node (Tactical Strobe from Party Strobe)[
+    advancedmode,
+    below=0.8cm of Police Strobe from Tactical Strobe.south,
+    anchor=north
+]
+{\bfseries\normalsize Tactical Strobe};
+
+\draw (Tactical Strobe from Party Strobe.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Police Strobe from Tactical Strobe.south);
+
+% Party Strobe from Bike Flasher
+\node (Party Strobe from Bike Flasher)[
+    advancedmode,
+    below=0.8cm of Tactical Strobe from Party Strobe.south,
+    anchor=north
+]
+{\bfseries\normalsize Party Strobe};
+
+\draw (Party Strobe from Bike Flasher.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Tactical Strobe from Party Strobe.south);
+
+% Candle from OFF
+\node (Candle from OFF)[
+    advancedmode,
+    above right=0.65cm and 1.3cm of Lightning Storm from Police Strobe.east,
+    anchor=west
+]
+{\bfseries\normalsize Candle};
+
+\draw (Lightning Storm from Police Strobe.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Candle from OFF.west);
+
+% Candle Timer
+\node (Candle Timer)[
+    advancedconfig,
+    densely dotted,
+    above left=0.5cm and 1cm of Candle from OFF.west,
+    anchor=east
+]
+{
+    \bfseries\normalsize Candle Timer\\[1.0ex]
+    1 blink = 5 minutes
+};
+
+\draw (Candle from OFF.north west) edge[
+    ->,
+    advancedline,
+    shorten <=-1.6pt,
+    out=135,
+    in=0,
+    looseness=0.7
+]
+node[
+    advancedbutton,
+    pos=0.45
+]
+{5H} (Candle Timer.east);
+
+% Bike Flasher from Candle
+\node (Bike Flasher from Candle)[
+    advancedmode,
+    below=0.8cm of Candle from OFF.south,
+    anchor=north
+]
+{\bfseries\normalsize Bike Flasher};
+
+\draw (Candle from OFF.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=90,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Bike Flasher from Candle.north);
+
+\draw (Bike Flasher from Candle.west) edge[
+    ->,
+    advancedline,
+    out=180,
+    in=0,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.35
+]
+{2C} (Party Strobe from Bike Flasher.east);
+
+% Strobe / Mood Modes Actions
+\node (Strobe Modes Actions)
+at (current page.south)[
+    generalconfig,
+    xshift=-8.05cm,
+    yshift=1.3cm,
+    anchor=south east,
+    align=left
+]
+{
+    \bfseries\normalsize Actions\\[1.0ex]
+    1C = Off\\
+    1H/2H = Brighter/dimmer\\
+    (Candle and Bike)\\
+    1H/2H = Faster/slower\\
+    (Party and Tactical)\\
+    1H = Interrupt or new flash\\
+    (Lightning)\\
+    3C = Next channel mode\\
+    (except Police),\\
+    saved per strobe mode\\
+    4C = Previous strobe mode
+};
+
+% Strobe Modes fit
+\begin{scope}[on background layer]
+    \node (Strobe Modes fit)[
+        advancedfit,
+        xshift=0.2pt, % 1/2 line thickness for outer alignment
+        yshift=0.2pt, % 1/2 line thickness for outer alignment
+        fit=(Candle from OFF)
+        (Candle Timer)
+        (Bike Flasher from Candle)
+        (Party Strobe from Bike Flasher)
+        (Tactical Strobe from Party Strobe)
+        (Police Strobe from Tactical Strobe)
+        (Lightning Storm from Police Strobe)
+        (Strobe Modes Actions)
+    ]
+    {};
+    \node (Strobe Modes fit title)[
+        below=0cm of Strobe Modes fit.north east,
+        anchor=north east,
+        inner xsep=0.15cm,
+        inner ysep=0.1cm
+    ]
+    {\normalsize Strobe / Mood Modes};
+\end{scope}
+
+\draw (OFF.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=0,
+    looseness=1.3
+]
+node[
+    advancedbutton,
+    pos=0.6
+]
+{3H}
+node[
+    fill=white,
+    pos=0.86
+]
+{Mode memory} (Strobe Modes fit.43);
+\draw (Strobe Modes fit.60) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.35,
+    label={
+        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
+            \begin{tabular}{l}
+                Momentary\\
+                Strobe Mode
+            \end{tabular}
+        }
+   }
+]
+{5C}(Momentary Mode from OFF ON.191);
+
+% Tactical Mode from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Tactical Mode Config
+\node (Tactical Mode Config)
+at (current page.south)[ 
+    advancedtable,
+    xshift=-6.95cm,
+    yshift=1cm,
+    anchor=south west
+]
+{
+    \begin{tabular}{m{0.45cm} l}
+        \multicolumn{2}{l}{
+            \thead{Tactical Mode Config}
+        }\\
+        {1\textendash{}3} & \makecell{
+            Tactical Slots 1\textendash{}3
+		}\\
+		 {} & \makecell{       
+            0C = Last-used strobe /\\
+            mood mode\\
+            1\textendash{}150C = Brightness\\
+            151C = Party strobe\\
+            152C = Tactical strobe\\
+            153+C = Other strobe /\\
+            mood modes
+		}
+    \end{tabular}
+};
+
+% Tactical Mode from OFF
+\node (Tactical Mode from OFF)[ 
+    advancedconfig,
+    above=0.8cm of Tactical Mode Config.north,
+    anchor=south
+]
+{
+    \bfseries\normalsize Tactical Mode\\[1.0ex]
+    1H = Tactical Slot 1 (high)\\
+    2H = Tactical Slot 2 (low)\\
+    3H = Tactical Slot 3 (strobe)
+};
+
+\draw (Tactical Mode from OFF.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=90,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{7H} (Tactical Mode Config.north);
+\draw (OFF.south) edge[
+    -{<[sep=1.95cm]>},
+    advancedline,
+    out=270,
+    in=60,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.8
+]
+{6C} (Tactical Mode from OFF.45);
+
+% Tactical Mode extra node Aux LED
+\node (Tactical Mode extra node Aux LED)[
+    above=0.05cm of Tactical Mode from OFF.north west,
+    anchor=south west,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
+]
+{
+    Lockout mode's\\
+    aux LED settings
+};
+
+% Blinky / Utility Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Next Channel Mode from Batt Check
+\node (Next Channel Mode from Batt Check)
+at (current page.south)[
+    advancedconfig,
+    densely dotted,
+    xshift=1.3cm,
+    yshift=1.3cm,
+    anchor=south west
+]
+{
+    \bfseries\normalsize Next Channel Mode*\\[1.0ex]
+    For number blinks only
+};
+
+% Batt Check from OFF
+\node (Batt Check from OFF)[
+    anymode,
+    above left=1.6cm and 0.45cm of
+    Next Channel Mode from Batt Check.north west,
+    anchor=south west
+]
+{
+    \bfseries\normalsize Batt Check\\[1.0ex]
+    0.02V steps
+};
+
+% Batt Check Simple Advanced
+\node (Batt Check Simple Advanced)[
+    above=0.05cm of Batt Check from OFF.north west,
+    anchor=south west,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
+]
+{
+    Simple UI: Voltage displayed once\\
+    Advanced UI: Voltage displayed continuously
+};
+
+\draw (Batt Check from OFF.213) edge[
+    ->,
+    advancedline longer,
+    shorten >=-1.4pt,
+    out=270,
+    in=120,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.5
+]
+{3C} (Next Channel Mode from Batt Check.north west);
+
+\draw (OFF.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=165,
+    looseness=1.3
+]
+node[
+    anybutton,
+    pos=0.45
+]
+{3C} (Batt Check from OFF.172);
+
+% Voltage Config from Batt Check
+\node (Voltage Config from Batt Check)[
+    advancedtable,
+    densely dotted,
+    above right=0.4cm and 1.7cm of Tactical Mode Config.south east,
+    anchor=south west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Voltage Config*}
+        }\\
+		{1} & \makecell{
+	        Correction Factor
+		}\\
+		{} & \makecell{
+	        \char"00B1{}0.30V, 0.05V steps\\
+	        1C = \char"2212{}0.30V\\
+	        7C = 0V (default)\\
+	        13C = +0.30V
+		}\\
+		{2} & \makecell{
+		    Post-Off Display
+	    }\\
+	    {} & \makecell{
+		    0C = Disable\\
+	        nC = n seconds
+	    }
+    \end{tabular}
+};
+
+\draw (Batt Check from OFF.198) edge[
+    ->,
+    advancedline longer,
+    out=180,
+    in=30,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.5
+]
+{7H} (Voltage Config from Batt Check.east);
+
+% Temp Check from Batt Check
+\node (Temp Check from Batt Check)[
+    advancedmode,
+    below right=0.2cm and 1.6cm of Batt Check from OFF.east,
+    anchor=west
+]
+{\bfseries\normalsize Temp Check};
+
+\draw (Batt Check from OFF.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.5
+]
+{2C} (Temp Check from Batt Check.west);
+
+% Temp Check Thermal Config
+\node (Temp Check Thermal Config)[
+    advancedtable,
+    densely dotted,
+    above right=0.2cm and 1cm of Temp Check from Batt Check.north east,
+    anchor=north west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Thermal Config*}
+        }\\
+		{1} & \makecell{
+	        Calibrate
+		}\\
+		{} & \makecell{
+	        nC = n\,°C
+		}\\
+		{2} & \makecell{
+		    Limit
+	    }\\
+	    {} & \makecell{
+	        nC = n + 30\,°C
+	    }
+    \end{tabular}
+};
+
+\draw (Temp Check from Batt Check.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{7H} (Temp Check Thermal Config.west);
+
+% Beacon from Temp Check
+\node (Beacon from Temp Check)[
+    advancedmode,
+    below left=1cm and 0cm of Temp Check from Batt Check.south,
+    anchor=north
+]
+{\bfseries\normalsize Beacon};
+
+\draw (Temp Check from Batt Check.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=90,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Beacon from Temp Check.north);
+
+% Beacon Speed
+\node (Beacon Speed)[
+    advancedconfig,
+    densely dotted,
+    below right=0.68cm and 1cm of Beacon from Temp Check.east,
+    anchor=west
+]
+{
+    \bfseries\normalsize Beacon Speed\\[1.0ex]
+    1 blink = 1 second pause
+};
+
+\draw (Beacon from Temp Check.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{1H} (Beacon Speed.west);
+
+% SOS from Beacon
+\node (SOS from Beacon)[
+    advancedmode,
+    above left=0.2cm and 1.8cm of Beacon from Temp Check.west,
+    anchor=east
+]
+{\bfseries\normalsize SOS};
+
+\draw (Beacon from Temp Check.west) edge[
+    ->,
+    advancedline,
+    out=180,
+    in=0,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.5
+]
+{2C} (SOS from Beacon.east);
+\draw (SOS from Beacon.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{2C} (Batt Check from OFF.south);
+
+% Utility Modes fit
+\begin{scope}[on background layer]
+    \node (Utility Modes fit)[
+        advancedfit,
+        yshift=0.2pt, % 1/2 line thickness for outer alignment
+        fit=(Batt Check from OFF)
+        (Batt Check Simple Advanced)
+        (Voltage Config from Batt Check)
+        (Next Channel Mode from Batt Check)
+        (Temp Check from Batt Check)
+        (Temp Check Thermal Config)
+        (Beacon from Temp Check)
+        (Beacon Speed)
+        (SOS from Beacon)
+    ]
+    {};
+    \node (Utility Modes fit title)[
+        below=0cm of Utility Modes fit.north east,
+        anchor=north east,
+        inner xsep=0.15cm,
+        inner ysep=0.1cm,
+        align=left
+    ]
+    {
+        \normalsize Blinky / Utility Modes\\[1.0ex]
+        1C = Off
+    };
+\end{scope}
+
+% Next Channel Mode from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Next Channel Mode from ON)
+at (current page.west)[
+    anyconfig,
+    anchor=south west,
+    xshift=1cm,
+    yshift=0.15cm
+]
+{\bfseries\normalsize Next Channel Mode};
+
+\draw (ON.west) edge[
+    ->,
+    anyline,
+    out=180,
+    in=0,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.6
+]
+{3C} (Next Channel Mode from ON.east);
+
+% Tint Ramp from ON
+\node (Tint Ramp from ON)
+at (current page.west)[
+    anyconfig,
+    anchor=north west,
+    xshift=1cm,
+    yshift=-0.15cm
+]
+{
+    \bfseries\normalsize Tint Ramp\\[1.0ex]
+    If this channel mode can
+};
+
+\draw (ON.west) edge[
+    ->,
+    anyline,
+    out=180,
+    in=0,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.6
+]
+{3H} (Tint Ramp from ON.east);
+
+% Momentary Turbo 3H from ON
+\node (Momentary Turbo 3H from ON)[
+    advancedconfig,
+    below=0.3cm of Tint Ramp from ON.south west,
+    anchor=north west
+]
+{
+    \bfseries\normalsize Momentary Turbo\\[1.0ex]
+    If no tint ramping
+};
+
+\draw (ON.west) edge[
+    ->,
+    advancedline momentary,
+    out=180,
+    in=0,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.69
+]
+{3H} (Momentary Turbo 3H from ON.east);
+
+% Momentary Turbo 4H from ON
+\node (Momentary Turbo 4H from ON)[
+    advancedconfig,
+    below=0.3cm of Momentary Turbo 3H from ON.south west,
+    anchor=north west
+]
+{\bfseries\normalsize Momentary Turbo};
+
+\draw (ON.west) edge[
+    ->,
+    advancedline momentary,
+    out=180,
+    in=0,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.74
+]
+{4H} (Momentary Turbo 4H from ON.east);
+
+% Sunset Timer from ON
+\node (Sunset Timer from ON)[
+    advancedconfig,
+    above right=1.2cm and 2.2cm of ON.center,
+    anchor=south,
+    align=left
+]
+{
+    \bfseries\normalsize Sunset Timer\\[1.0ex]
+    1 blink = 5 minutes
+};
+\draw (ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{5H} (Sunset Timer from ON.west);
+
+% Ramp Config from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Ramp Config from ON)
+at (current page.north west)[
+    advancedtable,
+    xshift=1cm,
+    yshift=-1cm,
+    anchor=north west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Ramp Config}
+        }\\
+        \multicolumn{2}{l}{
+            \thead{\footnotesize Smooth Ramp}
+        }\\
+		{1} & \makecell{
+		    Floor: nC = n of 150
+		}\\
+		{2} & \makecell{
+		    Ceiling: nC = 151 \char"2212{} n
+		}\\
+		{3} & \makecell{
+		    Speed*: 1C (full speed)\\
+		    to 4C (quarter speed)
+		}\\
+		\multicolumn{2}{l}{
+            \thead{\footnotesize Stepped Ramp}
+        }\\
+		{1} & \makecell{
+		    Floor: nC = n of 150
+		}\\
+		{2} & \makecell{
+		    Ceiling: nC = 151 \char"2212{} n
+		}\\
+		{3} & \makecell{
+            Step count: 1\textendash{}150C
+        }
+    \end{tabular}
+};
+
+\draw[
+    ->,
+    advancedline
+]
+(ON.north) to[
+    out=90,
+    in=280,
+    looseness=1.3
+]
++(-2.8,3.1) to[
+    out=100,
+    in=275,
+    looseness=0.9
+]
+node[
+    advancedbutton,
+    pos=0.55
+] 
+{7H} +(-2.92,4.9) to[
+    out=95,
+    in=320,
+    looseness=0.9
+] (Ramp Config from ON.300);
+
+% Channel Mode Config from ON
+\node (Channel Mode Config from ON)[
+    advancedtable,
+    above=0.3cm of Next Channel Mode from ON.north west,
+    anchor=south west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Channel Mode\\
+            Config*}
+        }\\
+	    {n} & \makecell{
+	        n\textsuperscript{th} channel mode
+	    }\\
+	    {} & \makecell{
+	        0C = Disable\\
+	        1C = Enable
+	    }\\
+	    \multicolumn{2}{l}{
+            \thead{\mdseries\footnotesize Typical sequence for\\[-0.55ex]
+            \mdseries\footnotesize dual-channel lights}
+        }\\
+ 		{1} & \makecell{
+		    Channel 1
+		}\\
+		{2} & \makecell{
+		    Channel 2
+		}\\
+		{3} & \makecell{
+		    50/50
+		}\\
+		{4} & \makecell{
+		    Tint Ramp
+		}\\
+		{5} & \makecell{
+		    Auto-tint
+		}\\
+		{6+} & \makecell{
+		    Aux LED Channels
+		}
+    \end{tabular}
+};
+
+\draw (ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=320,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.69
+]
+{9H} (Channel Mode Config from ON.320);
+
+% Ramp Extras Config from ON
+\node (Ramp Extras Config from ON)[
+    advancedtable,
+    right=0.8cm of Ramp Config from ON.north east,
+    anchor=north west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Ramp Extras Config}
+        }\\
+	    {1} & \makecell{
+	        Disable manual memory*
+	    }\\
+	    {} & \makecell{
+	        1+C
+	    }\\
+	    {2} & \makecell{
+	        Manual memory timer*
+	    }\\
+	    {} & \makecell{
+	        0C = Disable\\
+	        nC = n minutes
+	    }\\
+	    {3} & \makecell{
+	        Moon style (1H from Off)*
+	    }\\
+	    {} & \makecell{
+		    0C = Ramp up after moon\\
+		    1C = Stay at floor level
+	    }\\
+	    {4} & \makecell{
+	        Advanced UI's turbo style
+	    }\\
+	    {} & \makecell{
+	        0C = Ceiling only, no turbo\\
+	        1C = Turbo\\
+	        2C = Ceiling, or turbo if\\
+	        ramped up to ceiling first
+	    }\\
+	    {5} & \makecell{
+	        Smooth Steps*
+	    }\\
+	    {} & \makecell{
+	        0C = Disable\\
+	        1C = Enable
+	    }\\
+	    \multicolumn{2}{l}{
+	        \thead{\mdseries\footnotesize Types of brightness
+	        memory\\[-0.55ex]
+	        \mdseries\footnotesize (1C from Off)}
+	    }\\
+	    \multicolumn{2}{l}{
+	        \makecell{Automatic: Last-ramped\\
+	        Manual: User's saved\\
+	        Hybrid: Manual after n minutes}
+	    }
+    \end{tabular}
+};
+
+\draw (ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1.5
+]
+node[
+    advancedbutton,
+    pos=0.8
+]
+{10H} (Ramp Extras Config from ON.south);
+
+% Manual Memory from ON
+\node (Manual Memory from ON)[
+    advancedconfig,
+    above right=0.6cm and 0.4cm of Ramp Extras Config from ON.south east,
+    anchor=south west,
+    align=left
+]
+{
+    \bfseries\normalsize Manual Memory*\\[1.0ex]
+    Activate, and save\\
+    current brightness and\\
+    current channel mode
+};
+
+\draw (ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=250,
+    looseness=1.5
+]
+node[
+    advancedbutton,
+    pos=0.77
+]
+{10C} (Manual Memory from ON.222);
+
+% Simple UI Ramp Config from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Simple UI Ramp Config from OFF)[
+    advancedtable,
+    right=0.8cm of Ramp Extras Config from ON.north east,
+    anchor=north west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Simple UI Ramp\\
+            Config}
+        }\\
+		{1} & \makecell{
+		    Floor: nC = n of 150
+		}\\
+		{2} & \makecell{
+		    Ceiling: nC = 151 \char"2212{} n
+		}\\
+		{3} & \makecell{
+            Step count: 1\textendash{}150C
+        }\\
+        {4} & \makecell{
+	        Simple UI's turbo style
+	    }\\
+	    {} & \makecell{
+	        0C = Ceiling only, no turbo\\
+	        1C = Turbo\\
+	        2C = Ceiling, or turbo if\\
+	        ramped up to ceiling first
+	    }
+    \end{tabular}
+};
+
+\draw (OFF.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=270,
+    looseness=1.5
+]
+node[
+    advancedbutton,
+    pos=0.9
+]
+{10H} (Simple UI Ramp Config from OFF.302);
+
+% Misc Config from OFF
+\node (Misc Config from OFF)[
+    advancedtable,
+    right=0.8cm of Simple UI Ramp Config from OFF.north east,
+    anchor=north west
+]
+{
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Misc Config*}
+        }\\
+		{1} & \makecell{
+	        Tint Ramp style
+		}\\
+		{} & \makecell{
+	        0C = Smooth ramp\\
+	        1C = Middle tint only\\
+	        2C = Channel toggle\\
+	        3+C = Stepped ramp\\
+	        with 3+ steps
+		}\\
+		{2} & \makecell{
+		    Jump Start level
+	    }\\
+	    {} & \makecell{
+		    1\textendash{}150C (usually\\
+		    between 20 and 50)
+	    }\\
+	    \multicolumn{2}{l}{
+            \thead{\mdseries\footnotesize Hardware-specific;
+            may not\\[-0.55ex]
+            \mdseries\footnotesize be present on all lights}
+        }
+    \end{tabular}
+};
+
+\draw (OFF.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=230,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.85
+]
+{9H} (Misc Config from OFF.250);
+
+% Momentary Moon from Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Momentary Moon from Lockout)[
+    anyconfig,
+    below right=1.2cm and 3.2cm of Lockout.center,
+    anchor=north,
+    align=left
+]
+{
+    \bfseries\normalsize Momentary Moon\\[1.0ex]
+    Lowest floor of\\
+    smooth vs stepped
+};
+
+\draw (Lockout.south) edge[
+    ->,
+    anyline momentary,
+    out=270,
+    in=180,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.71
+]
+{1H} (Momentary Moon from Lockout.west);
+
+% Momentary Low from Lockout
+\node (Momentary Low from Lockout)[
+    anyconfig,
+    below=0.3cm of Momentary Moon from Lockout.south west,
+    anchor=north west
+]
+{
+    \bfseries\normalsize Momentary Low\\[1.0ex]
+    Highest floor of\\
+    smooth vs stepped, or\\
+    manual memory if set
+};
+
+\draw (Lockout.south) edge[
+    ->,
+    anyline momentary,
+    out=270,
+    in=180,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.71
+]
+{2H} (Momentary Low from Lockout.west);
+
+% Next Channel Mode from Lockout
+\node (Next Channel Mode from Lockout)[
+    anyconfig,
+    below=0.3cm of Momentary Low from Lockout.south west,
+    anchor=north west
+]
+{\bfseries\normalsize Next Channel Mode};
+
+\draw (Lockout.south) edge[
+    ->,
+    anyline,
+    out=270,
+    in=180,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.71
+]
+{3H} (Next Channel Mode from Lockout.west);
+
+% Aux LED Color from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Aux LED Color from OFF right)[
+    advancedconfig,
+    above right=1.2cm and 3.2cm of Lockout.center,
+    anchor=south,
+    align=left
+]
+{
+    \bfseries\normalsize OFF Aux LED Color*\\[1.0ex]
+    R\char"2192{}Y\char"2192{}G\char"2192{}C\char"2192{}B\char"2192{}%
+    P\char"2192{}W\char"2192{}Di\char"2192{}Ra\char"2192{}Vo
+};
+
+\draw (OFF right.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=0,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{7H} (Aux LED Color from OFF right.east);
+
+% Aux LED Pattern from OFF right
+\node (Aux LED Pattern from OFF right)[ 
+    advancedconfig,
+    above=0.3cm of Aux LED Color from OFF right.north west,
+    anchor=south west
+]
+{
+    \bfseries\normalsize OFF Aux LED Pattern*\\[1.0ex]
+    Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
+};
+
+\draw (OFF right.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=0,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.7
+]
+{7C} (Aux LED Pattern from OFF right.east);
+
+% Aux LED Color from Lockout
+\node (Aux LED Color from Lockout)[ 
+    advancedconfig,
+    above=0.3cm of Aux LED Pattern from OFF right.north west,
+    anchor=south west
+]
+{
+    \bfseries\normalsize Lockout Aux LED Color*\\[1.0ex]
+    \underline{R}ed \char"2192{} \underline{Y}ellow \char"2192{}
+    \underline{G}reen \char"2192{} \underline{C}yan \char"2192{}\\
+    \underline{B}lue \char"2192{} \underline{P}urple
+    \char"2192{} \underline{W}hite \char"2192{}\\
+    \underline{Di}sco \char"2192{} \underline{Ra}inbow
+    \char"2192{} \underline{Vo}ltage
+};
+
+\draw (Lockout.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{7H} (Aux LED Color from Lockout.west);
+
+% Aux LED Pattern from Lockout
+\node (Aux LED Pattern from Lockout)[ 
+    advancedconfig,
+    above=0.3cm of Aux LED Color from Lockout.north west,
+    anchor=south west
+]
+{
+    \bfseries\normalsize Lockout Aux LED Pattern*\\[1.0ex]
+    Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
+};
+
+\draw (Lockout.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.7
+]
+{7C} (Aux LED Pattern from Lockout.west);
+
+% Auto-lock Config from Lockout
+\node (Auto-lock Config from Lockout)[ 
+    advancedconfig,
+    left=1.8cm of Aux LED Pattern from Lockout.north west,
+    anchor=north east
+]
+{
+    \bfseries\normalsize Auto-lock*\\[1.0ex]
+    0C = Disable\\
+    nC = n minutes
+};
+
+\draw (Lockout.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=300,
+    looseness=0.8
+]
+node[
+    advancedbutton,
+    pos=0.8
+]
+{10H} (Auto-lock Config from Lockout.south);
+
+% Factory Reset from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Factory Reset from OFF right)
+at (current page.south east)[
+    anyconfig,
+    anchor=south east,
+    xshift=-1cm,
+    yshift=1cm
+]
+{
+    \bfseries\normalsize Factory Reset\\[1.0ex]
+    Physical Reset:\\
+    Reconnect power\\
+    while holding button\\
+    for about 4s\\[1.0ex]
+    Simple UI is enabled\\
+    after each factory reset.
+};
+
+\draw (OFF right.south) edge[
+    ->,
+    anyline,
+    out=270,
+    in=135,
+    looseness=0.55
+]
+node[
+    anybutton,
+    pos=0.77,
+    label={
+        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
+            \begin{tabular}{l}
+                Keep holding\\
+                for about 4s
+            \end{tabular}
+        }
+    }
+]
+{13H} (Factory Reset from OFF right.west);
+
+% Version Check from OFF right
+\node (Version Check from OFF right)[
+    anyconfig,
+    above=1cm of Factory Reset from OFF right.north east,
+    anchor=south east,
+    align=left
+]
+{
+    \bfseries\normalsize Version Check\\[1.0ex]
+    MODEL-YYYY-MM-DD-\\
+    SINCE-DIRTY\\[1.0ex]
+    SINCE and DIRTY\\
+    may be omitted.
+};
+
+\draw (OFF right.south) edge[
+    ->,
+    anyline,
+    out=270,
+    in=135,
+    looseness=0.6
+]
+node[
+    anybutton,
+    pos=0.75
+]
+{15+C} (Version Check from OFF right.west);
+
+% Advanced UI switch from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Advanced UI switch from OFF right)
+at (current page.east)[
+    advancedUI,
+    anchor=north east,
+    xshift=-1cm,
+    yshift=-2.4cm
+]
+{Advanced UI};
+
+\draw (OFF right.east) edge[
+    ->,
+    simpleline,
+    out=0,
+    in=90
+]
+node[
+    simplebutton,
+    pos=0.6
+]
+{10H} (Advanced UI switch from OFF right.north);
+
+% Simple UI switch from OFF right
+\node (Simple UI switch from OFF right)
+at (current page.east)[
+    simpleUI,
+    anchor=south east,
+    xshift=-1cm,
+    yshift=2.4cm
+]
+{Simple UI};
+
+% Simple UI switch extra node Extended Simple UI
+\node (Simple UI switch extra node Extended Simple UI)[
+    above=0.05cm of Simple UI switch from OFF right.north east,
+    anchor=south east,
+    inner xsep=0.05cm,
+    inner ysep=0.05cm,
+    align=right
+]
+{
+    \normalsize Extended Simple UI\\[1.0ex]
+    Some lights have additional\\
+    features enabled in Simple UI,\\
+    at the manufacturer's request.
+};
+
+\draw (OFF right.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=270
+]
+node[
+    advancedbutton,
+    pos=0.6
+]
+{10C} (Simple UI switch from OFF right.south);
+
+% Anduril 2 UI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (Anduril 2 UI)
+at (current page.north east)[
+    andurilinfo,
+    anchor=north east,
+    xshift=-1cm,
+    yshift=-1cm
+]
+{
+    \bfseries\Huge Andúril 2 UI\\[3.0ex]
+    \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
+    \normalsize Diagram Release 01\\[2.0ex]
+    Diagram Repository:\\
+    https://github.com/dirtydancing/\\
+    anduril-tikz-diagram\\[1.0ex]
+    ToyKeeper's Andúril User Manual:\\
+    https://toykeeper.net/anduril/manual
+};
+
+% Aux LED Color for Voltage
+\begin{scope}
+    \setlength{\fboxsep}{0pt} % default: 3pt
+
+    \node (Aux LED Color for Voltage)[
+        generalconfig,
+        below=0.3cm of Anduril 2 UI.south east,
+        anchor=north east
+    ]
+    {
+        \bfseries\normalsize Aux LED Color for Voltage\\[1.0ex]
+        \colorbox{red!40}{R-2.9, \vphantom{Ú}}%
+        \colorbox{yellow!40}{Y-3.3, \vphantom{Ú}}%
+        \colorbox{green!40}{G-3.5, \vphantom{Ú}}%
+        \colorbox{cyan!40}{C-3.7, \vphantom{Ú}}%
+        \colorbox{blue!40}{B-3.9, \vphantom{Ú}}%
+        \colorbox{purple!40}{P-4.1V\vphantom{,Ú}}\\[1.0ex]
+        Single color aux: Fast blink 3.3\textendash{}2.9V
+    };
+\end{scope}
+
+% Button Presses
+\node (Button Presses)[
+    generalconfig,
+    left=0.8cm of Anduril 2 UI.north west,
+    anchor=north east
+]
+{
+    {}\\[0.2ex] % for vertical alignment
+    \bfseries\normalsize Button Presses\\[1.0ex]
+    1C: Click\\
+    1H: Hold\\
+    2C: Click, Click\\
+    2H: Click, Hold\\
+    3C: Click, Click, Click\\
+    3H: Click, Click, Hold\\[1.0ex]
+    In a config menu, release\\
+    button after the desired\\
+    number of blinks; when\\
+    entering a value, 1H = 10C
+};
+
+% Legend
+\node (Legend basic use text)[
+    legendconfig,
+    below left=0.1cm and 0.9cm of Button Presses.north west,
+    anchor=north east
+]
+{All the user needs to know for basic use\vphantom{y}};
+
+\node (Legend basic use picture)[
+    legendconfig,
+    left=0.22cm of Legend basic use text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend basic use picture.west) edge[
+    -,
+    anyline basic use,
+    out=0,
+    in=180
+]
+node[
+    anybutton basic use,
+    font=\bfseries\footnotesize,
+    pos=0.5
+]
+{1C} (Legend basic use picture.east);
+
+\node (Legend Simple and Advanced text)[
+    legendconfig,
+    below=0.1cm of Legend basic use text.south west,
+    anchor=north west
+]
+{Simple UI and Advanced UI function};
+
+\node (Legend Simple and Advanced picture)[
+    legendconfig,
+    left=0.22cm of Legend Simple and Advanced text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend Simple and Advanced picture.west) edge[
+    -,
+    anyline,
+    out=0,
+    in=180
+]
+node[
+    anybutton,
+    font=\footnotesize,
+    pos=0.5
+]
+{1C} (Legend Simple and Advanced picture.east);
+
+\node (Legend Simple only text)[
+    legendconfig,
+    below=0.1cm of Legend Simple and Advanced text.south west,
+    anchor=north west
+]
+{Simple UI function only};
+
+\node (Legend Simple only picture)[
+    legendconfig,
+    left=0.22cm of Legend Simple only text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend Simple only picture.west) edge[
+    -,
+    simpleline,
+    out=0,
+    in=180
+]
+node[
+    simplebutton,
+    font=\footnotesize,
+    pos=0.5
+]
+{1C} (Legend Simple only picture.east);
+
+\node (Legend Advanced only text)[
+    legendconfig,
+    below=0.1cm of Legend Simple only text.south west,
+    anchor=north west
+]
+{Advanced UI function only};
+
+\node (Legend Advanced only picture)[
+    legendconfig,
+    left=0.22cm of Legend Advanced only text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend Advanced only picture.west) edge[
+    -,
+    advancedline,
+    out=0,
+    in=180
+]
+node[
+    advancedbutton,
+    font=\footnotesize,
+    pos=0.5
+]
+{1C} (Legend Advanced only picture.east);
+
+\node (Legend Continuous effect text)[
+    legendconfig,
+    below=0.1cm of Legend Advanced only text.south west,
+    anchor=north west
+]
+{Continuous effect\vphantom{y}};
+
+\node (Legend Continuous effect picture)[
+    legendconfig,
+    left=0.22cm of Legend Continuous effect text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend Continuous effect picture.west) edge[
+    -,
+    anyline,
+    out=0,
+    in=180
+]
+(Legend Continuous effect picture.east);
+
+\node (Legend Momentary effect text)[
+    legendconfig,
+    below=0.1cm of Legend Continuous effect text.south west,
+    anchor=north west
+]
+{Momentary effect};
+
+\node (Legend Momentary effect picture)[
+    legendconfig,
+    left=0.22cm of Legend Momentary effect text.west,
+    anchor=east
+]
+{};
+
+\draw (Legend Momentary effect picture.west) edge[
+    -,
+    anyline momentary,
+    out=0,
+    in=180
+]
+(Legend Momentary effect picture.east);
+
+\node (Legend Inherited by Simple text)[
+    legendconfig,
+    below=0.1cm of Legend Momentary effect text.south west,
+    anchor=north west
+]
+{Inherited by Simple UI};
+
+\node (Legend Inherited by Simple picture)[
+    legendconfig,
+    left=0.22cm of Legend Inherited by Simple text.west,
+    anchor=east
+]
+{\normalsize *};
+
+% Legend fit
+\begin{scope}[on background layer]
+    \node (Strobe Modes fit)[
+        legendfit,
+        yshift=-0.2pt, % 1/2 line thickness for outer alignment
+        fit=(Legend basic use text) 
+        (Legend basic use picture)
+        (Legend Simple and Advanced text)
+        (Legend Simple and Advanced picture)
+        (Legend Simple only text)
+        (Legend Simple only picture)
+        (Legend Advanced only text)
+        (Legend Advanced only picture)
+        (Legend Continuous effect text)
+        (Legend Continuous effect picture)
+        (Legend Momentary effect text)
+        (Legend Momentary effect picture)
+        (Legend Inherited by Simple text)
+        (Legend Inherited by Simple picture)
+    ]
+    {};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}
