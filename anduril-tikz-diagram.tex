@@ -191,7 +191,7 @@
     }
 }
 \tikzset{
-    ontoggle/.style={
+    on-extra/.style={
         draw=black,
         thin,
         fill=white,
@@ -202,7 +202,7 @@
         rounded rectangle
     },
     onoff/.style={
-        ontoggle,
+        on-extra,
         font=\bfseries\Huge,
         on grid
     }
@@ -465,7 +465,7 @@ node[
 ]
 {\bfseries\normalsize Toggle Ramp Style*};
 \node (Toggle Ramp Style extra node ON)[
-    ontoggle,
+    on-extra,
     below=0.8cm of Toggle Ramp Style from ON.west,
     anchor=center
 ]
@@ -691,6 +691,26 @@ node[
     }
 ]
 {4C} (OFF right.west);
+
+\node (OFF right extra node ON)[
+    on-extra,
+    below left=0.8cm and 1.2cm of OFF right.west,
+    anchor=center
+]
+{ON};
+
+\draw (OFF right extra node ON.east) edge[
+    <->,
+    anyline,
+    out=0,
+    in=270,
+    looseness=1
+]
+node[
+    anybutton,
+    pos=0.45
+]
+{1C} (OFF right.210);
 
 % Momentary Mode from OFF ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2119,7 +2139,7 @@ at (current page.north east)[
 {
     \bfseries\Huge Andúril 2 UI\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 01\\[2.0ex]
+    \normalsize Diagram Release 02\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
