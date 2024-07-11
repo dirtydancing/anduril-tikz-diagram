@@ -14,6 +14,7 @@ Check the
 The diagram releases correspond to ToyKeeper's Andúril 2 releases, beginning
 with Andúril 2 release 2024-04-20. The respective diagram release number starts
 with 01, for example 2024-04-20.01, and will be incremented if changes are made.
+For recent changes, check the [Changelog](CHANGELOG.md).
 
 The file formats included in the diagram releases are:
 
