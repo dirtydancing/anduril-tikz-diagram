@@ -1874,14 +1874,16 @@ node[
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \node (Aux LED Color from OFF right)[
     advancedconfig,
-    above right=1.2cm and 3.2cm of Lockout.center,
+    above right=0.9cm and 3.2cm of Lockout.center,
     anchor=south,
     align=left
 ]
 {
     \bfseries\normalsize OFF Aux LED Color*\\[1.0ex]
-    R\char"2192{}Y\char"2192{}G\char"2192{}C\char"2192{}B\char"2192{}%
-    P\char"2192{}W\char"2192{}Di\char"2192{}Ra\char"2192{}Vo
+    Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
+    Cyan \char"2192{}\\
+    Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
+    Disco \char"2192{} Rainbow \char"2192{} Voltage
 };
 
 \draw (OFF right.north) edge[
@@ -1889,7 +1891,7 @@ node[
     advancedline,
     out=90,
     in=0,
-    looseness=1
+    looseness=1.1
 ]
 node[
     advancedbutton,
@@ -1913,7 +1915,7 @@ node[
     advancedline,
     out=90,
     in=0,
-    looseness=1
+    looseness=1.1
 ]
 node[
     advancedbutton,
@@ -1929,12 +1931,10 @@ node[
 ]
 {
     \bfseries\normalsize Lockout Aux LED Color*\\[1.0ex]
-    \underline{R}ed \char"2192{} \underline{Y}ellow \char"2192{}
-    \underline{G}reen \char"2192{} \underline{C}yan \char"2192{}\\
-    \underline{B}lue \char"2192{} \underline{P}urple
-    \char"2192{} \underline{W}hite \char"2192{}\\
-    \underline{Di}sco \char"2192{} \underline{Ra}inbow
-    \char"2192{} \underline{Vo}ltage
+    Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
+    Cyan \char"2192{}\\
+    Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
+    Disco \char"2192{} Rainbow \char"2192{} Voltage
 };
 
 \draw (Lockout.north) edge[
@@ -1991,7 +1991,7 @@ node[
     advancedline,
     out=90,
     in=300,
-    looseness=0.8
+    looseness=0.7
 ]
 node[
     advancedbutton,
@@ -2139,7 +2139,7 @@ at (current page.north east)[
 {
     \bfseries\Huge Andúril 2 UI\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 02\\[2.0ex]
+    \normalsize Diagram Release 03\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
