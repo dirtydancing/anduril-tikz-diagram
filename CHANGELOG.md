@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.04 (Date: 2024-07-22)
+
+- Added support for Extended Simple UI
+
 ## 2024-04-20.03 (Date: 2024-07-11)
 
 - Added full description to OFF Aux LED Color
