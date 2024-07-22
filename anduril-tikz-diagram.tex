@@ -47,8 +47,9 @@
 \usetikzlibrary{fit} % for fitting a node
 \usetikzlibrary{backgrounds} % for background frames
 
-\definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{cyan-1}{HTML}{3EFFEC}
+\definecolor{yellow-1}{HTML}{FFEC30}
+\definecolor{orange-1}{HTML}{FFA40F}
 
 \tikzset{
     >={
@@ -188,6 +189,24 @@
     simpleUI/.style={
         anyconfig,
         font=\bfseries\LARGE
+    }
+}
+\tikzset{
+    extendedsimpleline/.style={
+        anyline
+    },
+    extendedsimplebutton/.style={
+        anybutton
+    },
+    extendedsimpleconfig/.style={
+        anyconfig,
+        fill=orange-1!23
+    },
+    extendedsimplemode/.style={
+        extendedsimpleconfig
+    },
+    extendedsimpleUI/.style={
+        extendedsimpleconfig
     }
 }
 \tikzset{
@@ -2100,21 +2119,6 @@ at (current page.east)[
 ]
 {Simple UI};
 
-% Simple UI switch extra node Extended Simple UI
-\node (Simple UI switch extra node Extended Simple UI)[
-    above=0.05cm of Simple UI switch from OFF right.north east,
-    anchor=south east,
-    inner xsep=0.05cm,
-    inner ysep=0.05cm,
-    align=right
-]
-{
-    \normalsize Extended Simple UI\\[1.0ex]
-    Some lights have additional\\
-    features enabled in Simple UI,\\
-    at the manufacturer's request.
-};
-
 \draw (OFF right.east) edge[
     ->,
     advancedline,
@@ -2126,6 +2130,30 @@ node[
     pos=0.6
 ]
 {10C} (Simple UI switch from OFF right.south);
+
+% Simple UI switch extra node Extended Simple UI
+\node (Simple UI switch extra node Extended Simple UI)[
+    above=0.2cm of Simple UI switch from OFF right.north east,
+    extendedsimpleUI,
+    anchor=south east,
+    align=right,
+    fill=white % only when in combination with Extended Simple UI description
+]
+{\bfseries\normalsize Extended Simple UI};
+
+% Extended Simple UI description
+\node (Extended Simple UI description)[
+    above=0.05cm of Simple UI switch extra node Extended Simple UI.north east,
+    anchor=south east,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=right
+]
+{
+    Some lights have additional\\
+    features enabled in Simple UI,\\
+    at the manufacturer's request.
+};
 
 % Anduril 2 UI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2139,7 +2167,7 @@ at (current page.north east)[
 {
     \bfseries\Huge Andúril 2 UI\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 03\\[2.0ex]
+    \normalsize Diagram Release 04\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
