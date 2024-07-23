@@ -50,6 +50,7 @@
 \definecolor{cyan-1}{HTML}{3EFFEC}
 \definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{orange-1}{HTML}{FFA40F}
+\definecolor{blue-1}{HTML}{0F7BE0}
 
 \tikzset{
     >={
@@ -131,18 +132,25 @@
         inner sep=0.1cm,
         rounded corners,
         align=left
+    }
+}
+\tikzset{
+    anyline-mode/.style={
+        anyline
     },
-    anymode/.style={
-        anyconfig
+    anybutton-mode/.style={
+        anybutton
+    },
+    anyconfig-mode/.style={
+        anyconfig,
+        draw=blue-1,
+        thick, % thick = 0.8pt
+        solid
     }
 }
 \tikzset{
     advancedline/.style={
         anyline
-    },
-    advancedline longer/.style={
-        advancedline,
-        shorten <=-0.2pt
     },
      advancedline momentary/.style={
         advancedline,
@@ -157,10 +165,6 @@
         densely dotted,
         fill=gray!8
     },
-    advancedmode/.style={
-        advancedconfig,
-        fill=blue!8
-    },
     advancedfit/.style={
         advancedconfig,
         loosely dotted,
@@ -173,6 +177,20 @@
     advancedUI/.style={
         advancedconfig,
         font=\bfseries\LARGE
+    }
+}
+\tikzset{
+    advancedline-mode/.style={
+        advancedline
+    },
+    advancedbutton-mode/.style={
+        advancedbutton
+    },
+    advancedconfig-mode/.style={
+        advancedconfig,
+        draw=blue-1,
+        thick,
+        solid
     }
 }
 \tikzset{
@@ -202,11 +220,22 @@
         anyconfig,
         fill=orange-1!23
     },
-    extendedsimplemode/.style={
-        extendedsimpleconfig
-    },
     extendedsimpleUI/.style={
         extendedsimpleconfig
+    }
+}
+\tikzset{
+    extendedsimpleline-mode/.style={
+        extendedsimpleline
+    },
+    extendedsimplebutton-mode/.style={
+        extendedsimplebutton
+    },
+    extendedsimpleconfig-mode/.style={
+        extendedsimpleconfig,
+        draw=blue-1,
+        thick,
+        solid
     }
 }
 \tikzset{
@@ -775,7 +804,7 @@ node[
 % Lightning Storm from Police Strobe
 \node (Lightning Storm from Police Strobe)
 at (current page.south west)[ 
-    advancedmode,
+    advancedconfig-mode,
     xshift=1.3cm,
     yshift=5.15cm,
     anchor=south west
@@ -784,7 +813,7 @@ at (current page.south west)[
 
 % Police Strobe from Tactical Strobe
 \node (Police Strobe from Tactical Strobe)[
-    advancedmode,
+    advancedconfig-mode,
     below=0.8cm of Lightning Storm from Police Strobe.south,
     anchor=north
 ]
@@ -792,20 +821,20 @@ at (current page.south west)[
 
 \draw (Police Strobe from Tactical Strobe.north) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=90,
     in=270,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Lightning Storm from Police Strobe.south);
 
 % Tactical Strobe from Party Strobe
 \node (Tactical Strobe from Party Strobe)[
-    advancedmode,
+    advancedconfig-mode,
     below=0.8cm of Police Strobe from Tactical Strobe.south,
     anchor=north
 ]
@@ -813,20 +842,20 @@ node[
 
 \draw (Tactical Strobe from Party Strobe.north) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=90,
     in=270,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Police Strobe from Tactical Strobe.south);
 
 % Party Strobe from Bike Flasher
 \node (Party Strobe from Bike Flasher)[
-    advancedmode,
+    advancedconfig-mode,
     below=0.8cm of Tactical Strobe from Party Strobe.south,
     anchor=north
 ]
@@ -834,20 +863,20 @@ node[
 
 \draw (Party Strobe from Bike Flasher.north) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=90,
     in=270,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Tactical Strobe from Party Strobe.south);
 
 % Candle from OFF
 \node (Candle from OFF)[
-    advancedmode,
+    advancedconfig-mode,
     above right=0.65cm and 1.3cm of Lightning Storm from Police Strobe.east,
     anchor=west
 ]
@@ -855,13 +884,13 @@ node[
 
 \draw (Lightning Storm from Police Strobe.east) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=0,
     in=180,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Candle from OFF.west);
@@ -869,7 +898,6 @@ node[
 % Candle Timer
 \node (Candle Timer)[
     advancedconfig,
-    densely dotted,
     above left=0.5cm and 1cm of Candle from OFF.west,
     anchor=east
 ]
@@ -881,7 +909,7 @@ node[
 \draw (Candle from OFF.north west) edge[
     ->,
     advancedline,
-    shorten <=-1.6pt,
+    shorten <=-1.8pt,
     out=135,
     in=0,
     looseness=0.7
@@ -894,7 +922,7 @@ node[
 
 % Bike Flasher from Candle
 \node (Bike Flasher from Candle)[
-    advancedmode,
+    advancedconfig-mode,
     below=0.8cm of Candle from OFF.south,
     anchor=north
 ]
@@ -902,26 +930,26 @@ node[
 
 \draw (Candle from OFF.south) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=270,
     in=90,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Bike Flasher from Candle.north);
 
 \draw (Bike Flasher from Candle.west) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=180,
     in=0,
     looseness=0.8
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.35
 ]
 {2C} (Party Strobe from Bike Flasher.east);
@@ -1102,7 +1130,6 @@ node[
 \node (Next Channel Mode from Batt Check)
 at (current page.south)[
     advancedconfig,
-    densely dotted,
     xshift=1.3cm,
     yshift=1.3cm,
     anchor=south west
@@ -1114,8 +1141,8 @@ at (current page.south)[
 
 % Batt Check from OFF
 \node (Batt Check from OFF)[
-    anymode,
-    above left=1.6cm and 0.45cm of
+    anyconfig-mode,
+    above left=1.62 and 0.45cm of
     Next Channel Mode from Batt Check.north west,
     anchor=south west
 ]
@@ -1139,7 +1166,7 @@ at (current page.south)[
 
 \draw (Batt Check from OFF.213) edge[
     ->,
-    advancedline longer,
+    advancedline,
     shorten >=-1.4pt,
     out=270,
     in=120,
@@ -1167,7 +1194,6 @@ node[
 % Voltage Config from Batt Check
 \node (Voltage Config from Batt Check)[
     advancedtable,
-    densely dotted,
     above right=0.4cm and 1.7cm of Tactical Mode Config.south east,
     anchor=south west
 ]
@@ -1195,9 +1221,9 @@ node[
     \end{tabular}
 };
 
-\draw (Batt Check from OFF.198) edge[
+\draw (Batt Check from OFF.197) edge[
     ->,
-    advancedline longer,
+    advancedline,
     out=180,
     in=30,
     looseness=1
@@ -1210,7 +1236,7 @@ node[
 
 % Temp Check from Batt Check
 \node (Temp Check from Batt Check)[
-    advancedmode,
+    advancedconfig-mode,
     below right=0.2cm and 1.6cm of Batt Check from OFF.east,
     anchor=west
 ]
@@ -1218,13 +1244,13 @@ node[
 
 \draw (Batt Check from OFF.east) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=0,
     in=180,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.5
 ]
 {2C} (Temp Check from Batt Check.west);
@@ -1232,7 +1258,6 @@ node[
 % Temp Check Thermal Config
 \node (Temp Check Thermal Config)[
     advancedtable,
-    densely dotted,
     above right=0.2cm and 1cm of Temp Check from Batt Check.north east,
     anchor=north west
 ]
@@ -1271,7 +1296,7 @@ node[
 
 % Beacon from Temp Check
 \node (Beacon from Temp Check)[
-    advancedmode,
+    advancedconfig-mode,
     below left=1cm and 0cm of Temp Check from Batt Check.south,
     anchor=north
 ]
@@ -1279,13 +1304,13 @@ node[
 
 \draw (Temp Check from Batt Check.south) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=270,
     in=90,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Beacon from Temp Check.north);
@@ -1293,7 +1318,6 @@ node[
 % Beacon Speed
 \node (Beacon Speed)[
     advancedconfig,
-    densely dotted,
     below right=0.68cm and 1cm of Beacon from Temp Check.east,
     anchor=west
 ]
@@ -1317,7 +1341,7 @@ node[
 
 % SOS from Beacon
 \node (SOS from Beacon)[
-    advancedmode,
+    advancedconfig-mode,
     above left=0.2cm and 1.8cm of Beacon from Temp Check.west,
     anchor=east
 ]
@@ -1325,25 +1349,25 @@ node[
 
 \draw (Beacon from Temp Check.west) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=180,
     in=0,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.5
 ]
 {2C} (SOS from Beacon.east);
 \draw (SOS from Beacon.north) edge[
     ->,
-    advancedline,
+    advancedline-mode,
     out=90,
     in=270,
     looseness=1
 ]
 node[
-    advancedbutton,
+    advancedbutton-mode,
     pos=0.4
 ]
 {2C} (Batt Check from OFF.south);
@@ -2167,7 +2191,7 @@ at (current page.north east)[
 {
     \bfseries\Huge Andúril 2 UI\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 04\\[2.0ex]
+    \normalsize Diagram Release 05\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
