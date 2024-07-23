@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.05 (Date: 2024-07-23)
+
+- Added support for strobe modes and blinky modes
+
 ## 2024-04-20.04 (Date: 2024-07-22)
 
 - Added support for Extended Simple UI
