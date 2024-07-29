@@ -37,6 +37,8 @@
 
 \setlength{\tabcolsep}{0pt} % default: 6pt
 
+\usepackage{tcolorbox} % for colored and framed text boxes
+
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta} % for Stealth arrow tip
 \usetikzlibrary{bending} % for flexing and bending arrows
@@ -50,7 +52,7 @@
 \definecolor{cyan-1}{HTML}{3EFFEC}
 \definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{orange-1}{HTML}{FFA40F}
-\definecolor{blue-1}{HTML}{0F7BE0}
+\definecolor{blue-1}{HTML}{0F5BE0}
 
 \tikzset{
     >={
@@ -116,7 +118,7 @@
         text=black,
         font=\normalsize,
         inner sep=0.075cm,
-        rounded corners
+        rounded corners % default: 4pt
     },
     anybutton basic use/.style={
         anybutton,
@@ -219,6 +221,12 @@
     extendedsimpleconfig/.style={
         anyconfig,
         fill=orange-1!23
+    },
+    extendedsimplefit/.style={
+        extendedsimpleconfig,
+        loosely dotted,
+        fill=none,
+        inner sep=0.3cm
     },
     extendedsimpleUI/.style={
         extendedsimpleconfig
@@ -479,31 +487,6 @@ node[
     at (Ramp 0pt.north){};
 \end{scope}
 
-\draw (Ramp 0pt.north west) edge[
-    {<[scale width=0.75]->[scale width=0.75]},
-    advancedline,
-    shorten >=0.4pt,
-    shorten <=0.4pt,
-    bend left=30
-]
-node[
-    advancedbutton,
-    left=-0.125cm
-]
-{2C} (Turbo 0pt.north west);
-\draw (Ramp 0pt.west) edge[
-    {<[scale width=0.75]->[scale width=0.75]},
-    anyline,
-    shorten >=0.4pt,
-    shorten <=0.4pt,
-    bend left=30
-]
-node[
-    anybutton,
-    left=-0.125cm
-]
-{2C} (Ramp 0pt.north west);
-
 % Toggle Ramp Style from ON
 \node (Toggle Ramp Style from ON)[
     advancedconfig,
@@ -620,6 +603,63 @@ node[
     pos=0.2
 ]
 {2H} (Ramp 0pt.north west);
+
+% Advanced UI: Anduril 2 turbo style
+\draw (Ramp 0pt.north west) edge[
+    {<[scale width=0.5]->[scale width=0.5]},
+    advancedline,
+    shorten >=0.4pt,
+    shorten <=0.4pt,
+    bend left=45
+]
+node[
+    advancedbutton,
+    left=-0.15cm
+]
+{2C} (Turbo 0pt.north west);
+
+% Advanced UI: Anduril 1 turbo style
+% \draw (Ramp 0pt.west) edge[
+    % {Round Cap[sep=2.5cm]}-{Round Cap[sep=1.3cm]},
+    % advancedline,
+    % white,
+    % line width=2.4pt,
+    % shorten >=0.4pt,
+    % shorten <=0.4pt,
+    % bend left=55
+% ]
+% node
+% {} (Turbo 0pt.north west);
+% \draw (Ramp 0pt.west) edge[
+    % {<[scale width=0.5]->[scale width=0.5]},
+    % advancedline,
+    % shorten >=0.4pt,
+    % shorten <=0.4pt,
+    % bend left=55
+% ]
+% node[
+    % advancedbutton,
+    % left=-0.15cm,
+    % pos=0.8
+% ]
+% {2C} (Turbo 0pt.north west);
+
+\draw (Ramp 0pt.west) edge[
+    {<[scale width=0.5]->[scale width=0.5]},
+    anyline, % Advanced UI: Anduril 2 turbo style
+    % simpleline, % Advanced UI: Anduril 1 turbo style
+    shorten >=0.4pt,
+    shorten <=0.4pt,
+    bend left=30
+]
+node[
+    anybutton, % Advanced UI: Anduril 2 turbo style
+    % simplebutton, % Advanced UI: Anduril 1 turbo style
+    left=-0.15cm,
+    pos=0.5
+]
+{2C} (Ramp 0pt.north west);
+
 \draw (OFF.south) edge[
     ->,
     anyline,
@@ -2191,7 +2231,7 @@ at (current page.north east)[
 {
     \bfseries\Huge Andúril 2 UI\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 05\\[2.0ex]
+    \normalsize Diagram Release 06\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
@@ -2209,13 +2249,13 @@ at (current page.north east)[
         anchor=north east
     ]
     {
-        \bfseries\normalsize Aux LED Color for Voltage\\[1.0ex]
+        \bfseries\normalsize Aux LED Color for Voltage\\[0.75ex]
         \colorbox{red!40}{R-2.9, \vphantom{Ú}}%
         \colorbox{yellow!40}{Y-3.3, \vphantom{Ú}}%
         \colorbox{green!40}{G-3.5, \vphantom{Ú}}%
         \colorbox{cyan!40}{C-3.7, \vphantom{Ú}}%
         \colorbox{blue!40}{B-3.9, \vphantom{Ú}}%
-        \colorbox{purple!40}{P-4.1V\vphantom{,Ú}}\\[1.0ex]
+        \colorbox{purple!40}{P-4.1V\vphantom{,Ú}}\\[0.75ex]
         Single color aux: Fast blink 3.3\textendash{}2.9V
     };
 \end{scope}
