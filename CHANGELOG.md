@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.07 (Date: 2024-07-30)
+
+- Adjusted orange and blue
+
 ## 2024-04-20.06 (Date: 2024-07-29)
 
 - Added support for Anduril 1 turbo style
