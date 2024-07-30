@@ -42,6 +42,14 @@ The diagram employs a few colors to facilitate orientation; you can readily
 modify them in the TikZ code to suit your preferences. At the same time, the
 diagram is designed to be printable with a black and white printer.
 
+For a visual demonstration of how this generic diagram can be tailored to a
+specific
+[model number](https://github.com/ToyKeeper/anduril/blob/trunk/MODELS),
+see this
+[diagram for model number 0135](https://github.com/dirtydancing/anduril-tikz-diagram-0135),
+`hank-emisar-2ch`. This model-specific diagram illustrates features enabled
+through the Extended Simple UI, as well as the Andúril 1 turbo style.
+
 ## Instructions
 
 The following instructions are valid for Linux, but can also serve as a
