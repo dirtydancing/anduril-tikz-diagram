@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.08 (Date: 2024-08-01)
+
+- Added frame inside ramp image
+
 ## 2024-04-20.07 (Date: 2024-07-30)
 
 - Adjusted orange and blue
