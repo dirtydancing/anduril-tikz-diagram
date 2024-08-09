@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.09 (Date: 2024-08-09)
+
+- Rounded corners of Aux LED Color for Voltage
+
 ## 2024-04-20.08 (Date: 2024-08-01)
 
 - Added frame inside ramp image
