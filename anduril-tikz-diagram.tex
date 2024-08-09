@@ -292,8 +292,8 @@
         rectangle,
         draw=none,
         sharp corners,
-        minimum width=0.8cm,
-        minimum height=0.33cm,
+        minimum width=0.808cm,
+        minimum height=0.306cm,
         inner sep=0cm,
         outer sep=0cm,
         align=left
@@ -303,6 +303,12 @@
         inner sep=0.1cm
     }
 }
+
+\newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
+\newcommand{\firstline}[1]{\oneline{#1}\\[1.0ex]}
+
+\newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
+\newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
 
 \begin{document}
 
@@ -425,13 +431,13 @@ at (current page.center)[
 ]
 {};
 
-\node (Ramp Memory) at (Ramp.center) {\bfseries\normalsize Memory};
+\node (Ramp Memory) at (Ramp.center) {\oneline{Memory}};
 \node (Ramp Ceiling) at (Ramp.north)[below, yshift=-3.2pt]
 % -3.2pt for Ramp inside 1
-{\bfseries\normalsize Ceiling};
+{\oneline{Ceiling}};
 \node (Ramp Floor) at (Ramp.south)[above, yshift=3.2pt]
 % +3.2pt for Ramp inside 1
-{\bfseries\normalsize Floor};
+{\oneline{Floor}};
 \node (Ramp Style Smooth)[
     below right=0.05cm and 0.36cm of Ramp.south west,
     anchor=north,
@@ -503,7 +509,7 @@ node[
         below,
         fill=none
     ]
-    at (Turbo.north) {\bfseries\normalsize Turbo};
+    at (Turbo.north) {\oneline{Turbo}};
 
     \node (Turbo 0pt)[
         turbocombined,
@@ -522,7 +528,7 @@ node[
     anchor=north,
     align=center
 ]
-{\bfseries\normalsize Toggle Ramp Style*};
+{\oneline{Toggle Ramp Style*}};
 \node (Toggle Ramp Style extra node ON)[
     on-extra,
     below=0.8cm of Toggle Ramp Style from ON.west,
@@ -837,7 +843,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize Momentary Mode\\[1.0ex]
+    \firstline{Momentary Mode}
     Exit: Disconnect power
 };
 
@@ -877,7 +883,7 @@ at (current page.south west)[
     yshift=5.15cm,
     anchor=south west
 ]
-{\bfseries\normalsize Lightning Storm};
+{\oneline{Lightning Storm}};
 
 % Police Strobe from Tactical Strobe
 \node (Police Strobe from Tactical Strobe)[
@@ -885,7 +891,7 @@ at (current page.south west)[
     below=0.8cm of Lightning Storm from Police Strobe.south,
     anchor=north
 ]
-{\bfseries\normalsize Police Strobe};
+{\oneline{Police Strobe}};
 
 \draw (Police Strobe from Tactical Strobe.north) edge[
     ->,
@@ -906,7 +912,7 @@ node[
     below=0.8cm of Police Strobe from Tactical Strobe.south,
     anchor=north
 ]
-{\bfseries\normalsize Tactical Strobe};
+{\oneline{Tactical Strobe}};
 
 \draw (Tactical Strobe from Party Strobe.north) edge[
     ->,
@@ -927,7 +933,7 @@ node[
     below=0.8cm of Tactical Strobe from Party Strobe.south,
     anchor=north
 ]
-{\bfseries\normalsize Party Strobe};
+{\oneline{Party Strob}};
 
 \draw (Party Strobe from Bike Flasher.north) edge[
     ->,
@@ -948,7 +954,7 @@ node[
     above right=0.65cm and 1.3cm of Lightning Storm from Police Strobe.east,
     anchor=west
 ]
-{\bfseries\normalsize Candle};
+{\oneline{Candle}};
 
 \draw (Lightning Storm from Police Strobe.east) edge[
     ->,
@@ -970,7 +976,7 @@ node[
     anchor=east
 ]
 {
-    \bfseries\normalsize Candle Timer\\[1.0ex]
+    \firstline{Candle Timer}
     1 blink = 5 minutes
 };
 
@@ -994,7 +1000,7 @@ node[
     below=0.8cm of Candle from OFF.south,
     anchor=north
 ]
-{\bfseries\normalsize Bike Flasher};
+{\oneline{Bike Flasher}};
 
 \draw (Candle from OFF.south) edge[
     ->,
@@ -1032,7 +1038,7 @@ at (current page.south)[
     align=left
 ]
 {
-    \bfseries\normalsize Actions\\[1.0ex]
+    \firstline{Actions}
     1C = Off\\
     1H/2H = Brighter/dimmer\\
     (Candle and Bike)\\
@@ -1147,7 +1153,7 @@ at (current page.south)[
     anchor=south
 ]
 {
-    \bfseries\normalsize Tactical Mode\\[1.0ex]
+    \firstline{Tactical Mode}
     1H = Tactical Slot 1 (high)\\
     2H = Tactical Slot 2 (low)\\
     3H = Tactical Slot 3 (strobe)
@@ -1203,7 +1209,7 @@ at (current page.south)[
     anchor=south west
 ]
 {
-    \bfseries\normalsize Next Channel Mode*\\[1.0ex]
+    \firstline{Next Channel Mode*}
     For number blinks only
 };
 
@@ -1215,7 +1221,7 @@ at (current page.south)[
     anchor=south west
 ]
 {
-    \bfseries\normalsize Batt Check\\[1.0ex]
+    \firstline{Batt Check}
     0.02V steps
 };
 
@@ -1308,7 +1314,7 @@ node[
     below right=0.2cm and 1.6cm of Batt Check from OFF.east,
     anchor=west
 ]
-{\bfseries\normalsize Temp Check};
+{\oneline{Temp Check}};
 
 \draw (Batt Check from OFF.east) edge[
     ->,
@@ -1368,7 +1374,7 @@ node[
     below left=1cm and 0cm of Temp Check from Batt Check.south,
     anchor=north
 ]
-{\bfseries\normalsize Beacon};
+{\oneline{Beacon}};
 
 \draw (Temp Check from Batt Check.south) edge[
     ->,
@@ -1390,7 +1396,7 @@ node[
     anchor=west
 ]
 {
-    \bfseries\normalsize Beacon Speed\\[1.0ex]
+    \firstline{Beacon Speed}
     1 blink = 1 second pause
 };
 
@@ -1413,7 +1419,7 @@ node[
     above left=0.2cm and 1.8cm of Beacon from Temp Check.west,
     anchor=east
 ]
-{\bfseries\normalsize SOS};
+{\oneline{SOS}};
 
 \draw (Beacon from Temp Check.west) edge[
     ->,
@@ -1478,7 +1484,7 @@ at (current page.west)[
     xshift=1cm,
     yshift=0.15cm
 ]
-{\bfseries\normalsize Next Channel Mode};
+{\oneline{Next Channel Mode}};
 
 \draw (ON.west) edge[
     ->,
@@ -1502,7 +1508,7 @@ at (current page.west)[
     yshift=-0.15cm
 ]
 {
-    \bfseries\normalsize Tint Ramp\\[1.0ex]
+    \firstline{Tint Ramp}
     If this channel mode can
 };
 
@@ -1526,7 +1532,7 @@ node[
     anchor=north west
 ]
 {
-    \bfseries\normalsize Momentary Turbo\\[1.0ex]
+    \firstline{Momentary Turbo}
     If no tint ramping
 };
 
@@ -1549,7 +1555,7 @@ node[
     below=0.3cm of Momentary Turbo 3H from ON.south west,
     anchor=north west
 ]
-{\bfseries\normalsize Momentary Turbo};
+{\oneline{Momentary Turbo}};
 
 \draw (ON.west) edge[
     ->,
@@ -1572,7 +1578,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize Sunset Timer\\[1.0ex]
+    \firstline{Sunset Timer}
     1 blink = 5 minutes
 };
 \draw (ON.north) edge[
@@ -1674,8 +1680,8 @@ node[
 	        1C = Enable
 	    }\\
 	    \multicolumn{2}{l}{
-            \thead{\mdseries\footnotesize Typical sequence for\\[-0.55ex]
-            \mdseries\footnotesize dual-channel lights}
+            \thead{\firstlinetable{Typical sequence for}
+            \onelinetable{dual-channel lights}}
         }\\
  		{1} & \makecell{
 		    Channel 1
@@ -1759,9 +1765,8 @@ node[
 	        1C = Enable
 	    }\\
 	    \multicolumn{2}{l}{
-	        \thead{\mdseries\footnotesize Types of brightness
-	        memory\\[-0.55ex]
-	        \mdseries\footnotesize (1C from Off)}
+	        \thead{\firstlinetable{Types of brightness memory}
+	        \onelinetable{(1C from Off)}}
 	    }\\
 	    \multicolumn{2}{l}{
 	        \makecell{Automatic: Last-ramped\\
@@ -1792,7 +1797,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize Manual Memory*\\[1.0ex]
+    \firstline{Manual Memory*}
     Activate, and save\\
     current brightness and\\
     current channel mode
@@ -1887,9 +1892,8 @@ node[
 		    between 20 and 50)
 	    }\\
 	    \multicolumn{2}{l}{
-            \thead{\mdseries\footnotesize Hardware-specific;
-            may not\\[-0.55ex]
-            \mdseries\footnotesize be present on all lights}
+            \thead{\firstlinetable{Hardware-specific; may not}
+            \onelinetable{be present on all lights}}
         }
     \end{tabular}
 };
@@ -1916,7 +1920,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize Momentary Moon\\[1.0ex]
+    \firstline{Momentary Moon}
     Lowest floor of\\
     smooth vs stepped
 };
@@ -1941,7 +1945,7 @@ node[
     anchor=north west
 ]
 {
-    \bfseries\normalsize Momentary Low\\[1.0ex]
+    \firstline{Momentary Low}
     Highest floor of\\
     smooth vs stepped, or\\
     manual memory if set
@@ -1966,7 +1970,7 @@ node[
     below=0.3cm of Momentary Low from Lockout.south west,
     anchor=north west
 ]
-{\bfseries\normalsize Next Channel Mode};
+{\oneline{Next Channel Mode}};
 
 \draw (Lockout.south) edge[
     ->,
@@ -1990,7 +1994,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize OFF Aux LED Color*\\[1.0ex]
+    \firstline{OFF Aux LED Color*}
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
@@ -2017,7 +2021,7 @@ node[
     anchor=south west
 ]
 {
-    \bfseries\normalsize OFF Aux LED Pattern*\\[1.0ex]
+    \firstline{OFF Aux LED Pattern*}
     Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
 };
 
@@ -2041,7 +2045,7 @@ node[
     anchor=south west
 ]
 {
-    \bfseries\normalsize Lockout Aux LED Color*\\[1.0ex]
+    \firstline{Lockout Aux LED Color*}
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
@@ -2068,7 +2072,7 @@ node[
     anchor=south west
 ]
 {
-    \bfseries\normalsize Lockout Aux LED Pattern*\\[1.0ex]
+    \firstline{Lockout Aux LED Pattern*}
     Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
 };
 
@@ -2092,7 +2096,7 @@ node[
     anchor=north east
 ]
 {
-    \bfseries\normalsize Auto-lock*\\[1.0ex]
+    \firstline{Auto-lock*}
     0C = Disable\\
     nC = n minutes
 };
@@ -2120,7 +2124,7 @@ at (current page.south east)[
     yshift=1cm
 ]
 {
-    \bfseries\normalsize Factory Reset\\[1.0ex]
+    \firstline{Factory Reset}
     Physical Reset:\\
     Reconnect power\\
     while holding button\\
@@ -2158,7 +2162,7 @@ node[
     align=left
 ]
 {
-    \bfseries\normalsize Version Check\\[1.0ex]
+    \firstline{Version Check}
     MODEL-YYYY-MM-DD-\\
     SINCE-DIRTY\\[1.0ex]
     SINCE and DIRTY\\
@@ -2231,7 +2235,7 @@ node[
     align=right,
     fill=white % only when in combination with Extended Simple UI description
 ]
-{\bfseries\normalsize Extended Simple UI};
+{\oneline{Extended Simple UI}};
 
 % Extended Simple UI description
 \node (Extended Simple UI description)[
@@ -2257,7 +2261,7 @@ at (current page.north east)[
     yshift=-1cm
 ]
 {
-    \bfseries\Huge Andúril 2 UI\\[3.0ex]
+    \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
     \normalsize Diagram Release 08\\[2.0ex]
     Diagram Repository:\\
@@ -2277,7 +2281,7 @@ at (current page.north east)[
         anchor=north east
     ]
     {
-        \bfseries\normalsize Aux LED Color for Voltage\\[0.75ex]
+        \oneline{Aux LED Color for Voltage}\\[0.75ex]
         \colorbox{red!40}{R-2.9, \vphantom{Ú}}%
         \colorbox{yellow!40}{Y-3.3, \vphantom{Ú}}%
         \colorbox{green!40}{G-3.5, \vphantom{Ú}}%
@@ -2296,7 +2300,7 @@ at (current page.north east)[
 ]
 {
     {}\\[0.2ex] % for vertical alignment
-    \bfseries\normalsize Button Presses\\[1.0ex]
+    \firstline{Button Presses}
     1C: Click\\
     1H: Hold\\
     2C: Click, Click\\
@@ -2332,10 +2336,9 @@ at (current page.north east)[
 ]
 node[
     anybutton basic use,
-    font=\bfseries\footnotesize,
     pos=0.5
 ]
-{1C} (Legend basic use picture.east);
+{\footnotesize 1C} (Legend basic use picture.east);
 
 \node (Legend Simple and Advanced text)[
     legendconfig,
@@ -2359,10 +2362,9 @@ node[
 ]
 node[
     anybutton,
-    font=\footnotesize,
     pos=0.5
 ]
-{1C} (Legend Simple and Advanced picture.east);
+{\footnotesize 1C} (Legend Simple and Advanced picture.east);
 
 \node (Legend Simple only text)[
     legendconfig,
@@ -2386,10 +2388,9 @@ node[
 ]
 node[
     simplebutton,
-    font=\footnotesize,
     pos=0.5
 ]
-{1C} (Legend Simple only picture.east);
+{\footnotesize 1C} (Legend Simple only picture.east);
 
 \node (Legend Advanced only text)[
     legendconfig,
@@ -2413,10 +2414,9 @@ node[
 ]
 node[
     advancedbutton,
-    font=\footnotesize,
     pos=0.5
 ]
-{1C} (Legend Advanced only picture.east);
+{\footnotesize 1C} (Legend Advanced only picture.east);
 
 \node (Legend Continuous effect text)[
     legendconfig,
@@ -2474,7 +2474,7 @@ node[
     left=0.22cm of Legend Inherited by Simple text.west,
     anchor=east
 ]
-{\normalsize *};
+{\normalsize\textbf{*}};
 
 % Legend fit
 \begin{scope}[on background layer]
