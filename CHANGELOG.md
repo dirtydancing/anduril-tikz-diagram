@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.10 (Date: 2024-08-10)
+
+- Fixed Party Strobe typo
+
 ## 2024-04-20.09 (Date: 2024-08-09)
 
 - Rounded corners of Aux LED Color for Voltage
