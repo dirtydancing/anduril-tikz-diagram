@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.11 (Date: 2024-08-12)
+
+- Adjusted Mode memory
+
 ## 2024-04-20.10 (Date: 2024-08-10)
 
 - Fixed Party Strobe typo
