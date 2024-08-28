@@ -18,11 +18,17 @@ For recent changes, check the [Changelog](CHANGELOG.md).
 
 The file formats included in the diagram releases are:
 
-- PDF (recommended for printing)
+- PDF - recommended for printing
 
-- PNG (for on-screen viewing)
+- PNG - for on-screen viewing
 
-- TEX (LaTeX source file)
+- TEX - LaTeX source file
+
+This is the standard, generic diagram. For a model-specific diagram for
+[model number](https://github.com/ToyKeeper/anduril/blob/trunk/MODELS)
+0135, `hank-emisar-2ch`, including Extended Simple UI, Andúril 1 turbo style,
+and the model-specific default settings, see the
+[diagram-0135](https://github.com/dirtydancing/anduril-tikz-diagram-0135).
 
 ## Description
 
@@ -31,8 +37,8 @@ The diagram follows ToyKeeper's
 
 It is created with [TikZ](https://github.com/pgf-tikz/pgf) for
 [LaTex](https://www.latex-project.org/). This leverages the flexibility that
-LaTeX offers, and it produces a human-friendly source document (and
-human-friendly Git diffs) because the TEX source file consists of plain text.
+LaTeX offers, and it produces a human-friendly source document, as well as
+human-friendly Git diffs, because the TEX source file consists of plain text.
 
 To accomodate both Andúril newcomers and experienced users, the brightness ramp
 takes center stage, literally in the center of the page. From there, you can
@@ -41,14 +47,6 @@ explore all the other features.
 The diagram employs a few colors to facilitate orientation; you can readily
 modify them in the TikZ code to suit your preferences. At the same time, the
 diagram is designed to be printable with a black and white printer.
-
-For a visual demonstration of how this generic diagram can be tailored to a
-specific
-[model number](https://github.com/ToyKeeper/anduril/blob/trunk/MODELS),
-see this
-[diagram for model number 0135](https://github.com/dirtydancing/anduril-tikz-diagram-0135),
-`hank-emisar-2ch`. This model-specific diagram illustrates features enabled
-through the Extended Simple UI, as well as the Andúril 1 turbo style.
 
 ## Instructions
 
@@ -87,8 +85,7 @@ This diagram has been inspired by the works of:
 
 - [containerfan](https://github.com/containerfan/anduril2-diagrams)
 
-- [Lux-Perpetua](https://budgetlightforum.com/t/anduril-2-ui-diagrams-generic-lumintop-sofirn/65927)
-(on BLF)
+- [Lux-Perpetua](https://budgetlightforum.com/t/anduril-2-ui-diagrams-generic-lumintop-sofirn/65927) - on BLF
 
 - [jameshome](https://github.com/jameshome/anduril-guide)
 
