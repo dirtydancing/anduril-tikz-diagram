@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.12 (Date: 2024-08-31)
+
+- Adjusted Simple UI Ramp Config
+
 ## 2024-04-20.11 (Date: 2024-08-12)
 
 - Adjusted Mode memory
