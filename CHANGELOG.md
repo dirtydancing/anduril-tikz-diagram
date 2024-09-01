@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.13 (Date: 2024-09-01)
+
+- Adjusted stepped ramp to 7 lines
+
 ## 2024-04-20.12 (Date: 2024-08-31)
 
 - Adjusted Simple UI Ramp Config
