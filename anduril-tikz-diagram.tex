@@ -106,15 +106,15 @@
     rampstepped/.style={
         rectangle,
         draw=none,
-        minimum width=0.8cm,
-        minimum height=0.8cm,
+        minimum width=0.75cm+0.3pt,
+        minimum height=0.9cm+0.1pt,
         inner sep=0cm,
         outer sep=0cm
     },
     rampsmooth/.style={
         rampstepped,
-        minimum width=0.8cm,
-        minimum height=5.6cm % 5.6cm = 7 x 0.8cm
+        minimum width=0.75cm+0.3pt,
+        minimum height=5.4cm+0.6pt % 5.4cm = 6 x 0.9cm
     },
     rampcombined/.style={
         rectangle,
@@ -122,22 +122,22 @@
         thin, % thin = 0.4pt (default)
         fill=none,
         inner sep=0cm,
-        minimum width=1.6cm,
-        minimum height=5.6cm
+        minimum width=1.5cm+7.2pt,
+        minimum height=5.4cm+7.2pt
     },
     rampcombined inside 1/.style={
         rampcombined,
         draw=yellow-1!55,
         line width=3.2pt,
-        minimum width=1.6cm-3.6pt, % -3.6pt for adjacent lines
-        minimum height=5.6cm-3.6pt % -3.6pt for adjacent lines
+        minimum width=1.5cm+3.6pt,
+        minimum height=5.4cm+3.6pt
     },
     rampcombined inside 2/.style={
         rampcombined,
         draw=gray,
         very nearly transparent,
-        minimum width=1.6cm-7.2pt, % -7.2pt for adjacent lines
-        minimum height=5.6cm-7.2pt % -7.2pt for adjacent lines
+        minimum width=1.5cm,
+        minimum height=5.4cm
     },
     turbocombined/.style={
         rectangle,
@@ -147,7 +147,7 @@
         densely dotted,
         fill=white,
         inner sep=0cm,
-        minimum width=1.6cm,
+        minimum width=1.5cm+7.2pt,
         minimum height=1.2cm
     }
 }
@@ -382,67 +382,59 @@
 
 % Ramp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (Ramp Smooth 1)
+\node (Ramp Smooth)
 at (current page.center)[
     rampsmooth,
     anchor=east,
     top color=gray!0,
-    bottom color=gray!48
+    bottom color=gray!50
 ]
 {};
 \node (Ramp Stepped 4)
 at (current page.center)[
     rampstepped,
-    anchor=west,
-    top color=gray!32,
-    bottom color=gray!24
-]
-{};
-\node (Ramp Stepped 3)[
-    rampstepped,
-    below=0cm of Ramp Stepped 4.south,
-    anchor=north,
+    anchor=north west,
     top color=gray!40,
-    bottom color=gray!32
-]
-{};
-\node (Ramp Stepped 2)[
-    rampstepped,
-    below=0cm of Ramp Stepped 3.south,
-    anchor=north,
-    top color=gray!48,
-    bottom color=gray!40
-]
-{};
-\node (Ramp Stepped 1)[
-    rampstepped,
-    below=0cm of Ramp Stepped 2.south,
-    anchor=north,
-    top color=gray!56,
-    bottom color=gray!48
+    bottom color=gray!30
 ]
 {};
 \node (Ramp Stepped 5)[
     rampstepped,
-    above=0cm of Ramp Stepped 4.north,
-    anchor=south,
-    top color=gray!24,
-    bottom color=gray!16
+    below=0cm of Ramp Stepped 4.south,
+    anchor=north,
+    top color=gray!50,
+    bottom color=gray!40
 ]
 {};
 \node (Ramp Stepped 6)[
     rampstepped,
-    above=0cm of Ramp Stepped 5.north,
-    anchor=south,
-    top color=gray!16,
-    bottom color=gray!8
+    below=0cm of Ramp Stepped 5.south,
+    anchor=north,
+    top color=gray!60,
+    bottom color=gray!50
 ]
 {};
-\node (Ramp Stepped 7)[
+\node (Ramp Stepped 3)[
     rampstepped,
-    above=0cm of Ramp Stepped 6.north,
+    above=0cm of Ramp Stepped 4.north,
     anchor=south,
-    top color=gray!8,
+    top color=gray!30,
+    bottom color=gray!20
+]
+{};
+\node (Ramp Stepped 2)[
+    rampstepped,
+    above=0cm of Ramp Stepped 3.north,
+    anchor=south,
+    top color=gray!20,
+    bottom color=gray!10
+]
+{};
+\node (Ramp Stepped 1)[
+    rampstepped,
+    above=0cm of Ramp Stepped 2.north,
+    anchor=south,
+    top color=gray!10,
     bottom color=gray!0
 ]
 {};
@@ -505,7 +497,7 @@ node[
     anybutton basic use,
     pos=0.5,
     label={
-        [align=left, xshift=0.5cm, yshift=-0.025cm]right:{
+        [align=left, xshift=0.57cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
                 Ramp up\\
                 (floor\textendash{}ceiling),\\
@@ -527,7 +519,7 @@ node[
     anybutton,
     pos=0.46,
     label={
-        [align=left, xshift=0.5cm+0.8pt, % +0.8pt for vertical alignment
+        [align=left, xshift=0.57cm+0.8pt, % +0.8pt for vertical alignment
         yshift=-0.025cm]right:{
             \begin{tabular}{l}
                 Ramp down\\
@@ -645,7 +637,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.8
+    pos=0.805
 ]
 {2H} (Turbo 0pt.north west);
 \draw (OFF.north) edge[
@@ -2306,7 +2298,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 12\\[2.0ex]
+    \normalsize Diagram Release 13\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
