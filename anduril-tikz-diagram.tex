@@ -123,21 +123,24 @@
         fill=none,
         inner sep=0cm,
         minimum width=1.5cm+7.2pt,
-        minimum height=5.4cm+7.2pt
+        minimum height=5.4cm+7.2pt,
+        rounded corners=0.25pt % default: 4pt
     },
     rampcombined inside 1/.style={
         rampcombined,
         draw=yellow-1!55,
         line width=3.2pt,
         minimum width=1.5cm+3.6pt,
-        minimum height=5.4cm+3.6pt
+        minimum height=5.4cm+3.6pt,
+        rounded corners=0pt
     },
     rampcombined inside 2/.style={
         rampcombined,
         draw=gray,
         very nearly transparent,
         minimum width=1.5cm,
-        minimum height=5.4cm
+        minimum height=5.4cm,
+        rounded corners=0pt
     },
     turbocombined/.style={
         rectangle,
@@ -148,7 +151,8 @@
         fill=white,
         inner sep=0cm,
         minimum width=1.5cm+7.2pt,
-        minimum height=1.2cm
+        minimum height=1.2cm,
+        rounded corners=0.25pt
     }
 }
 \tikzset{
@@ -171,7 +175,7 @@
         text=black,
         font=\normalsize,
         inner sep=0.075cm,
-        rounded corners % default: 4pt
+        rounded corners
     },
     anybutton basic use/.style={
         anybutton,
@@ -330,11 +334,11 @@
     legendconfig/.style={
         rectangle,
         draw=none,
-        sharp corners,
         minimum width=0.808cm,
         minimum height=0.306cm,
         inner sep=0cm,
         outer sep=0cm,
+        sharp corners,
         align=left
     },
     legendfit/.style={
@@ -2298,7 +2302,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 13\\[2.0ex]
+    \normalsize Diagram Release 14\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
