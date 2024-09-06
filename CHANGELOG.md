@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.15 (Date: 2024-09-06)
+
+- Added Channel Mode Config from Lockout and Off
+
 ## 2024-04-20.14 (Date: 2024-09-02)
 
 - Slightly rounded corners of ramp image
