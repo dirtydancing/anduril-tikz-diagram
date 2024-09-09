@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.16 (Date: 2024-09-09)
+
+- Rearranged Channel Mode Config
+
 ## 2024-04-20.15 (Date: 2024-09-06)
 
 - Added Channel Mode Config from Lockout and Off
