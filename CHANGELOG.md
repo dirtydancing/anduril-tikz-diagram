@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.17 (Date: 2024-09-18)
+
+- Added 9H from any mode to 9H from On
+
 ## 2024-04-20.16 (Date: 2024-09-09)
 
 - Rearranged Channel Mode Config
