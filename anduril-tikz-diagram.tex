@@ -377,7 +377,6 @@
 % Blinky / Utility Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Next Channel Mode from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ramp Config from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Channel Mode Config from ON OFF Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simple UI Config from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Momentary Moon from Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Aux LED Color from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1609,6 +1608,29 @@ node[
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
+% Sunset Timer from ON
+\node (Sunset Timer from ON)[
+    advancedconfig,
+    above right=1.2cm and 2.2cm of ON.center,
+    anchor=south
+]
+{
+    \firstline{Sunset Timer}
+    1 blink = 5 minutes
+};
+\draw (ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{5H} (Sunset Timer from ON.west);
+
 % Ramp Config from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \node (Ramp Config from ON)
@@ -1660,81 +1682,90 @@ at (current page.north west)[
     in=280,
     looseness=1.3
 ]
-+(-2.85,3.1) to[
++(-2.8,3.3) to[
     out=100,
     in=275,
     looseness=0.9
 ]
 node[
     advancedbutton,
-    pos=0.95
+    pos=0.55
 ] 
-{7H} +(-2.97,4.9) to[
+{7H} +(-2.92,4.9) to[
     out=95,
     in=320,
     looseness=0.9
 ] (Ramp Config from ON.300);
 
-% Manual Memory from ON
-\node (Manual Memory from ON)[
-    advancedconfig,
-    below=1.2cm of Ramp Config from ON.south west,
-    anchor=north west
+% Channel Mode Config from ON
+\node (Channel Mode Config from ON)[
+    advancedtable,
+    above=0.5cm of Next Channel Mode from ON.north west,
+    anchor=south west
 ]
 {
-    \firstline{Manual Memory*}
-    Activate, and save\\
-    current brightness and\\
-    current channel mode
+    \begin{tabular}{m{0.35cm} l}
+        \multicolumn{2}{l}{
+            \thead{Channel Mode\\
+            Config*}
+        }\\
+	    {n} & \makecell{
+	        n\textsuperscript{th} channel mode
+	    }\\
+	    {} & \makecell{
+	        0C = Disable\\
+	        1C = Enable
+	    }\\
+	    \multicolumn{2}{l}{
+            \thead{\firstlinetable{Typical sequence for}
+            \onelinetable{dual-channel lights}}
+        }\\
+ 		{1} & \makecell{
+		    Channel 1
+		}\\
+		{2} & \makecell{
+		    Channel 2
+		}\\
+		{3} & \makecell{
+		    50/50
+		}\\
+		{4} & \makecell{
+		    Tint Ramp
+		}\\
+		{5} & \makecell{
+		    Auto-tint
+		}\\
+		{6+} & \makecell{
+		    Aux LED Channels
+		}
+    \end{tabular}
 };
 
-\draw[
-    ->,
-    advancedline
-]
-(ON.north) to[
-    out=90,
-    in=290,
-    looseness=1.1
-]
-node[
-    advancedbutton,
-    pos=0.85
-] 
-{10C} +(-3.4,2.6) to[
-    out=110,
-    in=280,
-    looseness=1.1
-]
-(Manual Memory from ON.327);
-
-% Sunset Timer from ON
-\node (Sunset Timer from ON)[
-    advancedconfig,
-    below=0.6cm of Manual Memory from ON.south west,
-    anchor=north west
-]
-{
-    \firstline{Sunset Timer}
-    1 blink = 5 minutes
-};
 \draw (ON.north) edge[
     ->,
     advancedline,
     out=90,
-    in=300,
-    looseness=0.9
+    in=320,
+    looseness=1.2
 ]
 node[
     advancedbutton,
-    pos=0.7
+    pos=0.69,
+    label={
+        [align=left, xshift=0cm, yshift=0cm]below:{
+            \begin{tabular}{l}
+                9H from any mode\\
+                unless overridden
+            \end{tabular}
+        }
+   }
 ]
-{5H} (Sunset Timer from ON.330);
+{9H} (Channel Mode Config from ON.320);
 
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
     advancedtable,
-    right=0.6cm of Ramp Config from ON.north east,
+    right=0.8cm of Ramp Config from ON.north east,
     anchor=north west
 ]
 {
@@ -1795,110 +1826,45 @@ node[
     advancedline,
     out=90,
     in=270,
-    looseness=1.4
+    looseness=1.5
 ]
 node[
     advancedbutton,
     pos=0.8
 ]
-{10H} (Ramp Extras Config from ON.275);
+{10H} (Ramp Extras Config from ON.south);
 
-% Channel Mode Config from ON OFF Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (Channel Mode Config from ON OFF Lockout)[
-    advancedtable,
-    above left=1.45cm and 2.2cm of OFF.center,
-    anchor=south
+% Manual Memory from ON
+\node (Manual Memory from ON)[
+    advancedconfig,
+    above right=0.6cm and 0.4cm of Ramp Extras Config from ON.south east,
+    anchor=south west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Channel Mode\\
-            Config*}
-        }\\
-	    {n} & \makecell{
-	        n\textsuperscript{th} channel mode
-	    }\\
-	    {} & \makecell{
-	        0C = Disable\\
-	        1C = Enable
-	    }\\
-	    \multicolumn{2}{l}{
-            \thead{\firstlinetable{Typical sequence for}
-            \onelinetable{dual-channel lights}}
-        }\\
- 		{1} & \makecell{
-		    Channel 1
-		}\\
-		{2} & \makecell{
-		    Channel 2
-		}\\
-		{3} & \makecell{
-		    50/50
-		}\\
-		{4} & \makecell{
-		    Tint Ramp
-		}\\
-		{5} & \makecell{
-		    Auto-tint
-		}\\
-		{6+} & \makecell{
-		    Aux LED Channels
-		}
-    \end{tabular}
+    \firstline{Manual Memory*}
+    Activate, and save\\
+    current brightness and\\
+    current channel mode
 };
 
 \draw (ON.north) edge[
     ->,
     advancedline,
-    shorten >=-0.7pt,
     out=90,
-    in=195,
-    looseness=1
+    in=250,
+    looseness=1.5
 ]
 node[
     advancedbutton,
-    pos=0.6
+    pos=0.77
 ]
-{9H} (Channel Mode Config from ON OFF Lockout.242);
-\draw (OFF.north) edge[
-    ->,
-    advancedline,
-    shorten >=-0.7pt,
-    out=90,
-    in=345,
-    looseness=1
-]
-node[
-    advancedbutton,
-    pos=0.6,
-    label={
-        [align=left, xshift=0.1cm, yshift=-0.025cm]left:{
-            \begin{tabular}{l}
-                If no Misc Config
-            \end{tabular}
-        }
-    }
-]
-{9H} (Channel Mode Config from ON OFF Lockout.298);
-\draw (Lockout.north) edge[
-    ->,
-    advancedline,
-    out=90,
-    in=0,
-    looseness=1.3
-]
-node[
-    advancedbutton,
-    pos=0.42
-]
-{9H} (Channel Mode Config from ON OFF Lockout.60);
+{10C} (Manual Memory from ON.222);
 
 % Simple UI Config from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \node (Simple UI Config from OFF)[
     advancedtable,
-    right=1.2cm of Ramp Extras Config from ON.north east,
+    right=0.8cm of Ramp Extras Config from ON.north east,
     anchor=north west
 ]
 {
@@ -1928,17 +1894,6 @@ node[
 };
 
 \draw (OFF.north) edge[
-    {Round Cap[sep=9.1cm]}-{Round Cap[sep=1cm]},
-    advancedline,
-    white,
-    line width=2.4pt,
-    out=90,
-    in=270,
-    looseness=1.5
-]
-node
-{} (Simple UI Config from OFF.296);
-\draw (OFF.north) edge[
     ->,
     advancedline,
     out=90,
@@ -1947,14 +1902,14 @@ node
 ]
 node[
     advancedbutton,
-    pos=0.7
+    pos=0.9
 ]
-{10H} (Simple UI Config from OFF.296);
+{10H} (Simple UI Config from OFF.302);
 
 % Misc Config from OFF
 \node (Misc Config from OFF)[
     advancedtable,
-    right=0.6cm of Simple UI Config from OFF.north east,
+    right=0.8cm of Simple UI Config from OFF.north east,
     anchor=north west
 ]
 {
@@ -1986,17 +1941,6 @@ node[
 };
 
 \draw (OFF.north) edge[
-    {Round Cap[sep=5.8cm]}-{Round Cap[sep=0.7cm]},
-    advancedline,
-    white,
-    line width=2.4pt,
-    out=90,
-    in=238,
-    looseness=1
-]
-node
-{} (Misc Config from OFF.245);
-\draw (OFF.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2005,7 +1949,7 @@ node
 ]
 node[
     advancedbutton,
-    pos=0.72
+    pos=0.85
 ]
 {9H} (Misc Config from OFF.245);
 
@@ -2202,11 +2146,11 @@ node[
     advancedline,
     out=90,
     in=300,
-    looseness=0.8
+    looseness=0.7
 ]
 node[
     advancedbutton,
-    pos=0.82
+    pos=0.8
 ]
 {10H} (Auto-lock Config from Lockout.south);
 
@@ -2358,7 +2302,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 16\\[2.0ex]
+    \normalsize Diagram Release 17\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
