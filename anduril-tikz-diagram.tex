@@ -1171,8 +1171,8 @@ at (current page.south)[
         }\\
         {1\textendash{}3} & \makecell{
             Tactical Slots 1\textendash{}3
-		}\\
-		 {} & \makecell{       
+        }\\
+         {} & \makecell{
             0C = Last-used strobe /\\
             mood mode\\
             1\textendash{}150C = Brightness\\
@@ -1180,7 +1180,7 @@ at (current page.south)[
             152C = Tactical strobe\\
             153+C = Other strobe /\\
             mood modes
-		}
+        }
     \end{tabular}
 };
 
@@ -1314,22 +1314,22 @@ node[
         \multicolumn{2}{l}{
             \thead{Voltage Config*}
         }\\
-		{1} & \makecell{
-	        Correction Factor
-		}\\
-		{} & \makecell{
-	        \char"00B1{}0.30V, 0.05V steps\\
-	        1C = \char"2212{}0.30V\\
-	        7C = 0V (default)\\
-	        13C = +0.30V
-		}\\
-		{2} & \makecell{
-		    Post-Off Display
-	    }\\
-	    {} & \makecell{
-		    0C = Disable\\
-	        nC = n seconds
-	    }
+        {1} & \makecell{
+            Correction Factor
+        }\\
+        {} & \makecell{
+            \char"00B1{}0.30V, 0.05V steps\\
+            1C = \char"2212{}0.30V\\
+            7C = 0V (default)\\
+            13C = +0.30V
+        }\\
+        {2} & \makecell{
+            Post-Off Display
+        }\\
+        {} & \makecell{
+            0C = Disable\\
+            nC = n seconds
+        }
     \end{tabular}
 };
 
@@ -1378,18 +1378,18 @@ node[
         \multicolumn{2}{l}{
             \thead{Thermal Config*}
         }\\
-		{1} & \makecell{
-	        Calibrate
-		}\\
-		{} & \makecell{
-	        nC = n\,°C
-		}\\
-		{2} & \makecell{
-		    Limit
-	    }\\
-	    {} & \makecell{
-	        nC = n + 30\,°C
-	    }
+        {1} & \makecell{
+            Calibrate
+        }\\
+        {} & \makecell{
+            nC = n\,°C
+        }\\
+        {2} & \makecell{
+            Limit
+        }\\
+        {} & \makecell{
+            nC = n + 30\,°C
+        }
     \end{tabular}
 };
 
@@ -1648,26 +1648,26 @@ at (current page.north west)[
         \multicolumn{2}{l}{
             \thead{\footnotesize Smooth Ramp}
         }\\
-		{1} & \makecell{
-		    Floor: nC = n of 150
-		}\\
-		{2} & \makecell{
-		    Ceiling: nC = 151 \char"2212{} n
-		}\\
-		{3} & \makecell{
-		    Speed*: 1C (full speed)\\
-		    to 4C (quarter speed)
-		}\\
-		\multicolumn{2}{l}{
+        {1} & \makecell{
+            Floor: nC = n of 150
+        }\\
+        {2} & \makecell{
+            Ceiling: nC = 151 \char"2212{} n
+        }\\
+        {3} & \makecell{
+            Speed*: 1C (full speed)\\
+            to 4C (quarter speed)
+        }\\
+        \multicolumn{2}{l}{
             \thead{\footnotesize Stepped Ramp}
         }\\
-		{1} & \makecell{
-		    Floor: nC = n of 150
-		}\\
-		{2} & \makecell{
-		    Ceiling: nC = 151 \char"2212{} n
-		}\\
-		{3} & \makecell{
+        {1} & \makecell{
+            Floor: nC = n of 150
+        }\\
+        {2} & \makecell{
+            Ceiling: nC = 151 \char"2212{} n
+        }\\
+        {3} & \makecell{
             Step count: 1\textendash{}150C
         }
     \end{tabular}
@@ -1709,35 +1709,35 @@ node[
             \thead{Channel Mode\\
             Config*}
         }\\
-	    {n} & \makecell{
-	        n\textsuperscript{th} channel mode
-	    }\\
-	    {} & \makecell{
-	        0C = Disable\\
-	        1C = Enable
-	    }\\
-	    \multicolumn{2}{l}{
+        {n} & \makecell{
+            n\textsuperscript{th} channel mode
+        }\\
+        {} & \makecell{
+            0C = Disable\\
+            1C = Enable
+        }\\
+        \multicolumn{2}{l}{
             \thead{\firstlinetable{Typical sequence for}
             \onelinetable{dual-channel lights}}
         }\\
- 		{1} & \makecell{
-		    Channel 1
-		}\\
-		{2} & \makecell{
-		    Channel 2
-		}\\
-		{3} & \makecell{
-		    50/50
-		}\\
-		{4} & \makecell{
-		    Tint Ramp
-		}\\
-		{5} & \makecell{
-		    Auto-tint
-		}\\
-		{6+} & \makecell{
-		    Aux LED Channels
-		}
+         {1} & \makecell{
+            Channel 1
+        }\\
+        {2} & \makecell{
+            Channel 2
+        }\\
+        {3} & \makecell{
+            50/50
+        }\\
+        {4} & \makecell{
+            Tint Ramp
+        }\\
+        {5} & \makecell{
+            Auto-tint
+        }\\
+        {6+} & \makecell{
+            Aux LED Channels
+        }
     \end{tabular}
 };
 
@@ -1773,51 +1773,51 @@ node[
         \multicolumn{2}{l}{
             \thead{Ramp Extras Config}
         }\\
-	    {1} & \makecell{
-	        Disable manual memory*
-	    }\\
-	    {} & \makecell{
-	        1+C
-	    }\\
-	    {2} & \makecell{
-	        Manual memory timer*
-	    }\\
-	    {} & \makecell{
-	        0C = Disable\\
-	        nC = n minutes
-	    }\\
-	    {3} & \makecell{
-	        Moon style (1H from Off)*
-	    }\\
-	    {} & \makecell{
-		    0C = Ramp up after moon\\
-		    1C = Stay at floor level
-	    }\\
-	    {4} & \makecell{
-	        Advanced UI's turbo style
-	    }\\
-	    {} & \makecell{
-	        0C = Ceiling only, no turbo\\
-	        1C = Turbo\\
-	        2C = Ceiling, or turbo if\\
-	        ramped up to ceiling first
-	    }\\
-	    {5} & \makecell{
-	        Smooth Steps*
-	    }\\
-	    {} & \makecell{
-	        0C = Disable\\
-	        1C = Enable
-	    }\\
-	    \multicolumn{2}{l}{
-	        \thead{\firstlinetable{Types of brightness memory}
-	        \onelinetable{(1C from Off)}}
-	    }\\
-	    \multicolumn{2}{l}{
-	        \makecell{Automatic: Last-ramped\\
-	        Manual: User's saved\\
-	        Hybrid: Manual after n minutes}
-	    }
+        {1} & \makecell{
+            Disable manual memory*
+        }\\
+        {} & \makecell{
+            1+C
+        }\\
+        {2} & \makecell{
+            Manual memory timer*
+        }\\
+        {} & \makecell{
+            0C = Disable\\
+            nC = n minutes
+        }\\
+        {3} & \makecell{
+            Moon style (1H from Off)*
+        }\\
+        {} & \makecell{
+            0C = Ramp up after moon\\
+            1C = Stay at floor level
+        }\\
+        {4} & \makecell{
+            Advanced UI's turbo style
+        }\\
+        {} & \makecell{
+            0C = Ceiling only, no turbo\\
+            1C = Turbo\\
+            2C = Ceiling, or turbo if\\
+            ramped up to ceiling first
+        }\\
+        {5} & \makecell{
+            Smooth Steps*
+        }\\
+        {} & \makecell{
+            0C = Disable\\
+            1C = Enable
+        }\\
+        \multicolumn{2}{l}{
+            \thead{\firstlinetable{Types of brightness memory}
+            \onelinetable{(1C from Off)}}
+        }\\
+        \multicolumn{2}{l}{
+            \makecell{Automatic: Last-ramped\\
+            Manual: User's saved\\
+            Hybrid: Manual after n minutes}
+        }
     \end{tabular}
 };
 
@@ -1872,24 +1872,24 @@ node[
         \multicolumn{2}{l}{
             \thead{Simple UI Config}
         }\\
-		{1} & \makecell{
-		    Floor: nC = n of 150
-		}\\
-		{2} & \makecell{
-		    Ceiling: nC = 151 \char"2212{} n
-		}\\
-		{3} & \makecell{
+        {1} & \makecell{
+            Floor: nC = n of 150
+        }\\
+        {2} & \makecell{
+            Ceiling: nC = 151 \char"2212{} n
+        }\\
+        {3} & \makecell{
             Step count: 1\textendash{}150C
         }\\
         {4} & \makecell{
-	        Simple UI's turbo style
-	    }\\
-	    {} & \makecell{
-	        0C = Ceiling only, no turbo\\
-	        1C = Turbo\\
-	        2C = Ceiling, or turbo if\\
-	        ramped up to ceiling first
-	    }
+            Simple UI's turbo style
+        }\\
+        {} & \makecell{
+            0C = Ceiling only, no turbo\\
+            1C = Turbo\\
+            2C = Ceiling, or turbo if\\
+            ramped up to ceiling first
+        }
     \end{tabular}
 };
 
@@ -1917,26 +1917,26 @@ node[
         \multicolumn{2}{l}{
             \thead{Misc Config*}
         }\\
-	    \multicolumn{2}{l}{
+        \multicolumn{2}{l}{
             \onelinetable{Hardware-specific}
         }\\[0.5ex]
-		{1} & \makecell{
-	        Tint Ramp style
-		}\\
-		{} & \makecell{
-	        0C = Smooth ramp\\
-	        1C = Middle tint only\\
-	        2C = Channel toggle\\
-	        3+C = Stepped ramp\\
-	        with 3+ steps
-		}\\
-		{2} & \makecell{
-		    Jump Start level
-	    }\\
-	    {} & \makecell{
-		    1\textendash{}150C (usually\\
-		    between 20 and 50)
-	    }
+        {1} & \makecell{
+            Tint Ramp style
+        }\\
+        {} & \makecell{
+            0C = Smooth ramp\\
+            1C = Middle tint only\\
+            2C = Channel toggle\\
+            3+C = Stepped ramp\\
+            with 3+ steps
+        }\\
+        {2} & \makecell{
+            Jump Start level
+        }\\
+        {} & \makecell{
+            1\textendash{}150C (usually\\
+            between 20 and 50)
+        }
     \end{tabular}
 };
 
