@@ -2235,12 +2235,15 @@ at (current page.east)[
 \draw (OFF right.east) edge[
     ->,
     simpleline,
+    very thick, % very thick = 1.2pt
+    shorten <=-0.2pt,
     out=0,
-    in=90
+    in=90,
+    looseness=1.2
 ]
 node[
     simplebutton,
-    pos=0.6
+    pos=0.68
 ]
 {10H} (Advanced UI switch from OFF right.north);
 
@@ -2257,12 +2260,15 @@ at (current page.east)[
 \draw (OFF right.east) edge[
     ->,
     advancedline,
+    very thick,
+    shorten <=-0.2pt,
     out=0,
-    in=270
+    in=270,
+    looseness=1.2
 ]
 node[
     advancedbutton,
-    pos=0.6
+    pos=0.7
 ]
 {10C} (Simple UI switch from OFF right.south);
 
@@ -2302,7 +2308,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 17\\[2.0ex]
+    \normalsize Diagram Release 18\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
