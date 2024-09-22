@@ -2,6 +2,10 @@
 
 ## Next
 
+# 2024-04-20.20 (Date: 2024-09-22)
+
+- Added multi-channel lights to 4H from On
+
 ## 2024-04-20.19 (Date: 2024-09-21)
 
 - Readjusted UI switch lines
