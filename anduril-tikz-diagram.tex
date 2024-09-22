@@ -1520,7 +1520,7 @@ at (current page.west)[
     anyconfig,
     anchor=south west,
     xshift=1cm,
-    yshift=0.15cm
+    yshift=0.4cm
 ]
 {\oneline{Next Channel Mode}};
 
@@ -1541,9 +1541,8 @@ node[
 \node (Tint Ramp from ON)
 at (current page.west)[
     anyconfig,
-    anchor=north west,
-    xshift=1cm,
-    yshift=-0.15cm
+    below=0.3cm of Next Channel Mode from ON.south west,
+    anchor=north west
 ]
 {
     \firstline{Tint Ramp}
@@ -1583,7 +1582,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.69
+    pos=0.67
 ]
 {3H} (Momentary Turbo 3H from ON.east);
 
@@ -1593,7 +1592,10 @@ node[
     below=0.3cm of Momentary Turbo 3H from ON.south west,
     anchor=north west
 ]
-{\oneline{Momentary Turbo}};
+{
+    \firstline{Momentary Turbo}
+    On multi-channel lights
+};
 
 \draw (ON.west) edge[
     ->,
@@ -1604,7 +1606,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.74
+    pos=0.705
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
@@ -1700,7 +1702,7 @@ node[
 % Channel Mode Config from ON
 \node (Channel Mode Config from ON)[
     advancedtable,
-    above=0.5cm of Next Channel Mode from ON.north west,
+    above=0.4cm of Next Channel Mode from ON.north west,
     anchor=south west
 ]
 {
@@ -2304,7 +2306,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 19\\[2.0ex]
+    \normalsize Diagram Release 20\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
