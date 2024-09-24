@@ -24,11 +24,12 @@ The file formats included in the diagram releases are:
 
 - TEX - LaTeX source file
 
-This is the standard, generic diagram. For a model-specific diagram for
+This is the standard, generic diagram, and I am focusing on this diagram.
+There is also an exemplary model-specific
+[diagram-0135](https://github.com/dirtydancing/anduril-tikz-diagram-0135)
+available for
 [model number](https://github.com/ToyKeeper/anduril/blob/trunk/MODELS)
-0135, `hank-emisar-2ch`, including Extended Simple UI, Andúril 1 turbo style,
-and the model-specific default settings, see the
-[diagram-0135](https://github.com/dirtydancing/anduril-tikz-diagram-0135).
+0135, `hank-emisar-2ch` (for Andúril 2 release 2024-04-20 only).
 
 ## Description
 
