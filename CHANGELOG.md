@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.21 (Date: 2024-10-16)
+
+- Colored borders around UI switches
+
 ## 2024-04-20.20 (Date: 2024-09-22)
 
 - Added multi-channel lights to 4H from On
