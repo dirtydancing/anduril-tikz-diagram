@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2024-04-20.22 (Date: 2024-10-21)
+
+- Added support for inherited
+- Adjusted UI switch color
+
 ## 2024-04-20.21 (Date: 2024-10-16)
 
 - Colored borders around UI switches
