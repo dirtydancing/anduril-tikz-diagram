@@ -362,6 +362,8 @@
 \newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
 \newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
 
+\newcommand{\inherited}{\char"002A}
+
 \begin{document}
 
 \thispagestyle{empty}
@@ -572,7 +574,7 @@ node[
     anchor=north,
     align=center
 ]
-{\oneline{Toggle Ramp Style*}};
+{\oneline{Toggle Ramp Style\inherited{}}};
 \node (Toggle Ramp Style extra node ON)[
     on-extra,
     below=0.8cm of Toggle Ramp Style from ON.west,
@@ -1256,7 +1258,7 @@ at (current page.south)[
     anchor=south west
 ]
 {
-    \firstline{Next Channel Mode*}
+    \firstline{Next Channel Mode\inherited{}}
     For number blinks only
 };
 
@@ -1321,7 +1323,7 @@ node[
 {
     \begin{tabular}{m{0.35cm} l}
         \multicolumn{2}{l}{
-            \thead{Voltage Config*}
+            \thead{Voltage Config\inherited{}}
         }\\
         {1} & \makecell{
             Correction Factor
@@ -1385,7 +1387,7 @@ node[
 {
     \begin{tabular}{m{0.35cm} l}
         \multicolumn{2}{l}{
-            \thead{Thermal Config*}
+            \thead{Thermal Config\inherited{}}
         }\\
         {1} & \makecell{
             Calibrate
@@ -1666,7 +1668,7 @@ at (current page.north west)[
             Ceiling: nC = 151 \char"2212{} n
         }\\
         {3} & \makecell{
-            Speed*: 1C (full speed)\\
+            Speed\inherited{}: 1C (full speed)\\
             to 4C (quarter speed)
         }\\
         \multicolumn{2}{l}{
@@ -1718,7 +1720,7 @@ node[
     \begin{tabular}{m{0.35cm} l}
         \multicolumn{2}{l}{
             \thead{Channel Mode\\
-            Config*}
+            Config\inherited{}}
         }\\
         {n} & \makecell{
             n\textsuperscript{th} channel mode
@@ -1785,20 +1787,20 @@ node[
             \thead{Ramp Extras Config}
         }\\
         {1} & \makecell{
-            Disable manual memory*
+            Disable manual memory\inherited{}
         }\\
         {} & \makecell{
             1+C
         }\\
         {2} & \makecell{
-            Manual memory timer*
+            Manual memory timer\inherited{}
         }\\
         {} & \makecell{
             0C = Disable\\
             nC = n minutes
         }\\
         {3} & \makecell{
-            Moon style (1H from Off)*
+            Moon style (1H from Off)\inherited{}
         }\\
         {} & \makecell{
             0C = Ramp up after moon\\
@@ -1814,7 +1816,7 @@ node[
             ramped up to ceiling first
         }\\
         {5} & \makecell{
-            Smooth Steps*
+            Smooth Steps\inherited{}
         }\\
         {} & \makecell{
             0C = Disable\\
@@ -1852,7 +1854,7 @@ node[
     anchor=south west
 ]
 {
-    \firstline{Manual Memory*}
+    \firstline{Manual Memory\inherited{}}
     Activate, and save\\
     current brightness and\\
     current channel mode
@@ -1926,7 +1928,7 @@ node[
 {
     \begin{tabular}{m{0.35cm} l}
         \multicolumn{2}{l}{
-            \thead{Misc Config*}
+            \thead{Misc Config\inherited{}}
         }\\
         \multicolumn{2}{l}{
             \onelinetable{Hardware-specific}
@@ -2045,7 +2047,7 @@ node[
     anchor=south
 ]
 {
-    \firstline{OFF Aux LED Color*}
+    \firstline{OFF Aux LED Color\inherited{}}
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
@@ -2072,7 +2074,7 @@ node[
     anchor=south west
 ]
 {
-    \firstline{OFF Aux LED Pattern*}
+    \firstline{OFF Aux LED Pattern\inherited{}}
     Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
 };
 
@@ -2096,7 +2098,7 @@ node[
     anchor=south west
 ]
 {
-    \firstline{Lockout Aux LED Color*}
+    \firstline{Lockout Aux LED Color\inherited{}}
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
@@ -2123,7 +2125,7 @@ node[
     anchor=south west
 ]
 {
-    \firstline{Lockout Aux LED Pattern*}
+    \firstline{Lockout Aux LED Pattern\inherited{}}
     Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
 };
 
@@ -2147,7 +2149,7 @@ node[
     anchor=north east
 ]
 {
-    \firstline{Auto-lock*}
+    \firstline{Auto-lock\inherited{}}
     0C = Disable\\
     nC = n minutes
 };
@@ -2315,7 +2317,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 21\\[2.0ex]
+    \normalsize Diagram Release 22\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
@@ -2522,7 +2524,7 @@ node[
     left=0.22cm of Legend Inherited by Simple text.west,
     anchor=east
 ]
-{\normalsize\textbf{*}};
+{\normalsize\textbf{\inherited{}}};
 
 % Legend fit
 \begin{scope}[on background layer]
