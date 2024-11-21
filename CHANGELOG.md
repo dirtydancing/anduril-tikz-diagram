@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2024-04-20.23 (Date: 2024-11-21)
+
+- Added 2C to turbo style config
+- Added ramp label to ramp image
+
 ## 2024-04-20.22 (Date: 2024-10-21)
 
 - Added support for inherited
