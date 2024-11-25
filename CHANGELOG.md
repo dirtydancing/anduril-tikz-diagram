@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.24 (Date: 2024-11-25)
+
+- Added ON at ramp memory
+
 ## 2024-04-20.23 (Date: 2024-11-21)
 
 - Added 2C to turbo style config
