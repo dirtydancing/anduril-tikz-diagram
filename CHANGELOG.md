@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2024-04-20.25 (Date: 2024-12-04)
+
+- Added colors to post-off voltage display
+- Adjusted ramp up and down arrows
+
 ## 2024-04-20.24 (Date: 2024-11-25)
 
 - Added ON at ramp memory
