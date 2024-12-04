@@ -37,7 +37,7 @@
 
 \setlength{\tabcolsep}{0pt} % default: 6pt
 
-\usepackage{tcolorbox} % for colored and framed text boxes
+\usepackage[skins]{tcolorbox} % for colored and framed text boxes
 \newtcbox{\voltageboxred}{
     colframe=white, % initially black!75!white
     boxrule=0cm, % initially 0.05cm
@@ -75,6 +75,24 @@
     boxsep=0cm,
     arc=0.05cm,
     sharp corners=west
+}
+\newtcbox{\povdbox}{
+    colframe=white,
+    boxrule=0cm,
+    enhanced,
+    interior style={
+        left color=red!40,
+        right color=blue!40,
+        middle color=green!40
+    },
+    coltext=black,
+    left=0.03cm,
+    right=0.03cm,
+    top=0.03cm,
+    bottom=0.03cm,
+    boxsep=0cm,
+    arc=0.05cm,
+    box align=base
 }
 
 \usepackage{tikz}
@@ -1352,7 +1370,7 @@ node[
             13C = +0.30V
         }\\
         {2} & \makecell{
-            Post-Off Display
+            \povdbox{Post-Off Display}
         }\\
         {} & \makecell{
             0C = Disable\\
@@ -2336,7 +2354,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 24\\[2.0ex]
+    \normalsize Diagram Release 25\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
