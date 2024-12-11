@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.26 (Date: 2024-12-11)
+
+- Adjusted colors for post-off voltage display
+
 ## 2024-04-20.25 (Date: 2024-12-04)
 
 - Added colors to post-off voltage display
