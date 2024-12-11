@@ -49,7 +49,8 @@
     bottom=0.01cm, % initially 0.2cm
     boxsep=0cm, % initially 0.1cm
     arc=0.05cm, % initially 0.1cm
-    sharp corners=east % initially all rounded corners
+    sharp corners=east, % initially all rounded corners
+    box align=base % initially bottom
 }
 \newtcbox{\voltagebox}[1][white]{
     colframe=white,
@@ -61,7 +62,8 @@
     top=0.01cm,
     bottom=0.01cm,
     boxsep=0cm,
-    sharp corners
+    sharp corners,
+    box align=base
 }
 \newtcbox{\voltageboxpurple}{
     colframe=white,
@@ -74,24 +76,7 @@
     bottom=0.01cm,
     boxsep=0cm,
     arc=0.05cm,
-    sharp corners=west
-}
-\newtcbox{\povdbox}{
-    colframe=white,
-    boxrule=0cm,
-    enhanced,
-    interior style={
-        left color=red!40,
-        right color=blue!40,
-        middle color=green!40
-    },
-    coltext=black,
-    left=0.03cm,
-    right=0.03cm,
-    top=0.03cm,
-    bottom=0.03cm,
-    boxsep=0cm,
-    arc=0.05cm,
+    sharp corners=west,
     box align=base
 }
 
@@ -1370,7 +1355,19 @@ node[
             13C = +0.30V
         }\\
         {2} & \makecell{
-            \povdbox{Post-Off Display}
+            \voltageboxred{Po\hspace{-0.01cm}%
+            \vphantom{Post-Off Display}}%
+            \voltagebox[yellow]{\hspace{-0.01cm}st-\hspace{-0.01cm}%
+            \vphantom{Post-Off Display}}%
+            \voltagebox[green]{\hspace{-0.01cm}Off\hspace{-0.01cm}%
+            \vphantom{Post-Off Display}}%
+            \voltagebox[cyan]{\hspace{-0.01cm}\nobreakspace
+            Di\hspace{-0.01cm}%
+            \vphantom{Post-Off Display}}%
+            \voltagebox[blue]{\hspace{-0.01cm}spl\hspace{-0.01cm}%
+            \vphantom{Post-Off Display}}%
+            \voltageboxpurple{\hspace{-0.01cm}ay%
+            \vphantom{Post-Off Display}}
         }\\
         {} & \makecell{
             0C = Disable\\
@@ -2088,7 +2085,19 @@ node[
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-    Disco \char"2192{} Rainbow \char"2192{} Voltage
+    Disco \char"2192{} Rainbow \char"2192{}
+    \voltageboxred{V\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[yellow]{\hspace{-0.01cm}o\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[green]{\hspace{-0.01cm}lt\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[cyan]{\hspace{-0.01cm}a\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[blue]{\hspace{-0.01cm}g\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltageboxpurple{\hspace{-0.01cm}e%
+    \vphantom{Voltage}}
 };
 
 \draw (OFF right.north) edge[
@@ -2139,7 +2148,19 @@ node[
     Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
     Cyan \char"2192{}\\
     Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-    Disco \char"2192{} Rainbow \char"2192{} Voltage
+    Disco \char"2192{} Rainbow \char"2192{} 
+    \voltageboxred{V\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[yellow]{\hspace{-0.01cm}o\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[green]{\hspace{-0.01cm}lt\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[cyan]{\hspace{-0.01cm}a\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltagebox[blue]{\hspace{-0.01cm}g\hspace{-0.01cm}%
+    \vphantom{Voltage}}%
+    \voltageboxpurple{\hspace{-0.01cm}e%
+    \vphantom{Voltage}}
 };
 
 \draw (Lockout.north) edge[
@@ -2354,7 +2375,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 25\\[2.0ex]
+    \normalsize Diagram Release 26\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
@@ -2370,12 +2391,12 @@ at (current page.north east)[
 ]
 {
     \oneline{Aux LED Color for Voltage}\\[0.5ex]
-    \voltageboxred{R-2.9,\vphantom{Ú}}%
-    \voltagebox[yellow]{Y-3.3,\vphantom{Ú}}%
-    \voltagebox[green]{G-3.5,\vphantom{Ú}}%
-    \voltagebox[cyan]{C-3.7,\vphantom{Ú}}%
-    \voltagebox[blue]{B-3.9,\vphantom{Ú}}%
-    \voltageboxpurple{P-4.1V\vphantom{,Ú}}\\[1.0ex]
+    \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
+    \voltagebox[yellow]{Y-3.3,\vphantom{Voltage,Ú}}%
+    \voltagebox[green]{G-3.5,\vphantom{Voltage,Ú}}%
+    \voltagebox[cyan]{C-3.7,\vphantom{Voltage,Ú}}%
+    \voltagebox[blue]{B-3.9,\vphantom{Voltage,Ú}}%
+    \voltageboxpurple{P-4.1V\vphantom{Voltage,Ú}}\\[1.5ex]
     Single-color aux: Fast-blink 3.3\textendash{}2.9V
 };
 
