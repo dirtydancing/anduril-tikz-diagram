@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.28 (Date: 2024-12-17)
+
+- Specified Extended Simple UI description
+
 ## 2024-04-20.27 (Date: 2024-12-16)
 
 - Unified background design for voltage
