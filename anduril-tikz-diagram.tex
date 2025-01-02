@@ -154,7 +154,6 @@
         above=-0.41pt, % 0.01pt more than line thickness
         draw=black,
         thin,
-        densely dotted,
         fill=white,
         inner sep=0cm,
         minimum width=1.5cm+7.2pt,
@@ -172,7 +171,8 @@
     },
     anyline momentary/.style={
         anyline,
-        densely dashed
+        densely dashed,
+        line cap=round
     },
     anybutton/.style={
         draw=black,
@@ -210,7 +210,7 @@
     anyconfig-mode/.style={
         anyconfig,
         draw=blue-1!90,
-        thick, % thick = 0.8pt
+        very thick, % very thick = 1.2pt
         solid
     }
 }
@@ -220,7 +220,8 @@
     },
      advancedline momentary/.style={
         advancedline,
-        densely dashed
+        densely dashed,
+        line cap=round
     },
     advancedbutton/.style={
         anybutton,
@@ -228,12 +229,11 @@
     },
      advancedconfig/.style={
         anyconfig,
-        densely dotted,
         fill=gray!8
     },
     advancedfit/.style={
         advancedconfig,
-        loosely dotted,
+        draw=gray!50,
         fill=none,
         inner sep=0.3cm
     },
@@ -243,7 +243,7 @@
     advancedUI/.style={
         advancedconfig,
         draw=red!80,
-        thick,
+        very thick,
         solid,
         font=\bfseries\LARGE
     }
@@ -258,7 +258,7 @@
     advancedconfig-mode/.style={
         advancedconfig,
         draw=blue-1!90,
-        thick,
+        very thick,
         solid
     }
 }
@@ -276,7 +276,7 @@
     simpleUI/.style={
         anyconfig,
         draw=red!80,
-        thick,
+        very thick,
         solid,
         font=\bfseries\LARGE
     }
@@ -294,15 +294,13 @@
     },
     extendedsimplefit/.style={
         extendedsimpleconfig,
-        loosely dotted,
+        draw=gray!50,
         fill=none,
         inner sep=0.3cm
     },
     extendedsimpleUI/.style={
         extendedsimpleconfig,
-        draw=gray!80,
-        thick,
-        solid
+        fill=white
     }
 }
 \tikzset{
@@ -315,14 +313,14 @@
     extendedsimpleconfig-mode/.style={
         extendedsimpleconfig,
         draw=blue-1!90,
-        thick,
+        very thick,
         solid
     }
 }
 \tikzset{
     on-extra/.style={
         draw=black,
-        thin,
+        thick, % thick = 0.8pt
         fill=white,
         text=black,
         font=\bfseries\normalsize,
@@ -339,7 +337,7 @@
 \tikzset{
     generalconfig/.style={
         advancedconfig,
-        loosely dotted,
+        draw=gray!50,
         fill=white
     },
     andurilinfo/.style={
@@ -358,8 +356,7 @@
         align=left
     },
     legendfit/.style={
-        advancedfit,
-        inner sep=0.1cm
+        generalconfig
     }
 }
 
@@ -486,7 +483,7 @@ at (current page.center)[
 
 \node (ON Ramp) at (Ramp.center)[
     onoff,
-    inner xsep=0.23cm
+    inner xsep=0.225cm
 ]
 {ON};
 \node (Ramp Memory) at (ON Ramp.south)[below]{\oneline{Memory}};
@@ -522,8 +519,8 @@ at (current page.center)[
 \draw (ON Ramp.north) edge[
     arrows={<[open, fill=white]->},
     anyline basic use,
-    line cap=round,
-    yshift=0.15cm
+    yshift=0.15cm,
+    line cap=round
 ]
 node[
     anybutton basic use,
@@ -575,7 +572,7 @@ node[
     at (Turbo.north) {\oneline{Turbo}};
     \node (Ramp label)[
         on-extra,
-        inner xsep=0.4cm,
+        inner xsep=0.425cm,
         above,
         yshift=0.15cm
     ]
@@ -641,19 +638,19 @@ node[
     \draw (Toggle Ramp Style from ON.north) edge[
         ->,
         advancedline,
-        line cap=round,
         out=150,
         in=325,
-        looseness=0
+        looseness=0,
+        line cap=round
     ]
     (Ramp Styles fit.325);
     \draw (Toggle Ramp Style from ON.north) edge[
         ->,
         advancedline,
-        line cap=round,
         out=30,
         in=215,
-        looseness=0
+        looseness=0,
+        line cap=round
     ]
     (Ramp Styles fit.215);
 \end{scope}
@@ -676,7 +673,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.805
+    pos=0.808
 ]
 {2H} (Turbo 0pt.north west);
 \draw (OFF.north) edge[
@@ -696,7 +693,7 @@ node[
 \draw (OFF.north east) edge[
     -, % no extra arrow tip
     simpleline momentary,
-    shorten >=0.2pt,
+    shorten >=2.5pt,
     out=90,
     in=180,
     out looseness=1.3,
@@ -1052,7 +1049,7 @@ node[
 \draw (Candle from OFF.north west) edge[
     ->,
     advancedline,
-    shorten <=-1.8pt,
+    shorten <=-1.9pt,
     out=135,
     in=0,
     looseness=0.7
@@ -1088,12 +1085,12 @@ node[
     ->,
     advancedline-mode,
     out=180,
-    in=0,
+    in=20,
     looseness=0.8
 ]
 node[
     advancedbutton-mode,
-    pos=0.35
+    pos=0.38
 ]
 {2C} (Party Strobe from Bike Flasher.east);
 
@@ -1314,7 +1311,7 @@ at (current page.south)[
 \draw (Batt Check from OFF.213) edge[
     ->,
     advancedline,
-    shorten >=-1.4pt,
+    shorten >=-1.8pt,
     out=270,
     in=120,
     looseness=1
@@ -1325,6 +1322,17 @@ node[
 ]
 {3C} (Next Channel Mode from Batt Check.north west);
 
+\draw (OFF.south) edge[
+    {Round Cap[sep=7.1cm]}-{Round Cap[sep=2.9cm]},
+    anyline,
+    white,
+    line width=2.4pt,
+    out=270,
+    in=165,
+    looseness=1.3
+]
+node
+{} (Batt Check from OFF.172);
 \draw (OFF.south) edge[
     ->,
     anyline,
@@ -2019,7 +2027,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.71
+    pos=0.715
 ]
 {1H} (Momentary Moon from Lockout.west);
 
@@ -2045,7 +2053,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.71
+    pos=0.715
 ]
 {2H} (Momentary Low from Lockout.west);
 
@@ -2066,7 +2074,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.71
+    pos=0.715
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
@@ -2328,9 +2336,7 @@ node[
 \node (Simple UI switch extra node Extended Simple UI)[
     above=0.2cm of Simple UI switch from OFF right.north east,
     extendedsimpleUI,
-    anchor=south east,
-    align=right,
-    fill=white % only when in combination with Extended Simple UI description
+    anchor=south east
 ]
 {\normalsize Extended Simple UI};
 
@@ -2361,7 +2367,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 28\\[2.0ex]
+    \normalsize Diagram Release 29\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
@@ -2382,7 +2388,7 @@ at (current page.north east)[
     \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
     \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
     \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
-    \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}\\[1.4ex]
+    \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}\\[1.5ex]
     Single-color aux: Fast-blink 3.3\textendash{}2.9V
 };
 
@@ -2426,7 +2432,8 @@ at (current page.north east)[
     -,
     anyline basic use,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 node[
     anybutton basic use,
@@ -2452,7 +2459,8 @@ node[
     -,
     anyline,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 node[
     anybutton,
@@ -2478,7 +2486,8 @@ node[
     -,
     simpleline,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 node[
     simplebutton,
@@ -2504,7 +2513,8 @@ node[
     -,
     advancedline,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 node[
     advancedbutton,
@@ -2530,7 +2540,8 @@ node[
     -,
     anyline,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 (Legend Continuous effect picture.east);
 
@@ -2552,7 +2563,8 @@ node[
     -,
     anyline momentary,
     out=0,
-    in=180
+    in=180,
+    line cap=round
 ]
 (Legend Momentary effect picture.east);
 
