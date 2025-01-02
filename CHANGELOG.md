@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.29 (Date: 2025-01-02)
+
+- Changed dotted borders to solid borders
+
 ## 2024-04-20.28 (Date: 2024-12-17)
 
 - Specified Extended Simple UI description
