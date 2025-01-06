@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.31 (Date: 2025-01-06)
+
+- Adjusted layout of Toggle Ramp Style
+
 ## 2024-04-20.30 (Date: 2025-01-03)
 
 - Adjusted layout of legend
