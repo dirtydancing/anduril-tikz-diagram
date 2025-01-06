@@ -41,7 +41,7 @@ It is created with [TikZ](https://github.com/pgf-tikz/pgf) for
 LaTeX offers, and it produces a human-friendly source document, as well as
 human-friendly Git diffs, because the TEX source file consists of plain text.
 
-To accomodate both Andúril newcomers and experienced users, the brightness ramp
+To accommodate both Andúril newcomers and experienced users, the brightness ramp
 takes center stage, literally in the center of the page. From there, you can
 explore all the other features.
 
