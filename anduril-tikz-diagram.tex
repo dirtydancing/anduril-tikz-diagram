@@ -169,6 +169,10 @@
     anyline basic use/.style={
         anyline
     },
+     anyline ramp/.style={
+        anyline,
+        line cap=round
+    },
     anyline momentary/.style={
         anyline,
         densely dashed,
@@ -533,7 +537,7 @@ at (current page.center)[
 ]
 {Stepped};
 \node (Ramp Styles fit)[
-    inner sep=0,
+    inner sep=-0.05cm,
     fit=(Ramp Style Smooth) (Ramp Style Stepped)
 ]
 {};
@@ -541,8 +545,7 @@ at (current page.center)[
 \draw (ON Ramp.north) edge[
     arrows={<[open, fill=white]->},
     anyline basic use,
-    yshift=0.15cm,
-    line cap=round
+    yshift=0.15cm
 ]
 node[
     anybutton basic use,
@@ -563,8 +566,7 @@ node[
 {1H} (Ramp Ceiling.south);
 \draw (Ramp Memory.south) edge[
     arrows={->},
-    anyline,
-    line cap=round
+    anyline ramp
 ]
 node[
     anybutton,
@@ -620,14 +622,22 @@ node[
 {\oneline{Toggle Ramp Style\inherited{}}};
 \node (Toggle Ramp Style extra node ON)[
     on-extra,
-    below=0.8cm of Toggle Ramp Style from ON.west,
+    below right=0.9cm and 0.2cm of Toggle Ramp Style from ON.west,
     anchor=center
 ]
 {ON};
-\node (Toggle Ramp Style extra node 6C)[
+
+\draw (Toggle Ramp Style extra node ON.east) edge[
+    ->,
+    advancedline,
+    out=0,
+    in=270,
+    out looseness=0.8,
+    in looseness=1.8
+]
+node[
     advancedbutton,
-    below=0.8cm of Toggle Ramp Style from ON.center,
-    anchor=center,
+    pos=0.6,
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
@@ -637,45 +647,25 @@ node[
         }
     }
 ]
-{6C};
-
-\draw (Toggle Ramp Style extra node ON.east) edge[
-    -,
-    advancedline,
-    out=0,
-    in=180,
-    looseness=0
-]
-(Toggle Ramp Style extra node 6C.west);
-\draw (Toggle Ramp Style extra node 6C.north) edge[
+{6C}(Toggle Ramp Style from ON.south);
+\draw (Toggle Ramp Style from ON.north) edge[
     ->,
     advancedline,
     out=90,
-    in=270,
-    looseness=0
+    in=225,
+    out looseness=0.5,
+    in looseness=2
 ]
-(Toggle Ramp Style from ON.south);
-
-\begin{scope}[on background layer]
-    \draw (Toggle Ramp Style from ON.north) edge[
-        ->,
-        advancedline,
-        out=150,
-        in=325,
-        looseness=0,
-        line cap=round
-    ]
-    (Ramp Styles fit.325);
-    \draw (Toggle Ramp Style from ON.north) edge[
-        ->,
-        advancedline,
-        out=30,
-        in=215,
-        looseness=0,
-        line cap=round
-    ]
-    (Ramp Styles fit.215);
-\end{scope}
+(Ramp Styles fit.335);
+\draw (Toggle Ramp Style from ON.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=315,
+    out looseness=0.5,
+    in looseness=2
+]
+(Ramp Styles fit.205);
 
 % OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2389,7 +2379,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 30\\[2.0ex]
+    \normalsize Diagram Release 31\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
