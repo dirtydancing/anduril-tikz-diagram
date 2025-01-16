@@ -344,7 +344,7 @@
     }
 }
 \tikzset{
-    legendconfig/.style={
+    legendlayout/.style={
         rectangle,
         draw=none,
         minimum width=0.808cm,
@@ -2422,14 +2422,14 @@ at (current page.north east)[
 
 % Legend
 \node (Legend basic use text)[
-    legendconfig,
+    legendlayout,
     below left=0.1cm and 0.9cm of Button Presses.north west,
     anchor=north east
 ]
 {All the user needs to know for basic use\vphantom{y}};
 
 \node (Legend basic use picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend basic use text.west,
     anchor=east
 ]
@@ -2448,14 +2448,14 @@ node[
 {\footnotesize 1C} (Legend basic use picture.east);
 
 \node (Legend Simple and Advanced text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend basic use text.south west,
     anchor=north west
 ]
 {Simple UI and Advanced UI function};
 
 \node (Legend Simple and Advanced picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Simple and Advanced text.west,
     anchor=east
 ]
@@ -2474,14 +2474,14 @@ node[
 {\footnotesize 1C} (Legend Simple and Advanced picture.east);
 
 \node (Legend Simple only text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend Simple and Advanced text.south west,
     anchor=north west
 ]
 {Simple UI function only};
 
 \node (Legend Simple only picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Simple only text.west,
     anchor=east
 ]
@@ -2500,14 +2500,14 @@ node[
 {\footnotesize 1C} (Legend Simple only picture.east);
 
 \node (Legend Advanced only text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend Simple only text.south west,
     anchor=north west
 ]
 {Advanced UI function only};
 
 \node (Legend Advanced only picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Advanced only text.west,
     anchor=east
 ]
@@ -2526,14 +2526,14 @@ node[
 {\footnotesize 1C} (Legend Advanced only picture.east);
 
 \node (Legend Continuous effect text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend Advanced only text.south west,
     anchor=north west
 ]
 {Continuous effect\vphantom{y}};
 
 \node (Legend Continuous effect picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Continuous effect text.west,
     anchor=east
 ]
@@ -2548,14 +2548,14 @@ node[
 (Legend Continuous effect picture.east);
 
 \node (Legend Momentary effect text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend Continuous effect text.south west,
     anchor=north west
 ]
 {Momentary effect};
 
 \node (Legend Momentary effect picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Momentary effect text.west,
     anchor=east
 ]
@@ -2570,14 +2570,14 @@ node[
 (Legend Momentary effect picture.east);
 
 \node (Legend Inherited by Simple text)[
-    legendconfig,
+    legendlayout,
     below=0.1cm of Legend Momentary effect text.south west,
     anchor=north west
 ]
 {Inherited by Simple UI};
 
 \node (Legend Inherited by Simple picture)[
-    legendconfig,
+    legendlayout,
     left=0.22cm of Legend Inherited by Simple text.west,
     anchor=east
 ]
