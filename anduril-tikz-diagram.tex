@@ -334,13 +334,13 @@
     }
 }
 \tikzset{
-    generalconfig/.style={
+    generalinfo/.style={
         advancedconfig,
         draw=gray!50,
         fill=white
     },
     andurilinfo/.style={
-        generalconfig
+        generalinfo
     }
 }
 \tikzset{
@@ -355,7 +355,7 @@
         align=left
     },
     legendfit/.style={
-        generalconfig
+        generalinfo
     }
 }
 \tikzset{
@@ -1104,7 +1104,7 @@ node[
 % Strobe / Mood Modes Actions
 \node (Strobe Modes Actions)
 at (current page.south)[
-    generalconfig,
+    generalinfo,
     xshift=-8.05cm,
     yshift=1.3cm,
     anchor=south east
@@ -2384,7 +2384,7 @@ at (current page.north east)[
 
 % Aux LED Color for Voltage
 \node (Aux LED Color for Voltage)[
-    generalconfig,
+    generalinfo,
     below=0.3cm of Anduril 2 UI.south east,
     anchor=north east
 ]
@@ -2401,7 +2401,7 @@ at (current page.north east)[
 
 % Button Presses
 \node (Button Presses)[
-    generalconfig,
+    generalinfo,
     left=0.8cm of Anduril 2 UI.north west,
     anchor=north east
 ]
