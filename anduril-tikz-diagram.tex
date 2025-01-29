@@ -607,6 +607,18 @@ node[
     at (Ramp 0pt.north){};
 \end{scope}
 
+% Thermal Regulation
+\node (Thermal Regulation)[
+    generalinfo,
+    above=0.25cm of Ramp label.north,
+    anchor=south
+]
+{
+    \firstline{Thermal Regulation}
+    Only present in continuous\\
+    ramp mode (floor\textendash{}turbo)
+};
+
 % Toggle Ramp Style from ON
 \node (Toggle Ramp Style from ON)[
     advancedconfig,
@@ -2374,7 +2386,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 34\\[2.0ex]
+    \normalsize Diagram Release 35\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
