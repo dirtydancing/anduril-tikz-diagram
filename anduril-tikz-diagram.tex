@@ -610,7 +610,7 @@ node[
 % Thermal Regulation
 \node (Thermal Regulation)[
     generalinfo,
-    above=0.25cm of Ramp label.north,
+    above=0.2cm of Ramp label.north,
     anchor=south
 ]
 {
@@ -902,7 +902,7 @@ node[
 
 \node (OFF right extra node ON)[
     on-extra,
-    below left=0.8cm and 1.1cm of OFF right.west,
+    below left=0.75cm and 1.1cm of OFF right.west,
     anchor=center
 ]
 {ON};
@@ -1587,7 +1587,7 @@ at (current page.west)[
     anyconfig,
     anchor=south west,
     xshift=1cm,
-    yshift=0.4cm
+    yshift=0.25cm
 ]
 {\oneline{Next Channel Mode}};
 
@@ -1600,7 +1600,7 @@ at (current page.west)[
 ]
 node[
     anybutton,
-    pos=0.6
+    pos=0.65
 ]
 {3C} (Next Channel Mode from ON.east);
 
@@ -1608,7 +1608,7 @@ node[
 \node (Tint Ramp from ON)
 at (current page.west)[
     anyconfig,
-    below=0.3cm of Next Channel Mode from ON.south west,
+    below=0.25cm of Next Channel Mode from ON.south west,
     anchor=north west
 ]
 {
@@ -1632,7 +1632,7 @@ node[
 % Momentary Turbo 3H from ON
 \node (Momentary Turbo 3H from ON)[
     advancedconfig,
-    below=0.3cm of Tint Ramp from ON.south west,
+    below=0.25cm of Tint Ramp from ON.south west,
     anchor=north west
 ]
 {
@@ -1649,14 +1649,14 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.675
+    pos=0.67
 ]
 {3H} (Momentary Turbo 3H from ON.east);
 
 % Momentary Turbo 4H from ON
 \node (Momentary Turbo 4H from ON)[
     advancedconfig,
-    below=0.3cm of Momentary Turbo 3H from ON.south west,
+    below=0.25cm of Momentary Turbo 3H from ON.south west,
     anchor=north west
 ]
 {
@@ -1769,7 +1769,7 @@ node[
 % Channel Mode Config from ON
 \node (Channel Mode Config from ON)[
     advancedtable,
-    above=0.4cm of Next Channel Mode from ON.north west,
+    above=0.25cm of Next Channel Mode from ON.north west,
     anchor=south west
 ]
 {
@@ -1796,10 +1796,12 @@ node[
             Channel 2
         }\\
         {3} & \makecell{
-            50/50
+            50/50\\
+            (max ``200\%'')
         }\\
         {4} & \makecell{
-            Tint Ramp
+            Tint Ramp\\
+            (max ``100\%'')
         }\\
         {5} & \makecell{
             Auto-tint
@@ -2053,7 +2055,7 @@ node[
 % Momentary Low from Lockout
 \node (Momentary Low from Lockout)[
     anyconfig,
-    below=0.3cm of Momentary Moon from Lockout.south west,
+    below=0.25cm of Momentary Moon from Lockout.south west,
     anchor=north west
 ]
 {
@@ -2072,14 +2074,14 @@ node[
 ]
 node[
     anybutton,
-    pos=0.715
+    pos=0.725
 ]
 {2H} (Momentary Low from Lockout.west);
 
 % Next Channel Mode from Lockout
 \node (Next Channel Mode from Lockout)[
     anyconfig,
-    below=0.3cm of Momentary Low from Lockout.south west,
+    below=0.25cm of Momentary Low from Lockout.south west,
     anchor=north west
 ]
 {\oneline{Next Channel Mode}};
@@ -2093,7 +2095,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.715
+    pos=0.735
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
@@ -2101,7 +2103,7 @@ node[
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \node (Aux LED Color from OFF right)[
     advancedconfig,
-    above right=1cm and 3.2cm of Lockout.center,
+    above right=1.2cm and 3.2cm of Lockout.center,
     anchor=south
 ]
 {
@@ -2134,7 +2136,7 @@ node[
 % Aux LED Pattern from OFF right
 \node (Aux LED Pattern from OFF right)[
     advancedconfig,
-    above=0.3cm of Aux LED Color from OFF right.north west,
+    above=0.25cm of Aux LED Color from OFF right.north west,
     anchor=south west
 ]
 {
@@ -2158,7 +2160,7 @@ node[
 % Aux LED Color from Lockout
 \node (Aux LED Color from Lockout)[
     advancedconfig,
-    above=0.3cm of Aux LED Pattern from OFF right.north west,
+    above=0.25cm of Aux LED Pattern from OFF right.north west,
     anchor=south west
 ]
 {
@@ -2191,7 +2193,7 @@ node[
 % Aux LED Pattern from Lockout
 \node (Aux LED Pattern from Lockout)[
     advancedconfig,
-    above=0.3cm of Aux LED Color from Lockout.north west,
+    above=0.25cm of Aux LED Color from Lockout.north west,
     anchor=south west
 ]
 {
@@ -2386,7 +2388,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 35\\[2.0ex]
+    \normalsize Diagram Release 36\\[2.0ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram\\[1.0ex]
@@ -2397,7 +2399,7 @@ at (current page.north east)[
 % Aux LED Color for Voltage
 \node (Aux LED Color for Voltage)[
     generalinfo,
-    below=0.3cm of Anduril 2 UI.south east,
+    below=0.25cm of Anduril 2 UI.south east,
     anchor=north east
 ]
 {
