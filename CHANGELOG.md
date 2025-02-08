@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.38 (Date: 2025-02-08)
+
+- Adjusted tint ramping and auto-tint
+
 ## 2024-04-20.37 (Date: 2025-02-06)
 
 - Added auto-tint to 3H from On
