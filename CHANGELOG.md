@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2024-04-20.39 (Date: 2025-02-12)
+
+- Adjusted turbo style in ramp image
+
 ## 2024-04-20.38 (Date: 2025-02-08)
 
 - Adjusted tint ramping and auto-tint
