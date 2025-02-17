@@ -726,16 +726,16 @@ node[
 
 % Advanced UI: Anduril 2 turbo style
 \draw (Ramp 0pt.north) edge[
-    {Round Cap[sep=0.7cm]}-{Round Cap[sep=1.8cm]},
+    {Round Cap[sep=0.7cm]}-{Round Cap[sep=2.3cm]},
     advancedline,
     white,
     line width=2.4pt,
     shorten >=0.2pt,
-    shorten <=0.4pt,
-    out=35,
+    shorten <=0.6pt,
+    out=40,
     in=0,
-    out looseness=0.5,
-    in looseness=2.5
+    out looseness=0.3,
+    in looseness=3
 ]
 node
 {} (Turbo 0pt.north east);
@@ -743,16 +743,15 @@ node
     <->,
     advancedline,
     shorten >=0.2pt,
-    shorten <=0.4pt,
-    out=35,
+    shorten <=0.6pt,
+    out=40,
     in=0,
-    out looseness=0.5,
-    in looseness=2.5
+    out looseness=0.3,
+    in looseness=3
 ]
 node[
     advancedbutton,
     pos=0.6,
-    right=-0.15cm,
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
@@ -765,15 +764,14 @@ node[
 {2C} (Turbo 0pt.north east);
 
 \draw (Ramp 0pt.west) edge[
-    {<[scale width=0.5]->[scale width=0.5]},
+    {<[scale width=0.75]->[scale width=0.75]},
     anyline,
     shorten >=0.4pt,
     shorten <=0.4pt,
-    bend left=30
+    bend left=37
 ]
 node[
     anybutton,
-    left=-0.15cm,
     pos=0.5
 ]
 {2C} (Ramp 0pt.north west);
