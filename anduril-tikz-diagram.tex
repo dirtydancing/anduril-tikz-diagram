@@ -1032,7 +1032,7 @@ node[
 % Candle from OFF
 \node (Candle from OFF)[
     advancedconfig-mode,
-    above right=0.75cm and 1.3cm of Lightning Storm from Police Strobe.east,
+    above right=0.55cm and 1.3cm of Lightning Storm from Police Strobe.east,
     anchor=west
 ]
 {\oneline{Candle}};
@@ -1105,7 +1105,7 @@ node[
 ]
 node[
     advancedbutton-mode,
-    pos=0.51
+    pos=0.49
 ]
 {2C} (Party Strobe from Bike Flasher.east);
 
@@ -1119,17 +1119,14 @@ at (current page.south)[
 ]
 {
     \firstline{Actions}
-    1C = Off\\
     1H/2H = Brighter/dimmer\\
     (Candle and Bike)\\
     1H/2H = Faster/slower\\
     (Party and Tactical)\\
-    1H = Interrupt or new flash\\
-    (Lightning)\\
     3C = Next channel mode\\
     (except Police),\\
     saved per strobe mode\\
-    4C = Previous strobe mode
+    4C = Previous strobe mode\vphantom{y}
 };
 
 % Strobe Modes fit
@@ -1152,9 +1149,13 @@ at (current page.south)[
         below=0cm of Strobe Modes fit.north east,
         anchor=north east,
         inner xsep=0.15cm,
-        inner ysep=0.1cm
+        inner ysep=0.1cm,
+        align=right
     ]
-    {\normalsize\textbf{Strobe / Mood Modes}};
+    {
+        \normalsize\textbf{Strobe / Mood Modes}\\[1.0ex]
+        1C = Off
+    };
 \end{scope}
 
 \draw (OFF.south) edge[
@@ -1178,7 +1179,7 @@ node[
     advancedbutton,
     pos=0.55
 ]
-{3H} (Strobe Modes fit.43);
+{3H} (Strobe Modes fit.42);
 \draw (Strobe Modes fit.60) edge[
     ->,
     advancedline,
@@ -1907,7 +1908,7 @@ node[
     \firstline{Manual Memory\inherited{}}
     Activate, and save\\
     current brightness and\\
-    current channel mode
+    current channel mode\vphantom{y}
 };
 
 \draw (ON.north) edge[
