@@ -2,6 +2,14 @@
 
 ## Next
 
+## 2024-04-20.40 (Date: 2025-02-17)
+
+- Rearranged Tactical Mode Config
+- Removed 1H action for Lightning
+- Reduced details for dual-channel lights
+- Aligned layout of turbo actions
+- Removed support for Anduril 1 turbo style
+
 ## 2024-04-20.39 (Date: 2025-02-12)
 
 - Adjusted turbo style in ramp image
