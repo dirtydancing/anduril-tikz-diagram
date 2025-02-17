@@ -1583,7 +1583,7 @@ at (current page.west)[
     anyconfig,
     anchor=west,
     xshift=1cm,
-    yshift=0.2cm
+    yshift=0.4cm
 ]
 {\oneline{Next Channel Mode}};
 
@@ -1642,7 +1642,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.67
+    pos=0.7
 ]
 {3H} (Momentary Turbo 3H from ON.east);
 
@@ -1666,7 +1666,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.71
+    pos=0.75
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
@@ -1744,7 +1744,7 @@ at (current page.north west)[
     in=280,
     looseness=1.3
 ]
-+(-2.8,3.2) to[
++(-2.83,3.15) to[
     out=100,
     in=275,
     looseness=0.9
@@ -1753,7 +1753,7 @@ node[
     advancedbutton,
     pos=0.55
 ] 
-{7H} +(-2.92,4.9) to[
+{7H} +(-2.95,4.9) to[
     out=95,
     in=320,
     looseness=0.9
@@ -1762,7 +1762,7 @@ node[
 % Channel Mode Config from ON
 \node (Channel Mode Config from ON)[
     advancedtable,
-    above=0.25cm of Next Channel Mode from ON.north west,
+    above=0.4cm of Next Channel Mode from ON.north west,
     anchor=south west
 ]
 {
@@ -1789,16 +1789,13 @@ node[
             Channel 2
         }\\
         {3} & \makecell{
-            50/50\\
-            (max ``200\%'')
+            50/50
         }\\
         {4} & \makecell{
-            Tint Ramp\\
-            (max ``100\%'')
+            Tint Ramp
         }\\
         {5} & \makecell{
-            Auto-tint\\
-            (3H = Reverse)
+            Auto-tint
         }\\
         {6+} & \makecell{
             Aux LED Channels
