@@ -764,43 +764,15 @@ node[
 ]
 {2C} (Turbo 0pt.north east);
 
-% Advanced UI: Anduril 1 turbo style
-% \draw (Ramp 0pt.west) edge[
-    % {Round Cap[sep=2.5cm]}-{Round Cap[sep=1.3cm]},
-    % advancedline,
-    % white,
-    % line width=2.4pt,
-    % shorten >=0.4pt,
-    % shorten <=0.4pt,
-    % bend left=55
-% ]
-% node
-% {} (Turbo 0pt.north west);
-% \draw (Ramp 0pt.west) edge[
-    % {<[scale width=0.5]->[scale width=0.5]},
-    % advancedline,
-    % shorten >=0.4pt,
-    % shorten <=0.4pt,
-    % bend left=55
-% ]
-% node[
-    % advancedbutton,
-    % left=-0.15cm,
-    % pos=0.8
-% ]
-% {2C} (Turbo 0pt.north west);
-
 \draw (Ramp 0pt.west) edge[
     {<[scale width=0.5]->[scale width=0.5]},
-    anyline, % Advanced UI: Anduril 2 turbo style
-    % simpleline, % Advanced UI: Anduril 1 turbo style
+    anyline,
     shorten >=0.4pt,
     shorten <=0.4pt,
     bend left=30
 ]
 node[
-    anybutton, % Advanced UI: Anduril 2 turbo style
-    % simplebutton, % Advanced UI: Anduril 1 turbo style
+    anybutton,
     left=-0.15cm,
     pos=0.5
 ]
