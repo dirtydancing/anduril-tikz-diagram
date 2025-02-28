@@ -1622,7 +1622,10 @@ at (current page.west)[
     below=0.25cm of Next Channel Mode from ON.south west,
     anchor=north west
 ]
-{\oneline{Tint Ramping}};
+{
+    \firstline{Tint Ramping}
+    If this channel mode can
+};
 
 \draw (ON.west) edge[
     ->,
@@ -1633,7 +1636,7 @@ at (current page.west)[
 ]
 node[
     anybutton,
-    pos=0.65
+    pos=0.6
 ]
 {3H} (Tint Ramping from ON.east);
 
@@ -1657,7 +1660,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.7
+    pos=0.667
 ]
 {3H} (Momentary Turbo 3H from ON.east);
 
@@ -1681,7 +1684,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.75
+    pos=0.71
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
@@ -1777,7 +1780,7 @@ node[
 % Channel Mode Config from ON
 \node (Channel Mode Config from ON)[
     advancedtable,
-    above=0.4cm of Next Channel Mode from ON.north west,
+    above=0.5cm of Next Channel Mode from ON.north west,
     anchor=south west
 ]
 {
@@ -1837,7 +1840,7 @@ node[
         }
    }
 ]
-{9H} (Channel Mode Config from ON.318);
+{9H} (Channel Mode Config from ON.316);
 
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
@@ -2400,7 +2403,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.25ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 40\\[1.5ex]
+    \normalsize Diagram Release 41\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
