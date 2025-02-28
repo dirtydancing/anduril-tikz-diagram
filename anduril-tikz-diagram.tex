@@ -18,7 +18,7 @@
 \usepackage{fontspec}
 \setmainfont{Source Sans 3}
 
-\usepackage{setspace}
+\usepackage{setspace} % for setting the spacing between lines
 \setstretch{0.9}
 
 \usepackage{array} % for table fixed width
@@ -390,8 +390,10 @@
     }
 }
 
+\newcommand{\spacingv}{\\[1.0ex]}
+
 \newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
-\newcommand{\firstline}[1]{\oneline{#1}\\[1.0ex]}
+\newcommand{\firstline}[1]{\oneline{#1}\spacingv}
 
 \newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
 \newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
@@ -1162,7 +1164,8 @@ at (current page.south)[
         align=right
     ]
     {
-        \normalsize\textbf{Strobe / Mood Modes}\\[1.0ex]
+        \normalsize\textbf{Strobe / Mood Modes}
+        \spacingv
         1C = Off
     };
 \end{scope}
@@ -1582,7 +1585,8 @@ node[
         align=left
     ]
     {
-        \normalsize\textbf{Blinky / Utility Modes}\\[1.0ex]
+        \normalsize\textbf{Blinky / Utility Modes}
+        \spacingv
         1C = Off
     };
 \end{scope}
@@ -2259,7 +2263,8 @@ at (current page.south east)[
     Physical Reset:\\
     reconnect power\\
     while holding button\\
-    for about 4s\\[1.0ex]
+    for about 4s
+    \spacingv
     Simple UI is enabled\\
     after each factory reset.
 };
@@ -2294,7 +2299,8 @@ node[
 {
     \firstline{Version Check}
     MODEL-YYYY-MM-DD-\\
-    SINCE-DIRTY\\[1.0ex]
+    SINCE-DIRTY
+    \spacingv
     SINCE and DIRTY\\
     may be omitted.
 };
@@ -2435,7 +2441,8 @@ at (current page.north east)[
     2C: Click, Click\\
     2H: Click, Hold\\
     3C: Click, Click, Click\\
-    3H: Click, Click, Hold\\[1.0ex]
+    3H: Click, Click, Hold
+    \spacingv
     In a config menu, release\\
     button after the desired\\
     number of blinks; when\\
