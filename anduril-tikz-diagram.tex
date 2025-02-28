@@ -30,7 +30,7 @@
 % for makecell package: vertical spaces around cells
 \renewcommand\theadalign{tl}
 % for makecell package: vertical top, horizontal left for column heads
-\renewcommand\theadgape{\Gape[0.65ex]}
+\renewcommand\theadgape{\Gape[0.5ex]}
 % for makecell package: vertical spaces around column heads
 \renewcommand\theadfont{\bfseries\normalsize}
 % for makecell package: default font size for column heads
@@ -357,7 +357,7 @@
         rectangle,
         draw=none,
         minimum width=0.808cm,
-        minimum height=0.315cm,
+        minimum height=0.281cm,
         inner sep=0cm,
         outer sep=0cm,
         sharp corners,
@@ -390,7 +390,7 @@
     }
 }
 
-\newcommand{\spacingv}{\\[1.0ex]}
+\newcommand{\spacingv}{\\[0.75ex]}
 
 \newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
 \newcommand{\firstline}[1]{\oneline{#1}\spacingv}
@@ -1766,7 +1766,7 @@ at (current page.north west)[
 ]
 node[
     advancedbutton,
-    pos=0.55
+    pos=0.6
 ] 
 {7H} +(-2.95,4.9) to[
     out=95,
@@ -2080,7 +2080,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.725
+    pos=0.73
 ]
 {2H} (Momentary Low from Lockout.west);
 
@@ -2101,7 +2101,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.735
+    pos=0.745
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
@@ -2245,7 +2245,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.8
+    pos=0.82
 ]
 {10H} (Auto-lock Config from Lockout.south);
 
@@ -2398,12 +2398,13 @@ at (current page.north east)[
     yshift=-1cm
 ]
 {
-    \Huge\textbf{Andúril 2 UI}\\[3.0ex]
+    \Huge\textbf{Andúril 2 UI}\\[3.25ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 40\\[2.0ex]
+    \normalsize Diagram Release 40\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
-    anduril-tikz-diagram\\[1.0ex]
+    anduril-tikz-diagram
+    \spacingv
     ToyKeeper's Andúril User Manual:\\
     https://toykeeper.net/anduril/manual
 };
@@ -2416,7 +2417,8 @@ at (current page.north east)[
         anchor=north east
     ]
     {
-        \oneline{Aux LED Color for Voltage}\\[0.75ex]
+        \oneline{Aux LED Color for Voltage}
+        \spacingv
         \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
         \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
         \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
