@@ -335,11 +335,20 @@
 }
 \tikzset{
     generalinfo/.style={
-        advancedconfig,
+        anyconfig,
         draw=gray,
         fill=white
     },
+    thermalregulationinfo/.style={
+        generalinfo
+    },
     andurilinfo/.style={
+        generalinfo
+    },
+    voltagecolorinfo/.style={
+        generalinfo
+    },
+    buttonpressesinfo/.style={
         generalinfo
     }
 }
@@ -609,7 +618,7 @@ node[
 
 % Thermal Regulation
 \node (Thermal Regulation)[
-    generalinfo,
+    thermalregulationinfo,
     above=0.2cm of Ramp label.north,
     anchor=south
 ]
@@ -1362,39 +1371,41 @@ node[
 {3C} (Batt Check from OFF.172);
 
 % Voltage Config from Batt Check
-\node (Voltage Config from Batt Check)[
-    advancedtable,
-    above right=0.4cm and 1.55cm of Tactical Mode Config.south east,
-    anchor=south west
-]
-{
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Voltage Config\inherited{}}
-        }\\
-        {1} & \makecell{
-            Correction Factor
-        }\\
-        {} & \makecell{
-            \char"00B1{}0.30V, 0.05V steps\\
-            1C = \char"2212{}0.30V\\
-            7C = 0V (default)\\
-            13C = +0.30V
-        }\\
-        {2} & \makecell{
-            \voltageboxred{Po\vphantom{Post-Off Display}}%
-            \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
-            \voltagebox[green]{Off\vphantom{Post-Off Display}}%
-            \voltagebox[cyan]{\nobreakspace Di\vphantom{Post-Off Display}}%
-            \voltagebox[blue]{spl\vphantom{Post-Off Display}}%
-            \voltageboxpurple{ay\vphantom{Post-Off Display}}
-        }\\
-        {} & \makecell{
-            0C = Disable\\
-            nC = n seconds
-        }
-    \end{tabular}
-};
+\begin{scope}[on background layer]
+    \node (Voltage Config from Batt Check)[
+        advancedtable,
+        above right=0.4cm and 1.55cm of Tactical Mode Config.south east,
+        anchor=south west
+    ]
+    {
+        \begin{tabular}{m{0.35cm} l}
+            \multicolumn{2}{l}{
+                \thead{Voltage Config\inherited{}}
+            }\\
+            {1} & \makecell{
+                Correction Factor
+            }\\
+            {} & \makecell{
+                \char"00B1{}0.30V, 0.05V steps\\
+                1C = \char"2212{}0.30V\\
+                7C = 0V (default)\\
+                13C = +0.30V
+            }\\
+            {2} & \makecell{
+                \voltageboxred{Po\vphantom{Post-Off Display}}%
+                \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
+                \voltagebox[green]{Off\vphantom{Post-Off Display}}%
+                \voltagebox[cyan]{\nobreakspace Di\vphantom{Post-Off Display}}%
+                \voltagebox[blue]{spl\vphantom{Post-Off Display}}%
+                \voltageboxpurple{ay\vphantom{Post-Off Display}}
+            }\\
+            {} & \makecell{
+                0C = Disable\\
+                nC = n seconds
+            }
+        \end{tabular}
+    };
+\end{scope}
 
 \draw (Batt Check from OFF.197) edge[
     ->,
@@ -2092,24 +2103,26 @@ node[
 
 % Aux LED Color from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (Aux LED Color from OFF right)[
-    advancedconfig,
-    above right=1.2cm and 3.2cm of Lockout.center,
-    anchor=south
-]
-{
-    \firstline{OFF Aux LED Color\inherited{}}
-    Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
-    Cyan \char"2192{}\\
-    Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-    Disco \char"2192{} Rainbow \char"2192{}
-    \voltageboxred{V\vphantom{Voltage}}%
-    \voltagebox[yellow]{o\vphantom{Voltage}}%
-    \voltagebox[green]{lt\vphantom{Voltage}}%
-    \voltagebox[cyan]{a\vphantom{Voltage}}%
-    \voltagebox[blue]{g\vphantom{Voltage}}%
-    \voltageboxpurple{e\vphantom{Voltage}}
-};
+\begin{scope}[on background layer]
+    \node (Aux LED Color from OFF right)[
+        advancedconfig,
+        above right=1.2cm and 3.2cm of Lockout.center,
+        anchor=south
+    ]
+    {
+        \firstline{OFF Aux LED Color\inherited{}}
+        Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
+        Cyan \char"2192{}\\
+        Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
+        Disco \char"2192{} Rainbow \char"2192{}
+        \voltageboxred{V\vphantom{Voltage}}%
+        \voltagebox[yellow]{o\vphantom{Voltage}}%
+        \voltagebox[green]{lt\vphantom{Voltage}}%
+        \voltagebox[cyan]{a\vphantom{Voltage}}%
+        \voltagebox[blue]{g\vphantom{Voltage}}%
+        \voltageboxpurple{e\vphantom{Voltage}}
+    };
+\end{scope}
 
 \draw (OFF right.north) edge[
     ->,
@@ -2149,24 +2162,26 @@ node[
 {7C} (Aux LED Pattern from OFF right.east);
 
 % Aux LED Color from Lockout
-\node (Aux LED Color from Lockout)[
-    advancedconfig,
-    above=0.25cm of Aux LED Pattern from OFF right.north west,
-    anchor=south west
-]
-{
-    \firstline{Lockout Aux LED Color\inherited{}}
-    Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
-    Cyan \char"2192{}\\
-    Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-    Disco \char"2192{} Rainbow \char"2192{}
-    \voltageboxred{V\vphantom{Voltage}}%
-    \voltagebox[yellow]{o\vphantom{Voltage}}%
-    \voltagebox[green]{lt\vphantom{Voltage}}%
-    \voltagebox[cyan]{a\vphantom{Voltage}}%
-    \voltagebox[blue]{g\vphantom{Voltage}}%
-    \voltageboxpurple{e\vphantom{Voltage}}
-};
+\begin{scope}[on background layer]
+    \node (Aux LED Color from Lockout)[
+        advancedconfig,
+        above=0.25cm of Aux LED Pattern from OFF right.north west,
+        anchor=south west
+    ]
+    {
+        \firstline{Lockout Aux LED Color\inherited{}}
+        Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
+        Cyan \char"2192{}\\
+        Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
+        Disco \char"2192{} Rainbow \char"2192{}
+        \voltageboxred{V\vphantom{Voltage}}%
+        \voltagebox[yellow]{o\vphantom{Voltage}}%
+        \voltagebox[green]{lt\vphantom{Voltage}}%
+        \voltagebox[cyan]{a\vphantom{Voltage}}%
+        \voltagebox[blue]{g\vphantom{Voltage}}%
+        \voltageboxpurple{e\vphantom{Voltage}}
+    };
+\end{scope}
 
 \draw (Lockout.north) edge[
     ->,
@@ -2388,25 +2403,27 @@ at (current page.north east)[
 };
 
 % Aux LED Color for Voltage
-\node (Aux LED Color for Voltage)[
-    generalinfo,
-    below=0.25cm of Anduril 2 UI.south east,
-    anchor=north east
-]
-{
-    \oneline{Aux LED Color for Voltage}\\[0.75ex]
-    \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
-    \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
-    \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
-    \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
-    \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
-    \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}\\[1.5ex]
-    Single-color aux: fast-blink 3.3\textendash{}2.9V
-};
+\begin{scope}[on background layer]
+    \node (Aux LED Color for Voltage)[
+        voltagecolorinfo,
+        below=0.25cm of Anduril 2 UI.south east,
+        anchor=north east
+    ]
+    {
+        \oneline{Aux LED Color for Voltage}\\[0.75ex]
+        \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
+        \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
+        \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
+        \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
+        \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
+        \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}\\[1.5ex]
+        Single-color aux: fast-blink 3.3\textendash{}2.9V
+    };
+\end{scope}
 
 % Button Presses
 \node (Button Presses)[
-    generalinfo,
+    buttonpressesinfo,
     left=0.8cm of Anduril 2 UI.north west,
     anchor=north east
 ]
