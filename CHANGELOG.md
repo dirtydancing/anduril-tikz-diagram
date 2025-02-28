@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2024-04-20.41 (Date: 2025-02-28)
+
+- Specified Tint Ramping
+- Reduced vertical spacing
+
 ## 2024-04-20.40 (Date: 2025-02-17)
 
 - Rearranged Tactical Mode Config
