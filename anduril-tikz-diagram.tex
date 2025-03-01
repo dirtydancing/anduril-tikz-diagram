@@ -98,6 +98,7 @@
 \definecolor{cyan-1}{HTML}{3EFFEC}
 \definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{blue-1}{HTML}{0F5BE0}
+\definecolor{orange-1}{HTML}{FFA40F}
 
 \tikzset{
     >={
@@ -313,7 +314,9 @@
         generalinfo
     },
     andurilinfo/.style={
-        generalinfo
+        generalinfo,
+        draw=orange-1!90,
+        very thick
     },
     voltagecolorinfo/.style={
         generalinfo
@@ -2373,9 +2376,9 @@ at (current page.north east)[
     yshift=-1cm
 ]
 {
-    \Huge\textbf{Andúril 2 UI}\\[3.25ex]
+    \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 41\\[1.5ex]
+    \normalsize Diagram Release 42\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
