@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2024-04-20.42 (Date: 2025-03-01)
+
+- Emphasized Anduril information
+- Adjusted Factory Reset arrow
+- Removed support for Extended Simple UI
+
 ## 2024-04-20.41 (Date: 2025-02-28)
 
 - Specified Tint Ramping
