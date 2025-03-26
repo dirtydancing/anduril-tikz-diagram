@@ -105,6 +105,7 @@
 \usetikzlibrary{backgrounds} % for background frames
 % backgrounds library is also loaded by tikz-layers package
 \usetikzlibrary{decorations.text} % for text along path
+\usetikzlibrary{matrix} % for matrix of nodes
 
 \tikzset{
     >={
@@ -330,21 +331,23 @@
     },
     buttonpressesinfo/.style={
         generalinfo
-    }
-}
-\tikzset{
-    legendlayout/.style={
-        rectangle,
-        draw=none,
-        minimum width=0.808cm,
-        minimum height=0.281cm,
-        inner sep=0cm,
-        outer sep=0cm,
-        sharp corners,
-        align=left
     },
-    legendfit/.style={
-        generalinfo
+    matrixlegendinfo/.style={
+        generalinfo,
+        matrix of nodes,
+        nodes in empty cells,
+        nodes={
+            rectangle,
+            draw=none,
+            minimum width=0.808cm,
+            minimum height=0.293cm,
+            inner sep=0cm,
+            outer sep=0cm,
+            sharp corners,
+            anchor=west
+        },
+        row sep=0.088cm,
+        column sep=0.225cm
     }
 }
 \tikzset{
@@ -2426,7 +2429,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 42\\[1.5ex]
+    \normalsize Diagram Release 43\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2473,21 +2476,23 @@ at (current page.north east)[
 };
 
 % Legend
-\node (Legend basic use text)[
-    legendlayout,
-    below left=0.1cm and 0.9cm of Button Presses.north west,
-    anchor=north east
+\matrix (Legend)[
+    matrixlegendinfo,
+    left=0.8cm of Button Presses.north west,
+    matrix anchor=north east
 ]
-{All the user needs to know for basic use\vphantom{y}};
+{
+    & All the user needs to know for basic use\vphantom{y}\\
+    & Simple UI and Advanced UI function\\
+    & Simple UI function only\\
+    & Advanced UI function only\\
+    & Continuous effect\vphantom{y}\\
+    & Momentary effect\\
+    \normalsize\textbf{\infotextadvanced{\inherited{}}}&
+    Inherited by Simple UI\\
+};
 
-\node (Legend basic use picture)[
-    legendlayout,
-    left=0.22cm of Legend basic use text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend basic use picture.west) edge[
+\draw (Legend-1-1.west) edge[
     -,
     anyline basic use legend,
     out=0,
@@ -2497,23 +2502,8 @@ node[
     anybutton basic use,
     pos=0.5
 ]
-{\footnotesize 1C} (Legend basic use picture.east);
-
-\node (Legend Simple and Advanced text)[
-    legendlayout,
-    below=0.1cm of Legend basic use text.south west,
-    anchor=north west
-]
-{Simple UI and Advanced UI function};
-
-\node (Legend Simple and Advanced picture)[
-    legendlayout,
-    left=0.22cm of Legend Simple and Advanced text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend Simple and Advanced picture.west) edge[
+{\footnotesize 1C} (Legend-1-1.east);
+\draw (Legend-2-1.west) edge[
     -,
     anyline legend,
     out=0,
@@ -2523,23 +2513,8 @@ node[
     anybutton,
     pos=0.5
 ]
-{\footnotesize 1C} (Legend Simple and Advanced picture.east);
-
-\node (Legend Simple only text)[
-    legendlayout,
-    below=0.1cm of Legend Simple and Advanced text.south west,
-    anchor=north west
-]
-{Simple UI function only};
-
-\node (Legend Simple only picture)[
-    legendlayout,
-    left=0.22cm of Legend Simple only text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend Simple only picture.west) edge[
+{\footnotesize 1C} (Legend-2-1.east);
+\draw (Legend-3-1.west) edge[
     -,
     simpleline legend,
     out=0,
@@ -2549,23 +2524,8 @@ node[
     simplebutton,
     pos=0.5
 ]
-{\footnotesize 1C} (Legend Simple only picture.east);
-
-\node (Legend Advanced only text)[
-    legendlayout,
-    below=0.1cm of Legend Simple only text.south west,
-    anchor=north west
-]
-{\infotextadvanced{Advanced UI function only}};
-
-\node (Legend Advanced only picture)[
-    legendlayout,
-    left=0.22cm of Legend Advanced only text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend Advanced only picture.west) edge[
+{\footnotesize 1C} (Legend-3-1.east);
+\draw (Legend-4-1.west) edge[
     -,
     advancedline legend,
     out=0,
@@ -2575,88 +2535,21 @@ node[
     advancedbutton,
     pos=0.5
 ]
-{\footnotesize 1C} (Legend Advanced only picture.east);
-
-\node (Legend Continuous effect text)[
-    legendlayout,
-    below=0.1cm of Legend Advanced only text.south west,
-    anchor=north west
-]
-{Continuous effect\vphantom{y}};
-
-\node (Legend Continuous effect picture)[
-    legendlayout,
-    left=0.22cm of Legend Continuous effect text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend Continuous effect picture.west) edge[
+{\footnotesize 1C} (Legend-4-1.east);
+\draw (Legend-5-1.west) edge[
     -,
     anyline legend,
     out=0,
     in=180
 ]
-(Legend Continuous effect picture.east);
-
-\node (Legend Momentary effect text)[
-    legendlayout,
-    below=0.1cm of Legend Continuous effect text.south west,
-    anchor=north west
-]
-{Momentary effect};
-
-\node (Legend Momentary effect picture)[
-    legendlayout,
-    left=0.22cm of Legend Momentary effect text.west,
-    anchor=east
-]
-{};
-
-\draw (Legend Momentary effect picture.west) edge[
+(Legend-5-1.east);
+\draw (Legend-6-1.west) edge[
     -,
     anyline momentary legend,
     out=0,
     in=180
 ]
-(Legend Momentary effect picture.east);
-
-\node (Legend Inherited by Simple text)[
-    legendlayout,
-    below=0.1cm of Legend Momentary effect text.south west,
-    anchor=north west
-]
-{\infotextadvanced{Inherited by Simple UI}};
-
-\node (Legend Inherited by Simple picture)[
-    legendlayout,
-    left=0.22cm of Legend Inherited by Simple text.west,
-    anchor=east
-]
-{\normalsize\textbf{\infotextadvanced{\inherited{}}}};
-
-% Legend fit
-\begin{scope}[on background layer]
-    \node (Legend fit)[
-        legendfit,
-        yshift=-0.2pt, % 1/2 line thickness for outer alignment
-        fit=(Legend basic use text)
-        (Legend basic use picture)
-        (Legend Simple and Advanced text)
-        (Legend Simple and Advanced picture)
-        (Legend Simple only text)
-        (Legend Simple only picture)
-        (Legend Advanced only text)
-        (Legend Advanced only picture)
-        (Legend Continuous effect text)
-        (Legend Continuous effect picture)
-        (Legend Momentary effect text)
-        (Legend Momentary effect picture)
-        (Legend Inherited by Simple text)
-        (Legend Inherited by Simple picture)
-    ]
-    {};
-\end{scope}
+(Legend-6-1.east);
 
 \end{tikzpicture}
 
