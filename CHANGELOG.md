@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2024-04-20.43 (Date: 2025-03-26)
+
+- Adjusted layout of legend
+- Added support for infotext colors
+- Added support for additional layers
+
 ## 2024-04-20.42 (Date: 2025-03-01)
 
 - Emphasized Anduril information
