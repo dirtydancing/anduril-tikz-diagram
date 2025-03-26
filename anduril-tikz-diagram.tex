@@ -202,6 +202,7 @@
         thin,
         solid,
         fill=yellow-1!40,
+        text=black,
         inner sep=0.1cm,
         rounded corners,
         align=left
@@ -376,6 +377,10 @@
 \newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
 \newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
 
+\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
+\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
+\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
+
 \newcommand{\inherited}{\char"002A}
 
 \begin{document}
@@ -512,14 +517,14 @@ at (current page.center)[
     anchor=north,
     align=center
 ]
-{Smooth};
+{\infotextadvanced{Smooth}};
 \node (Ramp Style Stepped)[
     below left=0.05cm and 0.36cm+0.02cm of Ramp.south east, % +0.02cm
     % for vertical alignment
     anchor=north,
     align=center
 ]
-{Stepped};
+{\infotextadvanced{Stepped}};
 \node (Ramp Styles fit)[
     inner sep=-0.05cm,
     fit=(Ramp Style Smooth) (Ramp Style Stepped)
@@ -537,12 +542,12 @@ node[
     label={
         [align=left, xshift=0.57cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                Ramp up\\
-                (floor\textendash{}ceiling),\\
-                with reversal\\
-                if released\\
-                and held again\\
-                within 1s
+                \infotextany{Ramp up}\\
+                \infotextany{(floor\textendash{}ceiling),}\\
+                \infotextany{with reversal}\\
+                \infotextany{if released}\\
+                \infotextany{and held again}\\
+                \infotextany{within 1s}
             \end{tabular}
         }
     }
@@ -559,8 +564,8 @@ node[
         [align=left, xshift=0.57cm+0.8pt, % +0.8pt for vertical alignment
         yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                Ramp down\\
-                (ceiling\textendash{}floor)
+                \infotextany{Ramp down}\\
+                \infotextany{(ceiling\textendash{}floor)}
             \end{tabular}
         }
     }
@@ -577,7 +582,7 @@ node[
         below,
         fill=none
     ]
-    at (Turbo.north) {\oneline{Turbo}};
+    at (Turbo.north) {\oneline{\infotextadvanced{Turbo}}};
     \node (Ramp label)[
         on-extra,
         inner xsep=0.425cm,
@@ -637,8 +642,8 @@ node[
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                3C if only one\\
-                channel mode
+                \infotextadvanced{3C if only one}\\
+                \infotextadvanced{channel mode}
             \end{tabular}
         }
     }
@@ -750,8 +755,8 @@ node[
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                If ramped up\\
-                to ceiling first
+                \infotextadvanced{If ramped up}\\
+                \infotextadvanced{to ceiling first}
             \end{tabular}
         }
     }
@@ -1156,9 +1161,9 @@ at (current page.south)[
         align=right
     ]
     {
-        \normalsize\textbf{Strobe / Mood Modes}
+        \normalsize\textbf{\infotextadvanced{Strobe / Mood Modes}}
         \spacingv
-        1C = Off
+        \infotextadvanced{1C = Off}
     };
 \end{scope}
 
@@ -1171,7 +1176,7 @@ at (current page.south)[
     postaction={
         decoration={
             text along path,
-            text={|\footnotesize|Mode memory},
+            text={|\footnotesize\color{black}|Mode memory},
             reverse path,
             text align={left indent=0.65cm},
             raise=0.08cm
@@ -1197,8 +1202,8 @@ node[
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                Momentary\\
-                Strobe Mode
+                \infotextadvanced{Momentary}\\
+                \infotextadvanced{Strobe Mode}
             \end{tabular}
         }
    }
@@ -1282,8 +1287,8 @@ node[
     align=left
 ]
 {
-    Lockout mode's\\
-    aux LED settings
+    \infotextadvanced{Lockout mode's}\\
+    \infotextadvanced{aux LED settings}
 };
 
 % Blinky / Utility Modes from OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1323,8 +1328,8 @@ at (current page.south)[
     align=left
 ]
 {
-    \textbf{Simple UI: voltage displayed once}\\
-    \textbf{Advanced UI: voltage displayed continuously}
+    \textbf{\infotextany{Simple UI: voltage displayed once}}\\
+    \textbf{\infotextany{Advanced UI: voltage displayed continuously}}
 };
 
 \draw (Batt Check from OFF.213) edge[
@@ -1582,9 +1587,9 @@ node[
         align=left
     ]
     {
-        \normalsize\textbf{Blinky / Utility Modes}
+        \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
         \spacingv
-        1C = Off
+        \infotextadvanced{1C = Off}
     };
 \end{scope}
 
@@ -1835,8 +1840,8 @@ node[
     label={
         [align=left, xshift=0cm, yshift=0cm]below:{
             \begin{tabular}{l}
-                9H from any mode\\
-                unless overridden
+                \infotextadvanced{9H from any mode}\\
+                \infotextadvanced{unless overridden}
             \end{tabular}
         }
    }
@@ -2287,8 +2292,8 @@ node[
     label={
         [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
             \begin{tabular}{l}
-                Keep holding\\
-                for about 4s
+                \infotextany{Keep holding}\\
+                \infotextany{for about 4s}
             \end{tabular}
         }
     }
@@ -2390,10 +2395,10 @@ node[
     align=right
 ]
 {
-    On some lights; typically enables\\
-    toggle ramp style, sunset timer,\\
-    access to strobe / mood modes,\\
-    and aux LED pattern and color.
+    \infotextsimple{On some lights; typically enables}\\
+    \infotextsimple{toggle ramp style, sunset timer,}\\
+    \infotextsimple{access to strobe / mood modes,}\\
+    \infotextsimple{and aux LED pattern and color.}
 };
 
 % Anduril 2 UI %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2453,10 +2458,10 @@ at (current page.north east)[
     3C: Click, Click, Click\\
     3H: Click, Click, Hold
     \spacingv
-    In a config menu, release\\
-    button after the desired\\
-    number of blinks; when\\
-    entering a value, 1H = 10C
+    \infotextadvanced{In a config menu, release}\\
+    \infotextadvanced{button after the desired}\\
+    \infotextadvanced{number of blinks; when}\\
+    \infotextadvanced{entering a value, 1H = 10C}
 };
 
 % Legend
@@ -2543,7 +2548,7 @@ node[
     below=0.1cm of Legend Simple only text.south west,
     anchor=north west
 ]
-{Advanced UI function only};
+{\infotextadvanced{Advanced UI function only}};
 
 \node (Legend Advanced only picture)[
     legendlayout,
@@ -2613,14 +2618,14 @@ node[
     below=0.1cm of Legend Momentary effect text.south west,
     anchor=north west
 ]
-{Inherited by Simple UI};
+{\infotextadvanced{Inherited by Simple UI}};
 
 \node (Legend Inherited by Simple picture)[
     legendlayout,
     left=0.22cm of Legend Inherited by Simple text.west,
     anchor=east
 ]
-{\normalsize\textbf{\inherited{}}};
+{\normalsize\textbf{\infotextadvanced{\inherited{}}}};
 
 % Legend fit
 \begin{scope}[on background layer]
