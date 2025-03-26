@@ -381,6 +381,31 @@
 \newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
 \newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
 
+\newcommand{\textboxauxledcfv}{%
+    \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
+    \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
+    \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
+    \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
+    \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
+    \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}%
+}
+\newcommand{\textboxvoltage}{%
+    \voltageboxred{V\vphantom{Voltage}}%
+    \voltagebox[yellow]{o\vphantom{Voltage}}%
+    \voltagebox[green]{lt\vphantom{Voltage}}%
+    \voltagebox[cyan]{a\vphantom{Voltage}}%
+    \voltagebox[blue]{g\vphantom{Voltage}}%
+    \voltageboxpurple{e\vphantom{Voltage}}%
+}
+\newcommand{\textboxpovd}{%
+    \voltageboxred{Po\vphantom{Post-Off Display}}%
+    \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
+    \voltagebox[green]{Off\vphantom{Post-Off Display}}%
+    \voltagebox[cyan]{\nobreakspace Di\vphantom{Post-Off Display}}%
+    \voltagebox[blue]{spl\vphantom{Post-Off Display}}%
+    \voltageboxpurple{ay\vphantom{Post-Off Display}}%
+}
+
 \newcommand{\inherited}{\char"002A}
 
 \begin{document}
@@ -1397,12 +1422,7 @@ node[
                 13C = +0.30V
             }\\
             {2} & \makecell{
-                \voltageboxred{Po\vphantom{Post-Off Display}}%
-                \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
-                \voltagebox[green]{Off\vphantom{Post-Off Display}}%
-                \voltagebox[cyan]{\nobreakspace Di\vphantom{Post-Off Display}}%
-                \voltagebox[blue]{spl\vphantom{Post-Off Display}}%
-                \voltageboxpurple{ay\vphantom{Post-Off Display}}
+                \textboxpovd{}
             }\\
             {} & \makecell{
                 0C = Disable\\
@@ -2128,12 +2148,7 @@ node[
         Cyan \char"2192{}\\
         Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
         Disco \char"2192{} Rainbow \char"2192{}
-        \voltageboxred{V\vphantom{Voltage}}%
-        \voltagebox[yellow]{o\vphantom{Voltage}}%
-        \voltagebox[green]{lt\vphantom{Voltage}}%
-        \voltagebox[cyan]{a\vphantom{Voltage}}%
-        \voltagebox[blue]{g\vphantom{Voltage}}%
-        \voltageboxpurple{e\vphantom{Voltage}}
+        \textboxvoltage{}
     };
 \end{scope}
 
@@ -2187,12 +2202,7 @@ node[
         Cyan \char"2192{}\\
         Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
         Disco \char"2192{} Rainbow \char"2192{}
-        \voltageboxred{V\vphantom{Voltage}}%
-        \voltagebox[yellow]{o\vphantom{Voltage}}%
-        \voltagebox[green]{lt\vphantom{Voltage}}%
-        \voltagebox[cyan]{a\vphantom{Voltage}}%
-        \voltagebox[blue]{g\vphantom{Voltage}}%
-        \voltageboxpurple{e\vphantom{Voltage}}
+        \textboxvoltage{}
     };
 \end{scope}
 
@@ -2432,12 +2442,7 @@ at (current page.north east)[
     {
         \oneline{Aux LED Color for Voltage}
         \spacingv
-        \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
-        \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
-        \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
-        \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
-        \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
-        \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}\\[1.5ex]
+        \textboxauxledcfv{}\\[1.5ex]
         Single-color aux: fast-blink 3.3\textendash{}2.9V
     };
 \end{scope}
