@@ -24,6 +24,7 @@
 \usepackage{array} % for table fixed width
 
 \usepackage{makecell} % for line breaks within table cells
+
 \renewcommand\cellalign{tl}
 % for makecell package: vertical top, horizontal left for cells
 \renewcommand\cellgape{\Gape[0.35ex]}
@@ -85,6 +86,7 @@
 }
 
 \usepackage{tikz}
+
 \usetikzlibrary{arrows.meta} % for Stealth arrow tip
 \usetikzlibrary{bending} % for flexing and bending arrows
 % with bending library, default: flex
@@ -93,6 +95,7 @@
 \usetikzlibrary{shapes.misc} % for rounded rectangle
 \usetikzlibrary{fit} % for fitting a node
 \usetikzlibrary{backgrounds} % for background frames
+% backgrounds library is also loaded by tikz-layers package
 \usetikzlibrary{decorations.text} % for text along path
 
 \definecolor{cyan-1}{HTML}{3EFFEC}
@@ -362,6 +365,8 @@
         line cap=round
     }
 }
+
+\usepackage{tikz-layers} % for additional layers
 
 \newcommand{\spacingv}{\\[0.75ex]}
 
@@ -660,11 +665,13 @@ node[
 
 % OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (OFF)[
-    onoff,
-    left=3.8cm of Ramp
-]
-{OFF};
+\begin{scope}[on glass layer]
+    \node (OFF)[
+        onoff,
+        left=3.8cm of Ramp
+    ]
+    {OFF};
+\end{scope}
 
 \draw (OFF.north) edge[
     ->,
@@ -679,20 +686,24 @@ node[
     pos=0.808
 ]
 {2H} (Turbo 0pt.north west);
-\draw (OFF.north) edge[
-    ->,
-    anyline,
-    shorten >=0.2pt,
-    out=90,
-    in=180,
-    looseness=1.3
-]
-node[
-    anybutton,
-    pos=0.7,
-]
-{2C}
-(Ramp 0pt.north west);
+
+\begin{scope}[on glass layer]
+    \draw (OFF.north) edge[
+        ->,
+        anyline,
+        shorten >=0.2pt,
+        out=90,
+        in=180,
+        looseness=1.3
+    ]
+    node[
+        anybutton,
+        pos=0.7,
+    ]
+    {2C}
+    (Ramp 0pt.north west);
+\end{scope}
+
 \draw (OFF.north east) edge[
     -, % no extra arrow tip
     simpleline momentary,
@@ -760,19 +771,22 @@ node[
 ]
 {2C} (Ramp 0pt.north west);
 
-\draw (OFF.south) edge[
-    ->,
-    anyline,
-    shorten >=0.2pt,
-    out=270,
-    in=180,
-    looseness=1.3
-]
-node[
-    anybutton,
-    pos=0.7
-]
-{1H} (Ramp 0pt.south west);
+\begin{scope}[on glass layer]
+    \draw (OFF.south) edge[
+        ->,
+        anyline,
+        shorten >=0.2pt,
+        out=270,
+        in=180,
+        looseness=1.3
+    ]
+    node[
+        anybutton,
+        pos=0.7
+    ]
+    {1H} (Ramp 0pt.south west);
+\end{scope}
+
 \draw (OFF.east) edge[
     <->,
     anyline basic use,
@@ -792,19 +806,22 @@ node[
 ]
 {LOCK\footnotesize OUT};
 
-\draw (Lockout.north) edge[
-    ->,
-    anyline,
-    shorten >=0.2pt,
-    out=90,
-    in=0,
-    looseness=1.3
-]
-node[
-    anybutton,
-    pos=0.7
-]
-{5C} (Ramp 0pt.north east);
+\begin{scope}[on glass layer]
+    \draw (Lockout.north) edge[
+        ->,
+        anyline,
+        shorten >=0.2pt,
+        out=90,
+        in=0,
+        looseness=1.3
+    ]
+    node[
+        anybutton,
+        pos=0.7
+    ]
+    {5C} (Ramp 0pt.north east);
+\end{scope}
+
 \draw (Lockout.south) edge[
     ->,
     anyline,
@@ -831,11 +848,13 @@ node[
 
 % ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (ON)[
-    onoff,
-    left=4.4cm of OFF
-]
-{ON};
+\begin{scope}[on glass layer]
+    \node (ON)[
+        onoff,
+        left=4.4cm of OFF
+    ]
+    {ON};
+\end{scope}
 
 \draw (ON.east) edge[
     <->,
@@ -1322,29 +1341,34 @@ node[
 ]
 {3C} (Next Channel Mode from Batt Check.north west);
 
-\draw (OFF.south) edge[
-    {Round Cap[sep=7.1cm]}-{Round Cap[sep=2.9cm]},
-    anyline,
-    white,
-    line width=2.4pt,
-    out=270,
-    in=165,
-    looseness=1.3
-]
-node
-{} (Batt Check from OFF.172);
-\draw (OFF.south) edge[
-    ->,
-    anyline,
-    out=270,
-    in=165,
-    looseness=1.3
-]
-node[
-    anybutton,
-    pos=0.45
-]
-{3C} (Batt Check from OFF.172);
+\begin{scope}[on glass layer]
+    \draw (OFF.south) edge[
+        {Round Cap[sep=7.1cm]}-{Round Cap[sep=2.9cm]},
+        anyline,
+        white,
+        line width=2.4pt,
+        out=270,
+        in=165,
+        looseness=1.3
+    ]
+    node
+    {} (Batt Check from OFF.172);
+\end{scope}
+
+\begin{scope}[on glass layer]
+    \draw (OFF.south) edge[
+        ->,
+        anyline,
+        out=270,
+        in=165,
+        looseness=1.3
+    ]
+    node[
+        anybutton,
+        pos=0.45
+    ]
+    {3C} (Batt Check from OFF.172);
+\end{scope}
 
 % Voltage Config from Batt Check
 \begin{scope}[on background layer]
@@ -1575,18 +1599,20 @@ at (current page.west)[
 ]
 {\oneline{Next Channel Mode}};
 
-\draw (ON.west) edge[
-    ->,
-    anyline,
-    out=180,
-    in=0,
-    looseness=1
-]
-node[
-    anybutton,
-    pos=0.65
-]
-{3C} (Next Channel Mode from ON.east);
+\begin{scope}[on glass layer]
+    \draw (ON.west) edge[
+        ->,
+        anyline,
+        out=180,
+        in=0,
+        looseness=1
+    ]
+    node[
+        anybutton,
+        pos=0.65
+    ]
+    {3C} (Next Channel Mode from ON.east);
+\end{scope}
 
 % Tint Ramping from ON
 \node (Tint Ramping from ON)
@@ -1600,18 +1626,20 @@ at (current page.west)[
     If this channel mode can
 };
 
-\draw (ON.west) edge[
-    ->,
-    anyline,
-    out=180,
-    in=0,
-    looseness=1
-]
-node[
-    anybutton,
-    pos=0.6
-]
-{3H} (Tint Ramping from ON.east);
+\begin{scope}[on glass layer]
+    \draw (ON.west) edge[
+        ->,
+        anyline,
+        out=180,
+        in=0,
+        looseness=1
+    ]
+    node[
+        anybutton,
+        pos=0.6
+    ]
+    {3H} (Tint Ramping from ON.east);
+\end{scope}
 
 % Momentary Turbo 3H from ON
 \node (Momentary Turbo 3H from ON)[
@@ -2307,18 +2335,20 @@ at (current page.east)[
 ]
 {Advanced UI};
 
-\draw (OFF right.east) edge[
-    ->,
-    simpleline,
-    out=0,
-    in=90,
-    looseness=1.2
-]
-node[
-    simplebutton,
-    pos=0.68
-]
-{10H} (Advanced UI switch from OFF right.north);
+\begin{scope}[on glass layer]
+    \draw (OFF right.east) edge[
+        ->,
+        simpleline,
+        out=0,
+        in=90,
+        looseness=1.2
+    ]
+    node[
+        simplebutton,
+        pos=0.68
+    ]
+    {10H} (Advanced UI switch from OFF right.north);
+\end{scope}
 
 % Simple UI switch from OFF right
 \node (Simple UI switch from OFF right)
