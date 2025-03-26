@@ -9,19 +9,26 @@
     a4paper,
     landscape
 ]
-{geometry}
+{geometry} % for document dimensions
 
 % \PassOptionsToPackage{gray}{xcolor} % for grayscale output
 
-% \usepackage[dvipsnames]{xcolor} % for additional color names
+\usepackage{xcolor} % for access to colors
+% xcolor package is also loaded by tikz package
 
-\usepackage{fontspec}
+\definecolor{blue-1}{HTML}{0F5BE0}
+\definecolor{cyan-1}{HTML}{3EFFEC}
+\definecolor{yellow-1}{HTML}{FFEC30}
+\definecolor{orange-1}{HTML}{FFA40F}
+
+\usepackage{fontspec} % for loading OpenType fonts
 \setmainfont{Source Sans 3}
 
-\usepackage{setspace} % for setting the spacing between lines
+\usepackage{setspace} % for setting the line spacing
 \setstretch{0.9}
 
 \usepackage{array} % for table fixed width
+% array package is also loaded by makecell package
 
 \usepackage{makecell} % for line breaks within table cells
 
@@ -36,7 +43,8 @@
 \renewcommand\theadfont{\bfseries\normalsize}
 % for makecell package: default font size for column heads
 
-\setlength{\tabcolsep}{0pt} % default: 6pt
+\setlength{\tabcolsep}{0pt} % for setting the table column spacing
+% default: 6pt
 
 \usepackage{tcolorbox} % for colored and framed text boxes
 
@@ -85,7 +93,7 @@
     box align=base
 }
 
-\usepackage{tikz}
+\usepackage{tikz} % for creating graphics
 
 \usetikzlibrary{arrows.meta} % for Stealth arrow tip
 \usetikzlibrary{bending} % for flexing and bending arrows
@@ -97,11 +105,6 @@
 \usetikzlibrary{backgrounds} % for background frames
 % backgrounds library is also loaded by tikz-layers package
 \usetikzlibrary{decorations.text} % for text along path
-
-\definecolor{cyan-1}{HTML}{3EFFEC}
-\definecolor{yellow-1}{HTML}{FFEC30}
-\definecolor{blue-1}{HTML}{0F5BE0}
-\definecolor{orange-1}{HTML}{FFA40F}
 
 \tikzset{
     >={
@@ -172,7 +175,7 @@
     anyline basic use/.style={
         anyline
     },
-     anyline ramp/.style={
+    anyline ramp/.style={
         anyline,
         line cap=round
     },
@@ -225,7 +228,7 @@
     advancedline/.style={
         anyline
     },
-     advancedline momentary/.style={
+    advancedline momentary/.style={
         advancedline,
         densely dashed,
         line cap=round
@@ -234,7 +237,7 @@
         anybutton,
         draw=none
     },
-     advancedconfig/.style={
+    advancedconfig/.style={
         anyconfig,
         fill=gray!8
     },
@@ -410,7 +413,7 @@
 
 \begin{document}
 
-\thispagestyle{empty}
+\thispagestyle{empty} % for removing the page number on this page
 
 \begin{tikzpicture}[
     remember picture, % for referencing the current page node
@@ -544,8 +547,8 @@ at (current page.center)[
 ]
 {\infotextadvanced{Smooth}};
 \node (Ramp Style Stepped)[
-    below left=0.05cm and 0.36cm+0.02cm of Ramp.south east, % +0.02cm
-    % for vertical alignment
+    below left=0.05cm and 0.36cm+0.02cm of Ramp.south east,
+    % +0.02cm for vertical alignment
     anchor=north,
     align=center
 ]
