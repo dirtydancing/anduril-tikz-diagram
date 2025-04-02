@@ -2,18 +2,49 @@
 % Copyright (C) 2024-2025 Guido dirtydancing
 % SPDX-License-Identifier: GPL-3.0-or-later
 
-\documentclass[8pt]{extarticle}
+% Preamble - Table of Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TikZ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% tcolorbox %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[8pt]{extarticle} % for font size 8pt
 % \documentclass[10pt]{article} % default font size: 10pt
 
 \usepackage[
-    a4paper,
-    landscape
+    a4paper, % for paper size
+    landscape % for page orientation
 ]
 {geometry} % for document dimensions
 
+\usepackage{fontspec} % for loading OpenType fonts
+\setmainfont{Source Sans 3} % successor to Source Sans Pro
+
+\usepackage{setspace} % for setting the line spacing
+\setstretch{0.9} % default: single spacing
+
+\newcommand{\spacingv}{\\[0.75ex]} % for vertical spacing
+
+\newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
+% for one line of text
+\newcommand{\firstline}[1]{\oneline{#1}\spacingv}
+% for the first line of more than one line of text
+
+% Colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % \PassOptionsToPackage{gray}{xcolor} % for grayscale output
 
-\usepackage{xcolor} % for access to colors
+\usepackage[
+    dvipsnames % for additional predefined colors
+]
+{xcolor} % for access to colors
 % xcolor package is also loaded by tikz package
 
 \definecolor{blue-1}{HTML}{0F5BE0}
@@ -21,78 +52,8 @@
 \definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{orange-1}{HTML}{FFA40F}
 
-\usepackage{fontspec} % for loading OpenType fonts
-\setmainfont{Source Sans 3}
-
-\usepackage{setspace} % for setting the line spacing
-\setstretch{0.9}
-
-\usepackage{array} % for table fixed width
-% array package is also loaded by makecell package
-
-\usepackage{makecell} % for line breaks within table cells
-
-\renewcommand\cellalign{tl}
-% for makecell package: vertical top, horizontal left for cells
-\renewcommand\cellgape{\Gape[0.35ex]}
-% for makecell package: vertical spaces around cells
-\renewcommand\theadalign{tl}
-% for makecell package: vertical top, horizontal left for column heads
-\renewcommand\theadgape{\Gape[0.5ex]}
-% for makecell package: vertical spaces around column heads
-\renewcommand\theadfont{\bfseries\normalsize}
-% for makecell package: default font size for column heads
-
-\setlength{\tabcolsep}{0pt} % for setting the table column spacing
-% default: 6pt
-
-\usepackage{tcolorbox} % for colored and framed text boxes
-
-\newtcbox{\voltageboxred}{
-    colframe=white, % initially black!75!white
-    opacityframe=0, % initially 1.0
-    boxrule=0cm, % initially 0.05cm
-    colback=red!25, % initially black!5!white
-    coltext=black, % initially black
-    left=0.02cm, % initially 0.4cm
-    right=0cm, % initially 0.4cm
-    top=0cm, % initially 0.2cm
-    bottom=0cm, % initially 0.2cm
-    boxsep=0cm, % initially 0.1cm
-    arc=0.05cm, % initially 0.1cm
-    sharp corners=east, % initially all rounded corners
-    box align=base % initially bottom
-}
-\newtcbox{\voltagebox}[1][white]{
-    colframe=white,
-    opacityframe=0,
-    boxrule=0cm,
-    colback=#1!25,
-    coltext=black,
-    left=0cm,
-    right=0cm,
-    top=0cm,
-    bottom=0cm,
-    boxsep=0cm,
-    sharp corners,
-    box align=base
-}
-\newtcbox{\voltageboxpurple}{
-    colframe=white,
-    opacityframe=0,
-    boxrule=0cm,
-    colback=purple!25,
-    coltext=black,
-    left=0cm,
-    right=0.02cm,
-    top=0cm,
-    bottom=0cm,
-    boxsep=0cm,
-    arc=0.05cm,
-    sharp corners=west,
-    box align=base
-}
-
+% TikZ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tikz} % for creating graphics
 
 \usetikzlibrary{arrows.meta} % for Stealth arrow tip
@@ -108,7 +69,7 @@
 \usetikzlibrary{matrix} % for matrix of nodes
 
 \tikzset{
-    >={
+    >={ % for arrow tip
         Stealth[
             round,
             scale length=1.25,
@@ -117,7 +78,7 @@
     }
 }
 \tikzset{
-    rampstepped/.style={
+    rampstepped/.style={ % for ramp image
         rectangle,
         draw=none,
         minimum width=0.75cm+0.3pt,
@@ -169,7 +130,7 @@
     }
 }
 \tikzset{
-    anyline/.style={
+    anyline/.style={ % any = for Simple UI and Advanced UI
         draw=black,
         thin
     },
@@ -213,7 +174,7 @@
     }
 }
 \tikzset{
-    anyline-mode/.style={
+    anyline-mode/.style={ % mode = for strobe modes and blinky modes
         anyline
     },
     anybutton-mode/.style={
@@ -226,7 +187,7 @@
     }
 }
 \tikzset{
-    advancedline/.style={
+    advancedline/.style={ % advanced = for Advanced UI only
         anyline
     },
     advancedline momentary/.style={
@@ -272,7 +233,7 @@
     }
 }
 \tikzset{
-    simpleline/.style={
+    simpleline/.style={ % simple = for Simple UI only
         anyline
     },
     simpleline momentary/.style={
@@ -375,19 +336,86 @@
 
 \usepackage{tikz-layers} % for additional layers
 
-\newcommand{\spacingv}{\\[0.75ex]}
+% Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{array} % for table fixed width
+% array package is also loaded by makecell package
 
-\newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
-\newcommand{\firstline}[1]{\oneline{#1}\spacingv}
+\usepackage{makecell} % for line breaks within table cells
+
+\renewcommand\cellalign{tl}
+% for makecell package: vertical top, horizontal left for cells
+\renewcommand\cellgape{\Gape[0.35ex]}
+% for makecell package: vertical spaces around cells
+\renewcommand\theadalign{tl}
+% for makecell package: vertical top, horizontal left for column heads
+\renewcommand\theadgape{\Gape[0.5ex]}
+% for makecell package: vertical spaces around column heads
+\renewcommand\theadfont{\bfseries\normalsize}
+% for makecell package: default font size for column heads
+
+\setlength{\tabcolsep}{0pt} % for setting the table column spacing
+% default: 6pt
 
 \newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
+% for one line of text in a table
 \newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
+% for the first line of more than one line of text in a table
 
-\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
-\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
-\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
+% tcolorbox %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox} % for colored and framed text boxes
+
+\newtcbox{\voltageboxred}{
+% for the left part of voltage: red
+    colframe=white, % initially black!75!white
+    opacityframe=0, % initially 1.0
+    boxrule=0cm, % initially 0.05cm
+    colback=red!25, % initially black!5!white
+    coltext=black, % initially black
+    left=0.02cm, % initially 0.4cm
+    right=0cm, % initially 0.4cm
+    top=0cm, % initially 0.2cm
+    bottom=0cm, % initially 0.2cm
+    boxsep=0cm, % initially 0.1cm
+    arc=0.05cm, % initially 0.1cm
+    sharp corners=east, % initially all rounded corners
+    box align=base % initially bottom
+}
+\newtcbox{\voltagebox}[1][white]{
+% for the middle part of voltage: yellow, green, cyan, blue
+    colframe=white,
+    opacityframe=0,
+    boxrule=0cm,
+    colback=#1!25,
+    coltext=black,
+    left=0cm,
+    right=0cm,
+    top=0cm,
+    bottom=0cm,
+    boxsep=0cm,
+    sharp corners,
+    box align=base
+}
+\newtcbox{\voltageboxpurple}{
+% for the right part of voltage: purple
+    colframe=white,
+    opacityframe=0,
+    boxrule=0cm,
+    colback=purple!25,
+    coltext=black,
+    left=0cm,
+    right=0.02cm,
+    top=0cm,
+    bottom=0cm,
+    boxsep=0cm,
+    arc=0.05cm,
+    sharp corners=west,
+    box align=base
+}
 
 \newcommand{\textboxauxledcfv}{%
+% for aux LED color for voltage
     \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
     \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
     \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
@@ -396,6 +424,7 @@
     \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}%
 }
 \newcommand{\textboxvoltage}{%
+% for voltage display in off and lockout modes
     \voltageboxred{V\vphantom{Voltage}}%
     \voltagebox[yellow]{o\vphantom{Voltage}}%
     \voltagebox[green]{lt\vphantom{Voltage}}%
@@ -404,6 +433,7 @@
     \voltageboxpurple{e\vphantom{Voltage}}%
 }
 \newcommand{\textboxpovd}{%
+% for post-off voltage display
     \voltageboxred{Po\vphantom{Post-Off Display}}%
     \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
     \voltagebox[green]{Off\vphantom{Post-Off Display}}%
@@ -412,19 +442,19 @@
     \voltageboxpurple{ay\vphantom{Post-Off Display}}%
 }
 
+% Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
+% any = for infotext for Simple UI and Advanced UI
+\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
+% advanced = for infotext for Advanced UI only
+\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
+% simple = for infotext for Simple UI only
+
 \newcommand{\inherited}{\char"002A}
+% for Unicode character Asterisk
 
-\begin{document}
-
-\thispagestyle{empty} % for removing the page number on this page
-
-\begin{tikzpicture}[
-    remember picture, % for referencing the current page node
-    overlay, % for referencing the current page node
-    font=\footnotesize
-]
-
-% tikzpicture - Table of Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Body - Table of Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Ramp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -447,6 +477,16 @@
 
 % Ramp %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\thispagestyle{empty} % for removing the page number on this page
+
+\begin{tikzpicture}[
+    remember picture, % for referencing the current page node
+    overlay, % for referencing the current page node
+    font=\footnotesize
+]
+
 \node (Ramp Smooth)
 at (current page.center)[
     rampsmooth,
@@ -2429,7 +2469,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 43\\[1.5ex]
+    \normalsize Diagram Release 44\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
