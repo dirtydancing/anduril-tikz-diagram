@@ -37,7 +37,7 @@ The diagram follows ToyKeeper's
 [Andúril User Manual](https://github.com/ToyKeeper/anduril/blob/trunk/docs/anduril-manual.md).
 
 It is created with [TikZ](https://github.com/pgf-tikz/pgf) for
-[LaTex](https://www.latex-project.org/). This leverages the flexibility that
+[LaTeX](https://www.latex-project.org/). This leverages the flexibility that
 LaTeX offers, and it produces a human-friendly source document, as well as
 human-friendly Git diffs, because the TEX source file consists of plain text.
 
