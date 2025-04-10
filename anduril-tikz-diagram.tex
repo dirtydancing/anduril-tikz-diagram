@@ -78,6 +78,9 @@
 
 \usetikzlibrary{matrix} % for matrix of nodes
 
+\usetikzlibrary{scopes} % for a shorthand for {scope} environments
+% for layers: { [on background layer] ... }
+
 % for arrow tip
 \tikzset{
     >={
@@ -366,6 +369,7 @@
 }
 
 \usepackage{tikz-layers} % for additional layers
+% order of layers: background, behind, (main), above, glass
 
 % 04 Tables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -619,21 +623,28 @@ at (current page.center)[
 ]
 {};
 
-\node (ON Ramp) at (Ramp.center)[
+\node (ON Ramp)
+at (Ramp.center)[
     onoff,
     inner xsep=0.225cm
 ]
 {ON};
 
-\node (Ramp Memory) at (ON Ramp.south)[below]{\oneline{Memory}};
+\node (Ramp Memory)
+at (ON Ramp.south)[
+    below
+]
+{\oneline{Memory}};
 
-\node (Ramp Ceiling) at (Ramp.north)[
+\node (Ramp Ceiling)
+at (Ramp.north)[
     below,
     yshift=-3.2pt % -3.2pt for Ramp inside 1
 ]
 {\oneline{Ceiling}};
 
-\node (Ramp Floor) at (Ramp.south)[
+\node (Ramp Floor)
+at (Ramp.south)[
     above,
     yshift=3.2pt % +3.2pt for Ramp inside 1
 ]
@@ -703,35 +714,39 @@ node[
 {2H} (Ramp Floor.north);
 
 % Turbo
-\begin{scope}[on background layer]
-    \node (Turbo)[
+{ [on background layer]
+    \node (Turbo)
+    at (Ramp.north)[
         turbocombined
     ]
-    at (Ramp.north){};
-    
-    \node (Turbo text)[
-        below,
-        fill=none
-    ]
-    at (Turbo.north) {\oneline{\infotextadvanced{Turbo}}};
-    
-    \node (Ramp label)[
-        on-extra,
-        inner xsep=0.425cm,
-        above,
-        yshift=0.15cm
-    ]
-    at (Turbo.north) {R\hspace{0.1em}A\hspace{0.1em}M\hspace{0.1em}P};
-    
-    \node (Turbo 0pt)[
-        turbocombined,
-        above=0pt,
-        draw=none,
-        fill=none,
-        line width=0pt
-    ]
-    at (Ramp 0pt.north){};
-\end{scope}
+    {};
+}
+
+\node (Turbo 0pt)
+at (Ramp 0pt.north)[
+    turbocombined,
+    above=0pt,
+    draw=none,
+    fill=none,
+    line width=0pt
+]
+{};
+
+\node (Turbo text)
+at (Turbo.north)[
+    below,
+    fill=none
+]
+{\oneline{\infotextadvanced{Turbo}}};
+
+\node (Ramp label)
+at (Turbo.north)[
+    on-extra,
+    inner xsep=0.425cm,
+    above,
+    yshift=0.15cm
+]
+{R\hspace{0.1em}A\hspace{0.1em}M\hspace{0.1em}P};
 
 % Thermal Regulation
 \node (Thermal Regulation)[
@@ -805,13 +820,13 @@ node[
 
 % 02 OFF %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{scope}[on glass layer]
+{ [on glass layer]
     \node (OFF)[
         onoff,
         left=3.8cm of Ramp
     ]
     {OFF};
-\end{scope}
+}
 
 \draw (OFF.north) edge[
     ->,
@@ -827,7 +842,7 @@ node[
 ]
 {2H} (Turbo 0pt.north west);
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (OFF.north) edge[
         ->,
         anyline,
@@ -842,7 +857,7 @@ node[
     ]
     {2C}
     (Ramp 0pt.north west);
-\end{scope}
+}
 
 \draw (OFF.north east) edge[
     -, % no extra arrow tip
@@ -911,7 +926,7 @@ node[
 ]
 {2C} (Ramp 0pt.north west);
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (OFF.south) edge[
         ->,
         anyline,
@@ -925,7 +940,7 @@ node[
         pos=0.7
     ]
     {1H} (Ramp 0pt.south west);
-\end{scope}
+}
 
 \draw (OFF.east) edge[
     <->,
@@ -940,13 +955,15 @@ node[
 
 % 03 Lockout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (Lockout)[
-    onoff,
-    right=3.8cm of Ramp
-]
-{LOCK\footnotesize OUT};
+{ [on glass layer]
+    \node (Lockout)[
+        onoff,
+        right=3.8cm of Ramp
+    ]
+    {LOCK\footnotesize OUT};
+}
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (Lockout.north) edge[
         ->,
         anyline,
@@ -960,7 +977,7 @@ node[
         pos=0.7
     ]
     {5C} (Ramp 0pt.north east);
-\end{scope}
+}
 
 \draw (Lockout.south) edge[
     ->,
@@ -989,13 +1006,13 @@ node[
 
 % 04 ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{scope}[on glass layer]
+{ [on glass layer]
     \node (ON)[
         onoff,
         left=4.4cm of OFF
     ]
     {ON};
-\end{scope}
+}
 
 \draw (ON.east) edge[
     <->,
@@ -1009,11 +1026,13 @@ node[
 
 % 05 OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\node (OFF right)[
-    onoff,
-    right=6.4cm of Lockout
-]
-{OFF};
+{ [on glass layer]
+    \node (OFF right)[
+        onoff,
+        right=6.4cm of Lockout
+    ]
+    {OFF};
+}
 
 \draw (Lockout.east) edge[
     <->,
@@ -1275,7 +1294,7 @@ at (current page.south)[
 };
 
 % Strobe Modes fit
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Strobe Modes fit)[
         advancedfit,
         xshift=0.2pt, % 1/2 line thickness for outer alignment
@@ -1290,20 +1309,20 @@ at (current page.south)[
         (Strobe Modes Actions)
     ]
     {};
-    
-    \node (Strobe Modes fit title)[
-        below=0cm of Strobe Modes fit.north east,
-        anchor=north east,
-        inner xsep=0.15cm,
-        inner ysep=0.1cm,
-        align=right
-    ]
-    {
-        \normalsize\textbf{\infotextadvanced{Strobe / Mood Modes}}
-        \spacingv
-        \infotextadvanced{1C = Off}
-    };
-\end{scope}
+}
+
+\node (Strobe Modes fit title)[
+    below=0cm of Strobe Modes fit.north east,
+    anchor=north east,
+    inner xsep=0.15cm,
+    inner ysep=0.1cm,
+    align=right
+]
+{
+    \normalsize\textbf{\infotextadvanced{Strobe / Mood Modes}}
+    \spacingv
+    \infotextadvanced{1C = Off}
+};
 
 \draw (OFF.south) edge[
     ->,
@@ -1486,7 +1505,7 @@ node[
 ]
 {3C} (Next Channel Mode from Batt Check.north west);
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (OFF.south) edge[
         {Round Cap[sep=7.1cm]}-{Round Cap[sep=2.9cm]},
         anyline,
@@ -1498,8 +1517,6 @@ node[
     ]
     node
     {} (Batt Check from OFF.172);
-\end{scope}
-\begin{scope}[on glass layer]
     \draw (OFF.south) edge[
         ->,
         anyline,
@@ -1512,10 +1529,10 @@ node[
         pos=0.45
     ]
     {3C} (Batt Check from OFF.172);
-\end{scope}
+}
 
 % Voltage Config from Batt Check
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Voltage Config from Batt Check)[
         advancedtable,
         above right=0.4cm and 1.55cm of Tactical Mode Config.south east,
@@ -1544,7 +1561,7 @@ node[
             }
         \end{tabular}
     };
-\end{scope}
+}
 
 \draw (Batt Check from OFF.197) edge[
     ->,
@@ -1699,7 +1716,7 @@ node[
 {2C} (Batt Check from OFF.south);
 
 % Blinky Modes fit
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Blinky Modes fit)[
         advancedfit,
         yshift=0.2pt, % 1/2 line thickness for outer alignment
@@ -1714,20 +1731,20 @@ node[
         (SOS from Beacon)
     ]
     {};
-    
-    \node (Blinky Modes fit title)[
-        below=0cm of Blinky Modes fit.north east,
-        anchor=north east,
-        inner xsep=0.15cm,
-        inner ysep=0.1cm,
-        align=left
-    ]
-    {
-        \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
-        \spacingv
-        \infotextadvanced{1C = Off}
-    };
-\end{scope}
+}
+
+\node (Blinky Modes fit title)[
+    below=0cm of Blinky Modes fit.north east,
+    anchor=north east,
+    inner xsep=0.15cm,
+    inner ysep=0.1cm,
+    align=left
+]
+{
+    \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
+    \spacingv
+    \infotextadvanced{1C = Off}
+};
 
 % 10 Next Channel Mode from ON %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1740,7 +1757,7 @@ at (current page.west)[
 ]
 {\oneline{Next Channel Mode}};
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (ON.west) edge[
         ->,
         anyline,
@@ -1753,7 +1770,7 @@ at (current page.west)[
         pos=0.65
     ]
     {3C} (Next Channel Mode from ON.east);
-\end{scope}
+}
 
 % Tint Ramping from ON
 \node (Tint Ramping from ON)
@@ -1767,7 +1784,7 @@ at (current page.west)[
     If this channel mode can
 };
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (ON.west) edge[
         ->,
         anyline,
@@ -1780,7 +1797,7 @@ at (current page.west)[
         pos=0.6
     ]
     {3H} (Tint Ramping from ON.east);
-\end{scope}
+}
 
 % Momentary Turbo 3H from ON
 \node (Momentary Turbo 3H from ON)[
@@ -2253,7 +2270,7 @@ node[
 
 % 14 Aux LED Color from OFF right %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Aux LED Color from OFF right)[
         advancedconfig,
         above right=1.2cm and 3.2cm of Lockout.center,
@@ -2267,7 +2284,7 @@ node[
         Disco \char"2192{} Rainbow \char"2192{}
         \textboxvoltage{}
     };
-\end{scope}
+}
 
 \draw (OFF right.north) edge[
     ->,
@@ -2307,7 +2324,7 @@ node[
 {7C} (Aux LED Pattern from OFF right.east);
 
 % Aux LED Color from Lockout
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Aux LED Color from Lockout)[
         advancedconfig,
         above=0.25cm of Aux LED Pattern from OFF right.north west,
@@ -2321,7 +2338,7 @@ node[
         Disco \char"2192{} Rainbow \char"2192{}
         \textboxvoltage{}
     };
-\end{scope}
+}
 
 \draw (Lockout.north) edge[
     ->,
@@ -2467,7 +2484,7 @@ at (current page.east)[
 ]
 {Advanced UI};
 
-\begin{scope}[on glass layer]
+{ [on above layer]
     \draw (OFF right.east) edge[
         ->,
         simpleline,
@@ -2480,7 +2497,7 @@ at (current page.east)[
         pos=0.68
     ]
     {10H} (Advanced UI switch from OFF right.north);
-\end{scope}
+}
 
 % Simple UI switch from OFF right
 \node (Simple UI switch from OFF right)
@@ -2507,8 +2524,8 @@ node[
 
 % Simple UI switch extra node Extended Simple UI
 \node (Simple UI switch extra node Extended Simple UI)[
-    above=0.2cm of Simple UI switch from OFF right.north east,
     extendedsimpleUI,
+    above=0.2cm of Simple UI switch from OFF right.north east,
     anchor=south east
 ]
 {\normalsize Extended Simple UI};
@@ -2540,7 +2557,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[3.0ex]
     \normalsize Andúril 2 Release 2024-04-20\\[1.0ex]
-    \normalsize Diagram Release 44\\[1.5ex]
+    \normalsize Diagram Release 45\\[1.5ex]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2550,7 +2567,7 @@ at (current page.north east)[
 };
 
 % Aux LED Color for Voltage
-\begin{scope}[on background layer]
+{ [on background layer]
     \node (Aux LED Color for Voltage)[
         voltagecolorinfo,
         below=0.25cm of Anduril 2 UI.south east,
@@ -2562,7 +2579,7 @@ at (current page.north east)[
         \textboxauxledcfv{}\\[1.5ex]
         Single-color aux: fast-blink 3.3\textendash{}2.9V
     };
-\end{scope}
+}
 
 % Button Presses
 \node (Button Presses)[
