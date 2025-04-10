@@ -538,6 +538,7 @@ at (current page.center)[
     bottom color=gray!50
 ]
 {};
+
 \node (Ramp Stepped 4)
 at (current page.center)[
     rampstepped,
@@ -546,6 +547,7 @@ at (current page.center)[
     bottom color=gray!30
 ]
 {};
+
 \node (Ramp Stepped 5)[
     rampstepped,
     below=0cm of Ramp Stepped 4.south,
@@ -554,6 +556,7 @@ at (current page.center)[
     bottom color=gray!40
 ]
 {};
+
 \node (Ramp Stepped 6)[
     rampstepped,
     below=0cm of Ramp Stepped 5.south,
@@ -562,6 +565,7 @@ at (current page.center)[
     bottom color=gray!50
 ]
 {};
+
 \node (Ramp Stepped 3)[
     rampstepped,
     above=0cm of Ramp Stepped 4.north,
@@ -570,6 +574,7 @@ at (current page.center)[
     bottom color=gray!20
 ]
 {};
+
 \node (Ramp Stepped 2)[
     rampstepped,
     above=0cm of Ramp Stepped 3.north,
@@ -578,6 +583,7 @@ at (current page.center)[
     bottom color=gray!10
 ]
 {};
+
 \node (Ramp Stepped 1)[
     rampstepped,
     above=0cm of Ramp Stepped 2.north,
@@ -592,6 +598,7 @@ at (current page.center)[
     rampcombined
 ]
 {};
+
 \node (Ramp 0pt)
 at (current page.center)[
     rampcombined,
@@ -599,11 +606,13 @@ at (current page.center)[
     line width=0pt
 ]
 {};
+
 \node (Ramp inside 1)
 at (current page.center)[
     rampcombined inside 1
 ]
 {};
+
 \node (Ramp inside 2)
 at (current page.center)[
     rampcombined inside 2
@@ -615,23 +624,28 @@ at (current page.center)[
     inner xsep=0.225cm
 ]
 {ON};
+
 \node (Ramp Memory) at (ON Ramp.south)[below]{\oneline{Memory}};
+
 \node (Ramp Ceiling) at (Ramp.north)[
     below,
     yshift=-3.2pt % -3.2pt for Ramp inside 1
 ]
 {\oneline{Ceiling}};
+
 \node (Ramp Floor) at (Ramp.south)[
     above,
     yshift=3.2pt % +3.2pt for Ramp inside 1
 ]
 {\oneline{Floor}};
+
 \node (Ramp Style Smooth)[
     below right=0.05cm and 0.36cm of Ramp.south west,
     anchor=north,
     align=center
 ]
 {\infotextadvanced{Smooth}};
+
 \node (Ramp Style Stepped)[
     below left=0.05cm and 0.36cm+0.02cm of Ramp.south east,
     % +0.02cm for vertical alignment
@@ -639,6 +653,7 @@ at (current page.center)[
     align=center
 ]
 {\infotextadvanced{Stepped}};
+
 \node (Ramp Styles fit)[
     inner sep=-0.05cm,
     fit=(Ramp Style Smooth) (Ramp Style Stepped)
@@ -667,6 +682,7 @@ node[
     }
 ]
 {1H} (Ramp Ceiling.south);
+
 \draw (Ramp Memory.south) edge[
     arrows={->},
     anyline ramp
@@ -692,11 +708,13 @@ node[
         turbocombined
     ]
     at (Ramp.north){};
+    
     \node (Turbo text)[
         below,
         fill=none
     ]
     at (Turbo.north) {\oneline{\infotextadvanced{Turbo}}};
+    
     \node (Ramp label)[
         on-extra,
         inner xsep=0.425cm,
@@ -704,7 +722,7 @@ node[
         yshift=0.15cm
     ]
     at (Turbo.north) {R\hspace{0.1em}A\hspace{0.1em}M\hspace{0.1em}P};
-
+    
     \node (Turbo 0pt)[
         turbocombined,
         above=0pt,
@@ -735,6 +753,7 @@ node[
     align=center
 ]
 {\oneline{Toggle Ramp Style\inherited{}}};
+
 \node (Toggle Ramp Style extra node ON)[
     on-extra,
     below right=0.9cm and 0.2cm of Toggle Ramp Style from ON.west,
@@ -763,6 +782,7 @@ node[
     }
 ]
 {6C}(Toggle Ramp Style from ON.south);
+
 \draw (Toggle Ramp Style from ON.north) edge[
     ->,
     advancedline,
@@ -772,6 +792,7 @@ node[
     in looseness=2
 ]
 (Ramp Styles fit.335);
+
 \draw (Toggle Ramp Style from ON.north) edge[
     ->,
     advancedline,
@@ -954,6 +975,7 @@ node[
     pos=0.7
 ]
 {4H} (Ramp 0pt.south east);
+
 \draw (Lockout.west) edge[
     <->,
     anyline,
@@ -1062,6 +1084,7 @@ node[
     pos=0.65
 ]
 {5C} (Momentary Mode from OFF ON.east);
+
 \draw (ON.south) edge[
     ->,
     advancedline,
@@ -1267,6 +1290,7 @@ at (current page.south)[
         (Strobe Modes Actions)
     ]
     {};
+    
     \node (Strobe Modes fit title)[
         below=0cm of Strobe Modes fit.north east,
         anchor=north east,
@@ -1303,6 +1327,7 @@ node[
     pos=0.55
 ]
 {3H} (Strobe Modes fit.42);
+
 \draw (Strobe Modes fit.60) edge[
     ->,
     advancedline,
@@ -1379,6 +1404,7 @@ node[
     pos=0.4
 ]
 {7H} (Tactical Mode Config.north);
+
 \draw (OFF.south) edge[
     -{<[sep=1.75cm]>},
     advancedline,
@@ -1473,7 +1499,6 @@ node[
     node
     {} (Batt Check from OFF.172);
 \end{scope}
-
 \begin{scope}[on glass layer]
     \draw (OFF.south) edge[
         ->,
@@ -1659,6 +1684,7 @@ node[
     pos=0.5
 ]
 {2C} (SOS from Beacon.east);
+
 \draw (SOS from Beacon.north) edge[
     ->,
     advancedline-mode,
@@ -1688,6 +1714,7 @@ node[
         (SOS from Beacon)
     ]
     {};
+    
     \node (Blinky Modes fit title)[
         below=0cm of Blinky Modes fit.north east,
         anchor=north east,
@@ -1813,6 +1840,7 @@ node[
     \firstline{Sunset Timer}
     1 blink = 5 minutes
 };
+
 \draw (ON.north) edge[
     ->,
     advancedline,
@@ -2586,6 +2614,7 @@ node[
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-1-1.east);
+
 \draw (Legend-2-1.west) edge[
     -,
     anyline legend,
@@ -2597,6 +2626,7 @@ node[
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-2-1.east);
+
 \draw (Legend-3-1.west) edge[
     -,
     simpleline legend,
@@ -2608,6 +2638,7 @@ node[
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-3-1.east);
+
 \draw (Legend-4-1.west) edge[
     -,
     advancedline legend,
@@ -2619,6 +2650,7 @@ node[
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-4-1.east);
+
 \draw (Legend-5-1.west) edge[
     -,
     anyline legend,
@@ -2626,6 +2658,7 @@ node[
     in=180
 ]
 (Legend-5-1.east);
+
 \draw (Legend-6-1.west) edge[
     -,
     anyline momentary legend,
