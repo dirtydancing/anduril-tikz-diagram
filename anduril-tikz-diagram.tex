@@ -29,12 +29,14 @@
 \usepackage{setspace} % for setting the line spacing
 \setstretch{0.9} % default: single spacing
 
-\newcommand{\spacingv}{\\[0.75ex]} % for vertical spacing
+% for vertical spacing
+\newcommand{\spacingv}{\\[0.75ex]}
 
-\newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
 % for one line of text
-\newcommand{\firstline}[1]{\oneline{#1}\spacingv}
+\newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
+
 % for the first line of more than one line of text
+\newcommand{\firstline}[1]{\oneline{#1}\spacingv}
 
 % Colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -47,6 +49,7 @@
 {xcolor} % for access to colors
 % xcolor package is also loaded by tikz package
 
+% for defining colors
 \definecolor{blue-1}{HTML}{0F5BE0}
 \definecolor{cyan-1}{HTML}{3EFFEC}
 \definecolor{yellow-1}{HTML}{FFEC30}
@@ -57,19 +60,27 @@
 \usepackage{tikz} % for creating graphics
 
 \usetikzlibrary{arrows.meta} % for Stealth arrow tip
+
 \usetikzlibrary{bending} % for flexing and bending arrows
 % with bending library, default: flex
 % without bending library, default: quick
+
 \usetikzlibrary{positioning} % for relative positioning
+
 \usetikzlibrary{shapes.misc} % for rounded rectangle
+
 \usetikzlibrary{fit} % for fitting a node
+
 \usetikzlibrary{backgrounds} % for background frames
 % backgrounds library is also loaded by tikz-layers package
+
 \usetikzlibrary{decorations.text} % for text along path
+
 \usetikzlibrary{matrix} % for matrix of nodes
 
+% for arrow tip
 \tikzset{
-    >={ % for arrow tip
+    >={
         Stealth[
             round,
             scale length=1.25,
@@ -77,8 +88,10 @@
         ]
     }
 }
+
+% for ramp image
 \tikzset{
-    rampstepped/.style={ % for ramp image
+    rampstepped/.style={
         rectangle,
         draw=none,
         minimum width=0.75cm+0.3pt,
@@ -129,8 +142,10 @@
         rounded corners=0.25pt
     }
 }
+
+% any = for Simple UI and Advanced UI
 \tikzset{
-    anyline/.style={ % any = for Simple UI and Advanced UI
+    anyline/.style={
         draw=black,
         thin
     },
@@ -173,8 +188,10 @@
         align=left
     }
 }
+
+% mode = for strobe modes and blinky modes
 \tikzset{
-    anyline-mode/.style={ % mode = for strobe modes and blinky modes
+    anyline-mode/.style={
         anyline
     },
     anybutton-mode/.style={
@@ -186,8 +203,10 @@
         very thick % very thick = 1.2pt
     }
 }
+
+% advanced = for Advanced UI only
 \tikzset{
-    advancedline/.style={ % advanced = for Advanced UI only
+    advancedline/.style={
         anyline
     },
     advancedline momentary/.style={
@@ -219,6 +238,8 @@
         font=\bfseries\LARGE
     }
 }
+
+% mode = for strobe modes and blinky modes
 \tikzset{
     advancedline-mode/.style={
         advancedline
@@ -232,8 +253,10 @@
         very thick
     }
 }
+
+% simple = for Simple UI only
 \tikzset{
-    simpleline/.style={ % simple = for Simple UI only
+    simpleline/.style={
         anyline
     },
     simpleline momentary/.style={
@@ -250,12 +273,16 @@
         font=\bfseries\LARGE
     }
 }
+
+% for Extended Simple UI
 \tikzset{
     extendedsimpleUI/.style={
         anyconfig,
         fill=white
     }
 }
+
+% for On, Ramp, Off, and Lockout
 \tikzset{
     on-extra/.style={
         draw=black,
@@ -273,6 +300,8 @@
         on grid
     }
 }
+
+% for further information
 \tikzset{
     generalinfo/.style={
         anyconfig,
@@ -311,6 +340,8 @@
         column sep=0.225cm
     }
 }
+
+% for legend
 \tikzset{
     anyline basic use legend/.style={
         anyline basic use,
@@ -343,31 +374,36 @@
 
 \usepackage{makecell} % for line breaks within table cells
 
-\renewcommand\cellalign{tl}
 % for makecell package: vertical top, horizontal left for cells
-\renewcommand\cellgape{\Gape[0.35ex]}
+\renewcommand\cellalign{tl}
+
 % for makecell package: vertical spaces around cells
-\renewcommand\theadalign{tl}
+\renewcommand\cellgape{\Gape[0.35ex]}
+
 % for makecell package: vertical top, horizontal left for column heads
-\renewcommand\theadgape{\Gape[0.5ex]}
+\renewcommand\theadalign{tl}
+
 % for makecell package: vertical spaces around column heads
-\renewcommand\theadfont{\bfseries\normalsize}
+\renewcommand\theadgape{\Gape[0.5ex]}
+
 % for makecell package: default font size for column heads
+\renewcommand\theadfont{\bfseries\normalsize}
 
-\setlength{\tabcolsep}{0pt} % for setting the table column spacing
-% default: 6pt
+% for setting the table column spacing
+\setlength{\tabcolsep}{0pt} % default: 6pt
 
-\newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
 % for one line of text in a table
-\newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
+\newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
+
 % for the first line of more than one line of text in a table
+\newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
 
 % tcolorbox %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tcolorbox} % for colored and framed text boxes
 
-\newtcbox{\voltageboxred}{
 % for the left part of voltage: red
+\newtcbox{\voltageboxred}{
     colframe=white, % initially black!75!white
     opacityframe=0, % initially 1.0
     boxrule=0cm, % initially 0.05cm
@@ -382,8 +418,9 @@
     sharp corners=east, % initially all rounded corners
     box align=base % initially bottom
 }
-\newtcbox{\voltagebox}[1][white]{
+
 % for the middle part of voltage: yellow, green, cyan, blue
+\newtcbox{\voltagebox}[1][white]{
     colframe=white,
     opacityframe=0,
     boxrule=0cm,
@@ -397,8 +434,9 @@
     sharp corners,
     box align=base
 }
-\newtcbox{\voltageboxpurple}{
+
 % for the right part of voltage: purple
+\newtcbox{\voltageboxpurple}{
     colframe=white,
     opacityframe=0,
     boxrule=0cm,
@@ -414,8 +452,8 @@
     box align=base
 }
 
-\newcommand{\textboxauxledcfv}{%
 % for aux LED color for voltage
+\newcommand{\textboxauxledcfv}{%
     \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
     \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
     \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
@@ -423,8 +461,9 @@
     \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
     \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}%
 }
-\newcommand{\textboxvoltage}{%
+
 % for voltage display in off and lockout modes
+\newcommand{\textboxvoltage}{%
     \voltageboxred{V\vphantom{Voltage}}%
     \voltagebox[yellow]{o\vphantom{Voltage}}%
     \voltagebox[green]{lt\vphantom{Voltage}}%
@@ -432,8 +471,9 @@
     \voltagebox[blue]{g\vphantom{Voltage}}%
     \voltageboxpurple{e\vphantom{Voltage}}%
 }
-\newcommand{\textboxpovd}{%
+
 % for post-off voltage display
+\newcommand{\textboxpovd}{%
     \voltageboxred{Po\vphantom{Post-Off Display}}%
     \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
     \voltagebox[green]{Off\vphantom{Post-Off Display}}%
@@ -444,15 +484,18 @@
 
 % Misc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
-% any = for infotext for Simple UI and Advanced UI
-\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
-% advanced = for infotext for Advanced UI only
-\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
-% simple = for infotext for Simple UI only
 
-\newcommand{\inherited}{\char"002A}
+% any = for infotext for Simple UI and Advanced UI
+\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
+
+% advanced = for infotext for Advanced UI only
+\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
+
+% simple = for infotext for Simple UI only
+\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
+
 % for Unicode character Asterisk
+\newcommand{\inherited}{\char"002A}
 
 % Body - Table of Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
