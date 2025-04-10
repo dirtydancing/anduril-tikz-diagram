@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2024-04-20.45 (Date: 2025-04-10)
+
+- Adjusted support for layers
+- Clarified preamble of document
+
 ## 2024-04-20.44 (Date: 2025-04-02)
 
 - Revised preamble of document
