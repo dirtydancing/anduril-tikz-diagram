@@ -489,17 +489,22 @@
 % Preamble - 06 Misc ---------------------------------------------------
 % ----------------------------------------------------------------------
 
-% any = for infotext for Simple UI and Advanced UI
+% for infotext for Simple UI and Advanced UI (any)
 \newcommand{\infotextany}[1]{\textcolor{black}{#1}}
 
-% advanced = for infotext for Advanced UI only
+% for infotext for Advanced UI only
 \newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
 
-% simple = for infotext for Simple UI only
+% for infotext for Simple UI only
 \newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
 
-% for Unicode character Asterisk
+% for inherited by Simple UI
+% (Unicode character Asterisk)
 \newcommand{\inherited}{\char"002A}
+
+% for the next aux LED setting
+% (Unicode character Rightwards Arrow)
+\newcommand{\nextaux}{\char"2192}
 
 % Body - Table of Contents ---------------------------------------------
 % ----------------------------------------------------------------------
@@ -2286,10 +2291,10 @@ node[
     ]
     {
         \firstline{OFF Aux LED Color\inherited{}}
-        Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
-        Cyan \char"2192{}\\
-        Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-        Disco \char"2192{} Rainbow \char"2192{}
+        Red \nextaux{} Yellow \nextaux{} Green \nextaux{}
+        Cyan \nextaux{}\\
+        Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
+        Disco \nextaux{} Rainbow \nextaux{}
         \textboxvoltage{}
     };
 }
@@ -2315,7 +2320,7 @@ node[
 ]
 {
     \firstline{OFF Aux LED Pattern\inherited{}}
-    Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
+    Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
 };
 
 \draw (OFF right.north) edge[
@@ -2340,10 +2345,10 @@ node[
     ]
     {
         \firstline{Lockout Aux LED Color\inherited{}}
-        Red \char"2192{} Yellow \char"2192{} Green \char"2192{}
-        Cyan \char"2192{}\\
-        Blue \char"2192{} Purple \char"2192{} White \char"2192{}\\
-        Disco \char"2192{} Rainbow \char"2192{}
+        Red \nextaux{} Yellow \nextaux{} Green \nextaux{}
+        Cyan \nextaux{}\\
+        Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
+        Disco \nextaux{} Rainbow \nextaux{}
         \textboxvoltage{}
     };
 }
@@ -2369,7 +2374,7 @@ node[
 ]
 {
     \firstline{Lockout Aux LED Pattern\inherited{}}
-    Off \char"2192{} Low \char"2192{} High \char"2192{} Blinking
+    Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
 };
 
 \draw (Lockout.north) edge[
