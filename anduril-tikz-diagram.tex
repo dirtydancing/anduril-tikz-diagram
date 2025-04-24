@@ -1047,26 +1047,58 @@ node[
     <->,
     anyline
 ]
-node[
+node (Lockout to OFF right)[
     anybutton,
-    pos=0.4,
-    label={
-        [align=center, xshift=0cm, yshift=-0.1cm]above:{
-        \normalsize \char"2192{}
-        }
-    }
+    pos=0.4
 ]
 {3C}
-node[
+node (OFF right to Lockout)[
     anybutton,
-    pos=0.6,
-    label={
-        [align=center, xshift=0cm, yshift=0.1cm]below:{
-        \normalsize \char"2190{}
-        }
-    }
+    pos=0.6
 ]
 {4C} (OFF right.west);
+
+\node (Lockout to OFF right arrow)[
+    rectangle,
+    above=0.1cm of Lockout to OFF right.north,
+    anchor=south,
+    draw=none,
+    fill=none,
+    inner sep=0cm,
+    minimum width=0.28cm,
+    minimum height=0.05cm
+]
+{};
+
+\draw (Lockout to OFF right arrow.south west) edge[
+    ->,
+    anyline,
+    line cap=round
+]
+node[
+]
+{} (Lockout to OFF right arrow.south east);
+
+\node (OFF right to Lockout arrow)[
+    rectangle,
+    above=0.1cm of OFF right to Lockout.north,
+    anchor=south,
+    draw=none,
+    fill=none,
+    inner sep=0cm,
+    minimum width=0.28cm,
+    minimum height=0.05cm
+]
+{};
+
+\draw (OFF right to Lockout arrow.south east) edge[
+    ->,
+    anyline,
+    line cap=round
+]
+node[
+]
+{} (OFF right to Lockout arrow.south west);
 
 \node (OFF right extra node ON)[
     on-extra,
