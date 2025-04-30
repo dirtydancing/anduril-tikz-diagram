@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-04-29.01 (Date: 2025-04-30)
+
+- Removed strobes from Extended Simple UI
+
 ## 2024-04-20.47 (Date: 2025-04-24)
 
 - Rephrased Factory Reset
