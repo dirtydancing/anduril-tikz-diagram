@@ -7,8 +7,8 @@
 
 % Preamble - 01 Layout -------------------------------------------------
 % Preamble - 02 Colors -------------------------------------------------
-% Preamble - 03 TikZ ---------------------------------------------------
-% Preamble - 04 Tables -------------------------------------------------
+% Preamble - 03 tikz ---------------------------------------------------
+% Preamble - 04 tabularray ---------------------------------------------
 % Preamble - 05 tcolorbox ----------------------------------------------
 % Preamble - 06 Misc ---------------------------------------------------
 
@@ -30,7 +30,7 @@
 \setstretch{0.9} % default: single spacing
 
 % for vertical spacing
-\newcommand{\spacingv}{\\[0.75ex]}
+\newcommand{\spacingv}{\\[2pt]}
 
 % for one line of text
 \newcommand{\oneline}[1]{\bfseries\normalsize{#1}}
@@ -55,7 +55,7 @@
 \definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{orange-1}{HTML}{FFA40F}
 
-% Preamble - 03 TikZ ---------------------------------------------------
+% Preamble - 03 tikz ---------------------------------------------------
 % ----------------------------------------------------------------------
 \usepackage{tikz} % for creating graphics
 
@@ -371,36 +371,24 @@
 \usepackage{tikz-layers} % for additional layers
 % order of layers: background, behind, (main), above, glass
 
-% Preamble - 04 Tables -------------------------------------------------
+% Preamble - 04 tabularray ---------------------------------------------
 % ----------------------------------------------------------------------
-\usepackage{array} % for table fixed width
-% array package is also loaded by makecell package
+\usepackage{tabularray} % for creating tables
+% provides the tblr environment
 
-\usepackage{makecell} % for line breaks within table cells
+\NewTblrEnviron{configtblr} % for a new tblr environment
+\SetTblrInner[configtblr]{
+    row{1}     = {abovesep=0.5pt}, % default: 2pt
+    row{2-Y}   = {rowsep=1pt}, % default: 2pt
+    row{Z}     = {abovesep=1pt, belowsep=0pt}, % default: 2pt
+    colsep     = 0pt, % default: 6pt
+    column{1}  = {0.35cm},
+    cell{1}{1} = {c=2}{font=\bfseries\normalsize},
+    cells      = l % halign=l (left); default: j (justify)
+}
 
-% for makecell package: vertical top, horizontal left for cells
-\renewcommand\cellalign{tl}
-
-% for makecell package: vertical spaces around cells
-\renewcommand\cellgape{\Gape[0.35ex]}
-
-% for makecell package: vertical top, horizontal left for column heads
-\renewcommand\theadalign{tl}
-
-% for makecell package: vertical spaces around column heads
-\renewcommand\theadgape{\Gape[0.5ex]}
-
-% for makecell package: default font size for column heads
-\renewcommand\theadfont{\bfseries\normalsize}
-
-% for setting the table column spacing
-\setlength{\tabcolsep}{0pt} % default: 6pt
-
-% for one line of text in a table
-\newcommand{\onelinetable}[1]{\mdseries\footnotesize{#1}}
-
-% for the first line of more than one line of text in a table
-\newcommand{\firstlinetable}[1]{\onelinetable{#1}\\[-0.55ex]}
+% for no extra spacing on the right of a tblr environment
+\newcommand{\spacingnoextra}{\\[-1pt]}
 
 % Preamble - 05 tcolorbox ----------------------------------------------
 % ----------------------------------------------------------------------
@@ -420,7 +408,8 @@
     boxsep=0cm, % initially 0.1cm
     arc=0.05cm, % initially 0.1cm
     sharp corners=east, % initially all rounded corners
-    box align=base % initially bottom
+    box align=base, % initially bottom
+    nobeforeafter % for inside a tblr environment
 }
 
 % for the middle part of voltage: yellow, green, cyan, blue
@@ -436,7 +425,8 @@
     bottom=0cm,
     boxsep=0cm,
     sharp corners,
-    box align=base
+    box align=base,
+    nobeforeafter
 }
 
 % for the right part of voltage: purple
@@ -453,7 +443,8 @@
     boxsep=0cm,
     arc=0.05cm,
     sharp corners=west,
-    box align=base
+    box align=base,
+    nobeforeafter
 }
 
 % for aux LED color for voltage
@@ -687,17 +678,13 @@ at (Ramp.south)[
 node[
     anybutton basic use,
     pos=0.5,
-    label={
-        [align=left, xshift=0.57cm, yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextany{Ramp up}\\
-                \infotextany{(floor\textendash{}ceiling),}\\
-                \infotextany{with reversal}\\
-                \infotextany{if released}\\
-                \infotextany{and held again}\\
-                \infotextany{within 1s}
-            \end{tabular}
-        }
+    label={ [align=left, xshift=0.62cm] right:
+        \infotextany{Ramp up}\\
+        \infotextany{(floor\textendash{}ceiling),}\\
+        \infotextany{with reversal}\\
+        \infotextany{if released}\\
+        \infotextany{and held again}\\
+        \infotextany{within 1s}
     }
 ]
 {1H} (Ramp Ceiling.south);
@@ -709,15 +696,10 @@ node[
 node[
     anybutton,
     pos=0.42,
-    label={
-        [align=left, xshift=0.57cm+0.8pt,
+    label={ [align=left, xshift=0.62cm+0.8pt] right:
         % +0.8pt for vertical alignment
-        yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextany{Ramp down}\\
-                \infotextany{(ceiling\textendash{}floor)}
-            \end{tabular}
-        }
+            \infotextany{Ramp down}\\
+            \infotextany{(ceiling\textendash{}floor)}
     }
 ]
 {2H} (Ramp Floor.north);
@@ -796,13 +778,9 @@ at (Turbo.north)[
 node[
     advancedbutton,
     pos=0.6,
-    label={
-        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextadvanced{3C if only one}\\
-                \infotextadvanced{channel mode}
-            \end{tabular}
-        }
+    label={ [align=left] right:
+        \infotextadvanced{3C if only one}\\
+        \infotextadvanced{channel mode}
     }
 ]
 {6C}(Toggle Ramp Style from ON.south);
@@ -862,7 +840,7 @@ node[
     ]
     node[
         anybutton,
-        pos=0.7,
+        pos=0.7
     ]
     {2C}
     (Ramp 0pt.north west);
@@ -911,13 +889,9 @@ node
 node[
     advancedbutton,
     pos=0.6,
-    label={
-        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextadvanced{If ramped up}\\
-                \infotextadvanced{to ceiling first}
-            \end{tabular}
-        }
+    label={ [align=left] right:
+        \infotextadvanced{If ramped up}\\
+        \infotextadvanced{to ceiling first}
     }
 ]
 {2C} (Turbo 0pt.north east);
@@ -1399,13 +1373,9 @@ node[
 node[
     advancedbutton,
     pos=0.3,
-    label={
-        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextadvanced{Momentary}\\
-                \infotextadvanced{Strobe Mode}
-            \end{tabular}
-        }
+    label={ [align=left] right:
+        \infotextadvanced{Momentary}\\
+        \infotextadvanced{Strobe Mode}
    }
 ]
 {5C}(Momentary Mode from OFF ON.191);
@@ -1422,22 +1392,19 @@ at (current page.south)[
     anchor=south west
 ]
 {
-    \begin{tabular}{m{0.45cm} l}
-        \multicolumn{2}{l}{
-            \thead{Tactical Mode Config}
-        }\\
-        {1\textendash{}3} & \makecell{
-            Tactical Slots 1\textendash{}3
-        }\\
-        {} & \makecell{
-            1\textendash{}150C = Brightness\\
-            0C = Last-used strobe /\\
-            mood mode\\
-            151C = Party strobe\\
-            152C = Tactical strobe\\
-            153+C = Other strobes
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{
+        column{1} = {0.45cm}
+    }
+        Tactical Mode Config &\\
+        1\textendash{}3 & Tactical Slots 1\textendash{}3\\
+                        & {1\textendash{}150C = Brightness\\
+                           0C = Last-used strobe /\\
+                           mood mode\\
+                           151C = Party strobe\\
+                           152C = Tactical strobe\\
+                           153+C = Other strobes}\\
+    \end{configtblr}
 };
 
 % Tactical Mode from OFF
@@ -1577,32 +1544,23 @@ node[
 { [on background layer]
     \node (Voltage Config from Batt Check)[
         advancedtable,
-        above right=0.4cm and 1.55cm of
+        above right=0.4cm and 1.6cm of
         Tactical Mode Config.south east,
         anchor=south west
     ]
     {
-        \begin{tabular}{m{0.35cm} l}
-            \multicolumn{2}{l}{
-                \thead{Voltage Config\inherited{}}
-            }\\
-            {1} & \makecell{
-                Correction Factor
-            }\\
-            {} & \makecell{
-                \char"00B1{}0.30V, 0.05V steps\\
-                1C = \char"2212{}0.30V\\
-                7C = 0V (default)\\
-                13C = +0.30V
-            }\\
-            {2} & \makecell{
-                \textboxpovd{}
-            }\\
-            {} & \makecell{
-                0C = Disable\\
-                nC = n seconds
-            }
-        \end{tabular}
+        \spacingnoextra
+        \begin{configtblr}{}
+            Voltage Config\inherited{} &\\
+            1 & Correction Factor\\
+              & {\char"00B1{}0.30V, 0.05V steps\\
+                 1C = \char"2212{}0.30V\\
+                 7C = 0V (default)\\
+                 13C = +0.30V}\\
+            2 & \textboxpovd{}\\
+              & {0C = Disable\\
+                 nC = n seconds}\\
+        \end{configtblr}
     };
 }
 
@@ -1648,23 +1606,14 @@ node[
     anchor=north west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Thermal Config\inherited{}}
-        }\\
-        {1} & \makecell{
-            Calibrate
-        }\\
-        {} & \makecell{
-            nC = n\,°C
-        }\\
-        {2} & \makecell{
-            Limit
-        }\\
-        {} & \makecell{
-            nC = n + 30\,°C
-        }
-    \end{tabular}
+   \spacingnoextra
+   \begin{configtblr}{}
+        Thermal Config\inherited{} &\\
+        1 & Calibrate\\
+          & nC = n\,°C\\
+        2 & Limit\\
+          & nC = n + 30\,°C\\
+    \end{configtblr}
 };
 
 \draw (Temp Check from Batt Check.east) edge[
@@ -1887,7 +1836,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.71
+    pos=0.72
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
@@ -1925,36 +1874,24 @@ at (current page.north west)[
     anchor=north west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Ramp Config}
-        }\\
-        \multicolumn{2}{l}{
-            \thead{\footnotesize Smooth Ramp}
-        }\\
-        {1} & \makecell{
-            Floor: nC = n of 150
-        }\\
-        {2} & \makecell{
-            Ceiling: nC = 151 \char"2212{} n
-        }\\
-        {3} & \makecell{
-            Speed\inherited{}: 1C (full speed)\\
-            to 4C (quarter speed)
-        }\\
-        \multicolumn{2}{l}{
-            \thead{\footnotesize Stepped Ramp}
-        }\\
-        {1} & \makecell{
-            Floor: nC = n of 150
-        }\\
-        {2} & \makecell{
-            Ceiling: nC = 151 \char"2212{} n
-        }\\
-        {3} & \makecell{
-            Step count: 1\textendash{}150C
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{
+        row{2}     = {abovesep=3pt, belowsep=2pt},
+        row{6}     = {abovesep=3pt, belowsep=2pt},
+        cell{2}{1} = {c=2}{font=\bfseries},
+        cell{6}{1} = {c=2}{font=\bfseries}
+    }
+        Ramp Config &\\
+        Smooth Ramp &\\
+        1 & Floor: nC = n of 150\\
+        2 & Ceiling: nC = 151 \char"2212{} n\\
+        3 & {Speed\inherited{}: 1C (full speed)\\
+             to 4C (quarter speed)}\\
+        Stepped Ramp &\\
+        1 & Floor: nC = n of 150\\
+        2 & Ceiling: nC = 151 \char"2212{} n\\
+        3 & Step count: 1\textendash{}150C\\
+    \end{configtblr}
 };
 
 \draw[
@@ -1966,7 +1903,7 @@ at (current page.north west)[
     in=280,
     looseness=1.3
 ]
-+(-2.83,3.15) to[
++(-2.86,3.15) to[
     out=100,
     in=275,
     looseness=0.9
@@ -1975,7 +1912,7 @@ node[
     advancedbutton,
     pos=0.6
 ] 
-{7H} +(-2.95,4.9) to[
+{7H} +(-2.98,4.9) to[
     out=95,
     in=320,
     looseness=0.9
@@ -1988,41 +1925,25 @@ node[
     anchor=south west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Channel Mode\\
-            Config\inherited{}}
-        }\\
-        {n} & \makecell{
-            n\textsuperscript{th} channel mode
-        }\\
-        {} & \makecell{
-            0C = Disable\\
-            1C = Enable
-        }\\
-        \multicolumn{2}{l}{
-            \thead{\firstlinetable{Typical sequence for}
-            \onelinetable{dual-channel lights}}
-        }\\
-        {1} & \makecell{
-            Channel 1
-        }\\
-        {2} & \makecell{
-            Channel 2
-        }\\
-        {3} & \makecell{
-            50/50
-        }\\
-        {4} & \makecell{
-            Tint Ramp
-        }\\
-        {5} & \makecell{
-            Auto-tint
-        }\\
-        {6+} & \makecell{
-            Aux LED Channels
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{
+        row{4}     = {abovesep=3pt, belowsep=2pt},
+        cell{4}{1} = {c=2}{}
+    }
+        {Channel Mode\\
+         Config\inherited{}} &\\
+        n & n\textsuperscript{th} channel mode\\
+        & {0C = Disable\\
+           1C = Enable}\\
+        {Typical sequence for\\
+         dual-channel lights}\\
+        1  & Channel 1\\
+        2  & Channel 2\\
+        3  & 50/50\\
+        4  & Tint Ramp\\
+        5  & Auto-tint\\
+        6+ & Aux LED Channels\\
+    \end{configtblr}
 };
 
 \draw (ON.north) edge[
@@ -2035,16 +1956,12 @@ node[
 node[
     advancedbutton,
     pos=0.69,
-    label={
-        [align=left, xshift=0cm, yshift=0cm]below:{
-            \begin{tabular}{l}
-                \infotextadvanced{9H from any mode}\\
-                \infotextadvanced{unless overridden}
-            \end{tabular}
-        }
+    label={ [align=left] below:
+        \infotextadvanced{9H from any mode}\\
+        \infotextadvanced{unless overridden}
    }
 ]
-{9H} (Channel Mode Config from ON.316);
+{9H} (Channel Mode Config from ON.318);
 
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
@@ -2053,57 +1970,36 @@ node[
     anchor=north west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Ramp Extras Config}
-        }\\
-        {1} & \makecell{
-            Disable manual memory\inherited{}
-        }\\
-        {} & \makecell{
-            1+C
-        }\\
-        {2} & \makecell{
-            Manual memory timer\inherited{}
-        }\\
-        {} & \makecell{
-            0C = Disable\\
-            nC = n minutes
-        }\\
-        {3} & \makecell{
-            Moon style (1H from Off)\inherited{}
-        }\\
-        {} & \makecell{
-            0C = Ramp up after moon\\
-            1C = Stay at floor level
-        }\\
-        {4} & \makecell{
-            Advanced UI's turbo style\\
-            (2C from On/Ramp)
-        }\\
-        {} & \makecell{
-            0C = Ceiling only, no turbo\\
-            1C = Turbo\\
-            2C = Ceiling, or turbo if\\
-            ramped up to ceiling first
-        }\\
-        {5} & \makecell{
-            Smooth Steps\inherited{}
-        }\\
-        {} & \makecell{
-            0C = Disable\\
-            1C = Enable
-        }\\
-        \multicolumn{2}{l}{
-            \thead{\firstlinetable{Types of brightness memory}
-            \onelinetable{(1C from Off)}}
-        }\\
-        \multicolumn{2}{l}{
-            \makecell{Automatic: last-ramped\\
-            Manual: user's saved\\
-            Hybrid: manual after n minutes}
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{
+        row{Y}       = {abovesep=3pt},
+        row{Z}       = {abovesep=2pt},
+        cell{Y,Z}{1} = {c=2}{}
+    }
+        Ramp Extras Config &\\
+        1 & Disable manual memory\inherited{}\\
+          & 1+C\\
+        2 & Manual memory timer\inherited{}\\
+          & {0C = Disable\\
+             nC = n minutes}\\
+        3 & Moon style (1H from Off)\inherited{}\\
+          & {0C = Ramp up after moon\\
+             1C = Stay at floor level}\\
+        4 & {Advanced UI's turbo style\\
+             (2C from On/Ramp)}\\
+          & {0C = Ceiling only, no turbo\\
+             1C = Turbo\\
+             2C = Ceiling, or turbo if\\
+             ramped up to ceiling first}\\
+        5 & Smooth Steps\inherited{}\\
+          & {0C = Disable\\
+             1C = Enable}\\
+        {Types of brightness memory\\
+         (1C from Off)} &\\
+        {Automatic: last-ramped\\
+         Manual: user's saved\\
+         Hybrid: manual after n minutes} &\\
+    \end{configtblr}
 };
 
 \draw (ON.north) edge[
@@ -2154,30 +2050,19 @@ node[
     anchor=north west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Simple UI Config}
-        }\\
-        {1} & \makecell{
-            Floor: nC = n of 150
-        }\\
-        {2} & \makecell{
-            Ceiling: nC = 151 \char"2212{} n
-        }\\
-        {3} & \makecell{
-            Step count: 1\textendash{}150C
-        }\\
-        {4} & \makecell{
-            Simple UI's turbo style\\
-            (2C from On/Ramp)
-        }\\
-        {} & \makecell{
-            0C = Ceiling only, no turbo\\
-            1C = Turbo\\
-            2C = Ceiling, or turbo if\\
-            ramped up to ceiling first
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{}
+        Simple UI Config &\\
+        1 & Floor: nC = n of 150\\
+        2 & Ceiling: nC = 151 \char"2212{} n\\
+        3 & Step count: 1\textendash{}150C\\
+        4 & {Simple UI's turbo style\\
+             (2C from On/Ramp)}\\
+          & {0C = Ceiling only, no turbo\\
+             1C = Turbo\\
+             2C = Ceiling, or turbo if\\
+             ramped up to ceiling first}\\
+    \end{configtblr}
 };
 
 \draw (OFF.north) edge[
@@ -2191,7 +2076,7 @@ node[
     advancedbutton,
     pos=0.9
 ]
-{10H} (Simple UI Config from OFF.302);
+{10H} (Simple UI Config from OFF.303);
 
 % Misc Config from OFF
 \node (Misc Config from OFF)[
@@ -2200,31 +2085,23 @@ node[
     anchor=north west
 ]
 {
-    \begin{tabular}{m{0.35cm} l}
-        \multicolumn{2}{l}{
-            \thead{Misc Config\inherited{}}
-        }\\[1.05ex] % for horizontal alignment
-        \multicolumn{2}{l}{
-            \onelinetable{Hardware-specific}
-        }\\[0.75ex]
-        {1} & \makecell{
-            Tint Ramp style
-        }\\
-        {} & \makecell{
-            0C = Smooth ramp\\
-            1C = Middle tint only\\
-            2C = Channel toggle\\
-            3+C = Stepped ramp\\
-            with 3+ steps
-        }\\
-        {2} & \makecell{
-            Jump Start level
-        }\\
-        {} & \makecell{
-            1\textendash{}150C (usually\\
-            between 20 and 50)
-        }
-    \end{tabular}
+    \spacingnoextra
+    \begin{configtblr}{
+        row{2}     = {belowsep=2pt},
+        cell{2}{1} = {c=2}{}
+    }
+        Misc Config\inherited{} &\\
+        Hardware-specific &\\
+        1 & Tint Ramp style\\
+          & {0C = Smooth ramp\\
+             1C = Middle tint only\\
+             2C = Channel toggle\\
+             3+C = Stepped ramp\\
+             with 3+ steps}\\
+        2 & Jump Start level\\
+          & {1\textendash{}150C (usually\\
+             between 20 and 50)}\\
+    \end{configtblr}
 };
 
 \draw (OFF.north) edge[
@@ -2238,7 +2115,7 @@ node[
     advancedbutton,
     pos=0.83
 ]
-{9H} (Misc Config from OFF.245);
+{9H} (Misc Config from OFF.247);
 
 % 13 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
@@ -2478,13 +2355,9 @@ at (current page.south east)[
 node[
     anybutton,
     pos=0.72,
-    label={
-        [align=left, xshift=-0.05cm, yshift=-0.025cm]right:{
-            \begin{tabular}{l}
-                \infotextany{Keep holding}\\
-                \infotextany{for about 4s}
-            \end{tabular}
-        }
+    label={ [align=left] right:
+        \infotextany{Keep holding}\\
+        \infotextany{for about 4s}
     }
 ]
 {13H} (Factory Reset from OFF right.west);
@@ -2600,9 +2473,9 @@ at (current page.north east)[
     yshift=-1cm
 ]
 {
-    \Huge\textbf{Andúril 2 UI}\\[3.0ex]
-    \normalsize Andúril 2 Release 2025-04-29\\[1.0ex]
-    \normalsize Diagram Release 01\\[1.5ex]
+    \Huge\textbf{Andúril 2 UI}\\[8pt]
+    \normalsize Andúril 2 Release 2025-04-29\\[3pt]
+    \normalsize Diagram Release 02\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2621,7 +2494,7 @@ at (current page.north east)[
     {
         \oneline{Aux LED Color for Voltage}
         \spacingv
-        \textboxauxledcfv{}\\[1.5ex]
+        \textboxauxledcfv{}\\[4pt]
         Single-color aux: fast-blink 3.3\textendash{}2.9V
     };
 }
@@ -2633,19 +2506,24 @@ at (current page.north east)[
     anchor=north east
 ]
 {
-    {}\\[0.2ex] % for horizontal alignment
-    \firstline{Button Presses}
-    1C: Click\\
-    1H: Hold\\
-    2C: Click, Click\\
-    2H: Click, Hold\\
-    3C: Click, Click, Click\\
-    3H: Click, Click, Hold
-    \spacingv
-    \infotextadvanced{In a config menu, release}\\
-    \infotextadvanced{button after the desired}\\
-    \infotextadvanced{number of blinks; when}\\
-    \infotextadvanced{entering a value, 1H = 10C}
+    \spacingnoextra
+    \begin{configtblr}{
+        row{2-7}   = {rowsep=0pt},
+        row{8}     = {abovesep=2pt},
+        cell{8}{1} = {c=2}{}
+    }
+        Button Presses\vphantom{Config} &\\
+        1C: & Click\\
+        1H: & Hold\\
+        2C: & Click, Click\\
+        2H: & Click, Hold\\
+        3C: & Click, Click, Click\\
+        3H: & Click, Click, Hold\\
+        {\infotextadvanced{In a config menu, release}\\
+         \infotextadvanced{button after the desired}\\
+         \infotextadvanced{number of blinks; when}\\
+         \infotextadvanced{entering a value, 1H = 10C}} &\\
+    \end{configtblr}
 };
 
 % Legend
