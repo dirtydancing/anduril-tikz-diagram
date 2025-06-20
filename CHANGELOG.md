@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-04-29.02 (Date: 2025-06-20)
+
+- Adjusted layout of tables
+
 ## 2025-04-29.01 (Date: 2025-04-30)
 
 - Removed strobes from Extended Simple UI
