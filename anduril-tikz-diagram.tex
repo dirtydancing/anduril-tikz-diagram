@@ -97,14 +97,14 @@
     rampstepped/.style={
         rectangle,
         draw=none,
-        minimum width=0.75cm+0.3pt,
-        minimum height=0.9cm+0.1pt,
         inner sep=0cm,
-        outer sep=0cm
+        outer sep=0cm,
+        minimum width=0.66cm+0.3pt,
+        minimum height=0.9cm+0.1pt
     },
     rampsmooth/.style={
         rampstepped,
-        minimum width=0.75cm+0.3pt,
+        minimum width=0.66cm+0.3pt,
         minimum height=5.4cm+0.6pt % 5.4cm = 6 x 0.9cm
     },
     rampcombined/.style={
@@ -113,7 +113,8 @@
         thin, % thin = 0.4pt (default)
         fill=none,
         inner sep=0cm,
-        minimum width=1.5cm+7.2pt,
+        outer sep=0cm,
+        minimum width=1.32cm+7.2pt,
         minimum height=5.4cm+7.2pt,
         rounded corners=0.25pt % default: 4pt
     },
@@ -121,7 +122,7 @@
         rampcombined,
         draw=yellow-1!40,
         line width=3.2pt,
-        minimum width=1.5cm+3.6pt,
+        minimum width=1.32cm+3.6pt,
         minimum height=5.4cm+3.6pt,
         rounded corners=0pt
     },
@@ -129,18 +130,18 @@
         rampcombined,
         draw=gray,
         very nearly transparent,
-        minimum width=1.5cm,
+        minimum width=1.32cm,
         minimum height=5.4cm,
         rounded corners=0pt
     },
     turbocombined/.style={
         rectangle,
-        above=-0.41pt, % 0.01pt more than line thickness
         draw=black,
         thin,
         fill=white,
         inner sep=0cm,
-        minimum width=1.5cm+7.2pt,
+        outer sep=0cm,
+        minimum width=1.32cm+7.2pt,
         minimum height=1.2cm,
         rounded corners=0.25pt
     }
@@ -332,10 +333,10 @@
         nodes={
             rectangle,
             draw=none,
-            minimum width=0.808cm,
-            minimum height=0.293cm,
             inner sep=0cm,
             outer sep=0cm,
+            minimum width=0.808cm,
+            minimum height=0.293cm,
             sharp corners,
             anchor=west
         },
@@ -542,71 +543,57 @@ at (current page.center)[
 ]
 {};
 
-\node (Ramp Stepped 4)
-at (current page.center)[
+\node (Ramp Stepped 1-2)[
     rampstepped,
-    anchor=north west,
-    top color=gray!40,
-    bottom color=gray!30
-]
-{};
-
-\node (Ramp Stepped 5)[
-    rampstepped,
-    below=0cm of Ramp Stepped 4.south,
-    anchor=north,
-    top color=gray!50,
-    bottom color=gray!40
-]
-{};
-
-\node (Ramp Stepped 6)[
-    rampstepped,
-    below=0cm of Ramp Stepped 5.south,
-    anchor=north,
+    right=0cm of Ramp Smooth.south east,
+    anchor=south west,
     top color=gray!60,
     bottom color=gray!50
 ]
 {};
 
-\node (Ramp Stepped 3)[
+\node (Ramp Stepped 2-3)[
     rampstepped,
-    above=0cm of Ramp Stepped 4.north,
+    above=0cm of Ramp Stepped 1-2.north,
+    anchor=south,
+    top color=gray!50,
+    bottom color=gray!40
+]
+{};
+
+\node (Ramp Stepped 3-4)[
+    rampstepped,
+    above=0cm of Ramp Stepped 2-3.north,
+    anchor=south,
+    top color=gray!40,
+    bottom color=gray!30
+]
+{};
+
+\node (Ramp Stepped 4-5)[
+    rampstepped,
+    above=0cm of Ramp Stepped 3-4.north,
     anchor=south,
     top color=gray!30,
     bottom color=gray!20
 ]
 {};
 
-\node (Ramp Stepped 2)[
+\node (Ramp Stepped 5-6)[
     rampstepped,
-    above=0cm of Ramp Stepped 3.north,
+    above=0cm of Ramp Stepped 4-5.north,
     anchor=south,
     top color=gray!20,
     bottom color=gray!10
 ]
 {};
 
-\node (Ramp Stepped 1)[
+\node (Ramp Stepped 6-7)[
     rampstepped,
-    above=0cm of Ramp Stepped 2.north,
+    above=0cm of Ramp Stepped 5-6.north,
     anchor=south,
     top color=gray!10,
     bottom color=gray!0
-]
-{};
-
-\node (Ramp)
-at (current page.center)[
-    rampcombined
-]
-{};
-
-\node (Ramp 0pt)
-at (current page.center)[
-    rampcombined,
-    draw=none,
-    line width=0pt
 ]
 {};
 
@@ -622,10 +609,16 @@ at (current page.center)[
 ]
 {};
 
+\node (Ramp)
+at (current page.center)[
+    rampcombined
+]
+{};
+
 \node (ON Ramp)
 at (Ramp.center)[
     onoff,
-    inner xsep=0.225cm
+    inner xsep=0.135cm
 ]
 {ON};
 
@@ -678,7 +671,7 @@ at (Ramp.south)[
 node[
     anybutton basic use,
     pos=0.5,
-    label={ [align=left, xshift=0.62cm] right:
+    label={ [align=left, xshift=0.53cm] right:
         \infotextany{Ramp up}\\
         \infotextany{(floor\textendash{}ceiling),}\\
         \infotextany{with reversal}\\
@@ -696,7 +689,7 @@ node[
 node[
     anybutton,
     pos=0.42,
-    label={ [align=left, xshift=0.62cm+0.8pt] right:
+    label={ [align=left, xshift=0.53cm+0.8pt] right:
         % +0.8pt for vertical alignment
             \infotextany{Ramp down}\\
             \infotextany{(ceiling\textendash{}floor)}
@@ -706,22 +699,13 @@ node[
 
 % Turbo
 { [on background layer]
-    \node (Turbo)
-    at (Ramp.north)[
-        turbocombined
+    \node (Turbo)[
+        turbocombined,
+        below=0.01pt of Ramp.north,
+        anchor=south
     ]
     {};
 }
-
-\node (Turbo 0pt)
-at (Ramp 0pt.north)[
-    turbocombined,
-    above=0pt,
-    draw=none,
-    fill=none,
-    line width=0pt
-]
-{};
 
 \node (Turbo text)
 at (Turbo.north)[
@@ -733,7 +717,7 @@ at (Turbo.north)[
 \node (Ramp label)
 at (Turbo.north)[
     on-extra,
-    inner xsep=0.425cm,
+    inner xsep=0.335cm,
     above,
     yshift=0.15cm
 ]
@@ -810,7 +794,7 @@ node[
 { [on glass layer]
     \node (OFF)[
         onoff,
-        left=3.8cm of Ramp
+        left=3.6cm of Ramp
     ]
     {OFF};
 }
@@ -825,9 +809,9 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.808
+    pos=0.818
 ]
-{2H} (Turbo 0pt.north west);
+{2H} (Turbo.north west);
 
 { [on above layer]
     \draw (OFF.north) edge[
@@ -843,7 +827,7 @@ node[
         pos=0.7
     ]
     {2C}
-    (Ramp 0pt.north west);
+    (Ramp.north west);
 }
 
 \draw (OFF.north east) edge[
@@ -859,10 +843,10 @@ node[
     simplebutton,
     pos=0.18
 ]
-{2H} (Ramp 0pt.north west);
+{2H} (Ramp.north west);
 
 % Advanced UI: Anduril 2 turbo style
-\draw (Ramp 0pt.north) edge[
+\draw (Ramp.north) edge[
     {Round Cap[sep=0.7cm]}-{Round Cap[sep=2.3cm]},
     advancedline,
     white,
@@ -875,8 +859,8 @@ node[
     in looseness=3
 ]
 node
-{} (Turbo 0pt.north east);
-\draw (Ramp 0pt.north) edge[
+{} (Turbo.north east);
+\draw (Ramp.north) edge[
     <->,
     advancedline,
     shorten >=0.2pt,
@@ -894,9 +878,9 @@ node[
         \infotextadvanced{to ceiling first}
     }
 ]
-{2C} (Turbo 0pt.north east);
+{2C} (Turbo.north east);
 
-\draw (Ramp 0pt.west) edge[
+\draw (Ramp.west) edge[
     {<[scale width=0.75]->[scale width=0.75]},
     anyline,
     shorten >=0.4pt,
@@ -907,7 +891,7 @@ node[
     anybutton,
     pos=0.5
 ]
-{2C} (Ramp 0pt.north west);
+{2C} (Ramp.north west);
 
 { [on above layer]
     \draw (OFF.south) edge[
@@ -922,7 +906,7 @@ node[
         anybutton,
         pos=0.7
     ]
-    {1H} (Ramp 0pt.south west);
+    {1H} (Ramp.south west);
 }
 
 \draw (OFF.east) edge[
@@ -934,14 +918,14 @@ node[
     anybutton basic use,
     pos=0.5
 ]
-{1C} (Ramp 0pt.west);
+{1C} (Ramp.west);
 
 % 03 Lockout -----------------------------------------------------------
 % ----------------------------------------------------------------------
 { [on glass layer]
     \node (Lockout)[
         onoff,
-        right=3.8cm of Ramp
+        right=3.6cm of Ramp
     ]
     {LOCK\footnotesize OUT};
 }
@@ -959,7 +943,7 @@ node[
         anybutton,
         pos=0.7
     ]
-    {5C} (Ramp 0pt.north east);
+    {5C} (Ramp.north east);
 }
 
 \draw (Lockout.south) edge[
@@ -974,7 +958,7 @@ node[
     anybutton,
     pos=0.7
 ]
-{4H} (Ramp 0pt.south east);
+{4H} (Ramp.south east);
 
 \draw (Lockout.west) edge[
     <->,
@@ -985,14 +969,14 @@ node[
     anybutton,
     pos=0.5
 ]
-{4C} (Ramp 0pt.east);
+{4C} (Ramp.east);
 
 % 04 ON ----------------------------------------------------------------
 % ----------------------------------------------------------------------
 { [on glass layer]
     \node (ON)[
         onoff,
-        left=4.4cm of OFF
+        left=4.6cm of OFF
     ]
     {ON};
 }
@@ -1012,7 +996,7 @@ node[
 { [on glass layer]
     \node (OFF right)[
         onoff,
-        right=6.4cm of Lockout
+        right=6.6cm of Lockout
     ]
     {OFF};
 }
@@ -1098,7 +1082,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Momentary Mode from OFF ON)[
     advancedconfig,
-    below left=1.2cm and 2.2cm of OFF.center,
+    below left=1.2cm and 2.3cm of OFF.center,
     anchor=north
 ]
 {
@@ -1843,7 +1827,7 @@ node[
 % Sunset Timer from ON
 \node (Sunset Timer from ON)[
     advancedconfig,
-    above right=1.2cm and 2.2cm of ON.center,
+    above right=1.2cm and 2.3cm of ON.center,
     anchor=south
 ]
 {
@@ -2121,7 +2105,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Momentary Moon from Lockout)[
     anyconfig,
-    below right=1.2cm and 3.2cm of Lockout.center,
+    below right=1.2cm and 3.3cm of Lockout.center,
     anchor=north
 ]
 {
@@ -2139,7 +2123,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.715
+    pos=0.7
 ]
 {1H} (Momentary Moon from Lockout.west);
 
@@ -2165,7 +2149,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.73
+    pos=0.72
 ]
 {2H} (Momentary Low from Lockout.west);
 
@@ -2186,7 +2170,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.745
+    pos=0.74
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
@@ -2195,7 +2179,7 @@ node[
 { [on background layer]
     \node (Aux LED Color from OFF right)[
         advancedconfig,
-        above right=1.2cm and 3.2cm of Lockout.center,
+        above right=1.2cm and 3.3cm of Lockout.center,
         anchor=south
     ]
     {
@@ -2475,7 +2459,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-04-29\\[3pt]
-    \normalsize Diagram Release 02\\[4pt]
+    \normalsize Diagram Release 03\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
