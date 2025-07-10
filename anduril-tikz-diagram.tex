@@ -81,6 +81,8 @@
 \usetikzlibrary{scopes} % for a shorthand for {scope} environments
 % for layers: { [on background layer] ... }
 
+\usetikzlibrary{calc} % for coordinate calculations
+
 % for arrow tip
 \tikzset{
     >={
@@ -231,6 +233,10 @@
         draw=blue-1!90,
         fill=none,
         inner sep=0.3cm
+    },
+    advancedborder/.style={
+        advancedfit,
+        inner sep=0cm
     },
     advancedtable/.style={
         advancedconfig
@@ -450,32 +456,50 @@
 
 % for aux LED color for voltage
 \newcommand{\textboxauxledcfv}{%
-    \voltageboxred{R-2.9,\vphantom{Voltage,Ú}}%
-    \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,\vphantom{Voltage,Ú}}%
-    \voltagebox[green]{\hspace{0.013cm}G-3.5,\vphantom{Voltage,Ú}}%
-    \voltagebox[cyan]{\hspace{0.013cm}C-3.7,\vphantom{Voltage,Ú}}%
-    \voltagebox[blue]{\hspace{0.013cm}B-3.9,\vphantom{Voltage,Ú}}%
-    \voltageboxpurple{\hspace{0.013cm}P-4.1V\vphantom{Voltage,Ú}}%
+    \voltageboxred{R-2.9,%
+        \vphantom{Voltage,Ú}}%
+    \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,%
+        \vphantom{Voltage,Ú}}%
+    \voltagebox[green]{\hspace{0.013cm}G-3.5,%
+        \vphantom{Voltage,Ú}}%
+    \voltagebox[cyan]{\hspace{0.013cm}C-3.7,%
+        \vphantom{Voltage,Ú}}%
+    \voltagebox[blue]{\hspace{0.013cm}B-3.9,%
+        \vphantom{Voltage,Ú}}%
+    \voltageboxpurple{\hspace{0.013cm}P-4.1V%
+        \vphantom{Voltage,Ú}}%
 }
 
 % for voltage display in off and lockout modes
 \newcommand{\textboxvoltage}{%
-    \voltageboxred{V\vphantom{Voltage}}%
-    \voltagebox[yellow]{o\vphantom{Voltage}}%
-    \voltagebox[green]{lt\vphantom{Voltage}}%
-    \voltagebox[cyan]{a\vphantom{Voltage}}%
-    \voltagebox[blue]{g\vphantom{Voltage}}%
-    \voltageboxpurple{e\vphantom{Voltage}}%
+    \voltageboxred{V%
+        \vphantom{Voltage}}%
+    \voltagebox[yellow]{o%
+        \vphantom{Voltage}}%
+    \voltagebox[green]{lt%
+        \vphantom{Voltage}}%
+    \voltagebox[cyan]{a%
+        \vphantom{Voltage}}%
+    \voltagebox[blue]{g%
+        \vphantom{Voltage}}%
+    \voltageboxpurple{e%
+        \vphantom{Voltage}}%
 }
 
 % for post-off voltage display
 \newcommand{\textboxpovd}{%
-    \voltageboxred{Po\vphantom{Post-Off Display}}%
-    \voltagebox[yellow]{st-\vphantom{Post-Off Display}}%
-    \voltagebox[green]{Off\vphantom{Post-Off Display}}%
-    \voltagebox[cyan]{\nobreakspace Di\vphantom{Post-Off Display}}%
-    \voltagebox[blue]{spl\vphantom{Post-Off Display}}%
-    \voltageboxpurple{ay\vphantom{Post-Off Display}}%
+    \voltageboxred{Post%
+        \vphantom{Post-Off Voltage Display}}%
+    \voltagebox[yellow]{-Off%
+        \vphantom{Post-Off Voltage Display}}%
+    \voltagebox[green]{\nobreakspace Vol%
+        \vphantom{Post-Off Voltage Display}}%
+    \voltagebox[cyan]{tage%
+        \vphantom{Post-Off Voltage Display}}%
+    \voltagebox[blue]{\nobreakspace Dis%
+        \vphantom{Post-Off Voltage Display}}%
+    \voltageboxpurple{play%
+        \vphantom{Post-Off Voltage Display}}%
 }
 
 % Preamble - 06 Misc ---------------------------------------------------
@@ -508,13 +532,13 @@
 % 05 OFF right ---------------------------------------------------------
 % 06 Momentary Mode from OFF ON ----------------------------------------
 % 07 Strobe / Mood Modes from OFF --------------------------------------
-% 08 Tactical Mode from OFF --------------------------------------------
-% 09 Blinky / Utility Modes from OFF -----------------------------------
-% 10 Next Channel Mode from ON -----------------------------------------
-% 11 Ramp Config from ON -----------------------------------------------
-% 12 Simple UI Config from OFF -----------------------------------------
-% 13 Momentary Moon from Lockout ---------------------------------------
-% 14 Aux LED Color from OFF right --------------------------------------
+% 08 Blinky / Utility Modes from OFF -----------------------------------
+% 09 Next Channel Mode from ON -----------------------------------------
+% 10 Ramp Config from ON -----------------------------------------------
+% 11 Simple UI Config from OFF -----------------------------------------
+% 12 Momentary Moon from Lockout ---------------------------------------
+% 13 Aux LED Color from OFF right --------------------------------------
+% 14 Tactical Mode from OFF right --------------------------------------
 % 15 Factory Reset from OFF right --------------------------------------
 % 16 Advanced UI switch from OFF right ---------------------------------
 % 17 Anduril 2 UI ------------------------------------------------------
@@ -1324,18 +1348,27 @@ at (current page.south)[
     \infotextadvanced{1C = Off}
 };
 
-\draw (OFF.south) edge[
+\draw[
+    -,
+    advancedline
+]
+(OFF.south) to[
+    out=270,
+    in=10,
+    looseness=1.3
+]
++(-1.7cm, -2.25cm) edge[
     ->,
     advancedline,
-    out=270,
-    in=0,
-    looseness=1.3,
+    out=190,
+    in=70,
+    looseness=0.8,
     postaction={
         decoration={
             text along path,
             text={|\footnotesize\color{black}|Mode memory},
             reverse path,
-            text align={left indent=0.65cm},
+            text align={left indent=0.85cm},
             raise=0.08cm
         },
         decorate
@@ -1343,20 +1376,20 @@ at (current page.south)[
 ]
 node[
     advancedbutton,
-    pos=0.55
+    pos=0
 ]
-{3H} (Strobe Modes fit.42);
+{3H} (Strobe Modes fit.48);
 
-\draw (Strobe Modes fit.60) edge[
+\draw (Strobe Modes fit.80) edge[
     ->,
     advancedline,
-    out=90,
+    out=80,
     in=180,
     looseness=1
 ]
 node[
     advancedbutton,
-    pos=0.3,
+    pos=0.2,
     label={ [align=left] right:
         \infotextadvanced{Momentary}\\
         \infotextadvanced{Strobe Mode}
@@ -1364,93 +1397,14 @@ node[
 ]
 {5C}(Momentary Mode from OFF ON.191);
 
-% 08 Tactical Mode from OFF --------------------------------------------
-% ----------------------------------------------------------------------
-
-% Tactical Mode Config
-\node (Tactical Mode Config)
-at (current page.south)[
-    advancedtable,
-    xshift=-6.8cm,
-    yshift=1cm,
-    anchor=south west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{
-        column{1} = {0.45cm}
-    }
-        Tactical Mode Config &\\
-        1\textendash{}3 & Tactical Slots 1\textendash{}3\\
-                        & {1\textendash{}150C = Brightness\\
-                           0C = Last-used strobe /\\
-                           mood mode\\
-                           151C = Party strobe\\
-                           152C = Tactical strobe\\
-                           153+C = Other strobes}\\
-    \end{configtblr}
-};
-
-% Tactical Mode from OFF
-\node (Tactical Mode from OFF)[
-    advancedconfig,
-    above=0.8cm of Tactical Mode Config.north,
-    anchor=south
-]
-{
-    \firstline{Tactical Mode}
-    1H = Tactical Slot 1 (high)\\
-    2H = Tactical Slot 2 (low)\\
-    3H = Tactical Slot 3 (strobe)
-};
-
-\draw (Tactical Mode from OFF.south) edge[
-    ->,
-    advancedline,
-    out=270,
-    in=90,
-    looseness=1
-]
-node[
-    advancedbutton,
-    pos=0.4
-]
-{7H} (Tactical Mode Config.north);
-
-\draw (OFF.south) edge[
-    -{<[sep=1.75cm]>},
-    advancedline,
-    out=270,
-    in=60,
-    looseness=1
-]
-node[
-    advancedbutton,
-    pos=0.82
-]
-{6C} (Tactical Mode from OFF.50);
-
-% Tactical Mode extra node Aux LED
-\node (Tactical Mode extra node Aux LED)[
-    above=0.05cm of Tactical Mode from OFF.north west,
-    anchor=south west,
-    inner xsep=0.05cm,
-    inner ysep=0cm,
-    align=left
-]
-{
-    \infotextadvanced{Lockout mode's}\\
-    \infotextadvanced{aux LED settings}
-};
-
-% 09 Blinky / Utility Modes from OFF -----------------------------------
+% 08 Blinky / Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
 
 % Next Channel Mode from Batt Check
 \node (Next Channel Mode from Batt Check)
 at (current page.south)[
     advancedconfig,
-    xshift=1.3cm,
+    xshift=-2.3cm,
     yshift=1.3cm,
     anchor=south west
 ]
@@ -1462,7 +1416,7 @@ at (current page.south)[
 % Batt Check from OFF
 \node (Batt Check from OFF)[
     anyconfig-mode,
-    above left=1.62 and 0.45cm of
+    above left=1.62 and 0.51cm of
     Next Channel Mode from Batt Check.north west,
     anchor=south west
 ]
@@ -1473,7 +1427,7 @@ at (current page.south)[
 
 % Batt Check Simple Advanced
 \node (Batt Check Simple Advanced)[
-    above=0.05cm of Batt Check from OFF.north west,
+    above right=0.05cm and 1cm of Batt Check from OFF.north west,
     anchor=south west,
     inner xsep=0.05cm,
     inner ysep=0cm,
@@ -1490,7 +1444,7 @@ at (current page.south)[
     shorten >=-1.8pt,
     out=270,
     in=120,
-    looseness=1
+    looseness=0.9
 ]
 node[
     advancedbutton,
@@ -1500,55 +1454,69 @@ node[
 
 { [on above layer]
     \draw (OFF.south) edge[
-        {Round Cap[sep=7.1cm]}-{Round Cap[sep=2.9cm]},
+        {Round Cap[sep=2.9cm]}-{Round Cap[sep=3.4cm]},
         anyline,
         white,
         line width=2.4pt,
         out=270,
-        in=165,
-        looseness=1.3
+        in=130,
+        looseness=1
     ]
     node
-    {} (Batt Check from OFF.172);
+    {} (Batt Check from OFF.north);
     \draw (OFF.south) edge[
         ->,
         anyline,
         out=270,
-        in=165,
-        looseness=1.3
+        in=130,
+        looseness=1
     ]
     node[
         anybutton,
-        pos=0.45
+        pos=0.8
     ]
-    {3C} (Batt Check from OFF.172);
+    {3C} (Batt Check from OFF.north);
 }
 
 % Voltage Config from Batt Check
 { [on background layer]
-    \node (Voltage Config from Batt Check)[
+    \node (Voltage Config from Batt Check)
+        at (current page.south)[
         advancedtable,
-        above right=0.4cm and 1.6cm of
-        Tactical Mode Config.south east,
+        xshift=-6.5cm,
+        yshift=1.3cm,
         anchor=south west
     ]
     {
         \spacingnoextra
         \begin{configtblr}{}
             Voltage Config\inherited{} &\\
-            1 & Correction Factor\\
+            1 & Voltage Correction Factor\\
               & {\char"00B1{}0.30V, 0.05V steps\\
                  1C = \char"2212{}0.30V\\
                  7C = 0V (default)\\
                  13C = +0.30V}\\
-            2 & \textboxpovd{}\\
+            2 & {\textboxpovd{}\\
+                 (on lights with RGB aux)}\\
               & {0C = Disable\\
-                 nC = n seconds}\\
+                 nC = n seconds;\\
+                 brightness as set in 3 \& 4,\\
+                 high if Off aux LEDs are\\
+                 set to high (7C from Off)}\\
+            3 & Aux low ramp level\\
+              & {0C = Disable button LEDs\\
+                 1+C = Light up button\\
+                 LEDs at this ramp level}\\
+            4 & Aux high ramp level\\
+              & {0C = Disable brighter\\
+                 button LEDs\\
+                 1+C = Brighter button\\
+                 LEDs at this ramp level}\\
         \end{configtblr}
     };
 }
 
-\draw (Batt Check from OFF.197) edge[
+\draw (Batt Check from OFF.west) edge[
     ->,
     advancedline,
     out=180,
@@ -1559,7 +1527,7 @@ node[
     advancedbutton,
     pos=0.5
 ]
-{7H} (Voltage Config from Batt Check.east);
+{7H} (Voltage Config from Batt Check.326);
 
 % Temp Check from Batt Check
 \node (Temp Check from Batt Check)[
@@ -1696,10 +1664,11 @@ node[
 { [on background layer]
     \node (Blinky Modes fit)[
         advancedfit,
+        draw=none, % Blinky Modes fit replaced with border
         yshift=0.2pt, % 1/2 line thickness for outer alignment
         fit=(Batt Check from OFF)
         (Batt Check Simple Advanced)
-        (Voltage Config from Batt Check)
+        % (Voltage Config from Batt Check)
         (Next Channel Mode from Batt Check)
         (Temp Check from Batt Check)
         (Temp Check Thermal Config)
@@ -1715,7 +1684,7 @@ node[
     anchor=north east,
     inner xsep=0.15cm,
     inner ysep=0.1cm,
-    align=left
+    align=right
 ]
 {
     \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
@@ -1723,7 +1692,38 @@ node[
     \infotextadvanced{1C = Off}
 };
 
-% 10 Next Channel Mode from ON -----------------------------------------
+% Blinky Modes border
+\coordinate (Blinky Modes border 1) at
+    ($(Voltage Config from Batt Check.north east)
+    + (0.75cm, 0.3cm)$);
+\coordinate (Blinky Modes border 2) at
+    ($(Batt Check Simple Advanced.north west)
+    + (-0.1cm, 0.3cm)$);
+\coordinate (Blinky Modes border 3) at
+    ($(Temp Check Thermal Config.north east)
+    + (0.3cm, 0cm)$);
+\coordinate (Blinky Modes border 4) at
+    ($(Voltage Config from Batt Check.south west)
+    + (-0.3cm, -0.3cm)$);
+\coordinate (Blinky Modes border 5) at
+    ($(Voltage Config from Batt Check.north west)
+    + (-0.3cm, 0.3cm)$);
+
+{ [on background layer]
+    \draw[
+        advancedborder
+    ]
+    (Blinky Modes border 1)
+    -- ([yshift=0.2pt] Blinky Modes border 2)
+       % yshift=0.2pt: 1/2 line thickness for outer alignment
+    -| (Blinky Modes border 3)
+    |- ([yshift=0.2pt] Blinky Modes border 4)
+       % yshift=0.2pt: 1/2 line thickness for outer alignment
+    -- (Blinky Modes border 5)
+    -- cycle;
+}
+
+% 09 Next Channel Mode from ON -----------------------------------------
 % ----------------------------------------------------------------------
 \node (Next Channel Mode from ON)
 at (current page.west)[
@@ -1848,7 +1848,7 @@ node[
 ]
 {5H} (Sunset Timer from ON.west);
 
-% 11 Ramp Config from ON -----------------------------------------------
+% 10 Ramp Config from ON -----------------------------------------------
 % ----------------------------------------------------------------------
 \node (Ramp Config from ON)
 at (current page.north west)[
@@ -1887,7 +1887,7 @@ at (current page.north west)[
     in=280,
     looseness=1.3
 ]
-+(-2.86,3.15) to[
++(-2.86cm, 3.15cm) to[
     out=100,
     in=275,
     looseness=0.9
@@ -1896,7 +1896,7 @@ node[
     advancedbutton,
     pos=0.6
 ] 
-{7H} +(-2.98,4.9) to[
+{7H} +(-2.98cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -2026,7 +2026,7 @@ node[
 ]
 {10C} (Manual Memory from ON.222);
 
-% 12 Simple UI Config from OFF -----------------------------------------
+% 11 Simple UI Config from OFF -----------------------------------------
 % ----------------------------------------------------------------------
 \node (Simple UI Config from OFF)[
     advancedtable,
@@ -2092,7 +2092,7 @@ node[
     ->,
     advancedline,
     out=90,
-    in=238,
+    in=243,
     looseness=1
 ]
 node[
@@ -2101,7 +2101,7 @@ node[
 ]
 {9H} (Misc Config from OFF.247);
 
-% 13 Momentary Moon from Lockout ---------------------------------------
+% 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
 \node (Momentary Moon from Lockout)[
     anyconfig,
@@ -2174,7 +2174,7 @@ node[
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
-% 14 Aux LED Color from OFF right --------------------------------------
+% 13 Aux LED Color from OFF right --------------------------------------
 % ----------------------------------------------------------------------
 { [on background layer]
     \node (Aux LED Color from OFF right)[
@@ -2307,6 +2307,85 @@ node[
     pos=0.82
 ]
 {10H} (Auto-lock Config from Lockout.south);
+
+% 14 Tactical Mode from OFF right --------------------------------------
+% ----------------------------------------------------------------------
+
+% Tactical Mode Config
+\node (Tactical Mode Config)
+at (current page.south)[
+    advancedtable,
+    xshift=6.6cm,
+    yshift=1cm,
+    anchor=south west
+]
+{
+    \spacingnoextra
+    \begin{configtblr}{
+        column{1} = {0.45cm}
+    }
+        Tactical Mode Config &\\
+        1\textendash{}3 & Tactical Slots 1\textendash{}3\\
+                        & {1\textendash{}150C = Brightness\\
+                           0C = Last-used strobe /\\
+                           mood mode\\
+                           151C = Party strobe\\
+                           152C = Tactical strobe\\
+                           153+C = Other strobes}\\
+    \end{configtblr}
+};
+
+% Tactical Mode from OFF right
+\node (Tactical Mode from OFF right)[
+    advancedconfig,
+    above=0.8cm of Tactical Mode Config.north,
+    anchor=south
+]
+{
+    \firstline{Tactical Mode}
+    1H = Tactical Slot 1 (high)\\
+    2H = Tactical Slot 2 (low)\\
+    3H = Tactical Slot 3 (strobe)
+};
+
+\draw (Tactical Mode from OFF right.south) edge[
+    ->,
+    advancedline,
+    out=270,
+    in=90,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{7H} (Tactical Mode Config.north);
+
+\draw (OFF right.south) edge[
+    -{<[sep=1.75cm]>},
+    advancedline,
+    out=270,
+    in=40,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.82
+]
+{6C} (Tactical Mode from OFF right.50);
+
+% Tactical Mode extra node aux LED settings
+\node (Tactical Mode extra node aux LED settings)[
+    above=0.05cm of Tactical Mode from OFF right.north west,
+    anchor=south west,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
+]
+{
+    \infotextadvanced{Lockout mode's}\\
+    \infotextadvanced{aux LED settings}
+};
 
 % 15 Factory Reset from OFF right --------------------------------------
 % ----------------------------------------------------------------------
@@ -2458,8 +2537,8 @@ at (current page.north east)[
 ]
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
-    \normalsize Andúril 2 Release 2025-04-29\\[3pt]
-    \normalsize Diagram Release 03\\[4pt]
+    \normalsize Andúril 2 Release 2025-07-07\\[3pt]
+    \normalsize Diagram Release 01\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
