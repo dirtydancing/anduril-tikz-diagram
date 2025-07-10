@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.01 (Date: 2025-07-10)
+
+- Added new options to Voltage Config
+
 ## 2025-04-29.03 (Date: 2025-07-02)
 
 - Adjusted layout of ramp image
