@@ -342,7 +342,7 @@
             inner sep=0cm,
             outer sep=0cm,
             minimum width=0.808cm,
-            minimum height=0.293cm,
+            minimum height=0.285cm,
             sharp corners,
             anchor=west
         },
@@ -1147,8 +1147,8 @@ node[
 \node (Lightning Storm from Police Strobe)
 at (current page.south west)[ 
     advancedconfig-mode,
-    xshift=1.3cm,
-    yshift=5.15cm,
+    xshift=0.9cm,
+    yshift=4.75cm,
     anchor=south west
 ]
 {\oneline{Lightning Storm}};
@@ -1219,7 +1219,7 @@ node[
 % Candle from OFF
 \node (Candle from OFF)[
     advancedconfig-mode,
-    above right=0.55cm and 1.3cm of
+    above right=0.55cm and 1.2cm of
     Lightning Storm from Police Strobe.east,
     anchor=west
 ]
@@ -1301,8 +1301,8 @@ node[
 \node (Strobe Modes Actions)
 at (current page.south)[
     advancedconfig,
-    xshift=-7.9cm,
-    yshift=1.3cm,
+    xshift=-8.2cm,
+    yshift=0.9cm,
     anchor=south east
 ]
 {
@@ -1361,7 +1361,7 @@ at (current page.south)[
     ->,
     advancedline,
     out=190,
-    in=70,
+    in=80,
     looseness=0.8,
     postaction={
         decoration={
@@ -1378,9 +1378,9 @@ node[
     advancedbutton,
     pos=0
 ]
-{3H} (Strobe Modes fit.48);
+{3H} (Strobe Modes fit.47);
 
-\draw (Strobe Modes fit.80) edge[
+\draw (Strobe Modes fit.79) edge[
     ->,
     advancedline,
     out=80,
@@ -1404,8 +1404,8 @@ node[
 \node (Next Channel Mode from Batt Check)
 at (current page.south)[
     advancedconfig,
-    xshift=-2.3cm,
-    yshift=1.3cm,
+    xshift=-2.6cm,
+    yshift=0.9cm,
     anchor=south west
 ]
 {
@@ -1454,12 +1454,12 @@ node[
 
 { [on above layer]
     \draw (OFF.south) edge[
-        {Round Cap[sep=2.9cm]}-{Round Cap[sep=3.4cm]},
+        {Round Cap[sep=3.3cm]}-{Round Cap[sep=3.1cm]},
         anyline,
         white,
         line width=2.4pt,
         out=270,
-        in=130,
+        in=118,
         looseness=1
     ]
     node
@@ -1468,7 +1468,7 @@ node[
         ->,
         anyline,
         out=270,
-        in=130,
+        in=118,
         looseness=1
     ]
     node[
@@ -1480,11 +1480,9 @@ node[
 
 % Voltage Config from Batt Check
 { [on background layer]
-    \node (Voltage Config from Batt Check)
-        at (current page.south)[
+    \node (Voltage Config from Batt Check)[
         advancedtable,
-        xshift=-6.5cm,
-        yshift=1.3cm,
+        right=1.4cm of Strobe Modes Actions.south east,
         anchor=south west
     ]
     {
@@ -1695,10 +1693,10 @@ node[
 % Blinky Modes border
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (0.75cm, 0.3cm)$);
+    + (1.1cm, 0.3cm)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
-    + (-0.1cm, 0.3cm)$);
+    + (0.3cm, 0.3cm)$);
 \coordinate (Blinky Modes border 3) at
     ($(Temp Check Thermal Config.north east)
     + (0.3cm, 0cm)$);
@@ -1729,7 +1727,7 @@ node[
 at (current page.west)[
     anyconfig,
     anchor=west,
-    xshift=1cm,
+    xshift=0.6cm,
     yshift=0.4cm
 ]
 {\oneline{Next Channel Mode}};
@@ -1744,7 +1742,7 @@ at (current page.west)[
     ]
     node[
         anybutton,
-        pos=0.65
+        pos=0.64
     ]
     {3C} (Next Channel Mode from ON.east);
 }
@@ -1796,7 +1794,7 @@ at (current page.west)[
 ]
 node[
     advancedbutton,
-    pos=0.667
+    pos=0.652
 ]
 {3H} (Momentary Turbo 3H from ON.east);
 
@@ -1820,7 +1818,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.72
+    pos=0.71
 ]
 {4H} (Momentary Turbo 4H from ON.east);
 
@@ -1853,8 +1851,8 @@ node[
 \node (Ramp Config from ON)
 at (current page.north west)[
     advancedtable,
-    xshift=1cm,
-    yshift=-1cm,
+    xshift=0.6cm,
+    yshift=-0.6cm,
     anchor=north west
 ]
 {
@@ -1887,16 +1885,16 @@ at (current page.north west)[
     in=280,
     looseness=1.3
 ]
-+(-2.86cm, 3.15cm) to[
++(-3.26cm, 3.55cm) to[
     out=100,
     in=275,
     looseness=0.9
 ]
 node[
     advancedbutton,
-    pos=0.6
+    pos=0.5
 ] 
-{7H} +(-2.98cm, 4.9cm) to[
+{7H} +(-3.38cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -2017,7 +2015,7 @@ node[
     ->,
     advancedline,
     out=90,
-    in=250,
+    in=260,
     looseness=1.5
 ]
 node[
@@ -2054,7 +2052,7 @@ node[
     advancedline,
     out=90,
     in=270,
-    looseness=1.5
+    looseness=1.4
 ]
 node[
     advancedbutton,
@@ -2092,14 +2090,14 @@ node[
     ->,
     advancedline,
     out=90,
-    in=243,
+    in=242,
     looseness=1
 ]
 node[
     advancedbutton,
     pos=0.83
 ]
-{9H} (Misc Config from OFF.247);
+{9H} (Misc Config from OFF.267);
 
 % 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
@@ -2312,11 +2310,9 @@ node[
 % ----------------------------------------------------------------------
 
 % Tactical Mode Config
-\node (Tactical Mode Config)
-at (current page.south)[
+\node (Tactical Mode Config)[
     advancedtable,
-    xshift=6.6cm,
-    yshift=1cm,
+    right=1cm of Blinky Modes fit.south east,
     anchor=south west
 ]
 {
@@ -2370,7 +2366,7 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.82
+    pos=0.84
 ]
 {6C} (Tactical Mode from OFF right.50);
 
@@ -2393,8 +2389,8 @@ node[
 at (current page.south east)[
     anyconfig,
     anchor=south east,
-    xshift=-1cm,
-    yshift=1cm
+    xshift=-0.6cm,
+    yshift=0.6cm
 ]
 {
     \firstline{Factory Reset}
@@ -2417,7 +2413,7 @@ at (current page.south east)[
 ]
 node[
     anybutton,
-    pos=0.72,
+    pos=0.73,
     label={ [align=left] right:
         \infotextany{Keep holding}\\
         \infotextany{for about 4s}
@@ -2450,7 +2446,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.72
+    pos=0.73
 ]
 {15+C} (Version Check from OFF right.west);
 
@@ -2460,7 +2456,7 @@ node[
 at (current page.east)[
     advancedUI,
     anchor=north east,
-    xshift=-1cm,
+    xshift=-0.6cm,
     yshift=-2.4cm
 ]
 {Advanced UI};
@@ -2485,7 +2481,7 @@ at (current page.east)[
 at (current page.east)[
     simpleUI,
     anchor=south east,
-    xshift=-1cm,
+    xshift=-0.6cm,
     yshift=2.4cm
 ]
 {Simple UI};
@@ -2532,13 +2528,13 @@ node[
 at (current page.north east)[
     andurilinfo,
     anchor=north east,
-    xshift=-1cm,
-    yshift=-1cm
+    xshift=-0.6cm,
+    yshift=-0.6cm
 ]
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 01\\[4pt]
+    \normalsize Diagram Release 02\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
