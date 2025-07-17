@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.02 (Date: 2025-07-17)
+
+- Reduced page margins
+
 ## 2025-07-07.01 (Date: 2025-07-10)
 
 - Added new options to Voltage Config
