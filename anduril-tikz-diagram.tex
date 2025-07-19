@@ -1219,7 +1219,7 @@ node[
 % Candle from OFF
 \node (Candle from OFF)[
     advancedconfig-mode,
-    above right=0.55cm and 1.2cm of
+    above right=0.55cm and 1.4cm of
     Lightning Storm from Police Strobe.east,
     anchor=west
 ]
@@ -1241,7 +1241,7 @@ node[
 % Candle Timer
 \node (Candle Timer)[
     advancedconfig,
-    above left=0.5cm and 1cm of Candle from OFF.west,
+    above left=0.5cm and 1.2cm of Candle from OFF.west,
     anchor=east
 ]
 {
@@ -1288,12 +1288,12 @@ node[
     ->,
     advancedline-mode,
     out=180,
-    in=20,
-    looseness=0.7
+    in=0,
+    looseness=0.9
 ]
 node[
     advancedbutton-mode,
-    pos=0.49
+    pos=0.47
 ]
 {2C} (Party Strobe from Bike Flasher.east);
 
@@ -1321,6 +1321,7 @@ at (current page.south)[
 { [on background layer]
     \node (Strobe Modes fit)[
         advancedfit,
+        draw=none, % Strobe Modes fit replaced with border
         xshift=0.2pt, % 1/2 line thickness for outer alignment
         yshift=0.2pt, % 1/2 line thickness for outer alignment
         fit=(Candle from OFF)
@@ -1361,14 +1362,14 @@ at (current page.south)[
     ->,
     advancedline,
     out=190,
-    in=80,
-    looseness=0.8,
+    in=75,
+    looseness=0.9,
     postaction={
         decoration={
             text along path,
             text={|\footnotesize\color{black}|Mode memory},
             reverse path,
-            text align={left indent=0.85cm},
+            text align={left indent=1.3cm},
             raise=0.08cm
         },
         decorate
@@ -1380,12 +1381,12 @@ node[
 ]
 {3H} (Strobe Modes fit.47);
 
-\draw (Strobe Modes fit.79) edge[
+\draw (Strobe Modes fit.77) edge[
     ->,
     advancedline,
     out=80,
     in=180,
-    looseness=1
+    looseness=0.9
 ]
 node[
     advancedbutton,
@@ -1397,6 +1398,33 @@ node[
 ]
 {5C}(Momentary Mode from OFF ON.191);
 
+% Strobe Modes border
+
+% +0.2pt: 1/2 line thickness for outer alignment
+\coordinate (Strobe Modes border 1) at
+    ($(Candle Timer.north east)
+    + (0cm, 0.3cm+0.2pt)$); % yshift=0.2pt
+\coordinate (Strobe Modes border 2) at
+    ($(Strobe Modes Actions.south east)
+    + (0.3cm+0.2pt, -0.3cm+0.2pt)$); % % xshift=0.2pt, yshift=0.2pt
+\coordinate (Strobe Modes border 3) at
+    ($(Lightning Storm from Police Strobe.north west)
+    + (-0.3cm+0.2pt, 0cm)$); % xshift=0.2pt
+\coordinate (Strobe Modes border 4) at
+    ($(Candle Timer.north west)
+    + (0cm, 0.3cm+0.2pt)$); % yshift=0.2pt
+
+{ [on background layer]
+    \draw[
+        advancedborder
+    ]
+    (Strobe Modes border 1)
+    -| (Strobe Modes border 2)
+    -| (Strobe Modes border 3)
+    |- (Strobe Modes border 4)
+    -- cycle;
+}
+
 % 08 Blinky / Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
 
@@ -1404,7 +1432,7 @@ node[
 \node (Next Channel Mode from Batt Check)
 at (current page.south)[
     advancedconfig,
-    xshift=-2.6cm,
+    xshift=-2.5cm,
     yshift=0.9cm,
     anchor=south west
 ]
@@ -1427,7 +1455,7 @@ at (current page.south)[
 
 % Batt Check Simple Advanced
 \node (Batt Check Simple Advanced)[
-    above right=0.05cm and 1cm of Batt Check from OFF.north west,
+    above right=0.05cm and 1.1cm of Batt Check from OFF.north west,
     anchor=south west,
     inner xsep=0.05cm,
     inner ysep=0cm,
@@ -1459,7 +1487,7 @@ node[
         white,
         line width=2.4pt,
         out=270,
-        in=118,
+        in=120,
         looseness=1
     ]
     node
@@ -1468,7 +1496,7 @@ node[
         ->,
         anyline,
         out=270,
-        in=118,
+        in=120,
         looseness=1
     ]
     node[
@@ -1482,7 +1510,7 @@ node[
 { [on background layer]
     \node (Voltage Config from Batt Check)[
         advancedtable,
-        right=1.4cm of Strobe Modes Actions.south east,
+        right=1.5cm of Strobe Modes Actions.south east,
         anchor=south west
     ]
     {
@@ -1691,18 +1719,20 @@ node[
 };
 
 % Blinky Modes border
+
+% +0.2pt: 1/2 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (1.1cm, 0.3cm)$);
+    + (1cm, 0.3cm)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
-    + (0.3cm, 0.3cm)$);
+    + (0.15cm, 0.3cm+0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 3) at
     ($(Temp Check Thermal Config.north east)
     + (0.3cm, 0cm)$);
 \coordinate (Blinky Modes border 4) at
     ($(Voltage Config from Batt Check.south west)
-    + (-0.3cm, -0.3cm)$);
+    + (-0.3cm, -0.3cm+0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 5) at
     ($(Voltage Config from Batt Check.north west)
     + (-0.3cm, 0.3cm)$);
@@ -1712,11 +1742,9 @@ node[
         advancedborder
     ]
     (Blinky Modes border 1)
-    -- ([yshift=0.2pt] Blinky Modes border 2)
-       % yshift=0.2pt: 1/2 line thickness for outer alignment
+    -- (Blinky Modes border 2)
     -| (Blinky Modes border 3)
-    |- ([yshift=0.2pt] Blinky Modes border 4)
-       % yshift=0.2pt: 1/2 line thickness for outer alignment
+    |- (Blinky Modes border 4)
     -- (Blinky Modes border 5)
     -- cycle;
 }
@@ -1883,9 +1911,9 @@ at (current page.north west)[
 (ON.north) to[
     out=90,
     in=280,
-    looseness=1.3
+    looseness=1.4
 ]
-+(-3.26cm, 3.55cm) to[
++(-3.35cm, 3.25cm) to[
     out=100,
     in=275,
     looseness=0.9
@@ -1894,11 +1922,11 @@ node[
     advancedbutton,
     pos=0.5
 ] 
-{7H} +(-3.38cm, 4.9cm) to[
+{7H} +(-3.45cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
-] (Ramp Config from ON.300);
+] (Ramp Config from ON.295);
 
 % Channel Mode Config from ON
 \node (Channel Mode Config from ON)[
@@ -1948,7 +1976,7 @@ node[
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
     advancedtable,
-    right=0.8cm of Ramp Config from ON.north east,
+    right=0.6cm of Ramp Config from ON.north east,
     anchor=north west
 ]
 {
@@ -1995,13 +2023,12 @@ node[
     advancedbutton,
     pos=0.8
 ]
-{10H} (Ramp Extras Config from ON.273);
+{10H} (Ramp Extras Config from ON.272);
 
 % Manual Memory from ON
 \node (Manual Memory from ON)[
     advancedconfig,
-    above right=0.6cm and 0.4cm of
-    Ramp Extras Config from ON.south east,
+    right=0.3cm of Ramp Extras Config from ON.south east,
     anchor=south west
 ]
 {
@@ -2015,20 +2042,20 @@ node[
     ->,
     advancedline,
     out=90,
-    in=260,
+    in=255,
     looseness=1.5
 ]
 node[
     advancedbutton,
-    pos=0.77
+    pos=0.85
 ]
-{10C} (Manual Memory from ON.222);
+{10C} (Manual Memory from ON.245);
 
 % 11 Simple UI Config from OFF -----------------------------------------
 % ----------------------------------------------------------------------
 \node (Simple UI Config from OFF)[
     advancedtable,
-    right=0.8cm of Ramp Extras Config from ON.north east,
+    right=0.6cm of Ramp Extras Config from ON.north east,
     anchor=north west
 ]
 {
@@ -2051,19 +2078,20 @@ node[
     ->,
     advancedline,
     out=90,
-    in=270,
-    looseness=1.4
+    in=300,
+    out looseness=1.3,
+    in looseness=0.7
 ]
 node[
     advancedbutton,
-    pos=0.9
+    pos=0.78
 ]
-{10H} (Simple UI Config from OFF.303);
+{10H} (Simple UI Config from OFF.310);
 
 % Misc Config from OFF
 \node (Misc Config from OFF)[
     advancedtable,
-    right=0.8cm of Simple UI Config from OFF.north east,
+    right=0.6cm of Simple UI Config from OFF.north east,
     anchor=north west
 ]
 {
@@ -2090,14 +2118,14 @@ node[
     ->,
     advancedline,
     out=90,
-    in=242,
+    in=245,
     looseness=1
 ]
 node[
     advancedbutton,
-    pos=0.83
+    pos=0.84
 ]
-{9H} (Misc Config from OFF.267);
+{9H} (Misc Config from OFF.287);
 
 % 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
@@ -2312,7 +2340,7 @@ node[
 % Tactical Mode Config
 \node (Tactical Mode Config)[
     advancedtable,
-    right=1cm of Blinky Modes fit.south east,
+    right=0.9cm of Blinky Modes fit.south east,
     anchor=south west
 ]
 {
@@ -2368,7 +2396,7 @@ node[
     advancedbutton,
     pos=0.84
 ]
-{6C} (Tactical Mode from OFF right.50);
+{6C} (Tactical Mode from OFF right.45);
 
 % Tactical Mode extra node aux LED settings
 \node (Tactical Mode extra node aux LED settings)[
@@ -2467,7 +2495,7 @@ at (current page.east)[
         simpleline,
         out=0,
         in=90,
-        looseness=1.2
+        looseness=1.4
     ]
     node[
         simplebutton,
@@ -2491,7 +2519,7 @@ at (current page.east)[
     advancedline,
     out=0,
     in=270,
-    looseness=1.2
+    looseness=1.4
 ]
 node[
     advancedbutton,
@@ -2534,7 +2562,7 @@ at (current page.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 02\\[4pt]
+    \normalsize Diagram Release 03\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2561,7 +2589,7 @@ at (current page.north east)[
 % Button Presses
 \node (Button Presses)[
     buttonpressesinfo,
-    left=0.8cm of Anduril 2 UI.north west,
+    left=0.6cm of Anduril 2 UI.north west,
     anchor=north east
 ]
 {
@@ -2588,7 +2616,7 @@ at (current page.north east)[
 % Legend
 \matrix (Legend)[
     matrixlegendinfo,
-    left=0.8cm of Button Presses.north west,
+    left=0.6cm of Button Presses.north west,
     matrix anchor=north east
 ]
 {
