@@ -328,9 +328,6 @@
         draw=gray,
         fill=white
     },
-    thermalregulationinfo/.style={
-        generalinfo
-    },
     andurilinfo/.style={
         generalinfo,
         draw=orange-1!90,
@@ -753,22 +750,25 @@ at (Turbo.north)[
 \node (Ramp label)
 at (Turbo.north)[
     on-extra,
-    inner xsep=0.335cm,
+    inner xsep=0.35cm,
     above,
-    yshift=0.15cm
+    yshift=0.2cm
 ]
 {R\hspace{0.1em}A\hspace{0.1em}M\hspace{0.1em}P};
 
-% Thermal Regulation
-\node (Thermal Regulation)[
-    thermalregulationinfo,
-    above=0.2cm of Ramp label.north,
-    anchor=south
+% Thermal regulation information
+\node (Thermal regulation information)[
+    above=0.05cm of Ramp label.north,
+    anchor=south,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
 ]
 {
-    \firstline{Thermal Regulation}
-    Only present in continuous\\
-    ramp mode (floor\textendash{}turbo)
+    \infotextany{Thermal regulation}\\
+    \infotextany{only in continuous}\\
+    \infotextany{ramp mode}\\
+    \infotextany{(floor\textendash{}turbo)}
 };
 
 % Toggle Ramp Style from ON
@@ -2567,7 +2567,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 03\\[4pt]
+    \normalsize Diagram Release 04\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
