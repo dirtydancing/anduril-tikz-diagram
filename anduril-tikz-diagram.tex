@@ -19,7 +19,8 @@
 
 \usepackage[
     a4paper, % for paper size
-    landscape % for page orientation
+    landscape, % for page orientation
+    margin=0.6cm % for page margins
 ]
 {geometry} % for document dimensions
 
@@ -29,7 +30,7 @@
 \usepackage{setspace} % for setting the line spacing
 \setstretch{0.9} % default: single spacing
 
-% for vertical spacing
+% for vertical spacing in text
 \newcommand{\spacingv}{\\[2pt]}
 
 % for one line of text
@@ -37,6 +38,15 @@
 
 % for the first line of more than one line of text
 \newcommand{\firstline}[1]{\oneline{#1}\spacingv}
+
+% for horizontal spacing between nodes
+\newcommand{\nodespaceh}{0.6cm}
+
+% for vertical spacing between nodes
+\newcommand{\nodespacev}{0.25cm}
+
+% for border spacing
+\newcommand{\borderspace}{0.3cm}
 
 % Preamble - 02 Colors -------------------------------------------------
 % ----------------------------------------------------------------------
@@ -232,7 +242,7 @@
         advancedconfig,
         draw=blue-1!90,
         fill=none,
-        inner sep=0.3cm
+        inner sep=\borderspace
     },
     advancedborder/.style={
         advancedfit,
@@ -377,6 +387,8 @@
 
 \usepackage{tikz-layers} % for additional layers
 % order of layers: background, behind, (main), above, glass
+
+\usepackage{tikzpagenodes} % for additional current page nodes
 
 % Preamble - 04 tabularray ---------------------------------------------
 % ----------------------------------------------------------------------
@@ -553,8 +565,8 @@
 \thispagestyle{empty} % for removing the page number on this page
 
 \begin{tikzpicture}[
-    remember picture, % for referencing the current page node
-    overlay, % for referencing the current page node
+    remember picture, % for referencing the current page nodes
+    overlay, % for referencing the current page nodes
     font=\footnotesize
 ]
 
@@ -714,9 +726,9 @@ node[
     anybutton,
     pos=0.42,
     label={ [align=left, xshift=0.53cm+0.8pt] right:
-        % +0.8pt for vertical alignment
-            \infotextany{Ramp down}\\
-            \infotextany{(ceiling\textendash{}floor)}
+    % +0.8pt for vertical alignment
+        \infotextany{Ramp down}\\
+        \infotextany{(ceiling\textendash{}floor)}
     }
 ]
 {2H} (Ramp Floor.north);
@@ -1145,10 +1157,10 @@ node[
 
 % Lightning Storm from Police Strobe
 \node (Lightning Storm from Police Strobe)
-at (current page.south west)[ 
+at (current page text area.south west)[
     advancedconfig-mode,
-    xshift=0.9cm,
-    yshift=4.75cm,
+    xshift=\borderspace,
+    yshift=4.15cm,
     anchor=south west
 ]
 {\oneline{Lightning Storm}};
@@ -1299,10 +1311,10 @@ node[
 
 % Strobe / Mood Modes Actions
 \node (Strobe Modes Actions)
-at (current page.south)[
+at (current page text area.south)[
     advancedconfig,
     xshift=-8.2cm,
-    yshift=0.9cm,
+    yshift=\borderspace,
     anchor=south east
 ]
 {
@@ -1403,16 +1415,17 @@ node[
 % +0.2pt: 1/2 line thickness for outer alignment
 \coordinate (Strobe Modes border 1) at
     ($(Candle Timer.north east)
-    + (0cm, 0.3cm+0.2pt)$); % yshift=0.2pt
+    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 \coordinate (Strobe Modes border 2) at
     ($(Strobe Modes Actions.south east)
-    + (0.3cm+0.2pt, -0.3cm+0.2pt)$); % % xshift=0.2pt, yshift=0.2pt
+    + (\borderspace + 0.2pt, -\borderspace + 0.2pt)$);
+    % xshift=0.2pt, yshift=0.2pt
 \coordinate (Strobe Modes border 3) at
     ($(Lightning Storm from Police Strobe.north west)
-    + (-0.3cm+0.2pt, 0cm)$); % xshift=0.2pt
+    + (-\borderspace + 0.2pt, 0cm)$); % xshift=0.2pt
 \coordinate (Strobe Modes border 4) at
     ($(Candle Timer.north west)
-    + (0cm, 0.3cm+0.2pt)$); % yshift=0.2pt
+    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 
 { [on background layer]
     \draw[
@@ -1430,10 +1443,10 @@ node[
 
 % Next Channel Mode from Batt Check
 \node (Next Channel Mode from Batt Check)
-at (current page.south)[
+at (current page text area.south)[
     advancedconfig,
     xshift=-2.5cm,
-    yshift=0.9cm,
+    yshift=\borderspace,
     anchor=south west
 ]
 {
@@ -1723,19 +1736,19 @@ node[
 % +0.2pt: 1/2 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (1cm, 0.3cm)$);
+    + (1cm, \borderspace)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
-    + (0.15cm, 0.3cm+0.2pt)$); % yshift=0.2pt
+    + (0.15cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 3) at
     ($(Temp Check Thermal Config.north east)
-    + (0.3cm, 0cm)$);
+    + (\borderspace, 0cm)$);
 \coordinate (Blinky Modes border 4) at
     ($(Voltage Config from Batt Check.south west)
-    + (-0.3cm, -0.3cm+0.2pt)$); % yshift=0.2pt
+    + (-\borderspace, -\borderspace + 0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 5) at
     ($(Voltage Config from Batt Check.north west)
-    + (-0.3cm, 0.3cm)$);
+    + (-\borderspace, \borderspace)$);
 
 { [on background layer]
     \draw[
@@ -1752,10 +1765,9 @@ node[
 % 09 Next Channel Mode from ON -----------------------------------------
 % ----------------------------------------------------------------------
 \node (Next Channel Mode from ON)
-at (current page.west)[
+at (current page text area.west)[
     anyconfig,
     anchor=west,
-    xshift=0.6cm,
     yshift=0.4cm
 ]
 {\oneline{Next Channel Mode}};
@@ -1776,10 +1788,9 @@ at (current page.west)[
 }
 
 % Tint Ramping from ON
-\node (Tint Ramping from ON)
-at (current page.west)[
+\node (Tint Ramping from ON)[
     anyconfig,
-    below=0.25cm of Next Channel Mode from ON.south west,
+    below=\nodespacev of Next Channel Mode from ON.south west,
     anchor=north west
 ]
 {
@@ -1805,7 +1816,7 @@ at (current page.west)[
 % Momentary Turbo 3H from ON
 \node (Momentary Turbo 3H from ON)[
     advancedconfig,
-    below=0.25cm of Tint Ramping from ON.south west,
+    below=\nodespacev of Tint Ramping from ON.south west,
     anchor=north west
 ]
 {
@@ -1829,7 +1840,7 @@ node[
 % Momentary Turbo 4H from ON
 \node (Momentary Turbo 4H from ON)[
     advancedconfig,
-    below=0.25cm of Momentary Turbo 3H from ON.south west,
+    below=\nodespacev of Momentary Turbo 3H from ON.south west,
     anchor=north west
 ]
 {
@@ -1877,10 +1888,8 @@ node[
 % 10 Ramp Config from ON -----------------------------------------------
 % ----------------------------------------------------------------------
 \node (Ramp Config from ON)
-at (current page.north west)[
+at (current page text area.north west)[
     advancedtable,
-    xshift=0.6cm,
-    yshift=-0.6cm,
     anchor=north west
 ]
 {
@@ -1921,8 +1930,9 @@ at (current page.north west)[
 node[
     advancedbutton,
     pos=0.5
-] 
-{7H} +(-3.45cm, 4.9cm) to[
+]
+{7H}
++(-3.45cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -1976,7 +1986,7 @@ node[
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
     advancedtable,
-    right=0.6cm of Ramp Config from ON.north east,
+    right=\nodespaceh of Ramp Config from ON.north east,
     anchor=north west
 ]
 {
@@ -2055,7 +2065,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Simple UI Config from OFF)[
     advancedtable,
-    right=0.6cm of Ramp Extras Config from ON.north east,
+    right=\nodespaceh of Ramp Extras Config from ON.north east,
     anchor=north west
 ]
 {
@@ -2091,7 +2101,7 @@ node[
 % Misc Config from OFF
 \node (Misc Config from OFF)[
     advancedtable,
-    right=0.6cm of Simple UI Config from OFF.north east,
+    right=\nodespaceh of Simple UI Config from OFF.north east,
     anchor=north west
 ]
 {
@@ -2156,7 +2166,7 @@ node[
 % Momentary Low from Lockout
 \node (Momentary Low from Lockout)[
     anyconfig,
-    below=0.25cm of Momentary Moon from Lockout.south west,
+    below=\nodespacev of Momentary Moon from Lockout.south west,
     anchor=north west
 ]
 {
@@ -2182,7 +2192,7 @@ node[
 % Next Channel Mode from Lockout
 \node (Next Channel Mode from Lockout)[
     anyconfig,
-    below=0.25cm of Momentary Low from Lockout.south west,
+    below=\nodespacev of Momentary Low from Lockout.south west,
     anchor=north west
 ]
 {\oneline{Next Channel Mode}};
@@ -2234,7 +2244,7 @@ node[
 % Aux LED Pattern from OFF right
 \node (Aux LED Pattern from OFF right)[
     advancedconfig,
-    above=0.25cm of Aux LED Color from OFF right.north west,
+    above=\nodespacev of Aux LED Color from OFF right.north west,
     anchor=south west
 ]
 {
@@ -2259,7 +2269,8 @@ node[
 { [on background layer]
     \node (Aux LED Color from Lockout)[
         advancedconfig,
-        above=0.25cm of Aux LED Pattern from OFF right.north west,
+        above=\nodespacev of
+        Aux LED Pattern from OFF right.north west,
         anchor=south west
     ]
     {
@@ -2288,7 +2299,7 @@ node[
 % Aux LED Pattern from Lockout
 \node (Aux LED Pattern from Lockout)[
     advancedconfig,
-    above=0.25cm of Aux LED Color from Lockout.north west,
+    above=\nodespacev of Aux LED Color from Lockout.north west,
     anchor=south west
 ]
 {
@@ -2414,11 +2425,9 @@ node[
 % 15 Factory Reset from OFF right --------------------------------------
 % ----------------------------------------------------------------------
 \node (Factory Reset from OFF right)
-at (current page.south east)[
+at (current page text area.south east)[
     anyconfig,
-    anchor=south east,
-    xshift=-0.6cm,
-    yshift=0.6cm
+    anchor=south east
 ]
 {
     \firstline{Factory Reset}
@@ -2481,10 +2490,9 @@ node[
 % 16 Advanced UI switch from OFF right ---------------------------------
 % ----------------------------------------------------------------------
 \node (Advanced UI switch from OFF right)
-at (current page.east)[
+at (current page text area.east)[
     advancedUI,
     anchor=north east,
-    xshift=-0.6cm,
     yshift=-2.4cm
 ]
 {Advanced UI};
@@ -2506,10 +2514,9 @@ at (current page.east)[
 
 % Simple UI switch from OFF right
 \node (Simple UI switch from OFF right)
-at (current page.east)[
+at (current page text area.east)[
     simpleUI,
     anchor=south east,
-    xshift=-0.6cm,
     yshift=2.4cm
 ]
 {Simple UI};
@@ -2553,11 +2560,9 @@ node[
 % 17 Anduril 2 UI ------------------------------------------------------
 % ----------------------------------------------------------------------
 \node (Anduril 2 UI)
-at (current page.north east)[
+at (current page text area.north east)[
     andurilinfo,
-    anchor=north east,
-    xshift=-0.6cm,
-    yshift=-0.6cm
+    anchor=north east
 ]
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
@@ -2575,7 +2580,7 @@ at (current page.north east)[
 { [on background layer]
     \node (Aux LED Color for Voltage)[
         voltagecolorinfo,
-        below=0.25cm of Anduril 2 UI.south east,
+        below=\nodespacev of Anduril 2 UI.south east,
         anchor=north east
     ]
     {
@@ -2589,7 +2594,7 @@ at (current page.north east)[
 % Button Presses
 \node (Button Presses)[
     buttonpressesinfo,
-    left=0.6cm of Anduril 2 UI.north west,
+    left=\nodespaceh of Anduril 2 UI.north west,
     anchor=north east
 ]
 {
@@ -2616,7 +2621,7 @@ at (current page.north east)[
 % Legend
 \matrix (Legend)[
     matrixlegendinfo,
-    left=0.6cm of Button Presses.north west,
+    left=\nodespaceh of Button Presses.north west,
     matrix anchor=north east
 ]
 {
