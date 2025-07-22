@@ -2,6 +2,13 @@
 
 ## Next
 
+## 2025-07-07.04 (Date: 2025-07-22)
+
+- Changed layout of thermal regulation
+- De-emphasized Momentary Mode exit
+- Adapted UI voltage display to manual
+- Clarified spacing and margins
+
 ## 2025-07-07.03 (Date: 2025-07-19)
 
 - Adjusted positioning and borders
