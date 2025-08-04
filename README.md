@@ -31,6 +31,9 @@ diagram. There is also an exemplary model-specific
 available for
 [model number](https://github.com/ToyKeeper/anduril/blob/trunk/MODELS)
 0135, `hank-emisar-2ch` (for Andúril 2 release 2024-04-20 only).
+In addition, you can check out an exemplary
+[dark mode edition](https://github.com/dirtydancing/anduril-tikz-diagram-dark)
+of this generic diagram (for Andúril 2 release 2025-07-07 only).
 
 ## Description
 
