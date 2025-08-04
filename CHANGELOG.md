@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.05 (Date: 2025-08-04)
+
+- Clarified color definitions
+
 ## 2025-07-07.04 (Date: 2025-07-22)
 
 - Changed layout of thermal regulation
