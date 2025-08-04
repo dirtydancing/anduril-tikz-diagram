@@ -6,7 +6,7 @@
 % ----------------------------------------------------------------------
 
 % Preamble - 01 Layout -------------------------------------------------
-% Preamble - 02 Colors -------------------------------------------------
+% Preamble - 02 xcolor -------------------------------------------------
 % Preamble - 03 tikz ---------------------------------------------------
 % Preamble - 04 tabularray ---------------------------------------------
 % Preamble - 05 tcolorbox ----------------------------------------------
@@ -23,6 +23,8 @@
     margin=0.6cm % for page margins
 ]
 {geometry} % for document dimensions
+
+\usepackage{nopageno} % for an empty page style on all pages
 
 \usepackage{fontspec} % for loading OpenType fonts
 \setmainfont{Source Sans 3} % successor to Source Sans Pro
@@ -48,22 +50,76 @@
 % for border spacing
 \newcommand{\borderspace}{0.3cm}
 
-% Preamble - 02 Colors -------------------------------------------------
+% Preamble - 02 xcolor -------------------------------------------------
 % ----------------------------------------------------------------------
-
-% \PassOptionsToPackage{gray}{xcolor} % for grayscale output
-
-\usepackage[
-    dvipsnames % for additional predefined colors
-]
-{xcolor} % for access to colors and for \pagecolor
+\usepackage{xcolor} % for access to colors and for \pagecolor
 % xcolor package is also loaded by tikz package
 
 % for defining colors
+\definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{blue-1}{HTML}{0F5BE0}
 \definecolor{cyan-1}{HTML}{3EFFEC}
-\definecolor{yellow-1}{HTML}{FFEC30}
 \definecolor{orange-1}{HTML}{FFA40F}
+
+% any = for Simple UI and Advanced UI
+\colorlet{any-draw}{black}
+\colorlet{anybutton-fill}{white}
+\colorlet{anyconfig-fill}{yellow-1!40}
+\colorlet{any-text}{any-draw}
+
+% advanced = for Advanced UI only
+\colorlet{advanced-draw}{any-draw}
+\colorlet{advancedbutton-fill}{anybutton-fill}
+\colorlet{advancedconfig-fill}{gray!8}
+\colorlet{advanced-text}{any-text}
+\colorlet{advancedUI-draw}{red!80}
+
+% simple = for Simple UI only
+\colorlet{simplebutton-double}{anybutton-fill}
+\colorlet{simpleUI-draw}{advancedUI-draw}
+\colorlet{simple-text}{any-text}
+
+% for Extended Simple UI
+\colorlet{extendedsimpleUI-fill}{anybutton-fill}
+
+% for On, Ramp, Off, and Lockout
+\colorlet{onoff-draw}{any-draw}
+\colorlet{onoffbutton-fill}{anybutton-fill}
+\colorlet{onoff-text}{any-text}
+
+% any... mode = for Batt Check from OFF
+\colorlet{anyconfigmode-draw}{blue-1!90}
+
+% advanced... mode = for strobe modes and blinky modes
+\colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
+
+% for basic use
+\colorlet{basicuse-draw}{any-draw}
+\colorlet{anybuttonbasicuse-fill}{cyan-1!35}
+\colorlet{basicuse-text}{any-text}
+\colorlet{fillarrow}{anybutton-fill}
+
+% for ramp image
+\colorlet{rampsmooth-topbottom}{gray}
+\colorlet{rampstepped-topbottom}{rampsmooth-topbottom}
+\colorlet{rampcombinedinside1-draw}{anyconfig-fill}
+\colorlet{rampcombinedinside2-draw}{rampsmooth-topbottom}
+
+% for further information
+\colorlet{generalinfo-draw}{rampsmooth-topbottom}
+\colorlet{generalinfo-fill}{anybutton-fill}
+\colorlet{andurilinfo-draw}{orange-1!90}
+\colorlet{andurilinfo-text}{any-text}
+
+% for voltage colors
+\colorlet{voltagebox-frame}{anybutton-fill}
+\colorlet{voltagebox-mixfill}{voltagebox-frame}
+\colorlet{voltagebox-text}{any-text}
+
+% for setting the page background color
+% \pagecolor{anybutton-fill} % default: transparent background
+
+% \PassOptionsToPackage{gray}{xcolor} % for grayscale output
 
 % Preamble - 03 tikz ---------------------------------------------------
 % ----------------------------------------------------------------------
@@ -104,6 +160,173 @@
     }
 }
 
+% any = for Simple UI and Advanced UI
+\tikzset{
+    anyline/.style={
+        draw=any-draw,
+        thin % thin = 0.4pt (default)
+    },
+    anyline ramp/.style={
+        anyline,
+        line cap=round
+    },
+    anyline momentary/.style={
+        anyline,
+        densely dashed,
+        line cap=round
+    },
+    anybutton/.style={
+        draw=any-draw,
+        thin,
+        solid,
+        fill=anybutton-fill,
+        text=any-text,
+        font=\normalsize,
+        inner sep=0.075cm,
+        rounded corners
+    },
+    anyconfig/.style={
+        draw=any-draw,
+        thin,
+        solid,
+        fill=anyconfig-fill,
+        text=any-text,
+        inner sep=0.1cm,
+        rounded corners,
+        align=left
+    }
+}
+
+% advanced = for Advanced UI only
+\tikzset{
+    advancedline/.style={
+        anyline,
+        draw=advanced-draw
+    },
+    advancedline momentary/.style={
+        advancedline,
+        densely dashed,
+        line cap=round
+    },
+    advancedbutton/.style={
+        anybutton,
+        draw=none,
+        fill=advancedbutton-fill,
+        text=advanced-text
+    },
+    advancedconfig/.style={
+        anyconfig,
+        draw=advanced-draw,
+        fill=advancedconfig-fill,
+        text=advanced-text
+    },
+    advancedfit/.style={
+        advancedconfig,
+        draw=advancedconfigmode-draw,
+        fill=none,
+        inner sep=\borderspace
+    },
+    advancedborder/.style={
+        advancedfit,
+        inner sep=0cm
+    },
+    advancedtable/.style={
+        advancedconfig
+    },
+    advancedUI/.style={
+        advancedconfig,
+        draw=advancedUI-draw,
+        very thick, % very thick = 1.2pt
+        font=\bfseries\LARGE
+    }
+}
+
+% simple = for Simple UI only
+\tikzset{
+    simpleline/.style={
+        anyline
+    },
+    simpleline momentary/.style={
+        anyline momentary
+    },
+    simplebutton/.style={
+        anybutton,
+        double=simplebutton-double % default: white (core color)
+    },
+    simpleUI/.style={
+        anyconfig,
+        draw=simpleUI-draw,
+        very thick,
+        font=\bfseries\LARGE
+    }
+}
+
+% for Extended Simple UI
+\tikzset{
+    extendedsimpleUI/.style={
+        anyconfig,
+        fill=extendedsimpleUI-fill
+    }
+}
+
+% for On, Ramp, Off, and Lockout
+\tikzset{
+    on-extra/.style={
+        draw=onoff-draw,
+        thick, % thick = 0.8pt
+        fill=onoffbutton-fill,
+        text=onoff-text,
+        font=\bfseries\normalsize,
+        inner xsep=0.375cm,
+        inner ysep=0.065cm,
+        rounded rectangle
+    },
+    onoff/.style={
+        on-extra,
+        font=\bfseries\Huge,
+        on grid
+    }
+}
+
+% any... mode = for Batt Check from OFF
+\tikzset{
+    anyconfig-mode/.style={
+        anyconfig,
+        draw=anyconfigmode-draw,
+        very thick
+    }
+}
+
+% advanced... mode = for strobe modes and blinky modes
+\tikzset{
+    advancedline-mode/.style={
+        advancedline
+    },
+    advancedbutton-mode/.style={
+        advancedbutton
+    },
+    advancedconfig-mode/.style={
+        advancedconfig,
+        draw=advancedconfigmode-draw,
+        very thick
+    }
+}
+
+% for basic use
+\tikzset{
+    anyline basic use/.style={
+        anyline
+    },
+    anybutton basic use/.style={
+        anybutton,
+        draw=basicuse-draw,
+        ultra thick, % ultra thick = 1.6pt
+        fill=anybuttonbasicuse-fill,
+        text=basicuse-text,
+        font=\bfseries
+    }
+}
+
 % for ramp image
 \tikzset{
     rampstepped/.style={
@@ -121,8 +344,8 @@
     },
     rampcombined/.style={
         rectangle,
-        draw=black,
-        thin, % thin = 0.4pt (default)
+        draw=any-draw,
+        thin,
         fill=none,
         inner sep=0cm,
         outer sep=0cm,
@@ -132,7 +355,7 @@
     },
     rampcombined inside 1/.style={
         rampcombined,
-        draw=yellow-1!40,
+        draw=rampcombinedinside1-draw,
         line width=3.2pt,
         minimum width=1.32cm+3.6pt,
         minimum height=5.4cm+3.6pt,
@@ -140,7 +363,7 @@
     },
     rampcombined inside 2/.style={
         rampcombined,
-        draw=gray,
+        draw=rampcombinedinside2-draw,
         very nearly transparent,
         minimum width=1.32cm,
         minimum height=5.4cm,
@@ -148,9 +371,9 @@
     },
     turbocombined/.style={
         rectangle,
-        draw=black,
+        draw=advanced-draw,
         thin,
-        fill=white,
+        fill=advancedbutton-fill,
         inner sep=0cm,
         outer sep=0cm,
         minimum width=1.32cm+7.2pt,
@@ -159,179 +382,18 @@
     }
 }
 
-% any = for Simple UI and Advanced UI
-\tikzset{
-    anyline/.style={
-        draw=black,
-        thin
-    },
-    anyline basic use/.style={
-        anyline
-    },
-    anyline ramp/.style={
-        anyline,
-        line cap=round
-    },
-    anyline momentary/.style={
-        anyline,
-        densely dashed,
-        line cap=round
-    },
-    anybutton/.style={
-        draw=black,
-        thin,
-        solid,
-        fill=white,
-        text=black,
-        font=\normalsize,
-        inner sep=0.075cm,
-        rounded corners
-    },
-    anybutton basic use/.style={
-        anybutton,
-        ultra thick, % ultra thick = 1.6pt
-        fill=cyan-1!35,
-        font=\bfseries
-    },
-    anyconfig/.style={
-        draw=black,
-        thin,
-        solid,
-        fill=yellow-1!40,
-        text=black,
-        inner sep=0.1cm,
-        rounded corners,
-        align=left
-    }
-}
-
-% mode = for strobe modes and blinky modes
-\tikzset{
-    anyline-mode/.style={
-        anyline
-    },
-    anybutton-mode/.style={
-        anybutton
-    },
-    anyconfig-mode/.style={
-        anyconfig,
-        draw=blue-1!90,
-        very thick % very thick = 1.2pt
-    }
-}
-
-% advanced = for Advanced UI only
-\tikzset{
-    advancedline/.style={
-        anyline
-    },
-    advancedline momentary/.style={
-        advancedline,
-        densely dashed,
-        line cap=round
-    },
-    advancedbutton/.style={
-        anybutton,
-        draw=none
-    },
-    advancedconfig/.style={
-        anyconfig,
-        fill=gray!8
-    },
-    advancedfit/.style={
-        advancedconfig,
-        draw=blue-1!90,
-        fill=none,
-        inner sep=\borderspace
-    },
-    advancedborder/.style={
-        advancedfit,
-        inner sep=0cm
-    },
-    advancedtable/.style={
-        advancedconfig
-    },
-    advancedUI/.style={
-        advancedconfig,
-        draw=red!80,
-        very thick,
-        font=\bfseries\LARGE
-    }
-}
-
-% mode = for strobe modes and blinky modes
-\tikzset{
-    advancedline-mode/.style={
-        advancedline
-    },
-    advancedbutton-mode/.style={
-        advancedbutton
-    },
-    advancedconfig-mode/.style={
-        advancedconfig,
-        draw=blue-1!90,
-        very thick
-    }
-}
-
-% simple = for Simple UI only
-\tikzset{
-    simpleline/.style={
-        anyline
-    },
-    simpleline momentary/.style={
-        anyline momentary
-    },
-    simplebutton/.style={
-        anybutton,
-        double=white % default: white (core color)
-    },
-    simpleUI/.style={
-        anyconfig,
-        draw=red!80,
-        very thick,
-        font=\bfseries\LARGE
-    }
-}
-
-% for Extended Simple UI
-\tikzset{
-    extendedsimpleUI/.style={
-        anyconfig,
-        fill=white
-    }
-}
-
-% for On, Ramp, Off, and Lockout
-\tikzset{
-    on-extra/.style={
-        draw=black,
-        thick, % thick = 0.8pt
-        fill=white,
-        text=black,
-        font=\bfseries\normalsize,
-        inner xsep=0.375cm,
-        inner ysep=0.065cm,
-        rounded rectangle
-    },
-    onoff/.style={
-        on-extra,
-        font=\bfseries\Huge,
-        on grid
-    }
-}
-
 % for further information
 \tikzset{
     generalinfo/.style={
         anyconfig,
-        draw=gray,
-        fill=white
+        draw=generalinfo-draw,
+        fill=generalinfo-fill
     },
     andurilinfo/.style={
         generalinfo,
-        draw=orange-1!90,
-        very thick
+        draw=andurilinfo-draw,
+        very thick,
+        text=andurilinfo-text
     },
     voltagecolorinfo/.style={
         generalinfo
@@ -412,11 +474,11 @@
 
 % for the left part of voltage: red
 \newtcbox{\voltageboxred}{
-    colframe=white, % initially black!75!white
+    colframe=voltagebox-frame, % initially black!75!white
     opacityframe=0, % initially 1.0
     boxrule=0cm, % initially 0.05cm
-    colback=red!25, % initially black!5!white
-    coltext=black, % initially black
+    colback=red!25!voltagebox-mixfill, % initially black!5!white
+    coltext=voltagebox-text, % initially black
     left=0.02cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
     top=0cm, % initially 0.2cm
@@ -430,11 +492,11 @@
 
 % for the middle part of voltage: yellow, green, cyan, blue
 \newtcbox{\voltagebox}[1][white]{
-    colframe=white,
+    colframe=voltagebox-frame,
     opacityframe=0,
     boxrule=0cm,
-    colback=#1!25,
-    coltext=black,
+    colback=#1!25!voltagebox-mixfill,
+    coltext=voltagebox-text,
     left=0cm,
     right=0cm,
     top=0cm,
@@ -447,11 +509,11 @@
 
 % for the right part of voltage: purple
 \newtcbox{\voltageboxpurple}{
-    colframe=white,
+    colframe=voltagebox-frame,
     opacityframe=0,
     boxrule=0cm,
-    colback=purple!25,
-    coltext=black,
+    colback=purple!25!voltagebox-mixfill,
+    coltext=voltagebox-text,
     left=0cm,
     right=0.02cm,
     top=0cm,
@@ -515,13 +577,13 @@
 % ----------------------------------------------------------------------
 
 % for infotext for Simple UI and Advanced UI (any)
-\newcommand{\infotextany}[1]{\textcolor{black}{#1}}
+\newcommand{\infotextany}[1]{\textcolor{any-text}{#1}}
 
 % for infotext for Advanced UI only
-\newcommand{\infotextadvanced}[1]{\textcolor{black}{#1}}
+\newcommand{\infotextadvanced}[1]{\textcolor{advanced-text}{#1}}
 
 % for infotext for Simple UI only
-\newcommand{\infotextsimple}[1]{\textcolor{black}{#1}}
+\newcommand{\infotextsimple}[1]{\textcolor{simple-text}{#1}}
 
 % for inherited by Simple UI
 % (Unicode character Asterisk)
@@ -556,11 +618,6 @@
 % ----------------------------------------------------------------------
 \begin{document}
 
-% \pagecolor{lightgray} % for setting the page background color
-% default: transparent background
-
-\thispagestyle{empty} % for removing the page number on this page
-
 \begin{tikzpicture}[
     remember picture, % for referencing the current page nodes
     overlay, % for referencing the current page nodes
@@ -571,8 +628,8 @@
 at (current page.center)[
     rampsmooth,
     anchor=east,
-    top color=gray!0,
-    bottom color=gray!50
+    top color=rampsmooth-topbottom!0,
+    bottom color=rampsmooth-topbottom!50
 ]
 {};
 
@@ -580,8 +637,8 @@ at (current page.center)[
     rampstepped,
     right=0cm of Ramp Smooth.south east,
     anchor=south west,
-    top color=gray!60,
-    bottom color=gray!50
+    top color=rampstepped-topbottom!60,
+    bottom color=rampstepped-topbottom!50
 ]
 {};
 
@@ -589,8 +646,8 @@ at (current page.center)[
     rampstepped,
     above=0cm of Ramp Stepped 1-2.north,
     anchor=south,
-    top color=gray!50,
-    bottom color=gray!40
+    top color=rampstepped-topbottom!50,
+    bottom color=rampstepped-topbottom!40
 ]
 {};
 
@@ -598,8 +655,8 @@ at (current page.center)[
     rampstepped,
     above=0cm of Ramp Stepped 2-3.north,
     anchor=south,
-    top color=gray!40,
-    bottom color=gray!30
+    top color=rampstepped-topbottom!40,
+    bottom color=rampstepped-topbottom!30
 ]
 {};
 
@@ -607,8 +664,8 @@ at (current page.center)[
     rampstepped,
     above=0cm of Ramp Stepped 3-4.north,
     anchor=south,
-    top color=gray!30,
-    bottom color=gray!20
+    top color=rampstepped-topbottom!30,
+    bottom color=rampstepped-topbottom!20
 ]
 {};
 
@@ -616,8 +673,8 @@ at (current page.center)[
     rampstepped,
     above=0cm of Ramp Stepped 4-5.north,
     anchor=south,
-    top color=gray!20,
-    bottom color=gray!10
+    top color=rampstepped-topbottom!20,
+    bottom color=rampstepped-topbottom!10
 ]
 {};
 
@@ -625,8 +682,8 @@ at (current page.center)[
     rampstepped,
     above=0cm of Ramp Stepped 5-6.north,
     anchor=south,
-    top color=gray!10,
-    bottom color=gray!0
+    top color=rampstepped-topbottom!10,
+    bottom color=rampstepped-topbottom!0
 ]
 {};
 
@@ -697,7 +754,7 @@ at (Ramp.south)[
 {};
 
 \draw (ON Ramp.north) edge[
-    arrows={<[open, fill=white]->},
+    arrows={<[open, fill=fillarrow]->},
     anyline basic use,
     yshift=0.15cm
 ]
@@ -885,10 +942,10 @@ node[
 \draw (Ramp.north) edge[
     {Round Cap[sep=0.7cm]}-{Round Cap[sep=2.3cm]},
     advancedline,
-    white,
+    advancedbutton-fill,
     line width=2.4pt,
     shorten >=0.2pt,
-    shorten <=0.6pt,
+    shorten <=0.7pt,
     out=40,
     in=0,
     out looseness=0.3,
@@ -900,7 +957,7 @@ node
     <->,
     advancedline,
     shorten >=0.2pt,
-    shorten <=0.6pt,
+    shorten <=0.7pt,
     out=40,
     in=0,
     out looseness=0.3,
@@ -919,8 +976,8 @@ node[
 \draw (Ramp.west) edge[
     {<[scale width=0.75]->[scale width=0.75]},
     anyline,
-    shorten >=0.4pt,
-    shorten <=0.4pt,
+    shorten >=0.5pt,
+    shorten <=0.5pt,
     bend left=37
 ]
 node[
@@ -1379,7 +1436,7 @@ at (current page text area.south)[
     postaction={
         decoration={
             text along path,
-            text={|\footnotesize\color{black}|Mode memory},
+            text={|\footnotesize\color{advanced-text}|Mode memory},
             reverse path,
             text align={left indent=1.3cm},
             raise=0.08cm
@@ -1475,8 +1532,8 @@ at (current page text area.south)[
     align=left
 ]
 {
-    \infotextany{Simple UI: voltage displayed only once}\\
-    \infotextany{Advanced UI: voltage displayed repeatedly}
+    \infotextsimple{Simple UI: voltage displayed only once}\\
+    \infotextadvanced{Advanced UI: voltage displayed repeatedly}
 };
 
 \draw (Batt Check from OFF.213) edge[
@@ -1497,7 +1554,7 @@ node[
     \draw (OFF.south) edge[
         {Round Cap[sep=3.3cm]}-{Round Cap[sep=3.1cm]},
         anyline,
-        white,
+        anybutton-fill,
         line width=2.4pt,
         out=270,
         in=120,
@@ -2567,7 +2624,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 04\\[4pt]
+    \normalsize Diagram Release 05\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
