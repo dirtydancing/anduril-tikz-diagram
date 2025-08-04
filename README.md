@@ -81,7 +81,7 @@ folder of the TEX file and run 2x:
 To crop the generated PDF file and to then convert this cropped PDF
 file to a PNG file, run:
 
-`pdfcrop --margins 3 anduril-tikz-diagram.pdf && pdftoppm -png -r 300 anduril-tikz-diagram-crop.pdf anduril-tikz-diagram`
+`pdfcrop --margins 3 anduril-tikz-diagram.pdf && pdftoppm -png -r 300 -singlefile anduril-tikz-diagram-crop.pdf anduril-tikz-diagram`
 
 ## Credits
 
