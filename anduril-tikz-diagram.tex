@@ -92,6 +92,7 @@
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
+\colorlet{advancedfit-draw}{advancedconfigmode-draw}
 
 % for basic use
 \colorlet{basicuse-draw}{any-draw}
@@ -225,16 +226,6 @@
         fill=advancedconfig-fill,
         text=advanced-text
     },
-    advancedfit/.style={
-        advancedconfig,
-        draw=advancedconfigmode-draw,
-        fill=none,
-        inner sep=\borderspace
-    },
-    advancedborder/.style={
-        advancedfit,
-        inner sep=0cm
-    },
     advancedtable/.style={
         advancedconfig
     },
@@ -314,6 +305,16 @@
         advancedconfig,
         draw=advancedconfigmode-draw,
         very thick
+    },
+    advancedfit/.style={
+        advancedconfig,
+        draw=advancedfit-draw,
+        fill=none,
+        inner sep=\borderspace
+    },
+    advancedborder/.style={
+        advancedfit,
+        inner sep=0cm
     }
 }
 
