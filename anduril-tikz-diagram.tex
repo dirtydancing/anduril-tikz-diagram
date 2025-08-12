@@ -116,6 +116,11 @@
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltagebox-text}{any-text}
 
+% for infotext
+\colorlet{infoany-text}{any-text}
+\colorlet{infoadvanced-text}{advanced-text}
+\colorlet{infosimple-text}{simple-text}
+
 % for setting the page background color
 % \pagecolor{anybutton-fill} % default: transparent background
 
@@ -577,13 +582,13 @@
 % ----------------------------------------------------------------------
 
 % for infotext for Simple UI and Advanced UI (any)
-\newcommand{\infotextany}[1]{\textcolor{any-text}{#1}}
+\newcommand{\infotextany}[1]{\textcolor{infoany-text}{#1}}
 
 % for infotext for Advanced UI only
-\newcommand{\infotextadvanced}[1]{\textcolor{advanced-text}{#1}}
+\newcommand{\infotextadvanced}[1]{\textcolor{infoadvanced-text}{#1}}
 
 % for infotext for Simple UI only
-\newcommand{\infotextsimple}[1]{\textcolor{simple-text}{#1}}
+\newcommand{\infotextsimple}[1]{\textcolor{infosimple-text}{#1}}
 
 % for inherited by Simple UI
 % (Unicode character Asterisk)
@@ -1436,7 +1441,7 @@ at (current page text area.south)[
     postaction={
         decoration={
             text along path,
-            text={|\footnotesize\color{advanced-text}|Mode memory},
+            text={|\footnotesize\color{infoadvanced-text}|Mode memory},
             reverse path,
             text align={left indent=1.3cm},
             raise=0.08cm
