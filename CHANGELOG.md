@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.06 (Date: 2025-08-14)
+
+- Adapted color options to diagram-dark
+
 ## 2025-07-07.05 (Date: 2025-08-04)
 
 - Clarified color definitions
