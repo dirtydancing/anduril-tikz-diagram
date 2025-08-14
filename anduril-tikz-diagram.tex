@@ -122,6 +122,9 @@
 \colorlet{infoadvanced-text}{advanced-text}
 \colorlet{infosimple-text}{simple-text}
 
+% for configuring Simple UI
+\colorlet{simpleUIconfig-draw}{advanced-draw}
+
 % for setting the page background color
 % \pagecolor{anybutton-fill} % default: transparent background
 
@@ -2128,6 +2131,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Simple UI Config from OFF)[
     advancedtable,
+    draw=simpleUIconfig-draw,
     right=\nodespaceh of Ramp Extras Config from ON.north east,
     anchor=north west
 ]
