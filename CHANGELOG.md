@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.07 (Date: 2025-08-20)
+
+- Adapted ramp text to diagram-dark
+
 ## 2025-07-07.06 (Date: 2025-08-14)
 
 - Adapted color options to diagram-dark
