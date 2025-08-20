@@ -109,6 +109,9 @@
 \colorlet{rampcombinedinside1-draw}{anyconfig-fill}
 \colorlet{rampcombinedinside2-draw}{rampsmooth-topbottom}
 
+% for ramp text Memory, Ceiling, and Floor
+\colorlet{ramptextconfig-fill}{anyconfig-fill}
+
 % for further information
 \colorlet{generalinfo-draw}{rampsmooth-topbottom}
 \colorlet{generalinfo-fill}{anybutton-fill}
@@ -390,6 +393,17 @@
         minimum width=1.32cm+7.2pt,
         minimum height=1.2cm,
         rounded corners=0.25pt
+    }
+}
+
+% for ramp text Memory, Ceiling, and Floor
+\tikzset{
+    ramptextconfig/.style={
+        anyconfig,
+        draw=none,
+        fill=none,
+        % with fill color: fill=ramptextconfig-fill,
+        inner sep=0.05cm
     }
 }
 
@@ -723,25 +737,27 @@ at (Ramp.center)[
 ]
 {ON};
 
-\node (Ramp Memory)
+\node (Ramp text Memory)
 at (ON Ramp.south)[
-    below
+    ramptextconfig,
+    below=0.05cm
 ]
 {\oneline{\infotextany{Memory}}};
 
-\node (Ramp Ceiling)
+\node (Ramp text Ceiling)
 at (Ramp.north)[
-    below,
-    yshift=-3.2pt % -3.2pt for Ramp inside 1
+    ramptextconfig,
+    below=0.05cm+3.2pt % +3.2pt for Ramp inside 1
 ]
 {\oneline{\infotextany{Ceiling}}};
 
-\node (Ramp Floor)
+\node (Ramp text Floor)
 at (Ramp.south)[
-    above,
-    yshift=3.2pt % +3.2pt for Ramp inside 1
+    ramptextconfig,
+    above=3.2pt % +3.2pt for Ramp inside 1
+    % with fill color: above=0.05cm+3.2pt
 ]
-{\oneline{\infotextany{Floor}}};
+{\oneline{\infotextany{Floor\vphantom{y}}}};
 
 \node (Ramp Style Smooth)[
     below right=0.05cm and 0.36cm of Ramp.south west,
@@ -767,11 +783,12 @@ at (Ramp.south)[
 \draw (ON Ramp.north) edge[
     arrows={<[open, fill=fillarrow]->},
     anyline basic use,
-    yshift=0.15cm
+    shorten >=0.05cm,
+    shorten <=0.15cm
 ]
 node[
     anybutton basic use,
-    pos=0.5,
+    pos=0.53,
     label={ [align=left, xshift=0.53cm] right:
         \infotextany{Ramp up}\\
         \infotextany{(floor\textendash{}ceiling),}\\
@@ -781,22 +798,25 @@ node[
         \infotextany{within 1s}
     }
 ]
-{1H} (Ramp Ceiling.south);
+{1H} (Ramp text Ceiling.south);
 
-\draw (Ramp Memory.south) edge[
+\draw (Ramp text Memory.south) edge[
     arrows={->},
-    anyline ramp
+    anyline ramp,
+    shorten >=0.05cm,
+    shorten <=0.05cm
 ]
 node[
     anybutton,
     pos=0.42,
+    % with fill color: pos=0.44,
     label={ [align=left, xshift=0.53cm+0.8pt] right:
     % +0.8pt for vertical alignment
         \infotextany{Ramp down}\\
         \infotextany{(ceiling\textendash{}floor)}
     }
 ]
-{2H} (Ramp Floor.north);
+{2H} (Ramp text Floor.north);
 
 % Turbo
 { [on background layer]
@@ -2636,7 +2656,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 06\\[4pt]
+    \normalsize Diagram Release 07\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
