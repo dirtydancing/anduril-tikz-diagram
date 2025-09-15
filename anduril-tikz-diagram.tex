@@ -644,6 +644,7 @@
     font=\footnotesize
 ]
 
+% Smooth Ramp
 \node (Ramp Smooth)
 at (current page.center)[
     rampsmooth,
@@ -653,7 +654,9 @@ at (current page.center)[
 ]
 {};
 
+% Stepped Ramp (number of steps: 7)
 \node (Ramp Stepped 1-2)[
+    alias=stepped-step,
     rampstepped,
     right=0cm of Ramp Smooth.south east,
     anchor=south west,
@@ -662,51 +665,22 @@ at (current page.center)[
 ]
 {};
 
-\node (Ramp Stepped 2-3)[
+\foreach \x/\y/\z[
+    evaluate=\y as \ytop using \y*10,
+    evaluate=\z as \zbottom using \z*10
+]
+in {2-3/5/4, 3-4/4/3, 4-5/3/2, 5-6/2/1, 6-7/1/0}
+\node (Ramp Stepped \x)[
+    alias=stepped-step,
     rampstepped,
-    above=0cm of Ramp Stepped 1-2.north,
+    above=0cm of stepped-step,
     anchor=south,
-    top color=rampstepped-topbottom!50,
-    bottom color=rampstepped-topbottom!40
+    top color=rampstepped-topbottom!\ytop,
+    bottom color=rampstepped-topbottom!\zbottom
 ]
 {};
 
-\node (Ramp Stepped 3-4)[
-    rampstepped,
-    above=0cm of Ramp Stepped 2-3.north,
-    anchor=south,
-    top color=rampstepped-topbottom!40,
-    bottom color=rampstepped-topbottom!30
-]
-{};
-
-\node (Ramp Stepped 4-5)[
-    rampstepped,
-    above=0cm of Ramp Stepped 3-4.north,
-    anchor=south,
-    top color=rampstepped-topbottom!30,
-    bottom color=rampstepped-topbottom!20
-]
-{};
-
-\node (Ramp Stepped 5-6)[
-    rampstepped,
-    above=0cm of Ramp Stepped 4-5.north,
-    anchor=south,
-    top color=rampstepped-topbottom!20,
-    bottom color=rampstepped-topbottom!10
-]
-{};
-
-\node (Ramp Stepped 6-7)[
-    rampstepped,
-    above=0cm of Ramp Stepped 5-6.north,
-    anchor=south,
-    top color=rampstepped-topbottom!10,
-    bottom color=rampstepped-topbottom!0
-]
-{};
-
+% Further ramp elements
 \node (Ramp inside 1)
 at (current page.center)[
     rampcombined inside 1
