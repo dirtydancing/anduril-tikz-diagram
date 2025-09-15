@@ -780,7 +780,7 @@ at (Ramp.south)[
 ]
 {};
 
-\draw (ON Ramp.north) edge[
+\path (ON Ramp.north) edge[
     arrows={<[open, fill=fillarrow]->},
     anyline basic use,
     shorten >=0.05cm,
@@ -800,7 +800,7 @@ node[
 ]
 {1H} (Ramp text Ceiling.south);
 
-\draw (Ramp text Memory.south) edge[
+\path (Ramp text Memory.south) edge[
     arrows={->},
     anyline ramp,
     shorten >=0.05cm,
@@ -875,7 +875,7 @@ at (Turbo.north)[
 ]
 {ON};
 
-\draw (Toggle Ramp Style extra node ON.east) edge[
+\path (Toggle Ramp Style extra node ON.east) edge[
     ->,
     advancedline,
     out=0,
@@ -893,7 +893,7 @@ node[
 ]
 {6C}(Toggle Ramp Style from ON.south);
 
-\draw (Toggle Ramp Style from ON.north) edge[
+\path (Toggle Ramp Style from ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -903,7 +903,7 @@ node[
 ]
 (Ramp Styles fit.335);
 
-\draw (Toggle Ramp Style from ON.north) edge[
+\path (Toggle Ramp Style from ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -923,7 +923,7 @@ node[
     {OFF};
 }
 
-\draw (OFF.north) edge[
+\path (OFF.north) edge[
     ->,
     advancedline momentary,
     shorten >=0.2pt,
@@ -938,7 +938,7 @@ node[
 {2H} (Turbo.north west);
 
 { [on above layer]
-    \draw (OFF.north) edge[
+    \path (OFF.north) edge[
         ->,
         anyline,
         shorten >=0.2pt,
@@ -954,7 +954,7 @@ node[
     (Ramp.north west);
 }
 
-\draw (OFF.north east) edge[
+\path (OFF.north east) edge[
     -, % no extra arrow tip
     simpleline momentary,
     shorten >=2.5pt,
@@ -970,7 +970,7 @@ node[
 {2H} (Ramp.north west);
 
 % Advanced UI: Anduril 2 turbo style
-\draw (Ramp.north) edge[
+\path (Ramp.north) edge[
     {Round Cap[sep=0.7cm]}-{Round Cap[sep=2.3cm]},
     advancedline,
     advancedbutton-fill,
@@ -984,7 +984,7 @@ node[
 ]
 node
 {} (Turbo.north east);
-\draw (Ramp.north) edge[
+\path (Ramp.north) edge[
     <->,
     advancedline,
     shorten >=0.2pt,
@@ -1004,7 +1004,7 @@ node[
 ]
 {2C} (Turbo.north east);
 
-\draw (Ramp.west) edge[
+\path (Ramp.west) edge[
     {<[scale width=0.75]->[scale width=0.75]},
     anyline,
     shorten >=0.5pt,
@@ -1018,7 +1018,7 @@ node[
 {2C} (Ramp.north west);
 
 { [on above layer]
-    \draw (OFF.south) edge[
+    \path (OFF.south) edge[
         ->,
         anyline,
         shorten >=0.2pt,
@@ -1033,7 +1033,7 @@ node[
     {1H} (Ramp.south west);
 }
 
-\draw (OFF.east) edge[
+\path (OFF.east) edge[
     <->,
     anyline basic use,
     shorten >=0.2pt
@@ -1055,7 +1055,7 @@ node[
 }
 
 { [on above layer]
-    \draw (Lockout.north) edge[
+    \path (Lockout.north) edge[
         ->,
         anyline,
         shorten >=0.2pt,
@@ -1070,7 +1070,7 @@ node[
     {5C} (Ramp.north east);
 }
 
-\draw (Lockout.south) edge[
+\path (Lockout.south) edge[
     ->,
     anyline,
     shorten >=0.2pt,
@@ -1084,7 +1084,7 @@ node[
 ]
 {4H} (Ramp.south east);
 
-\draw (Lockout.west) edge[
+\path (Lockout.west) edge[
     <->,
     anyline,
     shorten >=0.2pt
@@ -1105,7 +1105,7 @@ node[
     {ON};
 }
 
-\draw (ON.east) edge[
+\path (ON.east) edge[
     <->,
     anyline
 ]
@@ -1125,7 +1125,7 @@ node[
     {OFF};
 }
 
-\draw (Lockout.east) edge[
+\path (Lockout.east) edge[
     <->,
     anyline
 ]
@@ -1152,7 +1152,7 @@ node (OFF right to Lockout)[
 ]
 {};
 
-\draw (Lockout to OFF right arrow.south west) edge[
+\path (Lockout to OFF right arrow.south west) edge[
     ->,
     anyline,
     line cap=round
@@ -1173,7 +1173,7 @@ node[
 ]
 {};
 
-\draw (OFF right to Lockout arrow.south east) edge[
+\path (OFF right to Lockout arrow.south east) edge[
     ->,
     anyline,
     line cap=round
@@ -1189,7 +1189,7 @@ node[
 ]
 {ON};
 
-\draw (OFF right extra node ON.east) edge[
+\path (OFF right extra node ON.east) edge[
     <->,
     anyline,
     out=0,
@@ -1214,7 +1214,7 @@ node[
     Exit: disconnect power
 };
 
-\draw (OFF.south) edge[
+\path (OFF.south) edge[
     ->,
     advancedline,
     out=270,
@@ -1227,7 +1227,7 @@ node[
 ]
 {5C} (Momentary Mode from OFF ON.east);
 
-\draw (ON.south) edge[
+\path (ON.south) edge[
     ->,
     advancedline,
     out=270,
@@ -1261,7 +1261,7 @@ at (current page text area.south west)[
 ]
 {\oneline{Police Strobe}};
 
-\draw (Police Strobe from Tactical Strobe.north) edge[
+\path (Police Strobe from Tactical Strobe.north) edge[
     ->,
     advancedline-mode,
     out=90,
@@ -1282,7 +1282,7 @@ node[
 ]
 {\oneline{Tactical Strobe}};
 
-\draw (Tactical Strobe from Party Strobe.north) edge[
+\path (Tactical Strobe from Party Strobe.north) edge[
     ->,
     advancedline-mode,
     out=90,
@@ -1303,7 +1303,7 @@ node[
 ]
 {\oneline{Party Strobe}};
 
-\draw (Party Strobe from Bike Flasher.north) edge[
+\path (Party Strobe from Bike Flasher.north) edge[
     ->,
     advancedline-mode,
     out=90,
@@ -1325,7 +1325,7 @@ node[
 ]
 {\oneline{Candle}};
 
-\draw (Lightning Storm from Police Strobe.east) edge[
+\path (Lightning Storm from Police Strobe.east) edge[
     ->,
     advancedline-mode,
     out=0,
@@ -1349,7 +1349,7 @@ node[
     1 blink = 5 minutes
 };
 
-\draw (Candle from OFF.north west) edge[
+\path (Candle from OFF.north west) edge[
     ->,
     advancedline,
     shorten <=-1.9pt,
@@ -1371,7 +1371,7 @@ node[
 ]
 {\oneline{Bike Flasher}};
 
-\draw (Candle from OFF.south) edge[
+\path (Candle from OFF.south) edge[
     ->,
     advancedline-mode,
     out=270,
@@ -1384,7 +1384,7 @@ node[
 ]
 {2C} (Bike Flasher from Candle.north);
 
-\draw (Bike Flasher from Candle.west) edge[
+\path (Bike Flasher from Candle.west) edge[
     ->,
     advancedline-mode,
     out=180,
@@ -1449,7 +1449,7 @@ at (current page text area.south)[
     \infotextadvanced{1C = Off}
 };
 
-\draw[
+\path[
     -,
     advancedline
 ]
@@ -1481,7 +1481,7 @@ node[
 ]
 {3H} (Strobe Modes fit.47);
 
-\draw (Strobe Modes fit.77) edge[
+\path (Strobe Modes fit.77) edge[
     ->,
     advancedline,
     out=80,
@@ -1516,7 +1516,7 @@ node[
     + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 
 { [on background layer]
-    \draw[
+    \path[
         advancedborder
     ]
     (Strobe Modes border 1)
@@ -1567,7 +1567,7 @@ at (current page text area.south)[
     \infotextadvanced{Advanced UI: voltage displayed repeatedly}
 };
 
-\draw (Batt Check from OFF.213) edge[
+\path (Batt Check from OFF.213) edge[
     ->,
     advancedline,
     shorten >=-1.8pt,
@@ -1582,7 +1582,7 @@ node[
 {3C} (Next Channel Mode from Batt Check.north west);
 
 { [on above layer]
-    \draw (OFF.south) edge[
+    \path (OFF.south) edge[
         {Round Cap[sep=3.3cm]}-{Round Cap[sep=3.1cm]},
         anyline,
         anybutton-fill,
@@ -1593,7 +1593,7 @@ node[
     ]
     node
     {} (Batt Check from OFF.north);
-    \draw (OFF.south) edge[
+    \path (OFF.south) edge[
         ->,
         anyline,
         out=270,
@@ -1643,7 +1643,7 @@ node[
     };
 }
 
-\draw (Batt Check from OFF.west) edge[
+\path (Batt Check from OFF.west) edge[
     ->,
     advancedline,
     out=180,
@@ -1664,7 +1664,7 @@ node[
 ]
 {\oneline{Temp Check}};
 
-\draw (Batt Check from OFF.east) edge[
+\path (Batt Check from OFF.east) edge[
     ->,
     advancedline-mode,
     out=0,
@@ -1695,7 +1695,7 @@ node[
     \end{configtblr}
 };
 
-\draw (Temp Check from Batt Check.east) edge[
+\path (Temp Check from Batt Check.east) edge[
     ->,
     advancedline,
     out=0,
@@ -1716,7 +1716,7 @@ node[
 ]
 {\oneline{Beacon}};
 
-\draw (Temp Check from Batt Check.south) edge[
+\path (Temp Check from Batt Check.south) edge[
     ->,
     advancedline-mode,
     out=270,
@@ -1740,7 +1740,7 @@ node[
     1 blink = 1 second pause
 };
 
-\draw (Beacon from Temp Check.east) edge[
+\path (Beacon from Temp Check.east) edge[
     ->,
     advancedline,
     out=0,
@@ -1761,7 +1761,7 @@ node[
 ]
 {\oneline{SOS}};
 
-\draw (Beacon from Temp Check.west) edge[
+\path (Beacon from Temp Check.west) edge[
     ->,
     advancedline-mode,
     out=180,
@@ -1774,7 +1774,7 @@ node[
 ]
 {2C} (SOS from Beacon.east);
 
-\draw (SOS from Beacon.north) edge[
+\path (SOS from Beacon.north) edge[
     ->,
     advancedline-mode,
     out=90,
@@ -1839,7 +1839,7 @@ node[
     + (-\borderspace, \borderspace)$);
 
 { [on background layer]
-    \draw[
+    \path[
         advancedborder
     ]
     (Blinky Modes border 1)
@@ -1861,7 +1861,7 @@ at (current page text area.west)[
 {\oneline{Next Channel Mode}};
 
 { [on above layer]
-    \draw (ON.west) edge[
+    \path (ON.west) edge[
         ->,
         anyline,
         out=180,
@@ -1887,7 +1887,7 @@ at (current page text area.west)[
 };
 
 { [on above layer]
-    \draw (ON.west) edge[
+    \path (ON.west) edge[
         ->,
         anyline,
         out=180,
@@ -1912,7 +1912,7 @@ at (current page text area.west)[
     If no tint ramping
 };
 
-\draw (ON.west) edge[
+\path (ON.west) edge[
     ->,
     advancedline momentary,
     out=180,
@@ -1936,7 +1936,7 @@ node[
     On multi-channel lights
 };
 
-\draw (ON.west) edge[
+\path (ON.west) edge[
     ->,
     advancedline momentary,
     out=180,
@@ -1960,7 +1960,7 @@ node[
     1 blink = 5 minutes
 };
 
-\draw (ON.north) edge[
+\path (ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2001,7 +2001,7 @@ at (current page text area.north west)[
     \end{configtblr}
 };
 
-\draw[
+\path[
     ->,
     advancedline
 ]
@@ -2054,7 +2054,7 @@ node[
     \end{configtblr}
 };
 
-\draw (ON.north) edge[
+\path (ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2110,7 +2110,7 @@ node[
     \end{configtblr}
 };
 
-\draw (ON.north) edge[
+\path (ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2136,7 +2136,7 @@ node[
     current channel mode\vphantom{y}
 };
 
-\draw (ON.north) edge[
+\path (ON.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2173,7 +2173,7 @@ node[
     \end{configtblr}
 };
 
-\draw (OFF.north) edge[
+\path (OFF.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2213,7 +2213,7 @@ node[
     \end{configtblr}
 };
 
-\draw (OFF.north) edge[
+\path (OFF.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2239,7 +2239,7 @@ node[
     smooth vs stepped
 };
 
-\draw (Lockout.south) edge[
+\path (Lockout.south) edge[
     ->,
     anyline momentary,
     out=270,
@@ -2265,7 +2265,7 @@ node[
     manual memory if set
 };
 
-\draw (Lockout.south) edge[
+\path (Lockout.south) edge[
     ->,
     anyline momentary,
     out=270,
@@ -2286,7 +2286,7 @@ node[
 ]
 {\oneline{Next Channel Mode}};
 
-\draw (Lockout.south) edge[
+\path (Lockout.south) edge[
     ->,
     anyline,
     out=270,
@@ -2317,7 +2317,7 @@ node[
     };
 }
 
-\draw (OFF right.north) edge[
+\path (OFF right.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2341,7 +2341,7 @@ node[
     Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
 };
 
-\draw (OFF right.north) edge[
+\path (OFF right.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2372,7 +2372,7 @@ node[
     };
 }
 
-\draw (Lockout.north) edge[
+\path (Lockout.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2396,7 +2396,7 @@ node[
     Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
 };
 
-\draw (Lockout.north) edge[
+\path (Lockout.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2421,7 +2421,7 @@ node[
     nC = n minutes
 };
 
-\draw (Lockout.north) edge[
+\path (Lockout.north) edge[
     ->,
     advancedline,
     out=90,
@@ -2472,7 +2472,7 @@ node[
     3H = Tactical Slot 3 (strobe)
 };
 
-\draw (Tactical Mode from OFF right.south) edge[
+\path (Tactical Mode from OFF right.south) edge[
     ->,
     advancedline,
     out=270,
@@ -2485,7 +2485,7 @@ node[
 ]
 {7H} (Tactical Mode Config.north);
 
-\draw (OFF right.south) edge[
+\path (OFF right.south) edge[
     -{<[sep=1.75cm]>},
     advancedline,
     out=270,
@@ -2529,7 +2529,7 @@ at (current page text area.south east)[
     after each factory reset.
 };
 
-\draw (OFF right.south) edge[
+\path (OFF right.south) edge[
     ->,
     anyline,
     out=270,
@@ -2562,7 +2562,7 @@ node[
     may be omitted.
 };
 
-\draw (OFF right.south) edge[
+\path (OFF right.south) edge[
     ->,
     anyline,
     out=270,
@@ -2587,7 +2587,7 @@ at (current page text area.east)[
 {Advanced UI};
 
 { [on above layer]
-    \draw (OFF right.east) edge[
+    \path (OFF right.east) edge[
         ->,
         simpleline,
         out=0,
@@ -2610,7 +2610,7 @@ at (current page text area.east)[
 ]
 {Simple UI};
 
-\draw (OFF right.east) edge[
+\path (OFF right.east) edge[
     ->,
     advancedline,
     out=0,
@@ -2724,7 +2724,7 @@ at (current page text area.north east)[
     \textcolor{inherited-text}{Inherited by Simple UI}\\
 };
 
-\draw (Legend-1-1.west) edge[
+\path (Legend-1-1.west) edge[
     -,
     anyline basic use legend,
     out=0,
@@ -2736,7 +2736,7 @@ node[
 ]
 {\footnotesize 1C} (Legend-1-1.east);
 
-\draw (Legend-2-1.west) edge[
+\path (Legend-2-1.west) edge[
     -,
     anyline legend,
     out=0,
@@ -2748,7 +2748,7 @@ node[
 ]
 {\footnotesize 1C} (Legend-2-1.east);
 
-\draw (Legend-3-1.west) edge[
+\path (Legend-3-1.west) edge[
     -,
     simpleline legend,
     out=0,
@@ -2760,7 +2760,7 @@ node[
 ]
 {\footnotesize 1C} (Legend-3-1.east);
 
-\draw (Legend-4-1.west) edge[
+\path (Legend-4-1.west) edge[
     -,
     advancedline legend,
     out=0,
@@ -2772,7 +2772,7 @@ node[
 ]
 {\footnotesize 1C} (Legend-4-1.east);
 
-\draw (Legend-5-1.west) edge[
+\path (Legend-5-1.west) edge[
     -,
     anyline legend,
     out=0,
@@ -2780,7 +2780,7 @@ node[
 ]
 (Legend-5-1.east);
 
-\draw (Legend-6-1.west) edge[
+\path (Legend-6-1.west) edge[
     -,
     anyline momentary legend,
     out=0,
