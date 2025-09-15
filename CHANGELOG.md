@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.08 (Date: 2025-09-15)
+
+- Emphasized aux LED channels
+- Replaced pdftoppm with pdftocairo for PNG
+
 ## 2025-07-07.07 (Date: 2025-08-20)
 
 - Adapted ramp text to diagram-dark
