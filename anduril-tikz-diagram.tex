@@ -123,6 +123,11 @@
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltagebox-text}{any-text}
 
+% for aux LED channels colors (channel mode config)
+\colorlet{auxledchannelsbox-frame}{voltagebox-frame}
+\colorlet{auxledchannelsbox-mixfill}{voltagebox-mixfill}
+\colorlet{auxledchannelsbox-text}{voltagebox-text}
+
 % for infotext
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
@@ -492,6 +497,8 @@
 % ----------------------------------------------------------------------
 \usepackage{tcolorbox} % for colored and framed text boxes
 
+\tcbuselibrary{skins} % for additional styles (skins)
+
 % for the left part of voltage: red
 \newtcbox{\voltageboxred}{
     colframe=voltagebox-frame, % initially black!75!white
@@ -591,6 +598,28 @@
         \vphantom{Post-Off Voltage Display}}%
     \voltageboxpurple{play%
         \vphantom{Post-Off Voltage Display}}%
+}
+
+% for aux LED channels (channel mode config)
+\newtcbox{\auxledchannelsbox}{
+    colframe=auxledchannelsbox-frame,
+    opacityframe=0,
+    boxrule=0cm,
+    skin=enhanced, % for interior style
+    interior style={
+        left color=red!25!auxledchannelsbox-mixfill,
+        right color=green!30!auxledchannelsbox-mixfill,
+        middle color=yellow!25!auxledchannelsbox-mixfill,
+    },
+    coltext=auxledchannelsbox-text,
+    left=0cm,
+    right=0cm,
+    top=0cm,
+    bottom=0cm,
+    boxsep=0cm,
+    arc=0.05cm,
+    box align=base,
+    nobeforeafter
 }
 
 % Preamble - 06 Misc ---------------------------------------------------
@@ -2000,7 +2029,7 @@ node[
         3  & 50/50\\
         4  & Tint Ramp\\
         5  & Auto-tint\\
-        6+ & Aux LED Channels\\
+        6+ & \auxledchannelsbox{Aux LED Channels\vphantom{y}}\\
     \end{configtblr}
 };
 
@@ -2606,7 +2635,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 07\\[4pt]
+    \normalsize Diagram Release 08\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
