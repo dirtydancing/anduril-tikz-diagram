@@ -95,7 +95,7 @@
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
-\colorlet{advancedfit-draw}{advancedconfigmode-draw}
+\colorlet{advancedbordermode-draw}{advancedconfigmode-draw}
 
 % for basic use
 \colorlet{basicuse-draw}{any-draw}
@@ -314,15 +314,10 @@
         draw=advancedconfigmode-draw,
         very thick
     },
-    advancedfit/.style={
+    advancedborder-mode/.style={
         advancedconfig,
-        draw=advancedfit-draw,
-        fill=none,
-        inner sep=\borderspace
-    },
-    advancedborder/.style={
-        advancedfit,
-        inner sep=0cm
+        draw=advancedbordermode-draw,
+        fill=none
     }
 }
 
@@ -1417,27 +1412,47 @@ at (current page text area.south)[
     4C = Previous strobe mode\vphantom{y}
 };
 
-% Strobe Modes fit
+% Strobe Modes border
+
+% +0.2pt: 1/2 line thickness for outer alignment
+\coordinate (Strobe Modes border 1) at
+    ($(Candle Timer.north east)
+    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
+\coordinate (Strobe Modes border 2) at
+    ($(Strobe Modes Actions.south east)
+    + (\borderspace + 0.2pt, -\borderspace + 0.2pt)$);
+    % xshift=0.2pt, yshift=0.2pt
+\coordinate (Strobe Modes border 3) at
+    ($(Lightning Storm from Police Strobe.north west)
+    + (-\borderspace + 0.2pt, 0cm)$); % xshift=0.2pt
+\coordinate (Strobe Modes border 4) at
+    ($(Candle Timer.north west)
+    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
+
 { [on background layer]
-    \node (Strobe Modes fit)[
-        advancedfit,
-        draw=none, % Strobe Modes fit replaced with border
-        xshift=0.2pt, % 1/2 line thickness for outer alignment
-        yshift=0.2pt, % 1/2 line thickness for outer alignment
-        fit=(Candle from OFF)
-        (Candle Timer)
-        (Bike Flasher from Candle)
-        (Party Strobe from Bike Flasher)
-        (Tactical Strobe from Party Strobe)
-        (Police Strobe from Tactical Strobe)
-        (Lightning Storm from Police Strobe)
-        (Strobe Modes Actions)
+    \path[
+        advancedborder-mode
     ]
-    {};
+    (Strobe Modes border 1)
+    -| (Strobe Modes border 2)
+    -| (Strobe Modes border 3)
+    |- (Strobe Modes border 4)
+    -- cycle;
 }
 
-\node (Strobe Modes fit title)[
-    below=0cm of Strobe Modes fit.north east,
+% +0.2pt: 1/2 line thickness for outer alignment
+\coordinate (Strobe Modes border north-east) at
+    ({$(Strobe Modes border 1) + (0cm, 0.2pt)$}
+    -| {$(Strobe Modes border 2) + (0.2pt, 0cm)$});
+
+\coordinate (Strobe Modes border mode-memory) at
+    ($(Strobe Modes border north-east) + (-0.327cm, 0cm)$);
+
+\coordinate (Strobe Modes border momentary-strobe) at
+    ($(Strobe Modes border north-east) + (-2.475cm, 0cm)$);
+
+\node (Strobe Modes border title)[
+    below=0cm of Strobe Modes border north-east,
     anchor=north east,
     inner xsep=0.15cm,
     inner ysep=0.1cm,
@@ -1479,9 +1494,9 @@ node[
     advancedbutton,
     pos=0
 ]
-{3H} (Strobe Modes fit.47);
+{3H} (Strobe Modes border mode-memory);
 
-\path (Strobe Modes fit.77) edge[
+\path (Strobe Modes border momentary-strobe) edge[
     ->,
     advancedline,
     out=80,
@@ -1497,34 +1512,6 @@ node[
    }
 ]
 {5C}(Momentary Mode from OFF ON.191);
-
-% Strobe Modes border
-
-% +0.2pt: 1/2 line thickness for outer alignment
-\coordinate (Strobe Modes border 1) at
-    ($(Candle Timer.north east)
-    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
-\coordinate (Strobe Modes border 2) at
-    ($(Strobe Modes Actions.south east)
-    + (\borderspace + 0.2pt, -\borderspace + 0.2pt)$);
-    % xshift=0.2pt, yshift=0.2pt
-\coordinate (Strobe Modes border 3) at
-    ($(Lightning Storm from Police Strobe.north west)
-    + (-\borderspace + 0.2pt, 0cm)$); % xshift=0.2pt
-\coordinate (Strobe Modes border 4) at
-    ($(Candle Timer.north west)
-    + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
-
-{ [on background layer]
-    \path[
-        advancedborder
-    ]
-    (Strobe Modes border 1)
-    -| (Strobe Modes border 2)
-    -| (Strobe Modes border 3)
-    |- (Strobe Modes border 4)
-    -- cycle;
-}
 
 % 08 Blinky / Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
@@ -1787,38 +1774,6 @@ node[
 ]
 {2C} (Batt Check from OFF.south);
 
-% Blinky Modes fit
-{ [on background layer]
-    \node (Blinky Modes fit)[
-        advancedfit,
-        draw=none, % Blinky Modes fit replaced with border
-        yshift=0.2pt, % 1/2 line thickness for outer alignment
-        fit=(Batt Check from OFF)
-        (Batt Check Simple Advanced)
-        % (Voltage Config from Batt Check)
-        (Next Channel Mode from Batt Check)
-        (Temp Check from Batt Check)
-        (Temp Check Thermal Config)
-        (Beacon from Temp Check)
-        (Beacon Speed)
-        (SOS from Beacon)
-    ]
-    {};
-}
-
-\node (Blinky Modes fit title)[
-    below=0cm of Blinky Modes fit.north east,
-    anchor=north east,
-    inner xsep=0.15cm,
-    inner ysep=0.1cm,
-    align=right
-]
-{
-    \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
-    \spacingv
-    \infotextadvanced{1C = Off}
-};
-
 % Blinky Modes border
 
 % +0.2pt: 1/2 line thickness for outer alignment
@@ -1840,7 +1795,7 @@ node[
 
 { [on background layer]
     \path[
-        advancedborder
+        advancedborder-mode
     ]
     (Blinky Modes border 1)
     -- (Blinky Modes border 2)
@@ -1849,6 +1804,27 @@ node[
     -- (Blinky Modes border 5)
     -- cycle;
 }
+
+% +/-0.2pt: 1/2 line thickness for outer alignment
+\coordinate (Blinky Modes border north-east) at
+    ({$(Blinky Modes border 2) + (0cm, 0.2pt)$}
+    -| {$(Blinky Modes border 3) + (0.2pt, 0cm)$});
+\coordinate (Blinky Modes border south-east) at
+    ({$(Blinky Modes border 4) + (0cm, -0.2pt)$}
+    -| {$(Blinky Modes border 3) + (0.2pt, 0cm)$});
+
+\node (Blinky Modes border title)[
+    below=0cm of Blinky Modes border north-east,
+    anchor=north east,
+    inner xsep=0.15cm,
+    inner ysep=0.1cm,
+    align=right
+]
+{
+    \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
+    \spacingv
+    \infotextadvanced{1C = Off}
+};
 
 % 09 Next Channel Mode from ON -----------------------------------------
 % ----------------------------------------------------------------------
@@ -2440,7 +2416,7 @@ node[
 % Tactical Mode Config
 \node (Tactical Mode Config)[
     advancedtable,
-    right=0.9cm of Blinky Modes fit.south east,
+    right=0.9cm of Blinky Modes border south-east,
     anchor=south west
 ]
 {
