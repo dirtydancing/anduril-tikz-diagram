@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.09 (Date: 2025-09-18)
+
+- Adapted use of colors to diagram-dark
+
 ## 2025-07-07.08 (Date: 2025-09-15)
 
 - Emphasized aux LED channels
