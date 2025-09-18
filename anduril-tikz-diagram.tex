@@ -60,8 +60,6 @@
 
 % for defining colors
 \definecolor{yellow-1}{HTML}{FFEC30}
-\definecolor{blue-1}{HTML}{0F5BE0}
-\definecolor{cyan-1}{HTML}{3EFFEC}
 \definecolor{orange-1}{HTML}{FFA40F}
 
 % any = for Simple UI and Advanced UI
@@ -75,7 +73,7 @@
 \colorlet{advancedbutton-fill}{anybutton-fill}
 \colorlet{advancedconfig-fill}{gray!8}
 \colorlet{advanced-text}{any-text}
-\colorlet{advancedUI-draw}{red!80}
+\colorlet{advancedUI-draw}{any-draw}
 
 % simple = for Simple UI only
 \colorlet{simplebutton-double}{anybutton-fill}
@@ -91,20 +89,20 @@
 \colorlet{onoff-text}{any-text}
 
 % any... mode = for Batt Check from OFF
-\colorlet{anyconfigmode-draw}{blue-1!90}
+\colorlet{anyconfigmode-draw}{orange-1}
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
-\colorlet{advancedbordermode-draw}{advancedconfigmode-draw}
+\colorlet{advancedbordermode-draw}{gray!60}
 
 % for basic use
 \colorlet{basicuse-draw}{any-draw}
-\colorlet{anybuttonbasicuse-fill}{cyan-1!35}
+\colorlet{anybuttonbasicuse-fill}{orange-1!25}
 \colorlet{basicuse-text}{any-text}
 \colorlet{fillarrow}{anybutton-fill}
 
 % for ramp image
-\colorlet{rampsmooth-topbottom}{gray}
+\colorlet{rampsmooth-topbottom}{black!40}
 \colorlet{rampstepped-topbottom}{rampsmooth-topbottom}
 \colorlet{rampcombinedinside1-draw}{anyconfig-fill}
 \colorlet{rampcombinedinside2-draw}{rampsmooth-topbottom}
@@ -113,9 +111,9 @@
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
 
 % for further information
-\colorlet{generalinfo-draw}{rampsmooth-topbottom}
+\colorlet{generalinfo-draw}{advancedbordermode-draw}
 \colorlet{generalinfo-fill}{anybutton-fill}
-\colorlet{andurilinfo-draw}{orange-1!90}
+\colorlet{andurilinfo-draw}{anyconfigmode-draw}
 \colorlet{andurilinfo-text}{any-text}
 
 % for voltage colors
@@ -134,7 +132,7 @@
 \colorlet{infosimple-text}{simple-text}
 
 % for configuring Simple UI
-\colorlet{simpleUIconfig-draw}{advanced-draw}
+\colorlet{simpleUIconfig-draw}{anyconfigmode-draw}
 \colorlet{inherited-text}{advanced-text}
 
 % for setting the page background color
@@ -2635,7 +2633,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 08\\[4pt]
+    \normalsize Diagram Release 09\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
