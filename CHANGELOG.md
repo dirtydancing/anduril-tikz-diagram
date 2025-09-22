@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.10 (Date: 2025-09-22)
+
+- Adjusted colors and highlighting
+
 ## 2025-07-07.09 (Date: 2025-09-18)
 
 - Adapted use of colors to diagram-dark
