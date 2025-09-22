@@ -58,20 +58,16 @@
 \usepackage{xcolor} % for access to colors and for \pagecolor
 % xcolor package is also loaded by tikz package
 
-% for defining colors
-\definecolor{yellow-1}{HTML}{FFEC30}
-\definecolor{orange-1}{HTML}{FFA40F}
-
 % any = for Simple UI and Advanced UI
 \colorlet{any-draw}{black}
 \colorlet{anybutton-fill}{white}
-\colorlet{anyconfig-fill}{yellow-1!40}
+\colorlet{anyconfig-fill}{yellow!30}
 \colorlet{any-text}{any-draw}
 
 % advanced = for Advanced UI only
 \colorlet{advanced-draw}{any-draw}
 \colorlet{advancedbutton-fill}{anybutton-fill}
-\colorlet{advancedconfig-fill}{gray!8}
+\colorlet{advancedconfig-fill}{gray!10}
 \colorlet{advanced-text}{any-text}
 \colorlet{advancedUI-draw}{any-draw}
 
@@ -89,15 +85,15 @@
 \colorlet{onoff-text}{any-text}
 
 % any... mode = for Batt Check from OFF
-\colorlet{anyconfigmode-draw}{orange-1}
+\colorlet{anyconfigmode-draw}{orange}
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
-\colorlet{advancedbordermode-draw}{gray!60}
+\colorlet{advancedbordermode-draw}{gray!75}
 
 % for basic use
-\colorlet{basicuse-draw}{any-draw}
-\colorlet{anybuttonbasicuse-fill}{orange-1!25}
+\colorlet{basicuse-draw}{blue!80}
+\colorlet{anybuttonbasicuse-fill}{anybutton-fill}
 \colorlet{basicuse-text}{any-text}
 \colorlet{fillarrow}{anybutton-fill}
 
@@ -120,11 +116,6 @@
 \colorlet{voltagebox-frame}{anybutton-fill}
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltagebox-text}{any-text}
-
-% for aux LED channels colors (channel mode config)
-\colorlet{auxledchannelsbox-frame}{voltagebox-frame}
-\colorlet{auxledchannelsbox-mixfill}{voltagebox-mixfill}
-\colorlet{auxledchannelsbox-text}{voltagebox-text}
 
 % for infotext
 \colorlet{infoany-text}{any-text}
@@ -495,14 +486,12 @@
 % ----------------------------------------------------------------------
 \usepackage{tcolorbox} % for colored and framed text boxes
 
-\tcbuselibrary{skins} % for additional styles (skins)
-
 % for the left part of voltage: red
 \newtcbox{\voltageboxred}{
     colframe=voltagebox-frame, % initially black!75!white
     opacityframe=0, % initially 1.0
     boxrule=0cm, % initially 0.05cm
-    colback=red!25!voltagebox-mixfill, % initially black!5!white
+    colback=red!20!voltagebox-mixfill, % initially black!5!white
     coltext=voltagebox-text, % initially black
     left=0.02cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
@@ -520,7 +509,7 @@
     colframe=voltagebox-frame,
     opacityframe=0,
     boxrule=0cm,
-    colback=#1!25!voltagebox-mixfill,
+    colback=#1!20!voltagebox-mixfill,
     coltext=voltagebox-text,
     left=0cm,
     right=0cm,
@@ -537,7 +526,7 @@
     colframe=voltagebox-frame,
     opacityframe=0,
     boxrule=0cm,
-    colback=purple!25!voltagebox-mixfill,
+    colback=purple!20!voltagebox-mixfill,
     coltext=voltagebox-text,
     left=0cm,
     right=0.02cm,
@@ -596,28 +585,6 @@
         \vphantom{Post-Off Voltage Display}}%
     \voltageboxpurple{play%
         \vphantom{Post-Off Voltage Display}}%
-}
-
-% for aux LED channels (channel mode config)
-\newtcbox{\auxledchannelsbox}{
-    colframe=auxledchannelsbox-frame,
-    opacityframe=0,
-    boxrule=0cm,
-    skin=enhanced, % for interior style
-    interior style={
-        left color=red!25!auxledchannelsbox-mixfill,
-        right color=green!30!auxledchannelsbox-mixfill,
-        middle color=yellow!25!auxledchannelsbox-mixfill,
-    },
-    coltext=auxledchannelsbox-text,
-    left=0cm,
-    right=0cm,
-    top=0cm,
-    bottom=0cm,
-    boxsep=0cm,
-    arc=0.05cm,
-    box align=base,
-    nobeforeafter
 }
 
 % Preamble - 06 Misc ---------------------------------------------------
@@ -2027,7 +1994,7 @@ node[
         3  & 50/50\\
         4  & Tint Ramp\\
         5  & Auto-tint\\
-        6+ & \auxledchannelsbox{Aux LED Channels\vphantom{y}}\\
+        6+ & Aux LED Channels\\
     \end{configtblr}
 };
 
@@ -2633,7 +2600,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 09\\[4pt]
+    \normalsize Diagram Release 10\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
