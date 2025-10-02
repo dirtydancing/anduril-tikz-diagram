@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.11 (Date: 2025-10-02)
+
+- Emphasized button presses for basic use
+- Added extra arrow to aux LED settings
+- Changed number of runs for PDF to 3
+
 ## 2025-07-07.10 (Date: 2025-09-22)
 
 - Adjusted colors and highlighting
