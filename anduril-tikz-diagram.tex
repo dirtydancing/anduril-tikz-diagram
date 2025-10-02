@@ -95,7 +95,8 @@
 \colorlet{basicuse-draw}{blue!80}
 \colorlet{anybuttonbasicuse-fill}{anybutton-fill}
 \colorlet{basicuse-text}{any-text}
-\colorlet{fillarrow}{anybutton-fill}
+\colorlet{fillarrowbasicuse}{anybutton-fill}
+\colorlet{buttonpressesbasicuse-draw}{basicuse-draw}
 
 % for ramp image
 \colorlet{rampsmooth-topbottom}{black!40}
@@ -157,6 +158,8 @@
 
 \usetikzlibrary{calc} % for coordinate calculations
 
+\usetikzlibrary{tikzmark} % for marking a point for further use
+
 % for arrow tip
 \tikzset{
     >={
@@ -191,7 +194,7 @@
         text=any-text,
         font=\normalsize,
         inner sep=0.075cm,
-        rounded corners
+        rounded corners % default: 4pt
     },
     anyconfig/.style={
         draw=any-draw,
@@ -327,6 +330,14 @@
         fill=anybuttonbasicuse-fill,
         text=basicuse-text,
         font=\bfseries
+    },
+    button presses basic use fit/.style={
+        advancedborder-mode,
+        draw=buttonpressesbasicuse-draw,
+        thick,
+        inner xsep=0.03cm,
+        inner ysep=0.045cm,
+        rounded corners=2pt
     }
 }
 
@@ -354,7 +365,7 @@
         outer sep=0cm,
         minimum width=1.32cm+7.2pt,
         minimum height=5.4cm+7.2pt,
-        rounded corners=0.25pt % default: 4pt
+        rounded corners=0.25pt
     },
     rampcombined inside 1/.style={
         rampcombined,
@@ -748,7 +759,7 @@ at (Ramp.south)[
 {};
 
 \path (ON Ramp.north) edge[
-    arrows={<[open, fill=fillarrow]->},
+    arrows={<[open, fill=fillarrowbasicuse]->},
     anyline basic use,
     shorten >=0.05cm,
     shorten <=0.15cm
@@ -2606,7 +2617,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 10\\[4pt]
+    \normalsize Diagram Release 11\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2640,12 +2651,15 @@ at (current page text area.north east)[
     \spacingnoextra
     \begin{configtblr}{
         row{2-7}   = {rowsep=0pt},
+        row{3}     = {belowsep=0.5pt},
         row{8}     = {abovesep=2pt},
         cell{8}{1} = {c=2}{}
     }
         Button Presses\vphantom{Config} &\\
-        1C: & Click\\
-        1H: & Hold\\
+        \tikzmarknode{button-1C}{1C:} &
+        \tikzmarknode{button-Click}{Click\hspace{0.015cm}}\\
+        \tikzmarknode{button-1H}{1H:} &
+        \tikzmarknode{button-Hold}{Hold}\\
         2C: & Click, Click\\
         2H: & Click, Hold\\
         3C: & Click, Click, Click\\
@@ -2656,6 +2670,15 @@ at (current page text area.north east)[
          \infotextadvanced{entering a value, 1H = 10C}} &\\
     \end{configtblr}
 };
+
+\node (Button Presses basic use fit)[
+    button presses basic use fit,
+    fit=(button-1C)
+    (button-Click)
+    (button-1H)
+    (button-Hold)
+]
+{};
 
 % Legend
 \matrix (Legend)[
