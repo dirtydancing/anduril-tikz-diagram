@@ -77,7 +77,7 @@ which is an open source font licensed under the
 [SIL Open Font License](https://openfontlicense.org/).
 
 To generate a PDF file from the TEX source file, open a terminal in the
-folder of the TEX file and run 2x:
+folder of the TEX file and run 3 times:
 
 `lualatex anduril-tikz-diagram.tex`
 
