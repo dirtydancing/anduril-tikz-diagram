@@ -607,6 +607,10 @@
 % (Unicode character Rightwards Arrow)
 \newcommand{\nextaux}{\char"2192}
 
+% for the next aux LED setting again
+% (Unicode character North East Arrow)
+\newcommand{\nextauxagain}{\char"2197}
+
 % Body - Table of Contents ---------------------------------------------
 % ----------------------------------------------------------------------
 
@@ -2257,7 +2261,7 @@ node[
         Cyan \nextaux{}\\
         Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
         Disco \nextaux{} Rainbow \nextaux{}
-        \textboxvoltage{}
+        \textboxvoltage{} \nextauxagain{}
     };
 }
 
@@ -2283,6 +2287,7 @@ node[
 {
     \firstline{OFF Aux LED Pattern\inherited{}}
     Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
+    \nextauxagain{}
 };
 
 \path (OFF right.north) edge[
@@ -2312,7 +2317,7 @@ node[
         Cyan \nextaux{}\\
         Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
         Disco \nextaux{} Rainbow \nextaux{}
-        \textboxvoltage{}
+        \textboxvoltage{} \nextauxagain{}
     };
 }
 
@@ -2338,6 +2343,7 @@ node[
 {
     \firstline{Lockout Aux LED Pattern\inherited{}}
     Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
+    \nextauxagain{}
 };
 
 \path (Lockout.north) edge[
