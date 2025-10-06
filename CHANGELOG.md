@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.12 (Date: 2025-10-06)
+
+- Added colors to aux LED channels
+
 ## 2025-07-07.11 (Date: 2025-10-02)
 
 - Emphasized button presses for basic use
