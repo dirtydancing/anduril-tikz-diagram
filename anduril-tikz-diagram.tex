@@ -77,6 +77,7 @@
 \colorlet{simple-text}{any-text}
 
 % for Extended Simple UI
+\colorlet{extendedsimpleUI-draw}{any-draw}
 \colorlet{extendedsimpleUI-fill}{anybutton-fill}
 
 % for On, Ramp, Off, and Lockout
@@ -107,6 +108,10 @@
 % for ramp text Memory, Ceiling, and Floor
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
 
+% for configuring Simple UI
+\colorlet{simpleUIconfig-draw}{anyconfigmode-draw}
+\colorlet{inherited-text}{advanced-text}
+
 % for further information
 \colorlet{generalinfo-draw}{advancedbordermode-draw}
 \colorlet{generalinfo-fill}{anybutton-fill}
@@ -122,10 +127,6 @@
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
 \colorlet{infosimple-text}{simple-text}
-
-% for configuring Simple UI
-\colorlet{simpleUIconfig-draw}{anyconfigmode-draw}
-\colorlet{inherited-text}{advanced-text}
 
 % for setting the page background color
 % \pagecolor{anybutton-fill} % default: transparent background
@@ -266,6 +267,7 @@
 \tikzset{
     extendedsimpleUI/.style={
         anyconfig,
+        draw=extendedsimpleUI-draw,
         fill=extendedsimpleUI-fill
     }
 }
@@ -286,6 +288,17 @@
         on-extra,
         font=\bfseries\Huge,
         on grid
+    }
+}
+
+% for Lockout to Off right arrows
+\tikzset{
+    lockoutoffright-arrow/.style={
+        draw=none,
+        fill=none,
+        inner sep=0cm,
+        minimum width=0.28cm,
+        minimum height=0.05cm
     }
 }
 
@@ -404,6 +417,14 @@
         fill=none,
         % with fill color: fill=ramptextconfig-fill,
         inner sep=0.05cm
+    }
+}
+
+% for configuring Simple UI
+\tikzset{
+    simpleUIconfigtable/.style={
+        advancedtable,
+        draw=simpleUIconfig-draw
     }
 }
 
@@ -1119,14 +1140,9 @@ node (OFF right to Lockout)[
 {4C} (OFF right.west);
 
 \node (Lockout to OFF right arrow)[
-    rectangle,
+    lockoutoffright-arrow,
     above=0.1cm of Lockout to OFF right.north,
-    anchor=south,
-    draw=none,
-    fill=none,
-    inner sep=0cm,
-    minimum width=0.28cm,
-    minimum height=0.05cm
+    anchor=south
 ]
 {};
 
@@ -1140,14 +1156,9 @@ node[
 {} (Lockout to OFF right arrow.south east);
 
 \node (OFF right to Lockout arrow)[
-    rectangle,
+    lockoutoffright-arrow,
     above=0.1cm of OFF right to Lockout.north,
-    anchor=south,
-    draw=none,
-    fill=none,
-    inner sep=0cm,
-    minimum width=0.28cm,
-    minimum height=0.05cm
+    anchor=south
 ]
 {};
 
@@ -2111,8 +2122,7 @@ node[
 % 11 Simple UI Config from OFF -----------------------------------------
 % ----------------------------------------------------------------------
 \node (Simple UI Config from OFF)[
-    advancedtable,
-    draw=simpleUIconfig-draw,
+    simpleUIconfigtable,
     right=\nodespaceh of Ramp Extras Config from ON.north east,
     anchor=north west
 ]
