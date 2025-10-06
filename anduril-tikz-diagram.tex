@@ -118,6 +118,9 @@
 \colorlet{andurilinfo-draw}{anyconfigmode-draw}
 \colorlet{andurilinfo-text}{any-text}
 
+% for aux LED channels (channel mode config)
+\colorlet{channelmodeconfigaux-mixdraw}{anybutton-fill}
+
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
@@ -487,6 +490,29 @@
     anyline momentary legend/.style={
         anyline momentary,
         line cap=round
+    }
+}
+
+% for aux LED channels (channel mode config)
+\tikzset{
+    channel mode config aux fit/.style={
+        button presses basic use fit,
+        draw=red!80,
+        thin,
+        inner sep=0.03cm,
+        dash pattern=on 15pt off 90pt,
+        postaction={draw=yellow!80!channelmodeconfigaux-mixdraw,
+            dash phase=15pt},
+        postaction={draw=green!80!channelmodeconfigaux-mixdraw,
+            dash phase=30pt},
+        postaction={draw=cyan!80!channelmodeconfigaux-mixdraw,
+            dash phase=45pt},
+        postaction={draw=blue!80!channelmodeconfigaux-mixdraw,
+            dash phase=60pt},
+        postaction={draw=purple!80!channelmodeconfigaux-mixdraw,
+            dash phase=75pt},
+        postaction={draw=lightgray!80!channelmodeconfigaux-mixdraw,
+            dash phase=90pt}
     }
 }
 
@@ -2020,9 +2046,15 @@ node[
         3  & 50/50\\
         4  & Tint Ramp\\
         5  & Auto-tint\\
-        6+ & Aux LED Channels\\
+        6+ & \tikzmarknode{channelmodeconfig-aux}{Aux LED Channels}\\
     \end{configtblr}
 };
+
+\node (Channel Mode Config aux LED channels fit)[
+    channel mode config aux fit,
+    fit=(channelmodeconfig-aux)
+]
+{};
 
 \path (ON.north) edge[
     ->,
@@ -2627,7 +2659,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 11\\[4pt]
+    \normalsize Diagram Release 12\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
