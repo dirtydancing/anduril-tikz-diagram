@@ -119,7 +119,7 @@
 \colorlet{andurilinfo-text}{any-text}
 
 % for aux LED channels (channel mode config)
-\colorlet{channelmodeconfigaux-mixdraw}{anybutton-fill}
+\colorlet{channelmodeconfigaux-mixdraw}{gray}
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
@@ -497,7 +497,7 @@
 \tikzset{
     channel mode config aux fit/.style={
         button presses basic use fit,
-        draw=red!80,
+        draw=red!80!channelmodeconfigaux-mixdraw,
         thin,
         inner sep=0.03cm,
         dash pattern=on 15pt off 90pt,
