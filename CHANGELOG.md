@@ -2,6 +2,13 @@
 
 ## Next
 
+## 2025-07-07.13 (Date: 2025-10-13)
+
+- Added colors to aux LED color settings
+- Adjusted colors for aux LED channels
+- Emphasized basic use more strongly
+- Adjusted layers for momentary strobe mode
+
 ## 2025-07-07.12 (Date: 2025-10-06)
 
 - Added colors to aux LED channels
