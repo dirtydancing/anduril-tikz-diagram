@@ -342,7 +342,7 @@
     anybutton basic use/.style={
         anybutton,
         draw=basicuse-draw,
-        ultra thick, % ultra thick = 1.6pt
+        line width=2pt,
         fill=anybuttonbasicuse-fill,
         text=basicuse-text,
         font=\bfseries
@@ -814,7 +814,7 @@ at (Ramp.south)[
 node[
     anybutton basic use,
     pos=0.53,
-    label={ [align=left, xshift=0.53cm] right:
+    label={ [align=left, xshift=0.525cm] right:
         \infotextany{Ramp up}\\
         \infotextany{(floor\textendash{}ceiling),}\\
         \infotextany{with reversal}\\
@@ -835,8 +835,8 @@ node[
     anybutton,
     pos=0.42,
     % with fill color: pos=0.44,
-    label={ [align=left, xshift=0.53cm+0.8pt] right:
-    % +0.8pt for vertical alignment
+    label={ [align=left, xshift=0.525cm+1pt] right:
+    % +1pt for vertical alignment
         \infotextany{Ramp down}\\
         \infotextany{(ceiling\textendash{}floor)}
     }
