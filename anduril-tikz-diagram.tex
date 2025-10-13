@@ -1449,7 +1449,7 @@ at (current page text area.south)[
     ($(Candle Timer.north west)
     + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 
-{ [on background layer]
+{ [on behind layer]
     \path[
         advancedborder-mode
     ]
@@ -1516,22 +1516,25 @@ node[
 ]
 {3H} (Strobe Modes border mode-memory);
 
-\path (Strobe Modes border momentary-strobe) edge[
-    ->,
-    advancedline,
-    out=80,
-    in=180,
-    looseness=0.9
-]
-node[
-    advancedbutton,
-    pos=0.2,
-    label={ [align=left] right:
-        \infotextadvanced{Momentary}\\
-        \infotextadvanced{Strobe Mode}
-   }
-]
-{5C}(Momentary Mode from OFF ON.191);
+{ [on background layer]
+    \path (Strobe Modes border momentary-strobe) edge[
+        ->,
+        advancedline,
+        shorten <=-0.1pt,
+        out=80,
+        in=180,
+        looseness=0.9
+    ]
+    node[
+        advancedbutton,
+        pos=0.2,
+        label={ [align=left] right:
+            \infotextadvanced{Momentary}\\
+            \infotextadvanced{Strobe Mode}
+        }
+    ]
+    {5C}(Momentary Mode from OFF ON.191);
+}
 
 % 08 Blinky / Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
