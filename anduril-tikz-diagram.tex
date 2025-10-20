@@ -2072,32 +2072,35 @@ node[
 (Ramp Config from ON.295);
 
 % Channel Mode Config from ON
-\node (Channel Mode Config from ON)[
-    advancedtable,
-    above=0.5cm of Next Channel Mode from ON.north west,
-    anchor=south west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{
-        row{4}     = {abovesep=3pt, belowsep=2pt},
-        cell{4}{1} = {c=2}{}
-    }
-        {Channel Mode\\
-         Config\inherited{}} &\\
-        n & n\textsuperscript{th} channel mode\\
-        & {0C = Disable\\
-           1C = Enable}\\
-        {Typical sequence for\\
-         dual-channel lights}\\
-        1  & Channel 1\\
-        2  & Channel 2\\
-        3  & 50/50\\
-        4  & Tint Ramp\\
-        5  & Auto-tint\\
-        6+ & \tikzmarknode{channelmodeconfig-aux}{Aux LED Channels}\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Channel Mode Config from ON)[
+        advancedtable,
+        above=0.5cm of Next Channel Mode from ON.north west,
+        anchor=south west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{
+            row{4}     = {abovesep=3pt, belowsep=2pt},
+            cell{4}{1} = {c=2}{}
+        }
+            {Channel Mode\\
+             Config\inherited{}} &\\
+            n & n\textsuperscript{th} channel mode\\
+            & {0C = Disable\\
+               1C = Enable}\\
+            {Typical sequence for\\
+             dual-channel lights}\\
+            1  & Channel 1\\
+            2  & Channel 2\\
+            3  & 50/50\\
+            4  & Tint Ramp\\
+            5  & Auto-tint\\
+            6+ & \tikzmarknode{channelmodeconfig-aux}
+                              {Aux LED Channels}\\
+        \end{configtblr}
+    };
+}
 
 \node (Channel Mode Config aux LED channels fit)[
     channel mode config aux fit,
