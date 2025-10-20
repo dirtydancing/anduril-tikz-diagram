@@ -68,12 +68,12 @@
 \colorlet{advanced-draw}{any-draw}
 \colorlet{advancedbutton-fill}{anybutton-fill}
 \colorlet{advancedconfig-fill}{gray!10}
-\colorlet{advanced-text}{any-text}
-\colorlet{advancedUI-draw}{any-draw}
+\colorlet{advanced-text}{advanced-draw}
+\colorlet{advancedUI-draw}{advanced-draw}
 
 % simple = for Simple UI only
 \colorlet{simplebutton-double}{anybutton-fill}
-\colorlet{simpleUI-draw}{advancedUI-draw}
+\colorlet{simpleUI-draw}{any-draw}
 \colorlet{simple-text}{any-text}
 
 % for Extended Simple UI
@@ -83,7 +83,9 @@
 % for On, Ramp, Off, and Lockout
 \colorlet{onoff-draw}{any-draw}
 \colorlet{onoffbutton-fill}{anybutton-fill}
-\colorlet{onoff-text}{any-text}
+\colorlet{onoff-text}{onoff-draw}
+\colorlet{onofftogglerampstyle-draw}{advanced-draw}
+\colorlet{onofftogglerampstyle-text}{onofftogglerampstyle-draw}
 
 % any... mode = for Batt Check from OFF
 \colorlet{anyconfigmode-draw}{orange}
@@ -128,6 +130,7 @@
 \colorlet{voltagebox-frame}{anybutton-fill}
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltagebox-text}{any-text}
+\colorlet{voltageboxadv-text}{advanced-text}
 
 % for infotext
 \colorlet{infoany-text}{any-text}
@@ -289,6 +292,11 @@
         inner xsep=0.375cm,
         inner ysep=0.065cm,
         rounded rectangle
+    },
+    on-extra toggle ramp style/.style={
+        on-extra,
+        draw=onofftogglerampstyle-draw,
+        text=onofftogglerampstyle-text
     },
     onoff/.style={
         on-extra,
@@ -589,57 +597,66 @@
 % ----------------------------------------------------------------------
 \usepackage{tcolorbox} % for colored and framed text boxes
 
-% for the left part of voltage: red
-\newtcbox{\voltageboxred}{
+% for setting options for every following tcolorbox
+\tcbset{
     colframe=voltagebox-frame, % initially black!75!white
     opacityframe=0, % initially 1.0
     boxrule=0cm, % initially 0.05cm
-    colback=red!20!voltagebox-mixfill, % initially black!5!white
+    colback=white, % initially black!5!white
     coltext=voltagebox-text, % initially black
-    left=0.02cm, % initially 0.4cm
+    left=0cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
     top=0cm, % initially 0.2cm
     bottom=0cm, % initially 0.2cm
     boxsep=0cm, % initially 0.1cm
     arc=0.05cm, % initially 0.1cm
-    sharp corners=east, % initially all rounded corners
+    sharp corners, % initially all rounded corners
     box align=base, % initially bottom
     nobeforeafter % for inside a tblr environment
 }
 
+% for the left part of voltage: red
+\newtcbox{\voltageboxred}{
+    colback=red!20!voltagebox-mixfill,
+    left=0.02cm,
+    rounded corners=west
+}
+
 % for the middle part of voltage: yellow, green, cyan, blue
 \newtcbox{\voltagebox}[1][white]{
-    colframe=voltagebox-frame,
-    opacityframe=0,
-    boxrule=0cm,
-    colback=#1!20!voltagebox-mixfill,
-    coltext=voltagebox-text,
-    left=0cm,
-    right=0cm,
-    top=0cm,
-    bottom=0cm,
-    boxsep=0cm,
-    sharp corners,
-    box align=base,
-    nobeforeafter
+    colback=#1!20!voltagebox-mixfill
 }
 
 % for the right part of voltage: purple
 \newtcbox{\voltageboxpurple}{
-    colframe=voltagebox-frame,
-    opacityframe=0,
-    boxrule=0cm,
     colback=purple!20!voltagebox-mixfill,
-    coltext=voltagebox-text,
-    left=0cm,
     right=0.02cm,
-    top=0cm,
-    bottom=0cm,
-    boxsep=0cm,
-    arc=0.05cm,
-    sharp corners=west,
-    box align=base,
-    nobeforeafter
+    rounded corners=east
+}
+
+% for the left part of voltage: red
+% adv = Advanced UI function
+\newtcbox{\voltageboxredadv}{
+    colback=red!20!voltagebox-mixfill,
+    coltext=voltageboxadv-text,
+    left=0.02cm,
+    rounded corners=west
+}
+
+% for the middle part of voltage: yellow, green, cyan, blue
+% adv = Advanced UI function
+\newtcbox{\voltageboxadv}[1][white]{
+    colback=#1!20!voltagebox-mixfill,
+    coltext=voltageboxadv-text
+}
+
+% for the right part of voltage: purple
+% adv = Advanced UI function
+\newtcbox{\voltageboxpurpleadv}{
+    colback=purple!20!voltagebox-mixfill,
+    coltext=voltageboxadv-text,
+    right=0.02cm,
+    rounded corners=east
 }
 
 % for aux LED color for voltage
@@ -660,33 +677,33 @@
 
 % for voltage display in off and lockout modes
 \newcommand{\textboxvoltage}{%
-    \voltageboxred{V%
+    \voltageboxredadv{V%
         \vphantom{Voltage}}%
-    \voltagebox[yellow]{o%
+    \voltageboxadv[yellow]{o%
         \vphantom{Voltage}}%
-    \voltagebox[green]{lt%
+    \voltageboxadv[green]{lt%
         \vphantom{Voltage}}%
-    \voltagebox[cyan]{a%
+    \voltageboxadv[cyan]{a%
         \vphantom{Voltage}}%
-    \voltagebox[blue]{g%
+    \voltageboxadv[blue]{g%
         \vphantom{Voltage}}%
-    \voltageboxpurple{e%
+    \voltageboxpurpleadv{e%
         \vphantom{Voltage}}%
 }
 
 % for post-off voltage display
 \newcommand{\textboxpovd}{%
-    \voltageboxred{Post%
+    \voltageboxredadv{Post%
         \vphantom{Post-Off Voltage Display}}%
-    \voltagebox[yellow]{-Off%
+    \voltageboxadv[yellow]{-Off%
         \vphantom{Post-Off Voltage Display}}%
-    \voltagebox[green]{\nobreakspace Vol%
+    \voltageboxadv[green]{\nobreakspace Vol%
         \vphantom{Post-Off Voltage Display}}%
-    \voltagebox[cyan]{tage%
+    \voltageboxadv[cyan]{tage%
         \vphantom{Post-Off Voltage Display}}%
-    \voltagebox[blue]{\nobreakspace Dis%
+    \voltageboxadv[blue]{\nobreakspace Dis%
         \vphantom{Post-Off Voltage Display}}%
-    \voltageboxpurple{play%
+    \voltageboxpurpleadv{play%
         \vphantom{Post-Off Voltage Display}}%
 }
 
@@ -939,7 +956,7 @@ at (Turbo.north)[
 {\oneline{Toggle Ramp Style\inherited{}}};
 
 \node (Toggle Ramp Style extra node ON)[
-    on-extra,
+    on-extra toggle ramp style,
     below right=0.9cm and 0.2cm of Toggle Ramp Style from ON.west,
     anchor=center
 ]
