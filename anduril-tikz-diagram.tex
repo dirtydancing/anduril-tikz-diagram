@@ -606,8 +606,8 @@
     coltext=voltagebox-text, % initially black
     left=0cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
-    top=0cm, % initially 0.2cm
-    bottom=0cm, % initially 0.2cm
+    top=0.005cm, % initially 0.2cm
+    bottom=0.005cm, % initially 0.2cm
     boxsep=0cm, % initially 0.1cm
     arc=0.05cm, % initially 0.1cm
     sharp corners, % initially all rounded corners
@@ -675,7 +675,8 @@
         \vphantom{Voltage,Ú}}%
 }
 
-% for voltage display in off and lockout modes
+% for voltage display in off and lockout modes,
+% and for post-off voltage display
 \newcommand{\textboxvoltage}{%
     \voltageboxredadv{V%
         \vphantom{Voltage}}%
@@ -689,22 +690,6 @@
         \vphantom{Voltage}}%
     \voltageboxpurpleadv{e%
         \vphantom{Voltage}}%
-}
-
-% for post-off voltage display
-\newcommand{\textboxpovd}{%
-    \voltageboxredadv{Post%
-        \vphantom{Post-Off Voltage Display}}%
-    \voltageboxadv[yellow]{-Off%
-        \vphantom{Post-Off Voltage Display}}%
-    \voltageboxadv[green]{\nobreakspace Vol%
-        \vphantom{Post-Off Voltage Display}}%
-    \voltageboxadv[cyan]{tage%
-        \vphantom{Post-Off Voltage Display}}%
-    \voltageboxadv[blue]{\nobreakspace Dis%
-        \vphantom{Post-Off Voltage Display}}%
-    \voltageboxpurpleadv{play%
-        \vphantom{Post-Off Voltage Display}}%
 }
 
 % Preamble - 06 Misc ---------------------------------------------------
@@ -1695,7 +1680,7 @@ node[
                  1C = \char"2212{}0.30V\\
                  7C = 0V (default)\\
                  13C = +0.30V}\\
-            2 & {\textboxpovd{}\\
+            2 & {Post-Off \textboxvoltage{} Display\\
                  (on lights with RGB aux)}\\
               & {0C = Disable\\
                  nC = n seconds;\\
@@ -2728,7 +2713,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 13\\[4pt]
+    \normalsize Diagram Release 14\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
