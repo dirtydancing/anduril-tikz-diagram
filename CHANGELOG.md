@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.14 (Date: 2025-10-20)
+
+- Unified layout of voltage colors
+- Adjusted layers and color options
+
 ## 2025-07-07.13 (Date: 2025-10-13)
 
 - Added colors to aux LED color settings
