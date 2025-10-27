@@ -81,10 +81,9 @@ folder of the TEX file and run 3 times:
 
 `lualatex anduril-tikz-diagram.tex`
 
-To crop the generated PDF file and to then convert this cropped PDF
-file to a PNG file, run:
+To convert the generated PDF file to a PNG file, run:
 
-`pdfcrop --margins 3 anduril-tikz-diagram.pdf && pdftocairo -png -r 300 -singlefile anduril-tikz-diagram-crop.pdf anduril-tikz-diagram`
+`pdftocairo -png -r 300 -singlefile anduril-tikz-diagram.pdf anduril-tikz-diagram`
 
 ## Credits
 
