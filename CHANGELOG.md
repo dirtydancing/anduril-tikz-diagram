@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.15 (Date: 2025-10-27)
+
+- Added line from Factory Reset to Simple UI
+- Adjusted color for aux white
+- Removed crop for PNG
+
 ## 2025-07-07.14 (Date: 2025-10-20)
 
 - Unified layout of voltage colors
