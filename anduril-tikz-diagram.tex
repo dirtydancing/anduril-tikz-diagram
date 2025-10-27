@@ -114,6 +114,9 @@
 \colorlet{simpleUIconfig-draw}{anyconfigmode-draw}
 \colorlet{inherited-text}{advanced-text}
 
+% for line from Factory Reset to Simple UI
+\colorlet{factoryresetsimpleUI-draw}{anyconfigmode-draw}
+
 % for further information
 \colorlet{generalinfo-draw}{advancedbordermode-draw}
 \colorlet{generalinfo-fill}{anybutton-fill}
@@ -440,7 +443,18 @@
 \tikzset{
     simpleUIconfigtable/.style={
         advancedtable,
-        draw=simpleUIconfig-draw
+        draw=simpleUIconfig-draw,
+        semithick % semithick = 0.6pt
+    }
+}
+
+% for line from Factory Reset to Simple UI
+\tikzset{
+    anyline factoryreset simpleUI/.style={
+        anyline,
+        draw=factoryresetsimpleUI-draw,
+        semithick,
+        rounded corners
     }
 }
 
@@ -1906,8 +1920,8 @@ node[
 \node (Next Channel Mode from ON)
 at (current page text area.west)[
     anyconfig,
-    anchor=west,
-    yshift=0.4cm
+    yshift=0.4cm,
+    anchor=west
 ]
 {\oneline{Next Channel Mode}};
 
@@ -2219,7 +2233,10 @@ node[
 ]
 {
     \spacingnoextra
-    \begin{configtblr}{}
+    \begin{configtblr}{
+        row{1} = {abovesep=0.4pt}
+        % -0.1pt for horizontal alignment for semithick
+    }
         Simple UI Config &\\
         1 & Floor: nC = n of 150\\
         2 & Ceiling: nC = 151 \char"2212{} n\\
@@ -2578,6 +2595,7 @@ node[
 \node (Factory Reset from OFF right)
 at (current page text area.south east)[
     anyconfig,
+    xshift=-0.45cm,
     anchor=south east
 ]
 {
@@ -2643,8 +2661,9 @@ node[
 \node (Advanced UI switch from OFF right)
 at (current page text area.east)[
     advancedUI,
-    anchor=north east,
-    yshift=-2.4cm
+    xshift=-0.45cm,
+    yshift=-2.4cm,
+    anchor=north east
 ]
 {Advanced UI};
 
@@ -2654,11 +2673,11 @@ at (current page text area.east)[
         simpleline,
         out=0,
         in=90,
-        looseness=1.4
+        looseness=1.2
     ]
     node[
         simplebutton,
-        pos=0.68
+        pos=0.63
     ]
     {10H} (Advanced UI switch from OFF right.north);
 }
@@ -2667,8 +2686,9 @@ at (current page text area.east)[
 \node (Simple UI switch from OFF right)
 at (current page text area.east)[
     simpleUI,
-    anchor=south east,
-    yshift=2.4cm
+    xshift=-0.45cm,
+    yshift=2.4cm,
+    anchor=south east
 ]
 {Simple UI};
 
@@ -2677,13 +2697,32 @@ at (current page text area.east)[
     advancedline,
     out=0,
     in=270,
-    looseness=1.4
+    looseness=1.2
 ]
 node[
     advancedbutton,
-    pos=0.7
+    pos=0.65
 ]
 {10C} (Simple UI switch from OFF right.south);
+
+% Line from Factory Reset to Simple UI
+
+% -0.3pt: 1/2 line thickness for vertical alignment for semithick
+\coordinate (Factory Reset right) at
+    ($(Factory Reset from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
+\coordinate (Simple UI switch right) at
+    ($(Simple UI switch from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
+
+{ [on background layer]
+    \path[
+        {->[scale length=1.15, scale width=1.15]}, % for semithick
+        anyline factoryreset simpleUI
+    ]
+    (Factory Reset from OFF right.east)
+    -- (Factory Reset right)
+    -- (Simple UI switch right)
+    -- (Simple UI switch from OFF right.east);
+}
 
 % Simple UI switch extra node Extended Simple UI
 \node (Simple UI switch extra node Extended Simple UI)[
@@ -2718,7 +2757,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 14\\[4pt]
+    \normalsize Diagram Release 15\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
