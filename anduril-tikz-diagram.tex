@@ -122,9 +122,11 @@
 
 % for aux LED channels (channel mode config)
 \colorlet{channelmodeconfigaux-mixdraw}{gray}
+\colorlet{channelmodeconfigaux-white}{gray!65}
 
 % for aux LED color (Off and Lockout)
 \colorlet{auxLEDcolor-mixdraw}{channelmodeconfigaux-mixdraw}
+\colorlet{auxLEDcolor-white}{channelmodeconfigaux-white}
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
@@ -522,7 +524,8 @@
             dash phase=60pt},
         postaction={draw=purple!80!channelmodeconfigaux-mixdraw,
             dash phase=75pt},
-        postaction={draw=lightgray!80!channelmodeconfigaux-mixdraw,
+        postaction={draw=channelmodeconfigaux-white!80!
+                         channelmodeconfigaux-mixdraw,
             dash phase=90pt}
     }
 }
@@ -543,7 +546,8 @@
             dash phase=42.8pt},
         postaction={draw=purple!80!auxLEDcolor-mixdraw,
             dash phase=53.5pt},
-        postaction={draw=lightgray!80!auxLEDcolor-mixdraw,
+        postaction={draw=auxLEDcolor-white!80!
+                         auxLEDcolor-mixdraw,
             dash phase=64.2pt}
     }
 }
@@ -564,7 +568,8 @@
             dash phase=45.4pt},
         postaction={draw=purple!80!auxLEDcolor-mixdraw,
             dash phase=56.75pt},
-        postaction={draw=lightgray!80!auxLEDcolor-mixdraw,
+        postaction={draw=auxLEDcolor-white!80!
+                         auxLEDcolor-mixdraw,
             dash phase=68.1pt}
     }
 }
