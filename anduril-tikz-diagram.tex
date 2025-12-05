@@ -124,8 +124,8 @@
 \colorlet{andurilinfo-text}{any-text}
 
 % for aux LED channels (channel mode config)
-\colorlet{channelmodeconfigaux-mixdraw}{gray}
-\colorlet{channelmodeconfigaux-white}{gray!65}
+\colorlet{channelmodeconfigaux-mixdraw}{gray!50!violet}
+\colorlet{channelmodeconfigaux-white}{gray!85!blue}
 
 % for aux LED color (Off and Lockout)
 \colorlet{auxLEDcolor-mixdraw}{channelmodeconfigaux-mixdraw}
@@ -525,7 +525,7 @@
     channel mode config aux fit/.style={
         button presses basic use fit,
         draw=red!80!channelmodeconfigaux-mixdraw,
-        thin,
+        semithick,
         inner sep=0.03cm,
         dash pattern=on 15pt off 90pt,
         postaction={draw=yellow!80!channelmodeconfigaux-mixdraw,
@@ -549,6 +549,7 @@
     aux LED color Off/.style={
         advancedconfig,
         draw=red!80!auxLEDcolor-mixdraw,
+        semithick,
         dash pattern=on 10.7 pt off 64.2pt,
         postaction={draw=yellow!80!auxLEDcolor-mixdraw,
             dash phase=10.7pt},
@@ -571,6 +572,7 @@
     aux LED color Lockout/.style={
         advancedconfig,
         draw=red!80!auxLEDcolor-mixdraw,
+        semithick,
         dash pattern=on 11.35pt off 68.1pt,
         postaction={draw=yellow!80!auxLEDcolor-mixdraw,
             dash phase=11.35pt},
@@ -2118,7 +2120,7 @@ node[
             4  & Tint Ramp\\
             5  & Auto-tint\\
             6+ & \tikzmarknode{channelmodeconfig-aux}
-                              {Aux LED Channels}\\
+                              {Aux LED Channels\vphantom{\S}}\\
         \end{configtblr}
     };
 }
@@ -2614,12 +2616,12 @@ at (current page text area.south east)[
     anyline,
     out=270,
     in=170,
-    out looseness=0.6,
+    out looseness=0.4,
     in looseness=0.4
 ]
 node[
     anybutton,
-    pos=0.73,
+    pos=0.74,
     label={ [align=left] right:
         \infotextany{Keep holding}\\
         \infotextany{for about 4s}
