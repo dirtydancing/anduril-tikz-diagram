@@ -137,6 +137,11 @@
 \colorlet{voltagebox-text}{any-text}
 \colorlet{voltageboxadv-text}{advanced-text}
 
+% for tint ramp colors
+\colorlet{tintrampbox-frame}{voltagebox-frame}
+\colorlet{tintrampbox-mixfill}{voltagebox-mixfill}
+\colorlet{tintrampbox-text}{voltagebox-text}
+
 % for infotext
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
@@ -618,6 +623,8 @@
 % ----------------------------------------------------------------------
 \usepackage{tcolorbox} % for colored and framed text boxes
 
+\tcbuselibrary{skins} % for additional styles (skins)
+
 % for setting options for every following tcolorbox
 \tcbset{
     colframe=voltagebox-frame, % initially black!75!white
@@ -711,6 +718,20 @@
         \vphantom{Voltage}}%
     \voltageboxpurpleadv{e%
         \vphantom{Voltage}}%
+}
+
+% for tint ramp
+\newtcbox{\tintrampbox}{
+    colframe=tintrampbox-frame,
+    skin=enhanced, % for interior style
+    interior style={
+        left color=orange!20!tintrampbox-mixfill,
+        right color=blue!12!tintrampbox-mixfill
+    },
+    coltext=tintrampbox-text,
+    left=0.02cm,
+    right=0.02cm,
+    rounded corners
 }
 
 % Preamble - 06 Misc ---------------------------------------------------
@@ -1949,7 +1970,7 @@ at (current page text area.west)[
     anchor=north west
 ]
 {
-    \firstline{Tint Ramping}
+    \firstline{\tintrampbox{Tint Ramp}}
     If this channel mode can
 };
 
@@ -2117,7 +2138,7 @@ node[
             1  & Channel 1\\
             2  & Channel 2\\
             3  & 50/50\\
-            4  & Tint Ramp\\
+            4  & \tintrampbox{Tint Ramp}\\
             5  & Auto-tint\\
             6+ & \tikzmarknode{channelmodeconfig-aux}
                               {Aux LED Channels\vphantom{\S}}\\
@@ -2280,7 +2301,7 @@ node[
     }
         Misc Config\inherited{} &\\
         Hardware-specific &\\
-        1 & Tint Ramp style\\
+        1 & \tintrampbox{Tint Ramp} style\\
           & {0C = Smooth ramp\\
              1C = Middle tint only\\
              2C = Channel toggle\\
@@ -2759,7 +2780,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 15\\[4pt]
+    \normalsize Diagram Release 16\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
