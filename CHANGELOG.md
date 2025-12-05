@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.16 (Date: 2025-12-05)
+
+- Added colors to Tint Ramp
+- Adjusted colors for aux LEDs
+
 ## 2025-07-07.15 (Date: 2025-10-27)
 
 - Added line from Factory Reset to Simple UI
