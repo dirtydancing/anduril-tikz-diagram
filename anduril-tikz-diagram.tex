@@ -70,11 +70,14 @@
 \colorlet{advancedconfig-fill}{gray!10}
 \colorlet{advanced-text}{advanced-draw}
 \colorlet{advancedUI-draw}{advanced-draw}
+\colorlet{advancedUIswitchline-draw}{orange}
+
 
 % simple = for Simple UI only
 \colorlet{simplebutton-double}{anybutton-fill}
-\colorlet{simpleUI-draw}{any-draw}
 \colorlet{simple-text}{any-text}
+\colorlet{simpleUI-draw}{any-draw}
+\colorlet{simpleUIswitchline-draw}{advancedUIswitchline-draw}
 
 % for Extended Simple UI
 \colorlet{extendedsimpleUI-draw}{any-draw}
@@ -90,7 +93,7 @@
 \colorlet{onofftogglerampstyle-text}{onofftogglerampstyle-draw}
 
 % any... mode = for Batt Check from OFF
-\colorlet{anyconfigmode-draw}{orange}
+\colorlet{anyconfigmode-draw}{advancedUIswitchline-draw}
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
@@ -117,7 +120,7 @@
 \colorlet{inherited-text}{advanced-text}
 
 % for line from Factory Reset to Simple UI
-\colorlet{factoryresetsimpleUI-draw}{anyconfigmode-draw}
+\colorlet{factoryresetsimpleUI-draw}{advancedUIswitchline-draw}
 
 % for further information
 \colorlet{generalinfo-draw}{advancedbordermode-draw}
@@ -262,6 +265,11 @@
         draw=advancedUI-draw,
         very thick, % very thick = 1.2pt
         font=\bfseries\LARGE
+    },
+    advancedUI switch line/.style={
+        simpleline,
+        draw=advancedUIswitchline-draw,
+        very thick
     }
 }
 
@@ -282,6 +290,11 @@
         draw=simpleUI-draw,
         very thick,
         font=\bfseries\LARGE
+    },
+    simpleUI switch line/.style={
+        advancedline,
+        draw=simpleUIswitchline-draw,
+        very thick
     }
 }
 
@@ -2716,7 +2729,8 @@ at (current page text area.east)[
 { [on above layer]
     \path (OFF right.east) edge[
         ->,
-        simpleline,
+        advancedUI switch line,
+        shorten <=-0.4pt,
         out=0,
         in=90,
         looseness=1.2
@@ -2740,7 +2754,8 @@ at (current page text area.east)[
 
 \path (OFF right.east) edge[
     ->,
-    advancedline,
+    simpleUI switch line,
+    shorten <=-0.4pt,
     out=0,
     in=270,
     looseness=1.2
@@ -2803,7 +2818,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 16\\[4pt]
+    \normalsize Diagram Release 17\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
