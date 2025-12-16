@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.17 (Date: 2025-12-16)
+
+- Highlighted UI switch lines
+- Increased contrast for aux white color
+
 ## 2025-07-07.16 (Date: 2025-12-05)
 
 - Added colors to Tint Ramp
