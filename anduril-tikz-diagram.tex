@@ -84,6 +84,8 @@
 \colorlet{onoff-draw}{any-draw}
 \colorlet{onoffbutton-fill}{anybutton-fill}
 \colorlet{onoff-text}{onoff-draw}
+\colorlet{onofframplabel-draw}{any-draw}
+\colorlet{onofframplabel-text}{onofframplabel-draw}
 \colorlet{onofftogglerampstyle-draw}{advanced-draw}
 \colorlet{onofftogglerampstyle-text}{onofftogglerampstyle-draw}
 
@@ -303,6 +305,11 @@
         inner xsep=0.375cm,
         inner ysep=0.065cm,
         rounded rectangle
+    },
+    on-extra ramp label/.style={
+        on-extra,
+        draw=onofframplabel-draw,
+        text=onofframplabel-text
     },
     on-extra toggle ramp style/.style={
         on-extra,
@@ -967,7 +974,7 @@ at (Turbo.north)[
 
 \node (Ramp label)
 at (Turbo.north)[
-    on-extra,
+    on-extra ramp label,
     inner xsep=0.35cm,
     above,
     yshift=0.2cm
