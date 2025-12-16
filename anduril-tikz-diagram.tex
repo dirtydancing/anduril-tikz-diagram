@@ -141,6 +141,7 @@
 \colorlet{tintrampbox-frame}{voltagebox-frame}
 \colorlet{tintrampbox-mixfill}{voltagebox-mixfill}
 \colorlet{tintrampbox-text}{voltagebox-text}
+\colorlet{tintrampboxadv-text}{voltageboxadv-text}
 
 % for infotext
 \colorlet{infoany-text}{any-text}
@@ -729,6 +730,21 @@
         right color=blue!12!tintrampbox-mixfill
     },
     coltext=tintrampbox-text,
+    left=0.02cm,
+    right=0.02cm,
+    rounded corners
+}
+
+% for tint ramp
+% adv = Advanced UI function
+\newtcbox{\tintrampboxadv}{
+    colframe=tintrampbox-frame,
+    skin=enhanced, % for interior style
+    interior style={
+        left color=orange!20!tintrampbox-mixfill,
+        right color=blue!12!tintrampbox-mixfill
+    },
+    coltext=tintrampboxadv-text,
     left=0.02cm,
     right=0.02cm,
     rounded corners
@@ -2138,7 +2154,7 @@ node[
             1  & Channel 1\\
             2  & Channel 2\\
             3  & 50/50\\
-            4  & \tintrampbox{Tint Ramp}\\
+            4  & \tintrampboxadv{Tint Ramp}\\
             5  & Auto-tint\\
             6+ & \tikzmarknode{channelmodeconfig-aux}
                               {Aux LED Channels\vphantom{\S}}\\
@@ -2301,7 +2317,7 @@ node[
     }
         Misc Config\inherited{} &\\
         Hardware-specific &\\
-        1 & \tintrampbox{Tint Ramp} style\\
+        1 & \tintrampboxadv{Tint Ramp} style\\
           & {0C = Smooth ramp\\
              1C = Middle tint only\\
              2C = Channel toggle\\
