@@ -2000,15 +2000,17 @@ at (current page text area.west)[
 }
 
 % Tint Ramping from ON
-\node (Tint Ramping from ON)[
-    anyconfig,
-    below=\nodespacev of Next Channel Mode from ON.south west,
-    anchor=north west
-]
-{
-    \firstline{\tintrampbox{Tint Ramp}}
-    If this channel mode can
-};
+{ [on background layer]
+    \node (Tint Ramping from ON)[
+        anyconfig,
+        below=\nodespacev of Next Channel Mode from ON.south west,
+        anchor=north west
+    ]
+    {
+        \firstline{\tintrampbox{Tint Ramp}}
+        If this channel mode can
+    };
+}
 
 { [on above layer]
     \path (ON.west) edge[
@@ -2324,30 +2326,32 @@ node[
 {10H} (Simple UI Config from OFF.310);
 
 % Misc Config from OFF
-\node (Misc Config from OFF)[
-    advancedtable,
-    right=\nodespaceh of Simple UI Config from OFF.north east,
-    anchor=north west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{
-        row{2}     = {belowsep=2pt},
-        cell{2}{1} = {c=2}{}
-    }
-        Misc Config\inherited{} &\\
-        Hardware-specific &\\
-        1 & \tintrampboxadv{Tint Ramp} style\\
-          & {0C = Smooth ramp\\
-             1C = Middle tint only\\
-             2C = Channel toggle\\
-             3+C = Stepped ramp\\
-             with 3+ steps}\\
-        2 & Jump Start level\\
-          & {1\textendash{}150C (usually\\
-             between 20 and 50)}\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Misc Config from OFF)[
+        advancedtable,
+        right=\nodespaceh of Simple UI Config from OFF.north east,
+        anchor=north west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{
+            row{2}     = {belowsep=2pt},
+            cell{2}{1} = {c=2}{}
+        }
+            Misc Config\inherited{} &\\
+            Hardware-specific &\\
+            1 & \tintrampboxadv{Tint Ramp} style\\
+              & {0C = Smooth ramp\\
+                 1C = Middle tint only\\
+                 2C = Channel toggle\\
+                 3+C = Stepped ramp\\
+                 with 3+ steps}\\
+            2 & Jump Start level\\
+              & {1\textendash{}150C (usually\\
+                 between 20 and 50)}\\
+        \end{configtblr}
+    };
+}
 
 \path (OFF.north) edge[
     ->,
