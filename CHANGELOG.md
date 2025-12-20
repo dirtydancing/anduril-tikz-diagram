@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.18 (Date: 2025-12-20)
+
+- Added information on defaults
+- Added Anduril 1 and 2 turbo styles
+- Adjusted layers for Tint Ramp
+
 ## 2025-07-07.17 (Date: 2025-12-16)
 
 - Highlighted UI switch lines
