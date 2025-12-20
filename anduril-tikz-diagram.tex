@@ -2827,7 +2827,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 17\\[4pt]
+    \normalsize Diagram Release 18\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2860,10 +2860,11 @@ at (current page text area.north east)[
 {
     \spacingnoextra
     \begin{configtblr}{
-        row{2-7}   = {rowsep=0pt},
-        row{3}     = {belowsep=0.5pt},
-        row{8}     = {abovesep=2pt},
-        cell{8}{1} = {c=2}{}
+        row{2-7}     = {rowsep=0pt},
+        row{3}       = {belowsep=0.5pt},
+        row{8}       = {abovesep=2pt},
+        row{9}       = {abovesep=1.5pt},
+        cell{8-9}{1} = {c=2}{}
     }
         Button Presses\vphantom{Config} &\\
         \tikzmarknode{buttonpresses-1C}{1C:} &
@@ -2878,6 +2879,7 @@ at (current page text area.north east)[
          \infotextadvanced{button after the desired}\\
          \infotextadvanced{number of blinks; when}\\
          \infotextadvanced{entering a value, 1H = 10C}} &\\
+        \infotextany{Defaults vary by light.} &\\
     \end{configtblr}
 };
 
