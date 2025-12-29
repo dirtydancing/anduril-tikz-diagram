@@ -2232,6 +2232,7 @@ node[
         4 & {Advanced UI's turbo style\\
              (2C from On/Ramp)}\\
           & {0C = Ceiling only, no turbo\\
+             (\char"2192{} momentary ceiling only)\\
              1C = Turbo\\
              (Andúril 1 style)\\
              2C = Ceiling, or turbo if\\
@@ -2240,8 +2241,7 @@ node[
         5 & Smooth Steps\inherited{}\\
           & {0C = Disable\\
              1C = Enable}\\
-        {Types of brightness memory\\
-         (1C from Off)} &\\
+        Types of brightness memory &\\
         {Automatic: last-ramped\\
          Manual: user's saved\\
          Hybrid: manual after n minutes} &\\
@@ -2307,6 +2307,7 @@ node[
         4 & {Simple UI's turbo style\\
              (2C from On/Ramp)}\\
           & {0C = Ceiling only, no turbo\\
+             (\char"2192{} momentary ceiling only)\\
              1C = Turbo\\
              (Andúril 1 style)\\
              2C = Ceiling, or turbo if\\
@@ -2319,15 +2320,15 @@ node[
     ->,
     advancedline,
     out=90,
-    in=305,
+    in=307,
     out looseness=1.3,
     in looseness=0.7
 ]
 node[
     advancedbutton,
-    pos=0.76
+    pos=0.79
 ]
-{10H} (Simple UI Config from OFF.305);
+{10H} (Simple UI Config from OFF.303);
 
 % Misc Config from OFF
 { [on background layer]
@@ -2368,7 +2369,7 @@ node[
     advancedbutton,
     pos=0.84
 ]
-{9H} (Misc Config from OFF.287);
+{9H} (Misc Config from OFF.284);
 
 % 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
