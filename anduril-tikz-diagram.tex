@@ -1105,10 +1105,11 @@ node[
     (Ramp.north west);
 }
 
-\path (OFF.north east) edge[
+\path (OFF.21) edge[
     -, % no extra arrow tip
     simpleline momentary,
-    shorten >=2.5pt, % in
+    shorten <=-0.1pt, % out
+    shorten >=2pt, % in
     out=90,
     in=180,
     out looseness=1.3,
@@ -1159,15 +1160,52 @@ node[
 \path (Ramp.west) edge[
     {<[scale width=0.75]->[scale width=0.75]},
     anyline,
-    shorten <=0.5pt, % out
+    shorten <=0.8pt, % out
     shorten >=0.5pt, % in
-    bend left=37
+    out=25,
+    in=144,
+    relative,
+    looseness=1.16
 ]
 node[
     anybutton,
-    pos=0.5
+    pos=0.57
 ]
 {2C} (Ramp.north west);
+
+% Momentary Turbo 3H/4H from ON, ramp image
+{ [on above layer]
+    \draw (Ramp.west) edge[
+        {Round Cap[sep=3.35cm]}-{Round Cap[sep=1.3cm]},
+        advancedline,
+        advancedbutton-fill,
+        line width=2.4pt,
+        shorten <=1pt, % out
+        shorten >=0.5pt, % in
+        out=53,
+        in=140,
+        relative,
+        looseness=1.29
+    ]
+    node
+    {} (Turbo.north west);
+    \draw (Ramp.west) edge[
+        {->[scale width=0.75]},
+        advancedline momentary,
+        shorten <=1pt, % out
+        shorten >=0.5pt, % in
+        out=53,
+        in=140,
+        relative,
+        looseness=1.29
+    ]
+    node[
+        advancedbutton,
+        left=-0.35cm,
+        pos=0.849
+    ]
+    {3H/4H} (Turbo.north west);
+}
 
 { [on above layer]
     \path (OFF.south) edge[
@@ -2827,7 +2865,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 18\\[4pt]
+    \normalsize Diagram Release 19\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
