@@ -803,8 +803,8 @@
 % 04 ON ----------------------------------------------------------------
 % 05 OFF right ---------------------------------------------------------
 % 06 Momentary Mode from OFF ON ----------------------------------------
-% 07 Strobe / Mood Modes from OFF --------------------------------------
-% 08 Blinky / Utility Modes from OFF -----------------------------------
+% 07 Strobe & Mood Modes from OFF --------------------------------------
+% 08 Blinky & Utility Modes from OFF -----------------------------------
 % 09 Next Channel Mode from ON -----------------------------------------
 % 10 Ramp Config from ON -----------------------------------------------
 % 11 Simple UI Config from OFF -----------------------------------------
@@ -1035,13 +1035,14 @@ at (Turbo.north)[
 ]
 node[
     advancedbutton,
+    left=-0.63cm,
     pos=0.6,
     label={ [align=left] right:
         \infotextadvanced{3C if only one}\\
         \infotextadvanced{channel mode}
     }
 ]
-{6C}(Toggle Ramp Style from ON.south);
+{3C/6C}(Toggle Ramp Style from ON.south);
 
 \path (Toggle Ramp Style from ON.north) edge[
     ->,
@@ -1381,7 +1382,7 @@ node[
 ]
 {5C} (Momentary Mode from OFF ON.west);
 
-% 07 Strobe / Mood Modes from OFF --------------------------------------
+% 07 Strobe % Mood Modes from OFF --------------------------------------
 % ----------------------------------------------------------------------
 
 % Lightning Storm from Police Strobe
@@ -1538,7 +1539,7 @@ node[
 ]
 {2C} (Party Strobe from Bike Flasher.east);
 
-% Strobe / Mood Modes Actions
+% Strobe & Mood Modes Actions
 \node (Strobe Modes Actions)
 at (current page text area.south)[
     advancedconfig,
@@ -1560,7 +1561,7 @@ at (current page text area.south)[
 
 % Strobe Modes border
 
-% +0.2pt: 1/2 line thickness for outer alignment
+% +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Strobe Modes border 1) at
     ($(Candle Timer.north east)
     + (0cm, \borderspace + 0.2pt)$); % yshift=0.2pt
@@ -1586,7 +1587,7 @@ at (current page text area.south)[
     -- cycle;
 }
 
-% +0.2pt: 1/2 line thickness for outer alignment
+% +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Strobe Modes border north-east) at
     ({$(Strobe Modes border 1) + (0cm, 0.2pt)$}
     -| {$(Strobe Modes border 2) + (0.2pt, 0cm)$});
@@ -1605,7 +1606,7 @@ at (current page text area.south)[
     align=right
 ]
 {
-    \normalsize\textbf{\infotextadvanced{Strobe / Mood Modes}}
+    \normalsize\textbf{\infotextadvanced{Strobe \& Mood Modes}}
     \spacingv
     \infotextadvanced{1C = Off}
 };
@@ -1662,7 +1663,7 @@ node[
     {5C}(Momentary Mode from OFF ON.191);
 }
 
-% 08 Blinky / Utility Modes from OFF -----------------------------------
+% 08 Blinky & Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
 
 % Next Channel Mode from Batt Check
@@ -1681,7 +1682,7 @@ at (current page text area.south)[
 % Batt Check from OFF
 \node (Batt Check from OFF)[
     anyconfig-mode,
-    above left=1.62 and 0.51cm of
+    above left=1.62cm and 0.51cm of
     Next Channel Mode from Batt Check.north west,
     anchor=south west
 ]
@@ -1925,7 +1926,7 @@ node[
 
 % Blinky Modes border
 
-% +0.2pt: 1/2 line thickness for outer alignment
+% +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
     + (1cm, \borderspace)$);
@@ -1954,7 +1955,7 @@ node[
     -- cycle;
 }
 
-% +/-0.2pt: 1/2 line thickness for outer alignment
+% +/-0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Blinky Modes border north-east) at
     ({$(Blinky Modes border 2) + (0cm, 0.2pt)$}
     -| {$(Blinky Modes border 3) + (0.2pt, 0cm)$});
@@ -1970,7 +1971,7 @@ node[
     align=right
 ]
 {
-    \normalsize\textbf{\infotextadvanced{Blinky / Utility Modes}}
+    \normalsize\textbf{\infotextadvanced{Blinky \& Utility Modes}}
     \spacingv
     \infotextadvanced{1C = Off}
 };
@@ -2596,7 +2597,7 @@ node[
         Tactical Mode Config &\\
         1\textendash{}3 & Tactical Slots 1\textendash{}3\\
                         & {1\textendash{}150C = Brightness\\
-                           0C = Last-used strobe /\\
+                           0C = Last-used strobe/\\
                            mood mode\\
                            151C = Party strobe\\
                            152C = Tactical strobe\\
@@ -2775,7 +2776,7 @@ node[
 
 % Line from Factory Reset to Simple UI
 
-% -0.3pt: 1/2 line thickness for vertical alignment for semithick
+% -0.3pt: 0.5 line thickness for vertical alignment for semithick
 \coordinate (Factory Reset right) at
     ($(Factory Reset from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
 \coordinate (Simple UI switch right) at
