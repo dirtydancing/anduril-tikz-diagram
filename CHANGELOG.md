@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.19 (Date: 2025-12-29)
+
+- Added 3H 4H from On to ramp image
+- Added momentary ceiling to turbo styles
+- Clarified Toggle Ramp Style
+
 ## 2025-07-07.18 (Date: 2025-12-20)
 
 - Added information on defaults
