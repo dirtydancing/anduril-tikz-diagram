@@ -933,8 +933,8 @@ at (Ramp.south)[
 \path (ON Ramp.north) edge[
     arrows={<[open, fill=fillarrowbasicuse]->},
     anyline basic use,
-    shorten >=0.05cm,
-    shorten <=0.15cm
+    shorten <=0.15cm, % out
+    shorten >=0.05cm % in
 ]
 node[
     anybutton basic use,
@@ -953,8 +953,8 @@ node[
 \path (Ramp text Memory.south) edge[
     arrows={->},
     anyline ramp,
-    shorten >=0.05cm,
-    shorten <=0.05cm
+    shorten <=0.05cm, % out
+    shorten >=0.05cm % in
 ]
 node[
     anybutton,
@@ -1076,7 +1076,7 @@ node[
 \path (OFF.north) edge[
     ->,
     advancedline momentary,
-    shorten >=0.2pt,
+    shorten >=0.2pt, % in
     out=90,
     in=180,
     looseness=1.4
@@ -1091,7 +1091,7 @@ node[
     \path (OFF.north) edge[
         ->,
         anyline,
-        shorten >=0.2pt,
+        shorten >=0.2pt, % in
         out=90,
         in=180,
         looseness=1.3
@@ -1107,7 +1107,7 @@ node[
 \path (OFF.north east) edge[
     -, % no extra arrow tip
     simpleline momentary,
-    shorten >=2.5pt,
+    shorten >=2.5pt, % in
     out=90,
     in=180,
     out looseness=1.3,
@@ -1125,8 +1125,8 @@ node[
     advancedline,
     advancedbutton-fill,
     line width=2.4pt,
-    shorten >=0.2pt,
-    shorten <=0.7pt,
+    shorten <=0.7pt, % out
+    shorten >=0.2pt, % in
     out=40,
     in=0,
     out looseness=0.3,
@@ -1137,8 +1137,8 @@ node
 \path (Ramp.north) edge[
     <->,
     advancedline,
-    shorten >=0.2pt,
-    shorten <=0.7pt,
+    shorten <=0.7pt, % out
+    shorten >=0.2pt, % in
     out=40,
     in=0,
     out looseness=0.3,
@@ -1158,8 +1158,8 @@ node[
 \path (Ramp.west) edge[
     {<[scale width=0.75]->[scale width=0.75]},
     anyline,
-    shorten >=0.5pt,
-    shorten <=0.5pt,
+    shorten <=0.5pt, % out
+    shorten >=0.5pt, % in
     bend left=37
 ]
 node[
@@ -1172,7 +1172,7 @@ node[
     \path (OFF.south) edge[
         ->,
         anyline,
-        shorten >=0.2pt,
+        shorten >=0.2pt, % in
         out=270,
         in=180,
         looseness=1.3
@@ -1187,7 +1187,7 @@ node[
 \path (OFF.east) edge[
     <->,
     anyline basic use,
-    shorten >=0.2pt
+    shorten >=0.2pt % in
 ]
 node[
     anybutton basic use,
@@ -1209,7 +1209,7 @@ node[
     \path (Lockout.north) edge[
         ->,
         anyline,
-        shorten >=0.2pt,
+        shorten >=0.2pt, % in
         out=90,
         in=0,
         looseness=1.3
@@ -1224,7 +1224,7 @@ node[
 \path (Lockout.south) edge[
     ->,
     anyline,
-    shorten >=0.2pt,
+    shorten >=0.2pt, % in
     out=270,
     in=0,
     looseness=1.3
@@ -1238,7 +1238,7 @@ node[
 \path (Lockout.west) edge[
     <->,
     anyline,
-    shorten >=0.2pt
+    shorten >=0.2pt % in
 ]
 node[
     anybutton,
@@ -1493,7 +1493,7 @@ node[
 \path (Candle from OFF.north west) edge[
     ->,
     advancedline,
-    shorten <=-1.9pt,
+    shorten <=-1.9pt, % out
     out=135,
     in=0,
     looseness=0.7
@@ -1646,7 +1646,7 @@ node[
     \path (Strobe Modes border momentary-strobe) edge[
         ->,
         advancedline,
-        shorten <=-0.1pt,
+        shorten <=-0.1pt, % out
         out=80,
         in=180,
         looseness=0.9
@@ -1706,7 +1706,7 @@ at (current page text area.south)[
 \path (Batt Check from OFF.213) edge[
     ->,
     advancedline,
-    shorten >=-1.8pt,
+    shorten >=-1.8pt, % in
     out=270,
     in=120,
     looseness=0.9
@@ -2737,7 +2737,7 @@ at (current page text area.east)[
     \path (OFF right.east) edge[
         ->,
         advancedUI switch line,
-        shorten <=-0.4pt,
+        shorten <=-0.4pt, % out
         out=0,
         in=90,
         looseness=1.2
@@ -2762,7 +2762,7 @@ at (current page text area.east)[
 \path (OFF right.east) edge[
     ->,
     simpleUI switch line,
-    shorten <=-0.4pt,
+    shorten <=-0.4pt, % out
     out=0,
     in=270,
     looseness=1.2
