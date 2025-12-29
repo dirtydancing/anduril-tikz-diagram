@@ -2110,10 +2110,8 @@ at (current page text area.north west)[
 {
     \spacingnoextra
     \begin{configtblr}{
-        row{2}     = {abovesep=3pt, belowsep=2pt},
-        row{6}     = {abovesep=3pt, belowsep=2pt},
-        cell{2}{1} = {c=2}{font=\bfseries},
-        cell{6}{1} = {c=2}{font=\bfseries}
+        row{2,6}     = {abovesep=3pt, belowsep=2pt},
+        cell{2,6}{1} = {c=2}{font=\bfseries}
     }
         Ramp Config &\\
         Smooth Ramp &\\
@@ -2219,7 +2217,7 @@ node[
     \begin{configtblr}{
         row{Y}       = {abovesep=3pt},
         row{Z}       = {abovesep=2pt},
-        cell{Y,Z}{1} = {c=2}{}
+        cell{Y-Z}{1} = {c=2}{}
     }
         Ramp Extras Config &\\
         1 & Disable manual memory\inherited{}\\
@@ -2862,9 +2860,9 @@ at (current page text area.north east)[
     \begin{configtblr}{
         row{2-7}     = {rowsep=0pt},
         row{3}       = {belowsep=0.5pt},
-        row{8}       = {abovesep=2pt},
-        row{9}       = {abovesep=1.5pt},
-        cell{8-9}{1} = {c=2}{}
+        row{Y}       = {abovesep=2pt},
+        row{Z}       = {abovesep=1.5pt},
+        cell{Y-Z}{1} = {c=2}{}
     }
         Button Presses\vphantom{Config} &\\
         \tikzmarknode{buttonpresses-1C}{1C:} &
