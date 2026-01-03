@@ -491,6 +491,9 @@
         draw=generalinfo-draw,
         fill=generalinfo-fill
     },
+    memoryinfo/.style={
+        generalinfo
+    },
     andurilinfo/.style={
         generalinfo,
         draw=andurilinfo-draw,
@@ -2172,7 +2175,7 @@ at (current page text area.north west)[
     in=280,
     looseness=1.4
 ]
-+(-3.4cm, 3.25cm) to[
++(-3.35cm, 3.25cm) to[
     out=100,
     in=275,
     looseness=0.9
@@ -2182,7 +2185,7 @@ node[
     pos=0.55
 ]
 {7H}
-+(-3.5cm, 4.9cm) to[
++(-3.45cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -2251,18 +2254,15 @@ node[
 ]
 {
     \spacingnoextra
-    \begin{configtblr}{
-        row{Y}       = {abovesep=3pt},
-        row{Z}       = {abovesep=2pt},
-        cell{Y-Z}{1} = {c=2}{}
-    }
+    \begin{configtblr}{}
         Ramp Extras Config &\\
         1 & Disable manual memory\inherited{}\\
           & 1+C\\
         2 & Manual memory timer\inherited{}\\
           & {0C = Disable\\
              nC = n minutes}\\
-        3 & Moon style (1H from Off)\inherited{}\\
+        3 & {Ramp-after-moon style\inherited{}\\
+             (1H from Off)}\\
           & {0C = Ramp up after moon\\
              1C = Stay at floor level}\\
         4 & {Advanced UI's turbo style\\
@@ -2277,10 +2277,6 @@ node[
         5 & Smooth Steps\inherited{}\\
           & {0C = Disable\\
              1C = Enable}\\
-        Types of brightness memory &\\
-        {Automatic: last-ramped\\
-         Manual: user's saved\\
-         Hybrid: manual after n minutes} &\\
     \end{configtblr}
 };
 
@@ -2295,7 +2291,7 @@ node[
     advancedbutton,
     pos=0.8
 ]
-{10H} (Ramp Extras Config from ON.280);
+{10H} (Ramp Extras Config from ON.272);
 
 % Manual Memory from ON
 \node (Manual Memory from ON)[
@@ -2314,14 +2310,30 @@ node[
     ->,
     advancedline,
     out=90,
-    in=255,
+    in=260,
     looseness=1.5
 ]
 node[
     advancedbutton,
-    pos=0.85
+    pos=0.83
 ]
 {10C} (Manual Memory from ON.245);
+
+% Types of brightness memory information
+\node (Types of brightness memory information)[
+    memoryinfo,
+    above=0.2cm of Manual Memory from ON.north west,
+    anchor=south west
+]
+{
+    \infotextadvanced{Types of brightness}\\
+    \infotextadvanced{memory (1C from Off)}
+    \spacingv
+    \infotextadvanced{Automatic: last-ramped}\\
+    \infotextadvanced{Manual: user's saved}\\
+    \infotextadvanced{Hybrid: automatic first,}\\
+    \infotextadvanced{manual after n minutes\vphantom{y}}
+};
 
 % 11 Simple UI Config from OFF -----------------------------------------
 % ----------------------------------------------------------------------
@@ -2358,13 +2370,13 @@ node[
     advancedbutton,
     pos=0.6
 ]
-{10H} (Simple UI Config from OFF.307);
+{10H} (Simple UI Config from OFF.310);
 
 % Misc Config from OFF
 { [on background layer]
     \node (Misc Config from OFF)[
         advancedtable,
-        right=\nodespaceh of Simple UI Config from OFF.north east,
+        right=0.9cm of Simple UI Config from OFF.north east,
         anchor=north west
     ]
     {
@@ -2399,7 +2411,7 @@ node[
     advancedbutton,
     pos=0.84
 ]
-{9H} (Misc Config from OFF.296);
+{9H} (Misc Config from OFF.290);
 
 % 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
@@ -2857,7 +2869,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 19\\[4pt]
+    \normalsize Diagram Release 20\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
