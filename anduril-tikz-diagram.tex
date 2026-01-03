@@ -1035,14 +1035,13 @@ at (Turbo.north)[
 ]
 node[
     advancedbutton,
-    left=-0.63cm,
     pos=0.6,
     label={ [align=left] right:
         \infotextadvanced{3C if only one}\\
         \infotextadvanced{channel mode}
     }
 ]
-{3C/6C}(Toggle Ramp Style from ON.south);
+{6C}(Toggle Ramp Style from ON.south);
 
 \path (Toggle Ramp Style from ON.north) edge[
     ->,
@@ -1173,7 +1172,7 @@ node[
 ]
 {2C} (Ramp.north west);
 
-% Momentary Turbo 3H/4H from ON, ramp image
+% Momentary Turbo 3H from ON, ramp image
 { [on above layer]
     \draw (Ramp.west) edge[
         {Round Cap[sep=3.35cm]}-{Round Cap[sep=1.3cm]},
@@ -1201,10 +1200,9 @@ node[
     ]
     node[
         advancedbutton,
-        left=-0.35cm,
-        pos=0.849
+        pos=0.848
     ]
-    {3H/4H} (Turbo.north west);
+    {3H} (Turbo.north west);
 }
 
 { [on above layer]
