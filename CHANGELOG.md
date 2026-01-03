@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.20 (Date: 2026-01-03)
+
+- Repositioned types of brightness memory
+- Shortened Simple UI turbo style
+- Removed alternatives from ramp image
+
 ## 2025-07-07.19 (Date: 2025-12-29)
 
 - Added 3H 4H from On to ramp image
