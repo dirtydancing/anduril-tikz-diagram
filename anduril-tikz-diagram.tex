@@ -2268,7 +2268,7 @@ node[
         4 & {Advanced UI's turbo style\\
              (2C from On/Ramp)}\\
           & {0C = Ceiling only, no turbo\\
-             (\char"2192{} momentary ceiling only)\\
+             \char"2192{} momentary ceiling only\\
              1C = Turbo\\
              (Andúril 1 style)\\
              2C = Ceiling, or turbo if\\
@@ -2340,15 +2340,9 @@ node[
         1 & Floor: nC = n of 150\\
         2 & Ceiling: nC = 151 \char"2212{} n\\
         3 & Step count: 1\textendash{}150C\\
-        4 & {Simple UI's turbo style\\
-             (2C from On/Ramp)}\\
-          & {0C = Ceiling only, no turbo\\
-             (\char"2192{} momentary ceiling only)\\
-             1C = Turbo\\
-             (Andúril 1 style)\\
-             2C = Ceiling, or turbo if\\
-             ramped up to ceiling first\\
-             (Andúril 2 style)}\\
+        4 & Simple UI's turbo style\\
+          & {0C/1C/2C\\
+             \char"2192{} see Ramp Extras, 4}\\
     \end{configtblr}
 };
 
@@ -2362,9 +2356,9 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.79
+    pos=0.6
 ]
-{10H} (Simple UI Config from OFF.303);
+{10H} (Simple UI Config from OFF.307);
 
 % Misc Config from OFF
 { [on background layer]
@@ -2405,7 +2399,7 @@ node[
     advancedbutton,
     pos=0.84
 ]
-{9H} (Misc Config from OFF.284);
+{9H} (Misc Config from OFF.296);
 
 % 12 Momentary Moon from Lockout ---------------------------------------
 % ----------------------------------------------------------------------
