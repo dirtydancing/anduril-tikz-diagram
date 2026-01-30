@@ -1762,7 +1762,7 @@ node[
 
 { [on above layer]
     \path (OFF.south) edge[
-        {Round Cap[sep=3.3cm]}-{Round Cap[sep=3.1cm]},
+        {Round Cap[sep=3.8cm]}-{Round Cap[sep=2.6cm]},
         anyline,
         anybutton-fill,
         line width=2.4pt,
@@ -1781,7 +1781,7 @@ node[
     ]
     node[
         anybutton,
-        pos=0.8
+        pos=0.82
     ]
     {3C} (Batt Check from OFF.north);
 }
@@ -1806,9 +1806,7 @@ node[
                  (on lights with RGB aux)}\\
               & {0C = Disable\\
                  nC = n seconds;\\
-                 brightness as set in 3 \& 4,\\
-                 high if Off aux LEDs are\\
-                 set to high (7C from Off)}\\
+                 brightness as set in 3 \& 4}\\
             3 & Aux low ramp level\\
               & {0C = Disable button LEDs\\
                  1+C = Light up button\\
@@ -1833,7 +1831,7 @@ node[
     advancedbutton,
     pos=0.5
 ]
-{7H} (Voltage Config from Batt Check.326);
+{7H} (Voltage Config from Batt Check.330);
 
 % Temp Check from Batt Check
 \node (Temp Check from Batt Check)[
@@ -1971,7 +1969,7 @@ node[
 % +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (1cm, \borderspace)$);
+    + (1.1cm, \borderspace)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
     + (0.15cm, \borderspace + 0.2pt)$); % yshift=0.2pt
