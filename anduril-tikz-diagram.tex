@@ -2423,8 +2423,8 @@ node[
 ]
 {
     \firstline{Momentary Moon}
-    Lowest floor of\\
-    smooth vs stepped
+    Lowest floor (of smooth\\
+    vs stepped ramp)
 };
 
 \path (Lockout.south) edge[
@@ -2432,11 +2432,11 @@ node[
     anyline momentary,
     out=270,
     in=180,
-    looseness=1
+    looseness=1.1
 ]
 node[
     anybutton,
-    pos=0.7
+    pos=0.75
 ]
 {1H} (Momentary Moon from Lockout.west);
 
@@ -2448,8 +2448,7 @@ node[
 ]
 {
     \firstline{Momentary Low}
-    Highest floor of\\
-    smooth vs stepped, or\\
+    Highest floor, or\\
     manual memory if set
 };
 
@@ -2462,7 +2461,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.72
+    pos=0.745
 ]
 {2H} (Momentary Low from Lockout.west);
 
@@ -2483,7 +2482,7 @@ node[
 ]
 node[
     anybutton,
-    pos=0.74
+    pos=0.765
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
