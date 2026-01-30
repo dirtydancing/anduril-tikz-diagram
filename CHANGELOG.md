@@ -2,6 +2,13 @@
 
 ## Next
 
+## 2025-07-07.21 (Date: 2026-01-30)
+
+- Highlighted arrows for basic use
+- Reduced details for Momentary Low
+- Reduced details for post-off voltage display
+- Unified colors for memory types
+
 ## 2025-07-07.20 (Date: 2026-01-03)
 
 - Repositioned types of brightness memory
