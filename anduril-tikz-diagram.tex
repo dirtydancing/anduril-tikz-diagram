@@ -72,7 +72,6 @@
 \colorlet{advancedUI-draw}{advanced-draw}
 \colorlet{advancedUIswitchline-draw}{orange}
 
-
 % simple = for Simple UI only
 \colorlet{simplebutton-double}{anybutton-fill}
 \colorlet{simple-text}{any-text}
@@ -88,8 +87,10 @@
 \colorlet{onoffbutton-fill}{anybutton-fill}
 \colorlet{onoff-text}{onoff-draw}
 \colorlet{onofframplabel-draw}{any-draw}
+\colorlet{onofframplabel-fill}{anybutton-fill}
 \colorlet{onofframplabel-text}{onofframplabel-draw}
 \colorlet{onofftogglerampstyle-draw}{advanced-draw}
+\colorlet{onofftogglerampstyle-fill}{advancedbutton-fill}
 \colorlet{onofftogglerampstyle-text}{onofftogglerampstyle-draw}
 
 % any... mode = for Batt Check from OFF
@@ -322,11 +323,13 @@
     on-extra ramp label/.style={
         on-extra,
         draw=onofframplabel-draw,
+        fill=onofframplabel-fill,
         text=onofframplabel-text
     },
     on-extra toggle ramp style/.style={
         on-extra,
         draw=onofftogglerampstyle-draw,
+        fill=onofftogglerampstyle-fill,
         text=onofftogglerampstyle-text
     },
     onoff/.style={
