@@ -97,8 +97,8 @@ This diagram has been inspired by the works of:
 
 ## Contributing
 
-You are very welcome to contribute to the diagram. I appreciate the
-community being involved in the development of the Andúril flashlight
+You are very welcome to contribute to the diagram. I appreciate that
+the community is involved in the development of the Andúril flashlight
 UI, and this diagram has been created in the same spirit.
 
 - To contribute directly to the diagram, open a
