@@ -382,7 +382,9 @@
 % for basic use
 \tikzset{
     anyline basic use/.style={
-        anyline
+        anyline,
+        draw=basicuse-draw,
+        line width=1pt
     },
     anybutton basic use/.style={
         anybutton,
@@ -395,9 +397,9 @@
     button presses basic use fit/.style={
         advancedborder-mode,
         draw=buttonpressesbasicuse-draw,
-        thick,
+        line width=1pt,
         inner xsep=0.03cm,
-        inner ysep=0.045cm,
+        inner ysep=0.05cm,
         rounded corners=2pt
     }
 }
@@ -945,7 +947,7 @@ at (Ramp.south)[
 node[
     anybutton basic use,
     pos=0.53,
-    label={ [align=left, xshift=0.525cm] right:
+    label={ [align=left, xshift=0.515cm] right:
         \infotextany{Ramp up}\\
         \infotextany{(floor\textendash{}ceiling),}\\
         \infotextany{with reversal}\\
@@ -966,8 +968,8 @@ node[
     anybutton,
     pos=0.42,
     % with fill color: pos=0.44,
-    label={ [align=left, xshift=0.525cm+1pt] right:
-    % +1pt for vertical alignment
+    label={ [align=left, xshift=0.515cm+1.3pt] right:
+    % +1.3pt for vertical alignment
         \infotextany{Ramp down}\\
         \infotextany{(ceiling\textendash{}floor)}
     }
@@ -1118,7 +1120,7 @@ node[
     out=90,
     in=180,
     out looseness=1.3,
-    in looseness=0.65
+    in looseness=0.67
 ]
 node[
     simplebutton,
@@ -1185,28 +1187,28 @@ node[
         advancedline,
         advancedbutton-fill,
         line width=2.4pt,
-        shorten <=1pt, % out
+        shorten <=1.75pt, % out
         shorten >=0.5pt, % in
-        out=53,
+        out=54,
         in=140,
         relative,
-        looseness=1.29
+        looseness=1.3
     ]
     node
     {} (Turbo.north west);
     \draw (Ramp.west) edge[
         {->[scale width=0.75]},
         advancedline momentary,
-        shorten <=1pt, % out
+        shorten <=1.75pt, % out
         shorten >=0.5pt, % in
-        out=53,
+        out=54,
         in=140,
         relative,
-        looseness=1.29
+        looseness=1.3
     ]
     node[
         advancedbutton,
-        pos=0.848
+        pos=0.85
     ]
     {3H} (Turbo.north west);
 }
@@ -2869,7 +2871,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 20\\[4pt]
+    \normalsize Diagram Release 21\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2903,7 +2905,7 @@ at (current page text area.north east)[
     \spacingnoextra
     \begin{configtblr}{
         row{2-7}     = {rowsep=0pt},
-        row{3}       = {belowsep=0.5pt},
+        row{3}       = {belowsep=0.9pt}, % for basic use fit
         row{Y}       = {abovesep=2pt},
         row{Z}       = {abovesep=1.5pt},
         cell{Y-Z}{1} = {c=2}{}
