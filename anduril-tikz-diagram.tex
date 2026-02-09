@@ -60,22 +60,33 @@
 
 % any = for Simple UI and Advanced UI
 \colorlet{any-draw}{black}
-\colorlet{anybutton-fill}{white}
+\colorlet{anyconfig-draw}{any-draw}
 \colorlet{anyconfig-fill}{yellow!30}
 \colorlet{any-text}{any-draw}
+\colorlet{anybutton-draw}{anyconfig-draw}
+\colorlet{anybutton-fill}{white}
+\colorlet{anybutton-text}{any-text}
 
 % advanced = for Advanced UI only
 \colorlet{advanced-draw}{any-draw}
-\colorlet{advancedbutton-fill}{anybutton-fill}
+\colorlet{advancedconfig-draw}{gray!75}
 \colorlet{advancedconfig-fill}{gray!10}
 \colorlet{advanced-text}{advanced-draw}
+\colorlet{advancedconfigtable-draw}{advancedconfig-draw}
+\colorlet{advancedconfigtable-fill}{advancedconfig-fill}
+\colorlet{advancedconfigtable-text}{advanced-text}
+\colorlet{advancedbutton-fill}{anybutton-fill}
+\colorlet{advancedbutton-text}{advanced-text}
 \colorlet{advancedUI-draw}{advanced-draw}
-\colorlet{advancedUIswitchline-draw}{orange}
 
 % simple = for Simple UI only
+\colorlet{simple-draw}{any-draw}
 \colorlet{simplebutton-double}{anybutton-fill}
-\colorlet{simple-text}{any-text}
 \colorlet{simpleUI-draw}{any-draw}
+\colorlet{simple-text}{any-text}
+
+% for UI switch lines
+\colorlet{advancedUIswitchline-draw}{orange}
 \colorlet{simpleUIswitchline-draw}{advancedUIswitchline-draw}
 
 % for Extended Simple UI
@@ -85,27 +96,28 @@
 % for On, Ramp, Off, and Lockout
 \colorlet{onoff-draw}{any-draw}
 \colorlet{onoffbutton-fill}{anybutton-fill}
-\colorlet{onoff-text}{onoff-draw}
-\colorlet{onofframplabel-draw}{any-draw}
-\colorlet{onofframplabel-fill}{anybutton-fill}
-\colorlet{onofframplabel-text}{onofframplabel-draw}
-\colorlet{onofftogglerampstyle-draw}{advanced-draw}
-\colorlet{onofftogglerampstyle-fill}{advancedbutton-fill}
-\colorlet{onofftogglerampstyle-text}{onofftogglerampstyle-draw}
+\colorlet{onoff-text}{any-text}
+\colorlet{onofframplabel-draw}{onoff-draw}
+\colorlet{onofframplabel-fill}{onoffbutton-fill}
+\colorlet{onofframplabel-text}{onoff-text}
+\colorlet{onofftogglerampstyle-draw}{onoff-draw}
+\colorlet{onofftogglerampstyle-fill}{onoffbutton-fill}
+\colorlet{onofftogglerampstyle-text}{onoff-text}
 
 % any... mode = for Batt Check from OFF
-\colorlet{anyconfigmode-draw}{advancedUIswitchline-draw}
+\colorlet{anyconfigmode-draw}{advancedconfig-draw}
 
 % advanced... mode = for strobe modes and blinky modes
 \colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
-\colorlet{advancedbordermode-draw}{gray!75}
+\colorlet{advancedbordermode-draw}{advancedconfigmode-draw}
 
 % for basic use
 \colorlet{basicuse-draw}{blue!80}
+\colorlet{anybuttonbasicuse-draw}{basicuse-draw}
 \colorlet{anybuttonbasicuse-fill}{anybutton-fill}
 \colorlet{basicuse-text}{any-text}
-\colorlet{fillarrowbasicuse}{anybutton-fill}
 \colorlet{buttonpressesbasicuse-draw}{basicuse-draw}
+\colorlet{fillarrowbasicuse}{anybutton-fill}
 
 % for ramp image
 \colorlet{rampsmooth-topbottom}{black!40}
@@ -117,25 +129,21 @@
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
 
 % for configuring Simple UI
-\colorlet{simpleUIconfig-draw}{anyconfigmode-draw}
+\colorlet{simpleUIconfig-draw}{advancedconfigtable-draw}
 \colorlet{inherited-text}{advanced-text}
 
 % for line from Factory Reset to Simple UI
 \colorlet{factoryresetsimpleUI-draw}{advancedUIswitchline-draw}
 
-% for further information
+% for general information
 \colorlet{generalinfo-draw}{advancedbordermode-draw}
 \colorlet{generalinfo-fill}{anybutton-fill}
-\colorlet{andurilinfo-draw}{anyconfigmode-draw}
+\colorlet{andurilinfo-draw}{generalinfo-draw}
+\colorlet{andurilinfo-fill}{generalinfo-fill}
 \colorlet{andurilinfo-text}{any-text}
-
-% for aux LED channels (channel mode config)
-\colorlet{channelmodeconfigaux-mixdraw}{gray!50!violet}
-\colorlet{channelmodeconfigaux-white}{darkgray!85!blue}
-
-% for aux LED color (Off and Lockout)
-\colorlet{auxLEDcolor-mixdraw}{channelmodeconfigaux-mixdraw}
-\colorlet{auxLEDcolor-white}{channelmodeconfigaux-white}
+\colorlet{voltagecolorinfo-fill}{generalinfo-fill}
+\colorlet{buttonpressesinfo-fill}{generalinfo-fill}
+\colorlet{matrixlegendinfo-fill}{generalinfo-fill}
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
@@ -213,18 +221,8 @@
         densely dashed,
         line cap=round
     },
-    anybutton/.style={
-        draw=any-draw,
-        thin,
-        solid,
-        fill=anybutton-fill,
-        text=any-text,
-        font=\normalsize,
-        inner sep=0.075cm,
-        rounded corners % default: 4pt
-    },
     anyconfig/.style={
-        draw=any-draw,
+        draw=anyconfig-draw,
         thin,
         solid,
         fill=anyconfig-fill,
@@ -232,6 +230,16 @@
         inner sep=0.1cm,
         rounded corners,
         align=left
+    },
+    anybutton/.style={
+        draw=anybutton-draw,
+        thin,
+        solid,
+        fill=anybutton-fill,
+        text=anybutton-text,
+        font=\normalsize,
+        inner sep=0.075cm,
+        rounded corners % default: 4pt
     }
 }
 
@@ -246,41 +254,42 @@
         densely dashed,
         line cap=round
     },
+    advancedconfig/.style={
+        anyconfig,
+        draw=advancedconfig-draw,
+        fill=advancedconfig-fill,
+        text=advanced-text
+    },
+    advancedconfigtable/.style={
+        advancedconfig,
+        draw=advancedconfigtable-draw,
+        fill=advancedconfigtable-fill,
+        text=advancedconfigtable-text
+    },
     advancedbutton/.style={
         anybutton,
         draw=none,
         fill=advancedbutton-fill,
-        text=advanced-text
-    },
-    advancedconfig/.style={
-        anyconfig,
-        draw=advanced-draw,
-        fill=advancedconfig-fill,
-        text=advanced-text
-    },
-    advancedtable/.style={
-        advancedconfig
+        text=advancedbutton-text
     },
     advancedUI/.style={
         advancedconfig,
         draw=advancedUI-draw,
         very thick, % very thick = 1.2pt
         font=\bfseries\LARGE
-    },
-    advancedUI switch line/.style={
-        simpleline,
-        draw=advancedUIswitchline-draw,
-        very thick
     }
 }
 
 % simple = for Simple UI only
 \tikzset{
     simpleline/.style={
-        anyline
+        anyline,
+        draw=simple-draw
     },
     simpleline momentary/.style={
-        anyline momentary
+        simpleline,
+        densely dashed,
+        line cap=round
     },
     simplebutton/.style={
         anybutton,
@@ -291,6 +300,15 @@
         draw=simpleUI-draw,
         very thick,
         font=\bfseries\LARGE
+    }
+}
+
+% for UI switch lines
+\tikzset{
+    advancedUI switch line/.style={
+        simpleline,
+        draw=advancedUIswitchline-draw,
+        very thick
     },
     simpleUI switch line/.style={
         advancedline,
@@ -355,7 +373,7 @@
     anyconfig-mode/.style={
         anyconfig,
         draw=anyconfigmode-draw,
-        very thick
+        ultra thick % ultra thick = 1.6pt
     }
 }
 
@@ -370,7 +388,7 @@
     advancedconfig-mode/.style={
         advancedconfig,
         draw=advancedconfigmode-draw,
-        very thick
+        ultra thick
     },
     advancedborder-mode/.style={
         advancedconfig,
@@ -388,7 +406,7 @@
     },
     anybutton basic use/.style={
         anybutton,
-        draw=basicuse-draw,
+        draw=anybuttonbasicuse-draw,
         line width=2pt,
         fill=anybuttonbasicuse-fill,
         text=basicuse-text,
@@ -473,9 +491,8 @@
 % for configuring Simple UI
 \tikzset{
     simpleUIconfigtable/.style={
-        advancedtable,
-        draw=simpleUIconfig-draw,
-        semithick % semithick = 0.6pt
+        advancedconfigtable,
+        draw=simpleUIconfig-draw
     }
 }
 
@@ -484,35 +501,36 @@
     anyline factoryreset simpleUI/.style={
         anyline,
         draw=factoryresetsimpleUI-draw,
-        semithick,
+        thick,
         rounded corners
     }
 }
 
-% for further information
+% for general information
 \tikzset{
     generalinfo/.style={
         anyconfig,
         draw=generalinfo-draw,
         fill=generalinfo-fill
     },
-    memoryinfo/.style={
-        advancedconfig
-    },
     andurilinfo/.style={
         generalinfo,
         draw=andurilinfo-draw,
-        very thick,
+        ultra thick,
+        fill=andurilinfo-fill,
         text=andurilinfo-text
     },
     voltagecolorinfo/.style={
-        generalinfo
+        generalinfo,
+        fill=voltagecolorinfo-fill
     },
     buttonpressesinfo/.style={
-        generalinfo
+        generalinfo,
+        fill=buttonpressesinfo-fill
     },
     matrixlegendinfo/.style={
         generalinfo,
+        fill=matrixlegendinfo-fill,
         matrix of nodes,
         nodes in empty cells,
         nodes={
@@ -536,91 +554,38 @@
         anyline basic use,
         line cap=round
     },
+    anybutton basic use legend/.style={
+        anybutton basic use,
+        fill=matrixlegendinfo-fill
+    },
     anyline legend/.style={
         anyline,
         line cap=round
+    },
+    anybutton legend/.style={
+        anybutton,
+        fill=matrixlegendinfo-fill
     },
     simpleline legend/.style={
         simpleline,
         line cap=round
     },
+    simplebutton legend/.style={
+        simplebutton,
+        fill=matrixlegendinfo-fill,
+        double=matrixlegendinfo-fill
+    },
     advancedline legend/.style={
         advancedline,
         line cap=round
     },
+    advancedbutton legend/.style={
+        advancedbutton,
+        fill=matrixlegendinfo-fill
+    },
     anyline momentary legend/.style={
         anyline momentary,
         line cap=round
-    }
-}
-
-% for aux LED channels (channel mode config)
-\tikzset{
-    channel mode config aux fit/.style={
-        button presses basic use fit,
-        draw=red!80!channelmodeconfigaux-mixdraw,
-        semithick,
-        inner sep=0.03cm,
-        dash pattern=on 15pt off 90pt,
-        postaction={draw=yellow!80!channelmodeconfigaux-mixdraw,
-            dash phase=15pt},
-        postaction={draw=green!80!channelmodeconfigaux-mixdraw,
-            dash phase=30pt},
-        postaction={draw=cyan!80!channelmodeconfigaux-mixdraw,
-            dash phase=45pt},
-        postaction={draw=blue!80!channelmodeconfigaux-mixdraw,
-            dash phase=60pt},
-        postaction={draw=purple!80!channelmodeconfigaux-mixdraw,
-            dash phase=75pt},
-        postaction={draw=channelmodeconfigaux-white!80!
-                         channelmodeconfigaux-mixdraw,
-            dash phase=90pt}
-    }
-}
-
-% for Off aux LED color
-\tikzset{
-    aux LED color Off/.style={
-        advancedconfig,
-        draw=red!80!auxLEDcolor-mixdraw,
-        semithick,
-        dash pattern=on 10.7 pt off 64.2pt,
-        postaction={draw=yellow!80!auxLEDcolor-mixdraw,
-            dash phase=10.7pt},
-        postaction={draw=green!80!auxLEDcolor-mixdraw,
-            dash phase=21.4pt},
-        postaction={draw=cyan!80!auxLEDcolor-mixdraw,
-            dash phase=32.1pt},
-        postaction={draw=blue!80!auxLEDcolor-mixdraw,
-            dash phase=42.8pt},
-        postaction={draw=purple!80!auxLEDcolor-mixdraw,
-            dash phase=53.5pt},
-        postaction={draw=auxLEDcolor-white!80!
-                         auxLEDcolor-mixdraw,
-            dash phase=64.2pt}
-    }
-}
-
-% for Lockout aux LED color
-\tikzset{
-    aux LED color Lockout/.style={
-        advancedconfig,
-        draw=red!80!auxLEDcolor-mixdraw,
-        semithick,
-        dash pattern=on 11.35pt off 68.1pt,
-        postaction={draw=yellow!80!auxLEDcolor-mixdraw,
-            dash phase=11.35pt},
-        postaction={draw=green!80!auxLEDcolor-mixdraw,
-            dash phase=22.7pt},
-        postaction={draw=cyan!80!auxLEDcolor-mixdraw,
-            dash phase=34.05pt},
-        postaction={draw=blue!80!auxLEDcolor-mixdraw,
-            dash phase=45.4pt},
-        postaction={draw=purple!80!auxLEDcolor-mixdraw,
-            dash phase=56.75pt},
-        postaction={draw=auxLEDcolor-white!80!
-                         auxLEDcolor-mixdraw,
-            dash phase=68.1pt}
     }
 }
 
@@ -789,6 +754,12 @@
 
 % for infotext for Simple UI only
 \newcommand{\infotextsimple}[1]{\textcolor{infosimple-text}{#1}}
+
+% for text for basic use
+\newcommand{\textbasicuse}[1]{\textcolor{basicuse-text}{#1}}
+
+% for text for inherited
+\newcommand{\textinherited}[1]{\textcolor{inherited-text}{#1}}
 
 % for inherited by Simple UI
 % (Unicode character Asterisk)
@@ -1426,7 +1397,7 @@ node[
 ]
 {5C} (Momentary Mode from OFF ON.west);
 
-% 07 Strobe % Mood Modes from OFF --------------------------------------
+% 07 Strobe & Mood Modes from OFF --------------------------------------
 % ----------------------------------------------------------------------
 
 % Lightning Storm from Police Strobe
@@ -1538,7 +1509,7 @@ node[
 \path (Candle from OFF.north west) edge[
     ->,
     advancedline,
-    shorten <=-1.9pt, % out
+    shorten <=-1.99pt, % out
     out=135,
     in=0,
     looseness=0.7
@@ -1791,7 +1762,7 @@ node[
 % Voltage Config from Batt Check
 { [on background layer]
     \node (Voltage Config from Batt Check)[
-        advancedtable,
+        advancedconfigtable,
         right=1.5cm of Strobe Modes Actions.south east,
         anchor=south west
     ]
@@ -1858,7 +1829,7 @@ node[
 
 % Temp Check Thermal Config
 \node (Temp Check Thermal Config)[
-    advancedtable,
+    advancedconfigtable,
     above right=0.2cm and 1cm of
     Temp Check from Batt Check.north east,
     anchor=north west
@@ -2147,7 +2118,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Ramp Config from ON)
 at (current page text area.north west)[
-    advancedtable,
+    advancedconfigtable,
     anchor=north west
 ]
 {
@@ -2198,7 +2169,7 @@ node[
 % Channel Mode Config from ON
 { [on background layer]
     \node (Channel Mode Config from ON)[
-        advancedtable,
+        advancedconfigtable,
         above=0.5cm of Next Channel Mode from ON.north west,
         anchor=south west
     ]
@@ -2220,17 +2191,10 @@ node[
             3  & 50/50\\
             4  & \tintrampboxadv{Tint Ramp}\\
             5  & Auto-tint\\
-            6+ & \tikzmarknode{channelmodeconfig-aux}
-                              {Aux LED Channels\vphantom{\S}}\\
+            6+ & Aux LED Channels\\
         \end{configtblr}
     };
 }
-
-\node (Channel Mode Config aux LED channels fit)[
-    channel mode config aux fit,
-    fit=(channelmodeconfig-aux)
-]
-{};
 
 \path (ON.north) edge[
     ->,
@@ -2251,7 +2215,7 @@ node[
 
 % Ramp Extras Config from ON
 \node (Ramp Extras Config from ON)[
-    advancedtable,
+    advancedconfigtable,
     right=\nodespaceh of Ramp Config from ON.north east,
     anchor=north west
 ]
@@ -2324,7 +2288,7 @@ node[
 
 % Types of brightness memory information
 \node (Types of brightness memory information)[
-    memoryinfo,
+    advancedconfig,
     above=0.2cm of Manual Memory from ON.north west,
     anchor=south west
 ]
@@ -2347,10 +2311,7 @@ node[
 ]
 {
     \spacingnoextra
-    \begin{configtblr}{
-        row{1} = {abovesep=0.4pt}
-        % -0.1pt for horizontal alignment for semithick
-    }
+    \begin{configtblr}{}
         Simple UI Config &\\
         1 & Floor: nC = n of 150\\
         2 & Ceiling: nC = 151 \char"2212{} n\\
@@ -2378,7 +2339,7 @@ node[
 % Misc Config from OFF
 { [on background layer]
     \node (Misc Config from OFF)[
-        advancedtable,
+        advancedconfigtable,
         right=0.9cm of Simple UI Config from OFF.north east,
         anchor=north west
     ]
@@ -2492,7 +2453,7 @@ node[
 % ----------------------------------------------------------------------
 { [on background layer]
     \node (Aux LED Color from OFF right)[
-        aux LED color Off,
+        advancedconfig,
         above right=1.2cm and 3.3cm of Lockout.center,
         anchor=south
     ]
@@ -2547,7 +2508,7 @@ node[
 % Aux LED Color from Lockout
 { [on background layer]
     \node (Aux LED Color from Lockout)[
-        aux LED color Lockout,
+        advancedconfig,
         above=\nodespacev of
         Aux LED Pattern from OFF right.north west,
         anchor=south west
@@ -2630,7 +2591,7 @@ node[
 
 % Tactical Mode Config
 \node (Tactical Mode Config)[
-    advancedtable,
+    advancedconfigtable,
     right=0.9cm of Blinky Modes border south-east,
     anchor=south west
 ]
@@ -2821,15 +2782,15 @@ node[
 
 % Line from Factory Reset to Simple UI
 
-% -0.3pt: 0.5 line thickness for vertical alignment for semithick
+% -0.4pt: 0.5 line thickness for vertical alignment for thick
 \coordinate (Factory Reset right) at
-    ($(Factory Reset from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
+    ($(Factory Reset from OFF right.east) + (0.45cm-0.4pt, 0cm)$);
 \coordinate (Simple UI switch right) at
-    ($(Simple UI switch from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
+    ($(Simple UI switch from OFF right.east) + (0.45cm-0.4pt, 0cm)$);
 
 { [on background layer]
     \path[
-        {->[scale length=1.15, scale width=1.15]}, % for semithick
+        ->,
         anyline factoryreset simpleUI
     ]
     (Factory Reset from OFF right.east)
@@ -2871,7 +2832,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 21\\[4pt]
+    \normalsize Diagram Release 22\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2911,10 +2872,14 @@ at (current page text area.north east)[
         cell{Y-Z}{1} = {c=2}{}
     }
         Button Presses\vphantom{Config} &\\
-        \tikzmarknode{buttonpresses-1C}{1C:} &
-        \tikzmarknode{buttonpresses-Click}{Click\hspace{0.015cm}}\\
-        \tikzmarknode{buttonpresses-1H}{1H:} &
-        \tikzmarknode{buttonpresses-Hold}{Hold}\\
+        \tikzmarknode{buttonpresses-1C}
+            {\textbasicuse{1C:}} &
+        \tikzmarknode{buttonpresses-Click}
+            {\textbasicuse{Click\hspace{0.015cm}}}\\
+        \tikzmarknode{buttonpresses-1H}
+            {\textbasicuse{1H:}} &
+        \tikzmarknode{buttonpresses-Hold}
+            {\textbasicuse{Hold}}\\
         2C: & Click, Click\\
         2H: & Click, Hold\\
         3C: & Click, Click, Click\\
@@ -2943,24 +2908,27 @@ at (current page text area.north east)[
     matrix anchor=north east
 ]
 {
-    & All the user needs to know for basic use\vphantom{y}\\
+    & \textbasicuse{All the user needs to know
+      for basic use\vphantom{y}}\\
     & Simple UI and Advanced UI function\\
     & Simple UI function only\\
     & \infotextadvanced{Advanced UI function only}\\
     & Continuous effect\vphantom{y}\\
     & Momentary effect\\
     \normalsize\textbf{\inherited{}}&
-    \textcolor{inherited-text}{Inherited by Simple UI}\\
+    \textinherited{Inherited by Simple UI}\\
 };
 
 \path (Legend-1-1.west) edge[
     -,
     anyline basic use legend,
+    shorten <=0.15pt, % out (0.3pt overhang)
+    shorten >=0.15pt, % in (0.3pt overhang)
     out=0,
     in=180
 ]
 node[
-    anybutton basic use,
+    anybutton basic use legend,
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-1-1.east);
@@ -2972,7 +2940,7 @@ node[
     in=180
 ]
 node[
-    anybutton,
+    anybutton legend,
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-2-1.east);
@@ -2984,7 +2952,7 @@ node[
     in=180
 ]
 node[
-    simplebutton,
+    simplebutton legend,
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-3-1.east);
@@ -2996,7 +2964,7 @@ node[
     in=180
 ]
 node[
-    advancedbutton,
+    advancedbutton legend,
     pos=0.5
 ]
 {\footnotesize 1C} (Legend-4-1.east);
