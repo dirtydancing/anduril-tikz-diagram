@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.22 (Date: 2026-02-09)
+
+- Reduced use of highlight colors
+
 ## 2025-07-07.21 (Date: 2026-01-30)
 
 - Highlighted arrows for basic use
