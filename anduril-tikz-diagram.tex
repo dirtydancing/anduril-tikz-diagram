@@ -2834,6 +2834,8 @@ node[
 
 % 17 Anduril 2 UI ------------------------------------------------------
 % ----------------------------------------------------------------------
+{ [on background layer]
+
 \node (Anduril 2 UI)
 at (current page text area.north east)[
     andurilinfo,
@@ -2852,19 +2854,17 @@ at (current page text area.north east)[
 };
 
 % Aux LED Color for Voltage
-{ [on background layer]
-    \node (Aux LED Color for Voltage)[
-        voltagecolorinfo,
-        below=\nodespacev of Anduril 2 UI.south east,
-        anchor=north east
-    ]
-    {
-        \oneline{Aux LED Color for Voltage}
-        \spacingv
-        \textboxauxledcfv{}\\[4pt]
-        Single-color aux: fast-blink 3.3\textendash{}2.9V
-    };
-}
+\node (Aux LED Color for Voltage)[
+    voltagecolorinfo,
+    below=\nodespacev of Anduril 2 UI.south east,
+    anchor=north east
+]
+{
+    \oneline{Aux LED Color for Voltage}
+    \spacingv
+    \textboxauxledcfv{}\\[4pt]
+    Single-color aux: fast-blink 3.3\textendash{}2.9V
+};
 
 % Button Presses
 \node (Button Presses)[
@@ -2994,6 +2994,8 @@ node[
     in=180
 ]
 (Legend-6-1.east);
+
+} % for ending on background layer
 
 \end{tikzpicture}
 
