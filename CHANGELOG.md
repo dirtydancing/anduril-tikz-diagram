@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.23 (Date: 2026-02-13)
+
+- Readded detail to post-off voltage display
+- Readjusted factory reset line
+
 ## 2025-07-07.22 (Date: 2026-02-09)
 
 - Reduced use of highlight colors
