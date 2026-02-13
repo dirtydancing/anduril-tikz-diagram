@@ -160,6 +160,8 @@
 % for tint ramp colors
 \colorlet{tintrampbox-frame}{voltagebox-frame}
 \colorlet{tintrampbox-mixfill}{voltagebox-mixfill}
+\colorlet{tintrampboxcolor-left}{orange!20!tintrampbox-mixfill}
+\colorlet{tintrampboxcolor-right}{blue!12!tintrampbox-mixfill}
 \colorlet{tintrampbox-text}{voltagebox-text}
 \colorlet{tintrampboxadv-text}{voltageboxadv-text}
 
@@ -725,8 +727,8 @@
     colframe=tintrampbox-frame,
     skin=enhanced, % for interior style
     interior style={
-        left color=orange!20!tintrampbox-mixfill,
-        right color=blue!12!tintrampbox-mixfill
+        left color=tintrampboxcolor-left,
+        right color=tintrampboxcolor-right
     },
     coltext=tintrampbox-text,
     left=0.02cm,
@@ -740,8 +742,8 @@
     colframe=tintrampbox-frame,
     skin=enhanced, % for interior style
     interior style={
-        left color=orange!20!tintrampbox-mixfill,
-        right color=blue!12!tintrampbox-mixfill
+        left color=tintrampboxcolor-left,
+        right color=tintrampboxcolor-right
     },
     coltext=tintrampboxadv-text,
     left=0.02cm,
