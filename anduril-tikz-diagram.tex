@@ -147,8 +147,14 @@
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
-\colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltagebox-text}{any-text}
+\colorlet{voltagebox-mixfill}{voltagebox-frame}
+\colorlet{voltageboxcolor-red}{red!20!voltagebox-mixfill}
+\colorlet{voltageboxcolor-yellow}{yellow!20!voltagebox-mixfill}
+\colorlet{voltageboxcolor-green}{green!20!voltagebox-mixfill}
+\colorlet{voltageboxcolor-cyan}{cyan!20!voltagebox-mixfill}
+\colorlet{voltageboxcolor-blue}{blue!20!voltagebox-mixfill}
+\colorlet{voltageboxcolor-purple}{purple!20!voltagebox-mixfill}
 \colorlet{voltageboxadv-text}{advanced-text}
 
 % for tint ramp colors
@@ -639,19 +645,19 @@
 
 % for the left part of voltage: red
 \newtcbox{\voltageboxred}{
-    colback=red!20!voltagebox-mixfill,
+    colback=voltageboxcolor-red,
     left=0.02cm,
     rounded corners=west
 }
 
 % for the middle part of voltage: yellow, green, cyan, blue
 \newtcbox{\voltagebox}[1][white]{
-    colback=#1!20!voltagebox-mixfill
+    colback=#1
 }
 
 % for the right part of voltage: purple
 \newtcbox{\voltageboxpurple}{
-    colback=purple!20!voltagebox-mixfill,
+    colback=voltageboxcolor-purple,
     right=0.02cm,
     rounded corners=east
 }
@@ -659,7 +665,7 @@
 % for the left part of voltage: red
 % adv = Advanced UI function
 \newtcbox{\voltageboxredadv}{
-    colback=red!20!voltagebox-mixfill,
+    colback=voltageboxcolor-red,
     coltext=voltageboxadv-text,
     left=0.02cm,
     rounded corners=west
@@ -668,14 +674,14 @@
 % for the middle part of voltage: yellow, green, cyan, blue
 % adv = Advanced UI function
 \newtcbox{\voltageboxadv}[1][white]{
-    colback=#1!20!voltagebox-mixfill,
+    colback=#1,
     coltext=voltageboxadv-text
 }
 
 % for the right part of voltage: purple
 % adv = Advanced UI function
 \newtcbox{\voltageboxpurpleadv}{
-    colback=purple!20!voltagebox-mixfill,
+    colback=voltageboxcolor-purple,
     coltext=voltageboxadv-text,
     right=0.02cm,
     rounded corners=east
@@ -685,13 +691,13 @@
 \newcommand{\textboxauxledcfv}{%
     \voltageboxred{R-2.9,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[yellow]{\hspace{0.013cm}Y-3.3,%
+    \voltagebox[voltageboxcolor-yellow]{\hspace{0.013cm}Y-3.3,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[green]{\hspace{0.013cm}G-3.5,%
+    \voltagebox[voltageboxcolor-green]{\hspace{0.013cm}G-3.5,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[cyan]{\hspace{0.013cm}C-3.7,%
+    \voltagebox[voltageboxcolor-cyan]{\hspace{0.013cm}C-3.7,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[blue]{\hspace{0.013cm}B-3.9,%
+    \voltagebox[voltageboxcolor-blue]{\hspace{0.013cm}B-3.9,%
         \vphantom{Voltage,Ú}}%
     \voltageboxpurple{\hspace{0.013cm}P-4.1V%
         \vphantom{Voltage,Ú}}%
@@ -702,13 +708,13 @@
 \newcommand{\textboxvoltage}{%
     \voltageboxredadv{V%
         \vphantom{Voltage}}%
-    \voltageboxadv[yellow]{o%
+    \voltageboxadv[voltageboxcolor-yellow]{o%
         \vphantom{Voltage}}%
-    \voltageboxadv[green]{lt%
+    \voltageboxadv[voltageboxcolor-green]{lt%
         \vphantom{Voltage}}%
-    \voltageboxadv[cyan]{a%
+    \voltageboxadv[voltageboxcolor-cyan]{a%
         \vphantom{Voltage}}%
-    \voltageboxadv[blue]{g%
+    \voltageboxadv[voltageboxcolor-blue]{g%
         \vphantom{Voltage}}%
     \voltageboxpurpleadv{e%
         \vphantom{Voltage}}%
