@@ -515,7 +515,7 @@
     anyline factoryreset simpleUI/.style={
         anyline,
         draw=factoryresetsimpleUI-draw,
-        thick,
+        semithick, % semithick = 0.6pt
         rounded corners
     }
 }
@@ -2806,15 +2806,15 @@ node[
 
 % Line from Factory Reset to Simple UI
 
-% -0.4pt: 0.5 line thickness for vertical alignment for thick
+% -0.3pt: 0.5 line thickness for vertical alignment for semithick
 \coordinate (Factory Reset right) at
-    ($(Factory Reset from OFF right.east) + (0.45cm-0.4pt, 0cm)$);
+    ($(Factory Reset from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
 \coordinate (Simple UI switch right) at
-    ($(Simple UI switch from OFF right.east) + (0.45cm-0.4pt, 0cm)$);
+    ($(Simple UI switch from OFF right.east) + (0.45cm-0.3pt, 0cm)$);
 
 { [on background layer]
     \path[
-        ->,
+        {->[scale length=1.15, scale width=1.15]}, % for semithick
         anyline factoryreset simpleUI
     ]
     (Factory Reset from OFF right.east)
