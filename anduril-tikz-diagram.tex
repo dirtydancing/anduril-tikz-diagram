@@ -79,6 +79,10 @@
 \colorlet{advancedbutton-text}{advanced-text}
 \colorlet{advancedUI-draw}{advanced-draw}
 
+% for configuring Simple UI
+\colorlet{simpleUIconfigtable-draw}{advancedconfigtable-draw}
+\colorlet{inherited-text}{advanced-text}
+
 % simple = for Simple UI only
 \colorlet{simple-draw}{any-draw}
 \colorlet{simplebutton-double}{anybutton-fill}
@@ -127,10 +131,6 @@
 
 % for ramp text Memory, Ceiling, and Floor
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
-
-% for configuring Simple UI
-\colorlet{simpleUIconfig-draw}{advancedconfigtable-draw}
-\colorlet{inherited-text}{advanced-text}
 
 % for line from Factory Reset to Simple UI
 \colorlet{factoryresetsimpleUI-draw}{advancedUIswitchline-draw}
@@ -277,6 +277,14 @@
         draw=advancedUI-draw,
         very thick, % very thick = 1.2pt
         font=\bfseries\LARGE
+    }
+}
+
+% for configuring Simple UI
+\tikzset{
+    simpleUIconfigtable/.style={
+        advancedconfigtable,
+        draw=simpleUIconfigtable-draw
     }
 }
 
@@ -485,14 +493,6 @@
         fill=none,
         % with fill color: fill=ramptextconfig-fill,
         inner sep=0.05cm
-    }
-}
-
-% for configuring Simple UI
-\tikzset{
-    simpleUIconfigtable/.style={
-        advancedconfigtable,
-        draw=simpleUIconfig-draw
     }
 }
 
@@ -1828,22 +1828,24 @@ node[
 {2C} (Temp Check from Batt Check.west);
 
 % Temp Check Thermal Config
-\node (Temp Check Thermal Config)[
-    advancedconfigtable,
-    above right=0.2cm and 1cm of
-    Temp Check from Batt Check.north east,
-    anchor=north west
-]
-{
-   \spacingnoextra
-   \begin{configtblr}{}
-        Thermal Config\inherited{} &\\
-        1 & Calibrate\\
-          & nC = n\,°C\\
-        2 & Limit\\
-          & nC = n + 30\,°C\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Temp Check Thermal Config)[
+        advancedconfigtable,
+        above right=0.2cm and 1cm of
+        Temp Check from Batt Check.north east,
+        anchor=north west
+    ]
+    {
+    \spacingnoextra
+    \begin{configtblr}{}
+            Thermal Config\inherited{} &\\
+            1 & Calibrate\\
+              & nC = n\,°C\\
+            2 & Limit\\
+              & nC = n + 30\,°C\\
+        \end{configtblr}
+    };
+}
 
 \path (Temp Check from Batt Check.east) edge[
     ->,
@@ -2116,29 +2118,31 @@ node[
 
 % 10 Ramp Config from ON -----------------------------------------------
 % ----------------------------------------------------------------------
-\node (Ramp Config from ON)
-at (current page text area.north west)[
-    advancedconfigtable,
-    anchor=north west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{
-        row{2,6}     = {abovesep=3pt, belowsep=2pt},
-        cell{2,6}{1} = {c=2}{font=\bfseries}
-    }
-        Ramp Config &\\
-        Smooth Ramp &\\
-        1 & Floor: nC = n of 150\\
-        2 & Ceiling: nC = 151 \char"2212{} n\\
-        3 & {Speed\inherited{}: 1C (full speed)\\
-             to 4C (quarter speed)}\\
-        Stepped Ramp &\\
-        1 & Floor: nC = n of 150\\
-        2 & Ceiling: nC = 151 \char"2212{} n\\
-        3 & Step count: 1\textendash{}150C\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Ramp Config from ON)
+    at (current page text area.north west)[
+        advancedconfigtable,
+        anchor=north west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{
+            row{2,6}     = {abovesep=3pt, belowsep=2pt},
+            cell{2,6}{1} = {c=2}{font=\bfseries}
+        }
+            Ramp Config &\\
+            Smooth Ramp &\\
+            1 & Floor: nC = n of 150\\
+            2 & Ceiling: nC = 151 \char"2212{} n\\
+            3 & {Speed\inherited{}: 1C (full speed)\\
+                 to 4C (quarter speed)}\\
+            Stepped Ramp &\\
+            1 & Floor: nC = n of 150\\
+            2 & Ceiling: nC = 151 \char"2212{} n\\
+            3 & Step count: 1\textendash{}150C\\
+        \end{configtblr}
+    };
+}
 
 \path[
     ->,
@@ -2214,38 +2218,40 @@ node[
 {9H} (Channel Mode Config from ON.318);
 
 % Ramp Extras Config from ON
-\node (Ramp Extras Config from ON)[
-    advancedconfigtable,
-    right=\nodespaceh of Ramp Config from ON.north east,
-    anchor=north west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{}
-        Ramp Extras Config &\\
-        1 & Disable manual memory\inherited{}\\
-          & 1+C\\
-        2 & Manual memory timer\inherited{}\\
-          & {0C = Disable\\
-             nC = n minutes}\\
-        3 & {Ramp-after-moon style\inherited{}\\
-             (1H from Off)}\\
-          & {0C = Ramp up after moon\\
-             1C = Stay at floor level}\\
-        4 & {Advanced UI's turbo style\\
-             (2C from On/Ramp)}\\
-          & {0C = Ceiling only, no turbo\\
-             \char"2192{} momentary ceiling only\\
-             1C = Turbo\\
-             (Andúril 1 style)\\
-             2C = Ceiling, or turbo if\\
-             ramped up to ceiling first\\
-             (Andúril 2 style)}\\
-        5 & Smooth Steps\inherited{}\\
-          & {0C = Disable\\
-             1C = Enable}\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Ramp Extras Config from ON)[
+        advancedconfigtable,
+        right=\nodespaceh of Ramp Config from ON.north east,
+        anchor=north west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{}
+            Ramp Extras Config &\\
+            1 & Disable manual memory\inherited{}\\
+              & 1+C\\
+            2 & Manual memory timer\inherited{}\\
+              & {0C = Disable\\
+                 nC = n minutes}\\
+            3 & {Ramp-after-moon style\inherited{}\\
+                 (1H from Off)}\\
+              & {0C = Ramp up after moon\\
+                 1C = Stay at floor level}\\
+            4 & {Advanced UI's turbo style\\
+                 (2C from On/Ramp)}\\
+              & {0C = Ceiling only, no turbo\\
+                 \char"2192{} momentary ceiling only\\
+                 1C = Turbo\\
+                 (Andúril 1 style)\\
+                 2C = Ceiling, or turbo if\\
+                 ramped up to ceiling first\\
+                 (Andúril 2 style)}\\
+            5 & Smooth Steps\inherited{}\\
+              & {0C = Disable\\
+                 1C = Enable}\\
+        \end{configtblr}
+    };
+}
 
 \path (ON.north) edge[
     ->,
@@ -2304,23 +2310,25 @@ node[
 
 % 11 Simple UI Config from OFF -----------------------------------------
 % ----------------------------------------------------------------------
-\node (Simple UI Config from OFF)[
-    simpleUIconfigtable,
-    right=\nodespaceh of Ramp Extras Config from ON.north east,
-    anchor=north west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{}
-        Simple UI Config &\\
-        1 & Floor: nC = n of 150\\
-        2 & Ceiling: nC = 151 \char"2212{} n\\
-        3 & Step count: 1\textendash{}150C\\
-        4 & Simple UI's turbo style\\
-          & {0C/1C/2C\\
-             \char"2192{} see Ramp Extras, 4}\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Simple UI Config from OFF)[
+        simpleUIconfigtable,
+        right=\nodespaceh of Ramp Extras Config from ON.north east,
+        anchor=north west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{}
+            Simple UI Config &\\
+            1 & Floor: nC = n of 150\\
+            2 & Ceiling: nC = 151 \char"2212{} n\\
+            3 & Step count: 1\textendash{}150C\\
+            4 & Simple UI's turbo style\\
+              & {0C/1C/2C\\
+                \char"2192{} see Ramp Extras, 4}\\
+        \end{configtblr}
+    };
+}
 
 \path (OFF.north) edge[
     ->,
@@ -2590,26 +2598,28 @@ node[
 % ----------------------------------------------------------------------
 
 % Tactical Mode Config
-\node (Tactical Mode Config)[
-    advancedconfigtable,
-    right=0.9cm of Blinky Modes border south-east,
-    anchor=south west
-]
-{
-    \spacingnoextra
-    \begin{configtblr}{
-        column{1} = {0.45cm}
-    }
-        Tactical Mode Config &\\
-        1\textendash{}3 & Tactical Slots 1\textendash{}3\\
-                        & {1\textendash{}150C = Brightness\\
-                           0C = Last-used strobe/\\
-                           mood mode\\
-                           151C = Party strobe\\
-                           152C = Tactical strobe\\
-                           153+C = Other strobes}\\
-    \end{configtblr}
-};
+{ [on background layer]
+    \node (Tactical Mode Config)[
+        advancedconfigtable,
+        right=0.9cm of Blinky Modes border south-east,
+        anchor=south west
+    ]
+    {
+        \spacingnoextra
+        \begin{configtblr}{
+            column{1} = {0.45cm}
+        }
+            Tactical Mode Config &\\
+            1\textendash{}3 & Tactical Slots 1\textendash{}3\\
+                            & {1\textendash{}150C = Brightness\\
+                               0C = Last-used strobe/\\
+                               mood mode\\
+                               151C = Party strobe\\
+                               152C = Tactical strobe\\
+                               153+C = Other strobes}\\
+        \end{configtblr}
+    };
+}
 
 % Tactical Mode from OFF right
 \node (Tactical Mode from OFF right)[
