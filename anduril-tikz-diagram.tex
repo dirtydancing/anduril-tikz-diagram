@@ -72,15 +72,17 @@
 \colorlet{advancedconfig-draw}{gray!75}
 \colorlet{advancedconfig-fill}{gray!10}
 \colorlet{advanced-text}{advanced-draw}
-\colorlet{advancedconfigtable-draw}{advancedconfig-draw}
-\colorlet{advancedconfigtable-fill}{advancedconfig-fill}
-\colorlet{advancedconfigtable-text}{advanced-text}
 \colorlet{advancedbutton-fill}{anybutton-fill}
 \colorlet{advancedbutton-text}{advanced-text}
 \colorlet{advancedUI-draw}{advanced-draw}
 
-% for configuring Simple UI
-\colorlet{simpleUIconfigtable-draw}{advancedconfigtable-draw}
+% for Advanced UI - config menus
+\colorlet{advancedconfigmenu-draw}{advancedconfig-draw}
+\colorlet{advancedconfigmenu-fill}{advancedconfig-fill}
+\colorlet{advancedconfigmenu-text}{advanced-text}
+
+% for Advanced UI - Simple UI config menu
+\colorlet{simpleUIconfigmenu-draw}{advancedconfigmenu-draw}
 \colorlet{inherited-text}{advanced-text}
 
 % simple = for Simple UI only
@@ -268,12 +270,6 @@
         fill=advancedconfig-fill,
         text=advanced-text
     },
-    advancedconfigtable/.style={
-        advancedconfig,
-        draw=advancedconfigtable-draw,
-        fill=advancedconfigtable-fill,
-        text=advancedconfigtable-text
-    },
     advancedbutton/.style={
         anybutton,
         draw=none,
@@ -288,11 +284,21 @@
     }
 }
 
-% for configuring Simple UI
+% for Advanced UI - config menus
 \tikzset{
-    simpleUIconfigtable/.style={
-        advancedconfigtable,
-        draw=simpleUIconfigtable-draw
+    advancedconfigmenu/.style={
+        advancedconfig,
+        draw=advancedconfigmenu-draw,
+        fill=advancedconfigmenu-fill,
+        text=advancedconfigmenu-text
+    }
+}
+
+% for Advanced UI - Simple UI config menu
+\tikzset{
+    simpleUIconfigmenu/.style={
+        advancedconfigmenu,
+        draw=simpleUIconfigmenu-draw
     }
 }
 
@@ -1770,7 +1776,7 @@ node[
 % Voltage Config from Batt Check
 { [on background layer]
     \node (Voltage Config from Batt Check)[
-        advancedconfigtable,
+        advancedconfigmenu,
         right=1.5cm of Strobe Modes Actions.south east,
         anchor=south west
     ]
@@ -1838,7 +1844,7 @@ node[
 % Temp Check Thermal Config
 { [on background layer]
     \node (Temp Check Thermal Config)[
-        advancedconfigtable,
+        advancedconfigmenu,
         above right=0.2cm and 1cm of
         Temp Check from Batt Check.north east,
         anchor=north west
@@ -2129,7 +2135,7 @@ node[
 { [on background layer]
     \node (Ramp Config from ON)
     at (current page text area.north west)[
-        advancedconfigtable,
+        advancedconfigmenu,
         anchor=north west
     ]
     {
@@ -2181,7 +2187,7 @@ node[
 % Channel Mode Config from ON
 { [on background layer]
     \node (Channel Mode Config from ON)[
-        advancedconfigtable,
+        advancedconfigmenu,
         above=0.5cm of Next Channel Mode from ON.north west,
         anchor=south west
     ]
@@ -2228,7 +2234,7 @@ node[
 % Ramp Extras Config from ON
 { [on background layer]
     \node (Ramp Extras Config from ON)[
-        advancedconfigtable,
+        advancedconfigmenu,
         right=\nodespaceh of Ramp Config from ON.north east,
         anchor=north west
     ]
@@ -2320,7 +2326,7 @@ node[
 % ----------------------------------------------------------------------
 { [on background layer]
     \node (Simple UI Config from OFF)[
-        simpleUIconfigtable,
+        simpleUIconfigmenu,
         right=\nodespaceh of Ramp Extras Config from ON.north east,
         anchor=north west
     ]
@@ -2355,7 +2361,7 @@ node[
 % Misc Config from OFF
 { [on background layer]
     \node (Misc Config from OFF)[
-        advancedconfigtable,
+        advancedconfigmenu,
         right=0.9cm of Simple UI Config from OFF.north east,
         anchor=north west
     ]
@@ -2608,7 +2614,7 @@ node[
 % Tactical Mode Config
 { [on background layer]
     \node (Tactical Mode Config)[
-        advancedconfigtable,
+        advancedconfigmenu,
         right=0.9cm of Blinky Modes border south-east,
         anchor=south west
     ]
