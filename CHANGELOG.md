@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.24 (Date: 2026-02-24)
+
+- Added reverse to dual-channel auto-tint
+
 ## 2025-07-07.23 (Date: 2026-02-13)
 
 - Readded detail to post-off voltage display
