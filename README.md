@@ -84,7 +84,7 @@ folder of the TEX file and run 3 times:
 
 To convert the generated PDF file to a PNG file, run:
 
-`pdftocairo -png -r 300 -singlefile anduril-tikz-diagram.pdf anduril-tikz-diagram`
+`pdftocairo -png -singlefile -r 300 anduril-tikz-diagram.pdf anduril-tikz-diagram`
 
 ## Credits
 
