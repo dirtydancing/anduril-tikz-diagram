@@ -170,6 +170,7 @@
 % for infotext
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
+\colorlet{infoadvancedconfigmenu-text}{advancedconfigmenu-text}
 \colorlet{infosimple-text}{simple-text}
 
 % for setting the page background color
@@ -766,6 +767,10 @@
 
 % for infotext for Advanced UI only
 \newcommand{\infotextadvanced}[1]{\textcolor{infoadvanced-text}{#1}}
+
+% for infotext for Advanced UI - config menus
+\newcommand{\infotextadvancedconfigmenu}[1]{\textcolor
+    {infoadvancedconfigmenu-text}{#1}}
 
 % for infotext for Simple UI only
 \newcommand{\infotextsimple}[1]{\textcolor{infosimple-text}{#1}}
@@ -2912,10 +2917,10 @@ at (current page text area.north east)[
         2H: & Click, Hold\\
         3C: & Click, Click, Click\\
         3H: & Click, Click, Hold\\
-        {\infotextadvanced{In a config menu, release}\\
-         \infotextadvanced{button after the desired}\\
-         \infotextadvanced{number of blinks; when}\\
-         \infotextadvanced{entering a value, 1H = 10C}} &\\
+        {\infotextadvancedconfigmenu{In a config menu, release}\\
+         \infotextadvancedconfigmenu{button after the desired}\\
+         \infotextadvancedconfigmenu{number of blinks; when}\\
+         \infotextadvancedconfigmenu{entering a value, 1H = 10C}} &\\
         \infotextany{Defaults vary by light.} &\\
     \end{configtblr}
 };
