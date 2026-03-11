@@ -145,6 +145,7 @@
 \colorlet{andurilinfo-text}{any-text}
 \colorlet{voltagecolorinfo-fill}{generalinfo-fill}
 \colorlet{buttonpressesinfo-fill}{generalinfo-fill}
+\colorlet{defaultsvaryinfo-fill}{generalinfo-fill}
 \colorlet{matrixlegendinfo-fill}{generalinfo-fill}
 
 % for voltage colors
@@ -543,6 +544,10 @@
     buttonpressesinfo/.style={
         generalinfo,
         fill=buttonpressesinfo-fill
+    },
+    defaultsvaryinfo/.style={
+        generalinfo,
+        fill=defaultsvaryinfo-fill
     },
     matrixlegendinfo/.style={
         generalinfo,
@@ -2867,7 +2872,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 24\\[4pt]
+    \normalsize Diagram Release 25\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2900,9 +2905,8 @@ at (current page text area.north east)[
     \begin{configtblr}{
         row{2-7}     = {rowsep=0pt},
         row{3}       = {belowsep=0.9pt}, % for basic use fit
-        row{Y}       = {abovesep=2pt},
-        row{Z}       = {abovesep=1.5pt},
-        cell{Y-Z}{1} = {c=2}{}
+        row{Z}       = {abovesep=2pt},
+        cell{Z}{1}   = {c=2}{}
     }
         Button Presses\vphantom{Config} &\\
         \tikzmarknode{buttonpresses-1C}
@@ -2921,7 +2925,6 @@ at (current page text area.north east)[
          \infotextadvancedconfigmenu{button after the desired}\\
          \infotextadvancedconfigmenu{number of blinks; when}\\
          \infotextadvancedconfigmenu{entering a value, 1H = 10C}} &\\
-        \infotextany{Defaults vary by light.} &\\
     \end{configtblr}
 };
 
@@ -2933,6 +2936,14 @@ at (current page text area.north east)[
     (buttonpresses-Hold)
 ]
 {};
+
+% Defaults vary by light
+\node (Defaults vary by light)[
+    defaultsvaryinfo,
+    below=0.1cm of Button Presses.south west,
+    anchor=north west
+]
+{Defaults vary by light.};
 
 % Legend
 \matrix (Legend)[
