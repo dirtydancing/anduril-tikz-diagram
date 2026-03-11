@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2025-07-07.25 (Date: 2026-03-11)
+
+- Added box for defaults vary
+
 ## 2025-07-07.24 (Date: 2026-02-24)
 
 - Added reverse to dual-channel auto-tint
