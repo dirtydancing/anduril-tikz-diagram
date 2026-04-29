@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.26 (Date: 2026-04-29)
+
+- Decreased font size for config menus
+- Reduced details for Factory Reset
+- Reduced details for Version Check
+
 ## 2025-07-07.25 (Date: 2026-03-11)
 
 - Added box for defaults vary
