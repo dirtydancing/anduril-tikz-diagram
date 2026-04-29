@@ -134,8 +134,12 @@
 % for ramp text Memory, Ceiling, and Floor
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
 
+% for Factory Reset
+\colorlet{factoryreset-draw}{advancedUIswitchline-draw}
+\colorlet{factoryreset-fill}{orange!20}
+
 % for line from Factory Reset to Simple UI
-\colorlet{factoryresetsimpleUI-draw}{advancedUIswitchline-draw}
+\colorlet{factoryresetsimpleUI-draw}{factoryreset-draw}
 
 % for general information
 \colorlet{generalinfo-draw}{advancedbordermode-draw}
@@ -513,12 +517,23 @@
     }
 }
 
+% for Factory Reset
+\tikzset{
+    anyconfig factoryreset/.style={
+        anyconfig,
+        draw=factoryreset-draw,
+        semithick, % semithick = 0.6pt
+        fill=factoryreset-fill,
+        rounded corners
+    }
+}
+
 % for line from Factory Reset to Simple UI
 \tikzset{
     anyline factoryreset simpleUI/.style={
         anyline,
         draw=factoryresetsimpleUI-draw,
-        semithick, % semithick = 0.6pt
+        semithick,
         rounded corners
     }
 }
@@ -2705,19 +2720,14 @@ node[
 % ----------------------------------------------------------------------
 \node (Factory Reset from OFF right)
 at (current page text area.south east)[
-    anyconfig,
+    anyconfig factoryreset,
     xshift=-0.45cm,
     anchor=south east
 ]
 {
     \firstline{Factory Reset}
-    Tailcap method:\\
-    reconnect tailcap\\
-    while holding button\\
-    for about 4s
-    \spacingv
-    Simple UI is enabled\\
-    after each factory reset.
+    Or reconnect power\\
+    while holding for 4s
 };
 
 \path (OFF right.south) edge[
@@ -2725,15 +2735,14 @@ at (current page text area.south east)[
     anyline,
     out=270,
     in=170,
-    out looseness=0.4,
-    in looseness=0.4
+    out looseness=0.7,
+    in looseness=0.45
 ]
 node[
     anybutton,
-    pos=0.74,
+    pos=0.79,
     label={ [align=left] right:
-        \infotextany{Keep holding}\\
-        \infotextany{for about 4s}
+        \infotextany{Hold for 4s}
     }
 ]
 {13H} (Factory Reset from OFF right.west);
@@ -2741,7 +2750,7 @@ node[
 % Version Check from OFF right
 \node (Version Check from OFF right)[
     anyconfig,
-    above=1cm of Factory Reset from OFF right.north east,
+    above=1.5cm of Factory Reset from OFF right.north east,
     anchor=south east
 ]
 {
@@ -2756,11 +2765,11 @@ node[
     out=270,
     in=170,
     out looseness=0.7,
-    in looseness=0.5
+    in looseness=0.45
 ]
 node[
     anybutton,
-    pos=0.73
+    pos=0.77
 ]
 {15+C} (Version Check from OFF right.west);
 
