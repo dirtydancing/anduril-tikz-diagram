@@ -656,9 +656,9 @@
     row{3}     = {belowsep=0.9pt}, % for basic use fit
     row{Z}     = {abovesep=2pt, belowsep=0pt},
     colsep     = 0pt,
-    column{1}  = {0.35cm},
-    cell{1}{1} = {c=2}{font=\bfseries\normalsize},
-    cell{Z}{1} = {c=2}{},
+    column{3}  = {leftsep=2.5pt}, % for horizontal space to colon
+    cell{1}{1} = {c=3}{font=\bfseries\normalsize},
+    cell{Z}{1} = {c=3}{},
     cells      = l
 }
 
@@ -2925,29 +2925,26 @@ at (current page text area.north east)[
 ]
 {
     \spacingnoextra
-    \begin{tblr-buttonpresses}{
-        row{2-7}     = {rowsep=0pt},
-        row{3}       = {belowsep=0.9pt}, % for basic use fit
-        row{Z}       = {abovesep=2pt},
-        cell{Z}{1}   = {c=2}{}
-    }
-        Button Presses\vphantom{Config} &\\
+    \begin{tblr-buttonpresses}{}
+        Button Presses\vphantom{Config} & &\\
         \tikzmarknode{buttonpresses-1C}
-            {\textbasicuse{1C:}} &
+            {\textbasicuse{1C}} &
+            \textbasicuse{:} &
         \tikzmarknode{buttonpresses-Click}
             {\textbasicuse{Click\hspace{0.015cm}}}\\
         \tikzmarknode{buttonpresses-1H}
-            {\textbasicuse{1H:}} &
+            {\textbasicuse{1H}} &
+            \textbasicuse{:} &
         \tikzmarknode{buttonpresses-Hold}
             {\textbasicuse{Hold}}\\
-        2C: & Click, Click\\
-        2H: & Click, Hold\\
-        3C: & Click, Click, Click\\
-        3H: & Click, Click, Hold\\
+        2C & : & Click, Click\\
+        2H & : & Click, Hold\\
+        3C & : & Click, Click, Click\\
+        3H & : & Click, Click, Hold\\
         {\infotextadvancedconfigmenu{In a config menu, release}\\
          \infotextadvancedconfigmenu{button after the desired}\\
          \infotextadvancedconfigmenu{number of blinks; when}\\
-         \infotextadvancedconfigmenu{entering a value, 1H = 10C}} &\\
+         \infotextadvancedconfigmenu{entering a value, 1H = 10C}} & &\\
     \end{tblr-buttonpresses}
 };
 
