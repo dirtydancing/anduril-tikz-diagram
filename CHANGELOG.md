@@ -2,6 +2,12 @@
 
 ## Next
 
+## 2025-07-07.27 (Date: 2026-05-19)
+
+- Reduced details for jump start level
+- Adjusted line to Beacon
+- Aligned colons in Button Presses
+
 ## 2025-07-07.26 (Date: 2026-04-29)
 
 - Decreased font size for config menus
