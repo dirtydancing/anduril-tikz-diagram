@@ -154,7 +154,7 @@
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
-\colorlet{voltagebox-text}{any-text}
+\colorlet{voltagebox-back}{voltagebox-frame}
 \colorlet{voltagebox-mixfill}{voltagebox-frame}
 \colorlet{voltageboxcolor-red}{red!20!voltagebox-mixfill}
 \colorlet{voltageboxcolor-yellow}{yellow!20!voltagebox-mixfill}
@@ -162,6 +162,7 @@
 \colorlet{voltageboxcolor-cyan}{cyan!20!voltagebox-mixfill}
 \colorlet{voltageboxcolor-blue}{blue!20!voltagebox-mixfill}
 \colorlet{voltageboxcolor-purple}{purple!20!voltagebox-mixfill}
+\colorlet{voltagebox-text}{any-text}
 \colorlet{voltageboxadv-text}{advanced-text}
 
 % for tint ramp colors
@@ -675,7 +676,7 @@
     colframe=voltagebox-frame, % initially black!75!white
     opacityframe=0, % initially 1.0
     boxrule=0cm, % initially 0.05cm
-    colback=white, % initially black!5!white
+    colback=voltagebox-back, % initially black!5!white
     coltext=voltagebox-text, % initially black
     left=0cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
