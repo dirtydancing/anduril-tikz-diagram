@@ -2,6 +2,11 @@
 
 ## Next
 
+## 2025-07-07.28 (Date: 2026-05-26)
+
+- Increased basic use emphasis
+- Adjusted rounded corners
+
 ## 2025-07-07.27 (Date: 2026-05-19)
 
 - Reduced details for jump start level
