@@ -433,7 +433,7 @@
     anyline basic use/.style={
         anyline,
         draw=basicuse-draw,
-        line width=1pt
+        very thick
     },
     anybutton basic use/.style={
         anybutton,
@@ -446,7 +446,7 @@
     button presses basic use fit/.style={
         advancedborder-mode,
         draw=buttonpressesbasicuse-draw,
-        line width=1pt,
+        thick,
         inner xsep=0.03cm,
         inner ysep=0.05cm,
         rounded corners=2.25pt
@@ -655,7 +655,7 @@
     row{3}     = {belowsep=0.9pt}, % for basic use fit
     row{Z}     = {abovesep=2pt, belowsep=0pt},
     colsep     = 0pt,
-    column{3}  = {leftsep=2.5pt}, % for horizontal space to colon
+    column{3}  = {leftsep=2.25pt}, % for horizontal space to colon
     cell{1}{1} = {c=3}{font=\bfseries\normalsize},
     cell{Z}{1} = {c=3}{},
     cells      = l
@@ -994,7 +994,7 @@ node[
     anybutton,
     pos=0.42,
     % with fill color: pos=0.44,
-    label={ [align=left, xshift=0.515cm+1.3pt] right:
+    label={ [align=left, xshift=0.515cm+1.4pt] right:
     % +1.3pt for vertical alignment
         \infotextany{Ramp down}\\
         \infotextany{(ceiling\textendash{}floor)}
@@ -1213,7 +1213,7 @@ node[
         advancedline,
         advancedbutton-fill,
         line width=2.4pt,
-        shorten <=1.75pt, % out
+        shorten <=2pt, % out
         shorten >=0.5pt, % in
         out=54,
         in=140,
@@ -1225,7 +1225,7 @@ node[
     \draw (Ramp.west) edge[
         {->[scale width=0.75]},
         advancedline momentary,
-        shorten <=1.75pt, % out
+        shorten <=2pt, % out
         shorten >=0.5pt, % in
         out=54,
         in=140,
@@ -1234,7 +1234,7 @@ node[
     ]
     node[
         advancedbutton,
-        pos=0.85
+        pos=0.852
     ]
     {3H} (Turbo.north west);
 }
@@ -2893,7 +2893,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 27\\[4pt]
+    \normalsize Diagram Release 28\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -2984,8 +2984,8 @@ at (current page text area.north east)[
 \path (Legend-1-1.west) edge[
     -,
     anyline basic use legend,
-    shorten <=0.15pt, % out (0.3pt overhang)
-    shorten >=0.15pt, % in (0.3pt overhang)
+    shorten <=0.25pt, % out (0.4pt overhang)
+    shorten >=0.25pt, % in (0.4pt overhang)
     out=0,
     in=180
 ]
