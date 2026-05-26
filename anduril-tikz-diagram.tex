@@ -246,7 +246,7 @@
         fill=anyconfig-fill,
         text=any-text,
         inner sep=0.1cm,
-        rounded corners,
+        rounded corners=4.5pt, % default: 4pt
         align=left
     },
     anybutton/.style={
@@ -257,7 +257,7 @@
         text=anybutton-text,
         font=\normalsize,
         inner sep=0.075cm,
-        rounded corners % default: 4pt
+        rounded corners
     }
 }
 
@@ -449,7 +449,7 @@
         line width=1pt,
         inner xsep=0.03cm,
         inner ysep=0.05cm,
-        rounded corners=2pt
+        rounded corners=2.25pt
     }
 }
 
@@ -525,8 +525,7 @@
         anyconfig,
         draw=factoryreset-draw,
         semithick, % semithick = 0.6pt
-        fill=factoryreset-fill,
-        rounded corners
+        fill=factoryreset-fill
     }
 }
 
@@ -536,7 +535,7 @@
         anyline,
         draw=factoryresetsimpleUI-draw,
         semithick,
-        rounded corners
+        rounded corners=4.5pt
     }
 }
 
@@ -1565,7 +1564,7 @@ node[
 \path (Candle from OFF.north west) edge[
     ->,
     advancedline,
-    shorten <=-1.99pt, % out
+    shorten <=-2.2pt, % out
     out=135,
     in=0,
     looseness=0.7
@@ -1778,7 +1777,7 @@ at (current page text area.south)[
 \path (Batt Check from OFF.213) edge[
     ->,
     advancedline,
-    shorten >=-1.8pt, % in
+    shorten >=-2.01pt, % in
     out=270,
     in=120,
     looseness=0.9
