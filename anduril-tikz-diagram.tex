@@ -459,14 +459,16 @@
         rectangle,
         draw=none,
         inner sep=0cm,
-        outer sep=0cm,
+        outer xsep=-0.02pt, % -0.02pt for a cleaner look
+        outer ysep=-0.1pt, % -0.1pt for a cleaner look
         minimum width=0.66cm+0.3pt,
-        minimum height=0.9cm+0.1pt
+        minimum height=0.9cm+0.1pt+0.2pt % +0.2pt for a cleaner look
     },
     rampsmooth/.style={
         rampstepped,
         minimum width=0.66cm+0.3pt,
-        minimum height=5.4cm+0.6pt % 5.4cm = 6 x 0.9cm
+        minimum height=5.4cm+0.6pt+0.2pt % +0.2pt for a cleaner look
+        % 5.4cm = 6 x 0.9cm
     },
     rampcombined/.style={
         rectangle,
@@ -515,7 +517,8 @@
         draw=none,
         fill=none,
         % with fill color: fill=ramptextconfig-fill,
-        inner sep=0.05cm
+        inner xsep=0.075cm,
+        inner ysep=0.05cm
     }
 }
 
@@ -987,15 +990,14 @@ node[
 \path (Ramp text Memory.south) edge[
     arrows={->},
     anyline ramp,
-    shorten <=0.05cm, % out
+    shorten <=0.06cm, % out
     shorten >=0.05cm % in
 ]
 node[
     anybutton,
-    pos=0.42,
-    % with fill color: pos=0.44,
+    pos=0.43,
     label={ [align=left, xshift=0.515cm+1.4pt] right:
-    % +1.3pt for vertical alignment
+    % +1.4pt for vertical alignment
         \infotextany{Ramp down}\\
         \infotextany{(ceiling\textendash{}floor)}
     }
@@ -1006,7 +1008,7 @@ node[
 { [on background layer]
     \node (Turbo)[
         turbocombined,
-        below=0.01pt of Ramp.north,
+        below=0.01pt of Ramp.north, % 0.01pt for a cleaner look
         anchor=south
     ]
     {};
@@ -2893,7 +2895,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 28\\[4pt]
+    \normalsize Diagram Release 29\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
