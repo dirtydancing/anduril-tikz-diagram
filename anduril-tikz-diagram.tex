@@ -2681,8 +2681,9 @@ node[
 ]
 {
     \firstline{Aux LED Pattern\inherited{}}
-    Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
-    \nextauxagain{}
+    Off \nextaux{} Low \nextaux{} High \nextaux{}
+    Blinking \nextaux{}\\
+    2 Low Blinks \nextaux{} 1 Low Blink \nextauxagain{}
 };
 
 \path (OFF right.north) edge[
@@ -2714,7 +2715,7 @@ node[
 % Auto-lock Config from Lockout
 \node (Auto-lock Config from Lockout)[
     advancedconfig,
-    above left=2.5cm and 1.8cm of
+    above left=2.325cm and 1.8cm of
     Aux LED Pattern from OFF right Lockout.north west,
     anchor=north east
 ]
@@ -2982,8 +2983,8 @@ at (current page text area.north east)[
 ]
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
-    \normalsize Andúril 2 Release 2025-07-07\\[3pt]
-    \normalsize Diagram Release 30\\[4pt]
+    \normalsize Andúril 2 Release 2026-08-12\\[3pt]
+    \normalsize Diagram Release 01\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
