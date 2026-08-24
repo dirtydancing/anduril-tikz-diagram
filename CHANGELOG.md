@@ -2,6 +2,19 @@
 
 ## Next
 
+## 2026-08-12.01 (Date: 2026-08-24)
+
+- Added two new aux LED patterns
+- Added HSV to Channel Mode Config
+- Added Smooth POVD
+- Added new option to Voltage Config
+- Combined Off and Lockout aux LED settings
+- Removed transparent ramp rectangle
+- Adjusted spacing for Advanced UI
+- Adjusted border of Anduril information
+- Adjusted border of strobe and blinky modes
+- Unified border color for config menus
+
 ## 2025-07-07.30 (Date: 2026-06-25)
 
 - Specified memory for 2H from Lockout
