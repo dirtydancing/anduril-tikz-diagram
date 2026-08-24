@@ -177,6 +177,10 @@
 \colorlet{smoothPOVDbox-text}{voltagebox-text}
 \colorlet{smoothPOVDboxadv-text}{voltageboxadv-text}
 
+% for HSV channel mode
+\colorlet{HSVchannelmodebox-frame}{voltagebox-frame}
+\colorlet{HSVchannelmodeboxadv-text}{voltageboxadv-text}
+
 % for infotext
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
@@ -843,6 +847,39 @@
     coltext=smoothPOVDboxadv-text,
     left=0.025cm,
     right=0.025cm,
+    top=0.015cm, % instead of 0.01cm
+    bottom=0.025cm, % instead of 0.01cm
+    rounded corners
+}
+
+% for HSV channel mode rainbow colors
+\pgfdeclareverticalshading{rainbow HSV channel mode}{45pt}{
+    color(0pt)=(voltageboxcolor-red);
+    color(10pt)=(voltageboxcolor-red);
+    color(15pt)=(voltageboxcolor-yellow);
+    color(20pt)=(voltageboxcolor-green);
+    color(25pt)=(voltageboxcolor-cyan);
+    color(30pt)=(voltageboxcolor-blue);
+    color(35pt)=(voltageboxcolor-purple);
+    color(45pt)=(voltageboxcolor-purple)
+}
+
+% for HSV channel mode
+% adv = Advanced UI function
+\newtcbox{\HSVchannelmodeboxadv}{
+    colframe=HSVchannelmodebox-frame,
+    skin=enhanced, % for underlay
+    underlay={
+        \begin{tcbclipinterior}
+            \shade [shading=rainbow HSV channel mode]
+            ([xshift=-1.5pt,yshift=1.5pt]interior.north west)
+            rectangle
+            ([xshift=1.5pt,yshift=-1.5pt]interior.south east);
+        \end{tcbclipinterior}
+    },
+    coltext=HSVchannelmodeboxadv-text,
+    left=0.035cm, % instead of 0.025cm
+    right=0.035cm, % instead of 0.025cm
     top=0.015cm, % instead of 0.01cm
     bottom=0.025cm, % instead of 0.01cm
     rounded corners
@@ -2264,17 +2301,17 @@ node[
     in=280,
     looseness=1.4
 ]
-+(-3.58cm, 3.75cm) to[
++(-3.56cm, 3.75cm) to[
     out=100,
     in=275,
     looseness=0.9
 ]
 node[
     advancedbutton,
-    pos=0.1
+    pos=0.2
 ]
 {7H}
-+(-3.69cm, 4.9cm) to[
++(-3.67cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -2291,14 +2328,16 @@ node[
     {
         \spacingnoextra
         \begin{tblr-advancedconfigmenu}{
-            row{4}     = {abovesep=3pt, belowsep=2pt},
-            cell{4}{1} = {c=2}{}
+            row{4-5}     = {abovesep=3pt, belowsep=2pt},
+            cell{4-5}{1} = {c=2}{}
         }
             {Channel Mode\\
              Config\inherited{}} &\\
             n & n\textsuperscript{th} channel mode\\
             & {0C = Disable\\
                1C = Enable}\\
+            {+ 1 \HSVchannelmodeboxadv{HSV} channel mode\\
+             (hardware-specific)}\\
             {Typical sequence for\\
              dual-channel lights}\\
             1  & Channel 1\\
@@ -2316,18 +2355,18 @@ node[
     ->,
     advancedline,
     out=90,
-    in=320,
+    in=315,
     looseness=1.2
 ]
 node[
     advancedbutton,
-    pos=0.69,
+    pos=0.68,
     label={ [align=left] below:
         \infotextadvanced{9H from any mode}\\
         \infotextadvanced{unless overridden}
    }
 ]
-{9H} (Channel Mode Config from ON.320);
+{9H} (Channel Mode Config from ON.315);
 
 % Ramp Extras Config from ON
 { [on background layer]
