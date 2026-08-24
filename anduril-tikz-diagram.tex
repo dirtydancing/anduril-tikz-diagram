@@ -128,8 +128,7 @@
 % for ramp image
 \colorlet{rampsmooth-topbottom}{black!40}
 \colorlet{rampstepped-topbottom}{rampsmooth-topbottom}
-\colorlet{rampcombinedinside1-draw}{anyconfig-fill}
-\colorlet{rampcombinedinside2-draw}{rampsmooth-topbottom}
+\colorlet{rampcombinedinside-draw}{anyconfig-fill}
 
 % for ramp text Memory, Ceiling, and Floor
 \colorlet{ramptextconfig-fill}{anyconfig-fill}
@@ -385,6 +384,10 @@
         on-extra,
         font=\bfseries\Huge,
         on grid
+    },
+    on-rampimage/.style={
+        onoff,
+        inner xsep=0.14cm
     }
 }
 
@@ -479,20 +482,12 @@
         minimum height=5.4cm+7.2pt,
         rounded corners=0.25pt
     },
-    rampcombined inside 1/.style={
+    rampcombined inside/.style={
         rampcombined,
-        draw=rampcombinedinside1-draw,
+        draw=rampcombinedinside-draw,
         line width=3.2pt,
         minimum width=1.32cm+3.6pt,
         minimum height=5.4cm+3.6pt,
-        rounded corners=0pt
-    },
-    rampcombined inside 2/.style={
-        rampcombined,
-        draw=rampcombinedinside2-draw,
-        very nearly transparent,
-        minimum width=1.32cm,
-        minimum height=5.4cm,
         rounded corners=0pt
     },
     turbocombined/.style={
@@ -896,15 +891,9 @@ in {2-3/5/4, 3-4/4/3, 4-5/3/2, 5-6/2/1, 6-7/1/0}
 {};
 
 % Further ramp elements
-\node (Ramp inside 1)
+\node (Ramp inside)
 at (current page.center)[
-    rampcombined inside 1
-]
-{};
-
-\node (Ramp inside 2)
-at (current page.center)[
-    rampcombined inside 2
+    rampcombined inside
 ]
 {};
 
@@ -916,8 +905,7 @@ at (current page.center)[
 
 \node (ON Ramp)
 at (Ramp.center)[
-    onoff,
-    inner xsep=0.135cm
+    on-rampimage
 ]
 {ON};
 
@@ -931,14 +919,14 @@ at (ON Ramp.south)[
 \node (Ramp text Ceiling)
 at (Ramp.north)[
     ramptextconfig,
-    below=0.05cm+3.2pt % +3.2pt for Ramp inside 1
+    below=0.05cm+3.2pt % +3.2pt for Ramp inside
 ]
 {\oneline{\infotextany{Ceiling}}};
 
 \node (Ramp text Floor)
 at (Ramp.south)[
     ramptextconfig,
-    above=3.2pt % +3.2pt for Ramp inside 1
+    above=3.2pt % +3.2pt for Ramp inside
     % with fill color: above=0.05cm+3.2pt
 ]
 {\oneline{\infotextany{Floor\vphantom{y}}}};
