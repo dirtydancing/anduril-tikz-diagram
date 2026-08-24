@@ -172,6 +172,11 @@
 \colorlet{tintrampbox-text}{voltagebox-text}
 \colorlet{tintrampboxadv-text}{voltageboxadv-text}
 
+% for smooth POVD
+\colorlet{smoothPOVDbox-frame}{voltagebox-frame}
+\colorlet{smoothPOVDbox-text}{voltagebox-text}
+\colorlet{smoothPOVDboxadv-text}{voltageboxadv-text}
+
 % for infotext
 \colorlet{infoany-text}{any-text}
 \colorlet{infoadvanced-text}{advanced-text}
@@ -674,8 +679,8 @@
     coltext=voltagebox-text, % initially black
     left=0cm, % initially 0.4cm
     right=0cm, % initially 0.4cm
-    top=0.005cm, % initially 0.2cm
-    bottom=0.005cm, % initially 0.2cm
+    top=0.01cm, % initially 0.2cm
+    bottom=0.01cm, % initially 0.2cm
     boxsep=0cm, % initially 0.1cm
     arc=0.05cm, % initially 0.1cm
     sharp corners, % initially all rounded corners
@@ -686,7 +691,7 @@
 % for the left part of voltage: red
 \newtcbox{\voltageboxred}{
     colback=voltageboxcolor-red,
-    left=0.02cm,
+    left=0.025cm,
     rounded corners=west
 }
 
@@ -698,7 +703,7 @@
 % for the right part of voltage: purple
 \newtcbox{\voltageboxpurple}{
     colback=voltageboxcolor-purple,
-    right=0.02cm,
+    right=0.025cm,
     rounded corners=east
 }
 
@@ -707,7 +712,7 @@
 \newtcbox{\voltageboxredadv}{
     colback=voltageboxcolor-red,
     coltext=voltageboxadv-text,
-    left=0.02cm,
+    left=0.025cm,
     rounded corners=west
 }
 
@@ -723,7 +728,7 @@
 \newtcbox{\voltageboxpurpleadv}{
     colback=voltageboxcolor-purple,
     coltext=voltageboxadv-text,
-    right=0.02cm,
+    right=0.025cm,
     rounded corners=east
 }
 
@@ -743,9 +748,10 @@
         \vphantom{Voltage,Ú}}%
 }
 
-% for voltage display in off and lockout modes,
+% for voltage display in Off and Lockout modes,
 % and for post-off voltage display
-\newcommand{\textboxvoltage}{%
+% adv = Advanced UI function
+\newcommand{\textboxvoltageadv}{%
     \voltageboxredadv{V%
         \vphantom{Voltage}}%
     \voltageboxadv[voltageboxcolor-yellow]{o%
@@ -769,8 +775,8 @@
         right color=tintrampboxcolor-right
     },
     coltext=tintrampbox-text,
-    left=0.02cm,
-    right=0.02cm,
+    left=0.025cm,
+    right=0.025cm,
     rounded corners
 }
 
@@ -784,8 +790,61 @@
         right color=tintrampboxcolor-right
     },
     coltext=tintrampboxadv-text,
-    left=0.02cm,
-    right=0.02cm,
+    left=0.025cm,
+    right=0.025cm,
+    rounded corners
+}
+
+% for smooth POVD rainbow colors
+\pgfdeclarehorizontalshading{rainbow smooth POVD}{72pt}{
+    color(0pt)=(voltageboxcolor-red);
+    color(16pt)=(voltageboxcolor-red);
+    color(24pt)=(voltageboxcolor-yellow);
+    color(32pt)=(voltageboxcolor-green);
+    color(40pt)=(voltageboxcolor-cyan);
+    color(48pt)=(voltageboxcolor-blue);
+    color(56pt)=(voltageboxcolor-purple);
+    color(72pt)=(voltageboxcolor-purple)
+}
+
+% for smooth POVD
+\newtcbox{\smoothPOVDbox}{
+    colframe=smoothPOVDbox-frame,
+    skin=enhanced, % for underlay
+    underlay={
+        \begin{tcbclipinterior}
+            \shade [shading=rainbow smooth POVD]
+            ([xshift=-1pt,yshift=1pt]interior.north west)
+            rectangle
+            ([xshift=1pt,yshift=-1pt]interior.south east);
+        \end{tcbclipinterior}
+    },
+    coltext=smoothPOVDbox-text,
+    left=0.025cm,
+    right=0.025cm,
+    top=0.015cm, % instead of 0.01cm
+    bottom=0.025cm, % instead of 0.01cm
+    rounded corners
+}
+
+% for smooth POVD
+% adv = Advanced UI function
+\newtcbox{\smoothPOVDboxadv}{
+    colframe=smoothPOVDbox-frame,
+    skin=enhanced, % for underlay
+    underlay={
+        \begin{tcbclipinterior}
+            \shade [shading=rainbow smooth POVD]
+            ([xshift=-1pt,yshift=1pt]interior.north west)
+            rectangle
+            ([xshift=1pt,yshift=-1pt]interior.south east);
+        \end{tcbclipinterior}
+    },
+    coltext=smoothPOVDboxadv-text,
+    left=0.025cm,
+    right=0.025cm,
+    top=0.015cm, % instead of 0.01cm
+    bottom=0.025cm, % instead of 0.01cm
     rounded corners
 }
 
@@ -1778,7 +1837,7 @@ node[
 
 { [on above layer]
     \path (OFF.south) edge[
-        {Round Cap[sep=2.95cm]}-{Round Cap[sep=3.65cm]},
+        {Round Cap[sep=2.85cm]}-{Round Cap[sep=3.75cm]},
         anyline,
         anybutton-fill,
         line width=2.4pt,
@@ -1811,20 +1870,22 @@ node[
     ]
     {
         \spacingnoextra
-        \begin{tblr-advancedconfigmenu}{}
+        \begin{tblr-advancedconfigmenu}{
+            row{5} = {abovesep=0pt}
+        }
             Voltage Config\inherited{} &\\
             1 & Voltage Correction Factor\\
               & {\char"00B1{}0.30V, 0.05V steps\\
                  1C = \char"2212{}0.30V\\
                  7C = 0V (default)\\
                  13C = +0.30V}\\
-            2 & {Post-Off \textboxvoltage{} Display\\
-                 (on lights with RGB aux)}\\
+            2 & Post-Off \textboxvoltageadv{} Display\\
+              & POVD, or \smoothPOVDboxadv{Smooth POVD}\\
               & {0C = Disable\\
                  nC = n seconds;\\
                  brightness as set in 3 \& 4,\\
-                 high if Standby aux LEDs\\
-                 are high (7C from Off)}\\
+                 high if high in Off \char"2192{} 7C,\\
+                 ramps if Smooth POVD}\\
             3 & Aux low ramp level\\
               & {0C = Disable button LEDs\\
                  1+C = Light up button\\
@@ -1837,7 +1898,7 @@ node[
             5 & Aux while On\\
               & {0C = None\\
                  1C = Single-color only\\
-                 2C = RGB only, \textboxvoltage{}\\
+                 2C = RGB only (see POVD)\\
                  3C = Both}\\
         \end{tblr-advancedconfigmenu}
     };
@@ -1994,10 +2055,10 @@ node[
 % +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (0.95cm, \borderspace)$);
+    + (0.9cm, \borderspace)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
-    + (0.15cm, \borderspace + 0.2pt)$); % yshift=0.2pt
+    + (0.2cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 3) at
     ($(Beacon Speed.north east)
     + (\borderspace, 0cm)$);
@@ -2522,9 +2583,19 @@ node[
         Cyan \nextaux{}\\
         Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
         Disco \nextaux{} Rainbow \nextaux{}
-        \textboxvoltage{} \nextauxagain{}
+        \textboxvoltageadv{} \nextauxagain{}
     };
 }
+
+% Aux LED settings extra node in Off
+\node (Aux LED settings extra node in Off)[
+    below=0.15cm of Aux LED Color from OFF right Lockout.south east,
+    anchor=north east,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=right
+]
+{\infotextadvanced{in Off}};
 
 % Aux LED settings extra node in Lockout
 \node (Aux LED settings extra node in Lockout)[
@@ -2535,16 +2606,6 @@ node[
     align=left
 ]
 {\infotextadvanced{in Lockout}};
-
-% Aux LED settings extra node in Standby
-\node (Aux LED settings extra node in Standby)[
-    below=0.15cm of Aux LED Color from OFF right Lockout.south east,
-    anchor=north east,
-    inner xsep=0.05cm,
-    inner ysep=0cm,
-    align=right
-]
-{\infotextadvanced{in Standby}};
 
 \path (OFF right.north) edge[
     ->,
@@ -2901,7 +2962,11 @@ at (current page text area.north east)[
 {
     \oneline{Aux LED Color for Voltage}
     \spacingv
-    \textboxauxledcfv{}\\[4pt]
+    \textboxauxledcfv{}\\[3pt]
+    \smoothPOVDbox{Smooth POVD} (hardware-specific):\\
+    resolution of \char"007E{}60 steps instead of 6\\
+    \char"2192{} for POVD, see Voltage Config, 2
+    \spacingv
     Single-color aux: fast-blink 3.3\textendash{}2.9V
 };
 
