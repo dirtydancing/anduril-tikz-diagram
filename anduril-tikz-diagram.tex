@@ -1404,7 +1404,7 @@ node[
 % ----------------------------------------------------------------------
 \node (Momentary Mode from OFF ON)[
     advancedconfig,
-    below left=1.2cm and 2.3cm of OFF.center,
+    below left=1.1cm and 2.3cm of OFF.center,
     anchor=north
 ]
 {
@@ -1678,12 +1678,12 @@ at (current page text area.south)[
     in=10,
     looseness=1.3
 ]
-+(-1.7cm, -2.25cm) edge[
++(-1.7cm, -2.15cm) edge[
     ->,
     advancedline,
     out=190,
     in=75,
-    looseness=0.9,
+    looseness=1,
     postaction={
         decoration={
             text along path,
@@ -1778,7 +1778,7 @@ node[
 
 { [on above layer]
     \path (OFF.south) edge[
-        {Round Cap[sep=4.3cm]}-{Round Cap[sep=2.3cm]},
+        {Round Cap[sep=2.95cm]}-{Round Cap[sep=3.65cm]},
         anyline,
         anybutton-fill,
         line width=2.4pt,
@@ -1834,6 +1834,11 @@ node[
                  button LEDs\\
                  1+C = Brighter button\\
                  LEDs at this ramp level}\\
+            5 & Aux while On\\
+              & {0C = None\\
+                 1C = Single-color only\\
+                 2C = RGB only, \textboxvoltage{}\\
+                 3C = Both}\\
         \end{tblr-advancedconfigmenu}
     };
 }
@@ -1849,7 +1854,7 @@ node[
     advancedbutton,
     pos=0.5
 ]
-{7H} (Voltage Config from Batt Check.324);
+{7H} (Voltage Config from Batt Check.312);
 
 % Temp Check from Batt Check
 \node (Temp Check from Batt Check)[
@@ -1989,7 +1994,7 @@ node[
 % +0.2pt: 0.5 line thickness for outer alignment
 \coordinate (Blinky Modes border 1) at
     ($(Voltage Config from Batt Check.north east)
-    + (1.25cm, \borderspace)$);
+    + (0.95cm, \borderspace)$);
 \coordinate (Blinky Modes border 2) at
     ($(Batt Check Simple Advanced.north west)
     + (0.15cm, \borderspace + 0.2pt)$); % yshift=0.2pt
