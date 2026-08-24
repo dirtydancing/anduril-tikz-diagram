@@ -838,7 +838,7 @@
 % 10 Ramp Config from ON -----------------------------------------------
 % 11 Simple UI Config from OFF -----------------------------------------
 % 12 Momentary Moon from Lockout ---------------------------------------
-% 13 Aux LED Color from OFF right --------------------------------------
+% 13 Aux LED Color from OFF right Lockout ------------------------------
 % 14 Tactical Mode from OFF right --------------------------------------
 % 15 Factory Reset from OFF right --------------------------------------
 % 16 Advanced UI switch from OFF right ---------------------------------
@@ -1823,8 +1823,8 @@ node[
               & {0C = Disable\\
                  nC = n seconds;\\
                  brightness as set in 3 \& 4,\\
-                 high if Off aux LEDs are\\
-                 set to high (7C from Off)}\\
+                 high if Standby aux LEDs\\
+                 are high (7C from Off)}\\
             3 & Aux low ramp level\\
               & {0C = Disable button LEDs\\
                  1+C = Light up button\\
@@ -2503,16 +2503,16 @@ node[
 ]
 {3H} (Next Channel Mode from Lockout.west);
 
-% 13 Aux LED Color from OFF right --------------------------------------
+% 13 Aux LED Color from OFF right Lockout ------------------------------
 % ----------------------------------------------------------------------
 { [on background layer]
-    \node (Aux LED Color from OFF right)[
+    \node (Aux LED Color from OFF right Lockout)[
         advancedconfig,
         above right=1.2cm and 3.3cm of Lockout.center,
         anchor=south
     ]
     {
-        \firstline{OFF Aux LED Color\inherited{}}
+        \firstline{Aux LED Color\inherited{}}
         Red \nextaux{} Yellow \nextaux{} Green \nextaux{}
         Cyan \nextaux{}\\
         Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
@@ -2520,6 +2520,26 @@ node[
         \textboxvoltage{} \nextauxagain{}
     };
 }
+
+% Aux LED settings extra node in Lockout
+\node (Aux LED settings extra node in Lockout)[
+    below=0.15cm of Aux LED Color from OFF right Lockout.south west,
+    anchor=north west,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
+]
+{\infotextadvanced{in Lockout}};
+
+% Aux LED settings extra node in Standby
+\node (Aux LED settings extra node in Standby)[
+    below=0.15cm of Aux LED Color from OFF right Lockout.south east,
+    anchor=north east,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=right
+]
+{\infotextadvanced{in Standby}};
 
 \path (OFF right.north) edge[
     ->,
@@ -2532,16 +2552,30 @@ node[
     advancedbutton,
     pos=0.65
 ]
-{7H} (Aux LED Color from OFF right.east);
+{7H} (Aux LED Color from OFF right Lockout.east);
 
-% Aux LED Pattern from OFF right
-\node (Aux LED Pattern from OFF right)[
+\path (Lockout.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=1.1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{7H} (Aux LED Color from OFF right Lockout.west);
+
+% Aux LED Pattern from OFF right Lockout
+\node (Aux LED Pattern from OFF right Lockout)[
     advancedconfig,
-    above=\nodespacev of Aux LED Color from OFF right.north west,
+    above=\nodespacev of
+    Aux LED Color from OFF right Lockout.north west,
     anchor=south west
 ]
 {
-    \firstline{OFF Aux LED Pattern\inherited{}}
+    \firstline{Aux LED Pattern\inherited{}}
     Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
     \nextauxagain{}
 };
@@ -2551,74 +2585,32 @@ node[
     advancedline,
     out=90,
     in=0,
-    looseness=1.1
+    looseness=0.9
 ]
 node[
     advancedbutton,
     pos=0.7
 ]
-{7C} (Aux LED Pattern from OFF right.east);
-
-% Aux LED Color from Lockout
-{ [on background layer]
-    \node (Aux LED Color from Lockout)[
-        advancedconfig,
-        above=\nodespacev of
-        Aux LED Pattern from OFF right.north west,
-        anchor=south west
-    ]
-    {
-        \firstline{Lockout Aux LED Color\inherited{}}
-        Red \nextaux{} Yellow \nextaux{} Green \nextaux{}
-        Cyan \nextaux{}\\
-        Blue \nextaux{} Purple \nextaux{} White \nextaux{}\\
-        Disco \nextaux{} Rainbow \nextaux{}
-        \textboxvoltage{} \nextauxagain{}
-    };
-}
+{7C} (Aux LED Pattern from OFF right Lockout.east);
 
 \path (Lockout.north) edge[
     ->,
     advancedline,
     out=90,
     in=180,
-    looseness=0.8
-]
-node[
-    advancedbutton,
-    pos=0.65
-]
-{7H} (Aux LED Color from Lockout.west);
-
-% Aux LED Pattern from Lockout
-\node (Aux LED Pattern from Lockout)[
-    advancedconfig,
-    above=\nodespacev of Aux LED Color from Lockout.north west,
-    anchor=south west
-]
-{
-    \firstline{Lockout Aux LED Pattern\inherited{}}
-    Off \nextaux{} Low \nextaux{} High \nextaux{} Blinking
-    \nextauxagain{}
-};
-
-\path (Lockout.north) edge[
-    ->,
-    advancedline,
-    out=90,
-    in=180,
-    looseness=0.8
+    looseness=0.9
 ]
 node[
     advancedbutton,
     pos=0.7
 ]
-{7C} (Aux LED Pattern from Lockout.west);
+{7C} (Aux LED Pattern from OFF right Lockout.west);
 
 % Auto-lock Config from Lockout
 \node (Auto-lock Config from Lockout)[
     advancedconfig,
-    left=1.8cm of Aux LED Pattern from Lockout.north west,
+    above left=2.5cm and 1.8cm of
+    Aux LED Pattern from OFF right Lockout.north west,
     anchor=north east
 ]
 {
@@ -2631,14 +2623,14 @@ node[
     ->,
     advancedline,
     out=90,
-    in=300,
-    looseness=0.7
+    in=303,
+    looseness=0.8
 ]
 node[
     advancedbutton,
-    pos=0.82
+    pos=0.85
 ]
-{10H} (Auto-lock Config from Lockout.south);
+{10H} (Auto-lock Config from Lockout.255);
 
 % 14 Tactical Mode from OFF right --------------------------------------
 % ----------------------------------------------------------------------
