@@ -111,10 +111,10 @@
 \colorlet{onofftogglerampstyle-text}{onoff-text}
 
 % any... mode = for Batt Check from OFF
-\colorlet{anyconfigmode-draw}{advancedconfig-draw}
+\colorlet{anyconfigmode-draw}{anyconfig-draw}
 
 % advanced... mode = for strobe modes and blinky modes
-\colorlet{advancedconfigmode-draw}{anyconfigmode-draw}
+\colorlet{advancedconfigmode-draw}{advancedconfig-draw}
 \colorlet{advancedbordermode-draw}{advancedconfigmode-draw}
 
 % for basic use
@@ -403,8 +403,7 @@
 \tikzset{
     anyconfig-mode/.style={
         anyconfig,
-        draw=anyconfigmode-draw,
-        ultra thick % ultra thick = 1.6pt
+        draw=anyconfigmode-draw
     }
 }
 
@@ -418,8 +417,7 @@
     },
     advancedconfig-mode/.style={
         advancedconfig,
-        draw=advancedconfigmode-draw,
-        ultra thick
+        draw=advancedconfigmode-draw
     },
     advancedborder-mode/.style={
         advancedconfig,
@@ -552,7 +550,7 @@
     andurilinfo/.style={
         generalinfo,
         draw=andurilinfo-draw,
-        ultra thick,
+        ultra thick, % ultra thick = 1.6pt
         fill=andurilinfo-fill,
         text=andurilinfo-text
     },
@@ -1562,19 +1560,21 @@ node[
     1 blink = 5 minutes
 };
 
-\path (Candle from OFF.north west) edge[
-    ->,
-    advancedline,
-    shorten <=-2.2pt, % out
-    out=135,
-    in=0,
-    looseness=0.7
-]
-node[
-    advancedbutton,
-    pos=0.45
-]
-{5H} (Candle Timer.east);
+{ [on behind layer]
+    \path (Candle from OFF.north west) edge[
+        ->,
+        advancedline,
+        shorten <=-2.1pt, % out
+        out=135,
+        in=0,
+        looseness=0.7
+    ]
+    node[
+        advancedbutton,
+        pos=0.45
+    ]
+    {5H} (Candle Timer.east);
+}
 
 % Bike Flasher from Candle
 \node (Bike Flasher from Candle)[
@@ -1606,7 +1606,7 @@ node[
 ]
 node[
     advancedbutton-mode,
-    pos=0.47
+    pos=0.48
 ]
 {2C} (Party Strobe from Bike Flasher.east);
 
@@ -1800,7 +1800,7 @@ node[
         looseness=1
     ]
     node
-    {} (Batt Check from OFF.north);
+    {} (Batt Check from OFF.85);
     \path (OFF.south) edge[
         ->,
         anyline,
@@ -1812,7 +1812,7 @@ node[
         anybutton,
         pos=0.8
     ]
-    {3C} (Batt Check from OFF.north);
+    {3C} (Batt Check from OFF.85);
 }
 
 % Voltage Config from Batt Check
