@@ -213,7 +213,7 @@
 
 \usetikzlibrary{tikzmark} % for marking a point for further use
 
-% for arrow tip
+% for arrow tips
 \tikzset{
     >={
         Stealth[
@@ -968,7 +968,7 @@ at (Ramp.south)[
 {};
 
 \path (ON Ramp.north) edge[
-    arrows={<[fill=fillarrowbasicuse]->},
+    {<[fill=fillarrowbasicuse]}->,
     anyline basic use,
     shorten <=0.15cm, % out
     shorten >=0.05cm % in
@@ -988,7 +988,7 @@ node[
 {1H} (Ramp text Ceiling.south);
 
 \path (Ramp text Memory.south) edge[
-    arrows={->},
+    ->,
     anyline ramp,
     shorten <=0.06cm, % out
     shorten >=0.05cm % in
@@ -1193,7 +1193,7 @@ node[
 {2C} (Turbo.north east);
 
 \path (Ramp.west) edge[
-    {<[scale width=0.75]->[scale width=0.75]},
+    {<[scale width=0.75]}-{>[scale width=0.75]},
     anyline,
     shorten <=0.8pt, % out
     shorten >=0.5pt, % in
@@ -1225,7 +1225,7 @@ node[
     node
     {} (Turbo.north west);
     \draw (Ramp.west) edge[
-        {->[scale width=0.75]},
+        -{>[scale width=0.75]},
         advancedline momentary,
         shorten <=2pt, % out
         shorten >=0.5pt, % in
@@ -2851,7 +2851,12 @@ node[
 
 { [on background layer]
     \path[
-        {->[scale length=1.15, scale width=1.15]}, % for semithick
+        -{
+            >[
+                scale length=1.15, % for semithick
+                scale width=1.15 % for semithick
+            ]
+        },
         anyline factoryreset simpleUI
     ]
     (Factory Reset from OFF right.east)
