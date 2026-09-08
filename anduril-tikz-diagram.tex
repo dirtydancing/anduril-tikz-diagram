@@ -908,16 +908,16 @@
 \newcommand{\textinherited}[1]{\textcolor{inherited-text}{#1}}
 
 % for inherited by Simple UI
-% (Unicode character Asterisk)
 \newcommand{\inherited}{\textcolor{inherited-text}{\char"002A}}
+% Unicode character hex code 002A: Asterisk
 
 % for the next aux LED setting
-% (Unicode character Rightwards Arrow)
 \newcommand{\nextaux}{\char"2192}
+% Unicode character hex code 2192: Rightwards Arrow
 
 % for the next aux LED setting again
-% (Unicode character North East Arrow)
 \newcommand{\nextauxagain}{\char"2197}
+% Unicode character hex code 2197: North East Arrow
 
 % Body - Table of Contents ---------------------------------------------
 % ----------------------------------------------------------------------
@@ -1913,7 +1913,9 @@ node[
             Voltage Config\inherited{} &\\
             1 & Voltage Correction Factor\\
               & {\char"00B1{}0.30V, 0.05V steps\\
+              % Unicode character hex code 00B1: Plus-Minus Sign
                  1C = \char"2212{}0.30V\\
+                 % Unicode character hex code 2212: Minus Sign
                  7C = 0V (default)\\
                  13C = +0.30V}\\
             2 & Post-Off \textboxvoltageadv{} Display\\
@@ -1922,6 +1924,7 @@ node[
                  nC = n seconds;\\
                  brightness as set in 3 \& 4,\\
                  high if high in Off \char"2192{} 7C,\\
+                 % Unicode character hex code 2192: Rightwards Arrow
                  ramps if Smooth POVD}\\
             3 & Aux low ramp level\\
               & {0C = Disable button LEDs\\
@@ -2282,11 +2285,13 @@ node[
             Smooth Ramp &\\
             1 & Floor: nC = n of 150\\
             2 & Ceiling: nC = 151 \char"2212{} n\\
+            % Unicode character hex code 2212: Minus Sign
             3 & {Speed\inherited{}: 1C (full speed)\\
                  to 4C (quarter speed)}\\
             Stepped Ramp &\\
             1 & Floor: nC = n of 150\\
             2 & Ceiling: nC = 151 \char"2212{} n\\
+            % Unicode character hex code 2212: Minus Sign
             3 & Step count: 1\textendash{}150C\\
         \end{tblr-advancedconfigmenu}
     };
@@ -2392,6 +2397,7 @@ node[
                  (2C from On/Ramp)}\\
               & {0C = Ceiling only, no turbo\\
                  \char"2192{} momentary ceiling only\\
+                 % Unicode character hex code 2192: Rightwards Arrow
                  1C = Turbo\\
                  (Andúril 1 style)\\
                  2C = Ceiling, or turbo if\\
@@ -2473,10 +2479,12 @@ node[
             Simple UI Config &\\
             1 & Floor: nC = n of 150\\
             2 & Ceiling: nC = 151 \char"2212{} n\\
+            % Unicode character hex code 2212: Minus Sign
             3 & Step count: 1\textendash{}150C\\
             4 & Simple UI's turbo style\\
               & {0C/1C/2C\\
                  \char"2192{} see Ramp Extras, 4}\\
+                 % Unicode character hex code 2192: Rightwards Arrow
         \end{tblr-advancedconfigmenu}
     };
 }
@@ -3005,7 +3013,9 @@ at (current page text area.north east)[
     \textboxauxledcfv{}\\[3pt]
     \smoothPOVDbox{Smooth POVD} (hardware-specific):\\
     resolution of \char"007E{}60 steps instead of 6\\
+    % Unicode character hex code 007E: Tilde
     \char"2192{} for POVD, see Voltage Config, 2
+    % Unicode character hex code 2192: Rightwards Arrow
     \spacingv
     Single-color aux: fast-blink 3.3\textendash{}2.9V
 };
