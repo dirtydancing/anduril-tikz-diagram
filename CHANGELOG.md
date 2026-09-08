@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2026-08-12.02 (Date: 2026-09-08)
+
+- Added dimmable RGB to legend
+
 ## 2026-08-12.01 (Date: 2026-08-24)
 
 - Added two new aux LED patterns
