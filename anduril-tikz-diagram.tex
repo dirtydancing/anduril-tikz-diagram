@@ -83,7 +83,6 @@
 
 % for Advanced UI - Simple UI config menu
 \colorlet{simpleUIconfigmenu-draw}{advancedconfigmenu-draw}
-\colorlet{inherited-text}{advanced-text}
 
 % simple = for Simple UI only
 \colorlet{simple-draw}{any-draw}
@@ -186,6 +185,15 @@
 \colorlet{infoadvanced-text}{advanced-text}
 \colorlet{infoadvancedconfigmenu-text}{advancedconfigmenu-text}
 \colorlet{infosimple-text}{simple-text}
+
+% for on lights with dimmable RGB aux LEDs
+\colorlet{dimmableRGB-color1}{red!77}
+\colorlet{dimmableRGB-color2}{red!55}
+\colorlet{dimmableRGB-color3}{red!33}
+
+% for inherited by Simple UI
+\colorlet{inherited-text}{advanced-text}
+\colorlet{inherited-color}{inherited-text}
 
 % for setting the page background color
 % \pagecolor{anybutton-fill} % default: transparent background
@@ -904,11 +912,19 @@
 % for text for basic use
 \newcommand{\textbasicuse}[1]{\textcolor{basicuse-text}{#1}}
 
-% for text for inherited
+% for on lights with dimmable RGB aux LEDs
+\newcommand{\dimmableRGB}{%
+    \textcolor{dimmableRGB-color1}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{dimmableRGB-color2}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{dimmableRGB-color3}{\char"25CF}%
+    % Unicode character hex code 25CF: Black Circle
+}
+
+% for text for inherited by Simple UI
 \newcommand{\textinherited}[1]{\textcolor{inherited-text}{#1}}
 
 % for inherited by Simple UI
-\newcommand{\inherited}{\textcolor{inherited-text}{\char"002A}}
+\newcommand{\inherited}{\textcolor{inherited-color}{\char"002A}}
 % Unicode character hex code 002A: Asterisk
 
 % for the next aux LED setting
@@ -2306,17 +2322,17 @@ node[
     in=280,
     looseness=1.4
 ]
-+(-3.56cm, 3.75cm) to[
++(-3.57cm, 3.75cm) to[
     out=100,
     in=275,
     looseness=0.9
 ]
 node[
     advancedbutton,
-    pos=0.2
+    pos=0.15
 ]
 {7H}
-+(-3.67cm, 4.9cm) to[
++(-3.68cm, 4.9cm) to[
     out=95,
     in=320,
     looseness=0.9
@@ -2341,8 +2357,7 @@ node[
             n & n\textsuperscript{th} channel mode\\
             & {0C = Disable\\
                1C = Enable}\\
-            {+ 1 \HSVchannelmodeboxadv{HSV} channel mode\\
-             (hardware-specific)}\\
+            + 1 \HSVchannelmodeboxadv{HSV} channel \dimmableRGB{}\\
             {Typical sequence for\\
              dual-channel lights}\\
             1  & Channel 1\\
@@ -2351,7 +2366,7 @@ node[
             4  & \tintrampboxadv{Tint Ramp}\\
             5  & {Auto-tint\\
                   (3H = Reverse)}\\
-            6+ & Aux LED Channels\\
+            6+ & Aux LED channels\\
         \end{tblr-advancedconfigmenu}
     };
 }
@@ -2371,7 +2386,7 @@ node[
         \infotextadvanced{unless overridden}
    }
 ]
-{9H} (Channel Mode Config from ON.315);
+{9H} (Channel Mode Config from ON.318);
 
 % Ramp Extras Config from ON
 { [on background layer]
@@ -2992,7 +3007,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI}\\[8pt]
     \normalsize Andúril 2 Release 2026-08-12\\[3pt]
-    \normalsize Diagram Release 01\\[4pt]
+    \normalsize Diagram Release 02\\[4pt]
     Diagram Repository:\\
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -3011,9 +3026,9 @@ at (current page text area.north east)[
     \oneline{Aux LED Color for Voltage}
     \spacingv
     \textboxauxledcfv{}\\[3pt]
-    \smoothPOVDbox{Smooth POVD} (hardware-specific):\\
-    resolution of \char"007E{}60 steps instead of 6\\
+    \smoothPOVDbox{Smooth POVD} (\char"007E{}60 steps)
     % Unicode character hex code 007E: Tilde
+    \dimmableRGB{}\\
     \char"2192{} for POVD, see Voltage Config, 2
     % Unicode character hex code 2192: Rightwards Arrow
     \spacingv
@@ -3082,6 +3097,8 @@ at (current page text area.north east)[
     & \infotextadvanced{Advanced UI function only}\\
     & Continuous effect\vphantom{y}\\
     & Momentary effect\\
+    \normalsize{\dimmableRGB{}}&
+    On lights with dimmable RGB aux LEDs\\
     \normalsize\textbf{\inherited{}}&
     \textinherited{Inherited by Simple UI}\\
 };
