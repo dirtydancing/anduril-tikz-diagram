@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2026-08-12.03 (Date: 2026-09-19)
+
+- Emphasized reference to user manual
+
 ## 2026-08-12.02 (Date: 2026-09-08)
 
 - Added dimmable RGB to legend
