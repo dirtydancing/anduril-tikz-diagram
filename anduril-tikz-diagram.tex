@@ -149,6 +149,8 @@
 \colorlet{buttonpressesinfo-fill}{generalinfo-fill}
 \colorlet{defaultsvaryinfo-fill}{generalinfo-fill}
 \colorlet{matrixlegendinfo-fill}{generalinfo-fill}
+\colorlet{usermanualinfo-draw}{cyan!80}
+\colorlet{usermanualinfo-fill}{generalinfo-fill}
 
 % for voltage colors
 \colorlet{voltagebox-frame}{anybutton-fill}
@@ -594,6 +596,12 @@
         },
         row sep=0.088cm,
         column sep=0.225cm
+    },
+    usermanualinfo/.style={
+        generalinfo,
+        draw=usermanualinfo-draw,
+        semithick,
+        fill=usermanualinfo-fill
     }
 }
 
@@ -748,15 +756,15 @@
 \newcommand{\textboxauxledcfv}{%
     \voltageboxred{R-2.9,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[voltageboxcolor-yellow]{\hspace{0.013cm}Y-3.3,%
+    \voltagebox[voltageboxcolor-yellow]{\hspace{0.01cm}Y-3.3,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[voltageboxcolor-green]{\hspace{0.013cm}G-3.5,%
+    \voltagebox[voltageboxcolor-green]{\hspace{0.01cm}G-3.5,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[voltageboxcolor-cyan]{\hspace{0.013cm}C-3.7,%
+    \voltagebox[voltageboxcolor-cyan]{\hspace{0.01cm}C-3.7,%
         \vphantom{Voltage,Ú}}%
-    \voltagebox[voltageboxcolor-blue]{\hspace{0.013cm}B-3.9,%
+    \voltagebox[voltageboxcolor-blue]{\hspace{0.01cm}B-3.9,%
         \vphantom{Voltage,Ú}}%
-    \voltageboxpurple{\hspace{0.013cm}P-4.1V%
+    \voltageboxpurple{\hspace{0.01cm}P-4.1V%
         \vphantom{Voltage,Ú}}%
 }
 
@@ -3005,15 +3013,13 @@ at (current page text area.north east)[
     anchor=north east
 ]
 {
-    \Huge\textbf{Andúril 2 UI}\\[8pt]
-    \normalsize Andúril 2 Release 2026-08-12\\[3pt]
-    \normalsize Diagram Release 02\\[4pt]
-    Diagram Repository:\\
+    \Huge\textbf{Andúril 2 UI\hspace*{0.15pt}}\\[8pt]
+    % +0.15pt for more width than Aux LED Color for Voltage
+    \normalsize Release 2026-08-12\\[4pt]
+    Diagram Release 03
+    \spacingv
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
-    \spacingv
-    ToyKeeper's Andúril User Manual:\\
-    https://toykeeper.net/anduril/manual
 };
 
 % Aux LED Color for Voltage
@@ -3168,6 +3174,18 @@ node[
     in=180
 ]
 (Legend-6-1.east);
+
+% Anduril User Manual
+\node (Anduril User Manual)
+at (current page text area.north)[
+    usermanualinfo,
+    anchor=north
+]
+{
+    \firstline{Recommended Reading}
+    ToyKeeper's Andúril User Manual:\\
+    https://toykeeper.net/anduril/manual
+};
 
 } % for ending on background layer
 
