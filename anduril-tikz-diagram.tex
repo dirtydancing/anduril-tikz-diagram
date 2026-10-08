@@ -41,6 +41,14 @@
 % for the first line of more than one line of text
 \newcommand{\firstline}[1]{\oneline{#1}\spacingv}
 
+% for one line of text
+% modeconfig = for strobe modes and blinky modes config
+\newcommand{\onelinemodeconfig}[1]{\bfseries\footnotesize{#1}}
+
+% for the first line of more than one line of text
+% modeconfig = for strobe modes and blinky modes config
+\newcommand{\firstlinemodeconfig}[1]{\onelinemodeconfig{#1}\spacingv}
+
 % for horizontal spacing between nodes
 \newcommand{\nodespaceh}{0.6cm}
 
@@ -91,7 +99,7 @@
 \colorlet{simple-text}{any-text}
 
 % for UI switch lines
-\colorlet{advancedUIswitchline-draw}{orange}
+\colorlet{advancedUIswitchline-draw}{red!80}
 \colorlet{simpleUIswitchline-draw}{advancedUIswitchline-draw}
 
 % for Extended Simple UI
@@ -112,9 +120,16 @@
 % any... mode = for Batt Check from OFF
 \colorlet{anyconfigmode-draw}{anyconfig-draw}
 
+% any... modeconfig = for Batt Color and Powerbank Mode
+\colorlet{anyconfigmodeconfig-draw}{anyconfig-draw}
+
 % advanced... mode = for strobe modes and blinky modes
+\colorlet{advancedlinemode-draw}{advancedUIswitchline-draw}
 \colorlet{advancedconfigmode-draw}{advancedconfig-draw}
-\colorlet{advancedbordermode-draw}{advancedconfigmode-draw}
+\colorlet{advancedbordermode-draw}{advancedconfig-draw}
+
+% advanced... modeconfig = for strobe modes and blinky modes config
+\colorlet{advancedconfigmodeconfig-draw}{advancedconfig-draw}
 
 % for basic use
 \colorlet{basicuse-draw}{blue!80}
@@ -134,13 +149,13 @@
 
 % for Factory Reset
 \colorlet{factoryreset-draw}{advancedUIswitchline-draw}
-\colorlet{factoryreset-fill}{orange!20}
+\colorlet{factoryreset-fill}{advancedUIswitchline-draw!15}
 
 % for line from Factory Reset to Simple UI
 \colorlet{factoryresetsimpleUI-draw}{factoryreset-draw}
 
 % for general information
-\colorlet{generalinfo-draw}{advancedbordermode-draw}
+\colorlet{generalinfo-draw}{advancedconfig-draw}
 \colorlet{generalinfo-fill}{anybutton-fill}
 \colorlet{andurilinfo-draw}{generalinfo-draw}
 \colorlet{andurilinfo-fill}{generalinfo-fill}
@@ -149,7 +164,7 @@
 \colorlet{buttonpressesinfo-fill}{generalinfo-fill}
 \colorlet{defaultsvaryinfo-fill}{generalinfo-fill}
 \colorlet{matrixlegendinfo-fill}{generalinfo-fill}
-\colorlet{usermanualinfo-draw}{cyan!80}
+\colorlet{usermanualinfo-draw}{advancedUIswitchline-draw}
 \colorlet{usermanualinfo-fill}{generalinfo-fill}
 
 % for voltage colors
@@ -177,6 +192,12 @@
 \colorlet{smoothPOVDbox-frame}{voltagebox-frame}
 \colorlet{smoothPOVDbox-text}{voltagebox-text}
 \colorlet{smoothPOVDboxadv-text}{voltageboxadv-text}
+
+% for Batt Color
+\colorlet{BattColorbox-frame}{voltagebox-frame}
+\colorlet{BattColorboxcolor-orange}{orange!20!voltagebox-mixfill}
+% orange instead of yellow because the fill color is yellow
+\colorlet{BattColorbox-text}{voltagebox-text}
 
 % for HSV channel mode
 \colorlet{HSVchannelmodebox-frame}{voltagebox-frame}
@@ -429,10 +450,21 @@
     }
 }
 
+% any... modeconfig = for Batt Color and Powerbank Mode
+\tikzset{
+    anyconfig-modeconfig/.style={
+        anyconfig-mode,
+        draw=anyconfigmodeconfig-draw,
+        font=\scriptsize
+    }
+}
+
 % advanced... mode = for strobe modes and blinky modes
 \tikzset{
     advancedline-mode/.style={
-        advancedline
+        advancedline,
+        draw=advancedlinemode-draw,
+        semithick % semithick = 0.6pt
     },
     advancedbutton-mode/.style={
         advancedbutton
@@ -445,6 +477,15 @@
         advancedconfig,
         draw=advancedbordermode-draw,
         fill=none
+    }
+}
+
+% advanced... modeconfig = for strobe modes and blinky modes config
+\tikzset{
+    advancedconfig-modeconfig/.style={
+        advancedconfig-mode,
+        draw=advancedconfigmodeconfig-draw,
+        font=\scriptsize
     }
 }
 
@@ -539,7 +580,7 @@
     anyconfig factoryreset/.style={
         anyconfig,
         draw=factoryreset-draw,
-        semithick, % semithick = 0.6pt
+        semithick,
         fill=factoryreset-fill
     }
 }
@@ -868,6 +909,39 @@
     rounded corners
 }
 
+% for Batt Color rainbow colors
+\pgfdeclarehorizontalshading{rainbow Batt Color}{72pt}{
+    color(0pt)=(voltageboxcolor-red);
+    color(16pt)=(voltageboxcolor-red);
+    color(24pt)=(BattColorboxcolor-orange);
+    % orange instead of yellow because the fill color is yellow
+    color(32pt)=(voltageboxcolor-green);
+    color(40pt)=(voltageboxcolor-cyan);
+    color(48pt)=(voltageboxcolor-blue);
+    color(56pt)=(voltageboxcolor-purple);
+    color(72pt)=(voltageboxcolor-purple)
+}
+
+% for Batt Color
+\newtcbox{\BattColorbox}{
+    colframe=BattColorbox-frame,
+    skin=enhanced, % for underlay
+    underlay={
+        \begin{tcbclipinterior}
+            \shade [shading=rainbow Batt Color]
+            ([xshift=-1pt,yshift=1pt]interior.north west)
+            rectangle
+            ([xshift=1pt,yshift=-1pt]interior.south east);
+        \end{tcbclipinterior}
+    },
+    coltext=BattColorbox-text,
+    left=0.025cm,
+    right=0.025cm,
+    top=0.015cm, % instead of 0.01cm
+    bottom=0.025cm, % instead of 0.01cm
+    rounded corners
+}
+
 % for HSV channel mode rainbow colors
 \pgfdeclareverticalshading{rainbow HSV channel mode}{45pt}{
     color(0pt)=(voltageboxcolor-red);
@@ -911,7 +985,7 @@
 \newcommand{\infotextadvanced}[1]{\textcolor{infoadvanced-text}{#1}}
 
 % for infotext for Advanced UI - config menus
-\newcommand{\infotextadvancedconfigmenu}[1]{\textcolor
+\newcommand{\infotextadvancedconfigmenu}[1]{\textcolor%
     {infoadvancedconfigmenu-text}{#1}}
 
 % for infotext for Simple UI only
@@ -1160,7 +1234,7 @@ at (Turbo.north)[
 
 \node (Toggle Ramp Style extra node ON)[
     on-extra toggle ramp style,
-    below right=0.9cm and 0.2cm of Toggle Ramp Style from ON.west,
+    below right=0.85cm and 0.2cm of Toggle Ramp Style from ON.west,
     anchor=center
 ]
 {ON};
@@ -1175,7 +1249,7 @@ at (Turbo.north)[
 ]
 node[
     advancedbutton,
-    pos=0.6,
+    pos=0.57,
     label={ [align=left] right:
         \infotextadvanced{3C if only one}\\
         \infotextadvanced{channel mode}
@@ -1658,12 +1732,12 @@ node[
 
 % Candle Timer
 \node (Candle Timer)[
-    advancedconfig,
+    advancedconfig-modeconfig,
     above left=0.5cm and 1.2cm of Candle from OFF.west,
     anchor=east
 ]
 {
-    \firstline{Candle Timer}
+    \firstlinemodeconfig{Candle Timer}
     1 blink = 5 minutes
 };
 
@@ -1844,24 +1918,39 @@ node[
 % 08 Blinky & Utility Modes from OFF -----------------------------------
 % ----------------------------------------------------------------------
 
-% Next Channel Mode from Batt Check
-\node (Next Channel Mode from Batt Check)
+% Toggle Powerbank Mode from Batt Check
+\node (Toggle Powerbank Mode from Batt Check)
 at (current page text area.south)[
-    advancedconfig,
-    xshift=-2.5cm,
+    anyconfig-modeconfig,
+    xshift=-0.4cm,
     yshift=\borderspace,
     anchor=south west
 ]
 {
-    \firstline{Next Channel Mode\inherited{}}
-    For number blinks only
+    \firstlinemodeconfig{Toggle Powerbank Mode}
+    Guest \char"2194{} Host (hardware-specific)
+    % Unicode character hex code 2194: Left Right Arrow
 };
+
+% Toggle Batt Color from Batt Check
+{ [on background layer]
+    \node (Toggle Batt Color from Batt Check)[
+        anyconfig-modeconfig,
+        left=\nodespaceh of
+        Toggle Powerbank Mode from Batt Check.south west,
+        anchor=south east
+    ]
+    {
+        \onelinemodeconfig{Toggle \BattColorbox{Batt Color}
+            \dimmableRGB{}}
+    };
+}
 
 % Batt Check from OFF
 \node (Batt Check from OFF)[
     anyconfig-mode,
-    above left=1.62cm and 0.51cm of
-    Next Channel Mode from Batt Check.north west,
+    above left=2.2cm and 2.6cm of
+    Toggle Powerbank Mode from Batt Check.north west,
     anchor=south west
 ]
 {
@@ -1869,8 +1958,8 @@ at (current page text area.south)[
     0.01V steps
 };
 
-% Batt Check Simple Advanced
-\node (Batt Check Simple Advanced)[
+% Batt Check extra node Simple Advanced
+\node (Batt Check extra node Simple Advanced)[
     above right=0.05cm and 1.1cm of Batt Check from OFF.north west,
     anchor=south west,
     inner xsep=0.05cm,
@@ -1882,23 +1971,60 @@ at (current page text area.south)[
     \infotextadvanced{Advanced UI: blinks voltage repeatedly}
 };
 
+% Next Channel Mode from Batt Check
+\node (Next Channel Mode from Batt Check)[
+    advancedconfig-modeconfig,
+    above=0.2cm of Toggle Batt Color from Batt Check.north east,
+    anchor=south east
+]
+{
+    \firstlinemodeconfig{Next Channel Mode\inherited{}}
+    For number blinks only
+};
+
 \path (Batt Check from OFF.213) edge[
     ->,
     advancedline,
+    out=240,
+    in=130,
+    looseness=1
+]
+node[
+    advancedbutton,
+    pos=0.65
+]
+{3C} (Next Channel Mode from Batt Check.150);
+
+\path (Batt Check from OFF.213) edge[
+    -{<[sep=1.9cm]>},
+    anyline,
     shorten >=-2.01pt, % in
-    out=270,
+    out=220,
     in=120,
     looseness=0.9
 ]
 node[
-    advancedbutton,
-    pos=0.5
+    anybutton,
+    pos=0.58
 ]
-{3C} (Next Channel Mode from Batt Check.north west);
+{1H} (Toggle Batt Color from Batt Check.north west);
+
+\path (Batt Check from OFF.213) edge[
+    ->,
+    anyline,
+    out=273,
+    in=132,
+    looseness=1.4
+]
+node[
+    anybutton,
+    pos=0.89
+]
+{2H} (Toggle Powerbank Mode from Batt Check.150);
 
 { [on above layer]
     \path (OFF.south) edge[
-        {Round Cap[sep=2.85cm]}-{Round Cap[sep=3.75cm]},
+        {Round Cap[sep=3cm]}-{Round Cap[sep=3.3cm]},
         anyline,
         anybutton-fill,
         line width=2.4pt,
@@ -1907,7 +2033,7 @@ node[
         looseness=1
     ]
     node
-    {} (Batt Check from OFF.85);
+    {} (Batt Check from OFF.north);
     \path (OFF.south) edge[
         ->,
         anyline,
@@ -1919,7 +2045,7 @@ node[
         anybutton,
         pos=0.8
     ]
-    {3C} (Batt Check from OFF.85);
+    {3C} (Batt Check from OFF.north);
 }
 
 % Voltage Config from Batt Check
@@ -1972,19 +2098,19 @@ node[
     ->,
     advancedline,
     out=180,
-    in=30,
+    in=350,
     looseness=1
 ]
 node[
     advancedbutton,
-    pos=0.5
+    pos=0.45
 ]
-{7H} (Voltage Config from Batt Check.312);
+{7H} (Voltage Config from Batt Check.42);
 
 % Temp Check from Batt Check
 \node (Temp Check from Batt Check)[
     advancedconfig-mode,
-    below right=0.2cm and 1.6cm of Batt Check from OFF.east,
+    below right=0.2cm and 2cm of Batt Check from OFF.east,
     anchor=west
 ]
 {\oneline{Temp Check}};
@@ -2006,7 +2132,7 @@ node[
 { [on background layer]
     \node (Temp Check Thermal Config)[
         advancedconfigmenu,
-        above right=0.2cm and 1cm of
+        below right=0.1cm and 1cm of
         Temp Check from Batt Check.north east,
         anchor=north west
     ]
@@ -2038,7 +2164,7 @@ node[
 % Beacon from Temp Check
 \node (Beacon from Temp Check)[
     advancedconfig-mode,
-    below left=1cm and 0cm of Temp Check from Batt Check.south,
+    below left=0.8cm and 0cm of Temp Check from Batt Check.south,
     anchor=north
 ]
 {\oneline{Beacon}};
@@ -2060,7 +2186,7 @@ node[
     ->,
     advancedline-mode,
     out=270,
-    in=90,
+    in=100,
     looseness=1
 ]
 node[
@@ -2071,12 +2197,12 @@ node[
 
 % Beacon Speed
 \node (Beacon Speed)[
-    advancedconfig,
-    below right=0.68cm and 1cm of Beacon from Temp Check.east,
+    advancedconfig-modeconfig,
+    below right=0.9cm and 1cm of Beacon from Temp Check.east,
     anchor=west
 ]
 {
-    \firstline{Beacon Speed}
+    \firstlinemodeconfig{Beacon Speed}
     1 blink = 1 second pause
 };
 
@@ -2089,14 +2215,14 @@ node[
 ]
 node[
     advancedbutton,
-    pos=0.4
+    pos=0.5
 ]
 {1H} (Beacon Speed.west);
 
 % SOS from Beacon
 \node (SOS from Beacon)[
     advancedconfig-mode,
-    above left=0.2cm and 1.8cm of Beacon from Temp Check.west,
+    above left=0.2cm and 2.2cm of Beacon from Temp Check.west,
     anchor=east
 ]
 {\oneline{SOS}};
@@ -2114,11 +2240,11 @@ node[
 ]
 {2C} (SOS from Beacon.east);
 
-\path (SOS from Beacon.north) edge[
+\path (SOS from Beacon.80) edge[
     ->,
     advancedline-mode,
     out=90,
-    in=270,
+    in=285,
     looseness=1
 ]
 node[
@@ -2134,8 +2260,8 @@ node[
     ($(Voltage Config from Batt Check.north east)
     + (0.9cm, \borderspace)$);
 \coordinate (Blinky Modes border 2) at
-    ($(Batt Check Simple Advanced.north west)
-    + (0.2cm, \borderspace + 0.2pt)$); % yshift=0.2pt
+    ($(Batt Check extra node Simple Advanced.north west)
+    + (0.1cm, \borderspace + 0.2pt)$); % yshift=0.2pt
 \coordinate (Blinky Modes border 3) at
     ($(Beacon Speed.north east)
     + (\borderspace, 0cm)$);
@@ -2204,9 +2330,9 @@ at (current page text area.west)[
     {3C} (Next Channel Mode from ON.east);
 }
 
-% Tint Ramping from ON
+% Tint Ramp from ON
 { [on background layer]
-    \node (Tint Ramping from ON)[
+    \node (Tint Ramp from ON)[
         anyconfig,
         below=\nodespacev of Next Channel Mode from ON.south west,
         anchor=north west
@@ -2229,13 +2355,13 @@ at (current page text area.west)[
         anybutton,
         pos=0.6
     ]
-    {3H} (Tint Ramping from ON.east);
+    {3H} (Tint Ramp from ON.east);
 }
 
 % Momentary Turbo 3H from ON
 \node (Momentary Turbo 3H from ON)[
     advancedconfig,
-    below=\nodespacev of Tint Ramping from ON.south west,
+    below=\nodespacev of Tint Ramp from ON.south west,
     anchor=north west
 ]
 {
@@ -2981,12 +3107,7 @@ node[
 
 { [on background layer]
     \path[
-        -{
-            >[
-                scale length=1.15, % for semithick
-                scale width=1.15 % for semithick
-            ]
-        },
+        ->,
         anyline factoryreset simpleUI
     ]
     (Factory Reset from OFF right.east)
@@ -3003,8 +3124,8 @@ node[
 ]
 {\normalsize Extended Simple UI};
 
-% Extended Simple UI description
-\node (Extended Simple UI description)[
+% Extended Simple UI extra node description
+\node (Extended Simple UI extra node description)[
     above=0.05cm of
     Simple UI switch extra node Extended Simple UI.north east,
     anchor=south east,
