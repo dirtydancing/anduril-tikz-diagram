@@ -2,6 +2,17 @@
 
 ## Next
 
+## 2026-09-12.01 (Date: 2026-10-08)
+
+- Added 8H Change Aux LED Brightness
+- Added 1H and 2H from Batt Check
+- Added Smooth Beacon information
+- Updated Batt Check steps
+- Updated Smooth POVD steps
+- Updated voltage correction factor
+- Specified Voltage Config
+- Specified seconds for Factory Reset
+
 ## 2026-08-12.03 (Date: 2026-09-19)
 
 - Emphasized reference to user manual
