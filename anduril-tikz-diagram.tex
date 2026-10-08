@@ -2043,6 +2043,19 @@ node[
 ]
 {\oneline{Beacon}};
 
+% Beacon extra node Smooth Beacon
+\node (Beacon extra node Smooth Beacon)[
+    below=0.05cm of Beacon from Temp Check.south east,
+    anchor=north east,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=right
+]
+{
+    \infotextadvanced{Smooth Beacon}\\
+    \infotextadvanced{if Smooth Steps}
+};
+
 \path (Temp Check from Batt Check.220) edge[
     ->,
     advancedline-mode,
