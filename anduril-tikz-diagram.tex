@@ -2859,22 +2859,24 @@ at (current page text area.south east)[
 {
     \firstline{Factory Reset}
     Or reconnect power\\
-    while holding for 4s
+    while holding for \char"007E{}4s
+    % Unicode character hex code 007E: Tilde
 };
 
 \path (OFF right.south) edge[
     ->,
     anyline,
     out=270,
-    in=170,
+    in=160,
     out looseness=0.7,
     in looseness=0.45
 ]
 node[
     anybutton,
-    pos=0.79,
+    pos=0.8,
     label={ [align=left] right:
-        \infotextany{Hold for 4s}
+        \infotextany{Hold for \char"007E{}4s}
+        % Unicode character hex code 007E: Tilde
     }
 ]
 {13H} (Factory Reset from OFF right.west);
