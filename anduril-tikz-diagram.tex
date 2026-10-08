@@ -1945,24 +1945,24 @@ node[
             2 & Post-Off \textboxvoltageadv{} Display\\
               & POVD, or \smoothPOVDboxadv{Smooth POVD}\\
               & {0C = Disable\\
-                 nC = n seconds;\\
+                 nC = n seconds,\\
                  brightness as set in 3 \& 4,\\
                  high if high in Off \char"2192{} 7C,\\
                  % Unicode character hex code 2192: Rightwards Arrow
                  ramps if Smooth POVD}\\
             3 & Aux low ramp level\\
-              & {0C = Disable button LEDs\\
-                 1+C = Light up button\\
-                 LEDs at this ramp level}\\
+              & {0C = Shortcut for 255\\
+                 1+C = Button LEDs low\\
+                 at this ramp level}\\
             4 & Aux high ramp level\\
-              & {0C = Disable brighter\\
-                 button LEDs\\
-                 1+C = Brighter button\\
-                 LEDs at this ramp level}\\
-            5 & Aux while On\\
+              & {0C = Shortcut for 255\\
+                 1+C = Button LEDs high\\
+                 at/above this ramp level}\\
+            5 & {Aux while On\\
+                 (RGB: voltage, see POVD)}\\
               & {0C = None\\
                  1C = Single-color only\\
-                 2C = RGB only (see POVD)\\
+                 2C = RGB only\\
                  3C = Both}\\
         \end{tblr-advancedconfigmenu}
     };
