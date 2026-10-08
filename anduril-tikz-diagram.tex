@@ -42,6 +42,14 @@
 \newcommand{\firstline}[1]{\oneline{#1}\spacingv}
 
 % for one line of text
+% smaller = for a smaller font size in general
+\newcommand{\onelinesmaller}[1]{\bfseries\footnotesize{#1}}
+
+% for the first line of more than one line of text
+% smaller = for a smaller font size in general
+\newcommand{\firstlinesmaller}[1]{\onelinesmaller{#1}\spacingv}
+
+% for one line of text
 % modeconfig = for strobe modes and blinky modes config
 \newcommand{\onelinemodeconfig}[1]{\bfseries\footnotesize{#1}}
 
@@ -214,6 +222,13 @@
 \colorlet{dimmableRGB-color2}{red!55}
 \colorlet{dimmableRGB-color3}{red!33}
 
+% for with an external aux control chip
+\colorlet{auxcontrolchip-color1}{red!77}
+\colorlet{auxcontrolchip-color2}{red!66}
+\colorlet{auxcontrolchip-color3}{red!55}
+\colorlet{auxcontrolchip-color4}{red!44}
+\colorlet{auxcontrolchip-color5}{red!33}
+
 % for inherited by Simple UI
 \colorlet{inherited-text}{advanced-text}
 \colorlet{inherited-color}{inherited-text}
@@ -328,6 +343,14 @@
         draw=advancedUI-draw,
         very thick, % very thick = 1.2pt
         font=\bfseries\LARGE
+    }
+}
+
+% advanced... smaller = for a smaller font size in general
+\tikzset{
+    advancedconfig-smaller/.style={
+        advancedconfig,
+        font=\scriptsize
     }
 }
 
@@ -999,6 +1022,16 @@
     \textcolor{dimmableRGB-color1}{\char"25CF}%
     \hspace{-0.05em}\textcolor{dimmableRGB-color2}{\char"25CF}%
     \hspace{-0.05em}\textcolor{dimmableRGB-color3}{\char"25CF}%
+    % Unicode character hex code 25CF: Black Circle
+}
+
+% for with an external aux control chip
+\newcommand{\auxcontrolchip}{%
+    \textcolor{auxcontrolchip-color1}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{auxcontrolchip-color2}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{auxcontrolchip-color3}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{auxcontrolchip-color4}{\char"25CF}%
+    \hspace{-0.05em}\textcolor{auxcontrolchip-color5}{\char"25CF}%
     % Unicode character hex code 25CF: Black Circle
 }
 
@@ -2908,6 +2941,45 @@ node[
 ]
 {10H} (Auto-lock Config from Lockout.255);
 
+% Change Aux LED Brightness
+\node (Change Aux LED Brightness)[
+    advancedconfig-smaller,
+    above=0.6cm of Aux LED Pattern from OFF right Lockout.north west,
+    anchor=south west
+]
+{
+    \firstlinesmaller{Change Aux LED Brightness%
+        \inherited{} \auxcontrolchip{}}
+    Off low brightness: 8H from Off low pattern (14 steps)\\
+    Off high brightness: 8H from Off high pattern (14 steps)\\
+    POVD peak brightness: 8H from Batt Color (9 steps)\\
+    On brightness: 8H from Ramp, Strobes, etc. (9 steps)
+};
+
+\node (Change Aux LED Brightness extra node multiple)[
+    advancedconfig,
+    below left=0.75cm and 0.3cm of
+    Change Aux LED Brightness.north west,
+    anchor=north east
+]
+{
+    multiple\\
+    modes
+};
+
+\path (Change Aux LED Brightness extra node multiple.north) edge[
+    ->,
+    advancedline,
+    out=90,
+    in=180,
+    looseness=1.2
+]
+node[
+    advancedbutton,
+    pos=0.4
+]
+{8H} (Change Aux LED Brightness.169);
+
 % 14 Tactical Mode from OFF right --------------------------------------
 % ----------------------------------------------------------------------
 
@@ -3151,8 +3223,8 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI\hspace*{0.15pt}}\\[8pt]
     % +0.15pt for more width than Aux LED Color for Voltage
-    \normalsize Release 2026-08-12\\[4pt]
-    Diagram Release 03
+    \normalsize Release 2026-09-12\\[4pt]
+    Diagram Release 01
     \spacingv
     https://github.com/dirtydancing/\\
     anduril-tikz-diagram
@@ -3239,6 +3311,8 @@ at (current page text area.north east)[
     & Momentary effect\\
     \normalsize{\dimmableRGB{}}&
     On lights with dimmable RGB aux LEDs\\
+    \normalsize{\auxcontrolchip{}}&
+    \dimmableRGB{} with an external aux control chip\\
     \normalsize\textbf{\inherited{}}&
     \textinherited{Inherited by Simple UI}\\
 };
