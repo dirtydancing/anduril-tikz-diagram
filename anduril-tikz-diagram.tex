@@ -2886,9 +2886,22 @@ node[
 ]
 {
     \firstline{Aux LED Pattern\inherited{}}
-    Off \nextaux{} Low \nextaux{} High \nextaux{}
-    Blinking \nextaux{}\\
+    Off \nextaux{} Low \nextaux{} High (\nextaux{} Breathing\\
+    \auxcontrolchip{}) \nextaux{} Blinking \nextaux{}\\
     2 Low Blinks \nextaux{} 1 Low Blink \nextauxagain{}
+};
+
+% Aux LED Pattern from OFF right Lockout extra node Breathing
+\node (Aux LED Pattern from OFF right Lockout extra node Breathing)[
+    above=0.05cm of Aux LED Pattern from OFF right Lockout.north west,
+    anchor=south west,
+    inner xsep=0.05cm,
+    inner ysep=0cm,
+    align=left
+]
+{
+    \infotextadvanced{Breathing:
+    Regular \nextaux{} Fast \nextaux{} Heavy}
 };
 
 \path (OFF right.north) edge[
@@ -2920,7 +2933,7 @@ node[
 % Auto-lock Config from Lockout
 \node (Auto-lock Config from Lockout)[
     advancedconfig,
-    above left=2.325cm and 1.8cm of
+    above left=2.1cm and 1.8cm of
     Aux LED Pattern from OFF right Lockout.north west,
     anchor=north east
 ]
@@ -2946,7 +2959,8 @@ node[
 % Change Aux LED Brightness
 \node (Change Aux LED Brightness)[
     advancedconfig-smaller,
-    above=0.6cm of Aux LED Pattern from OFF right Lockout.north west,
+    above=0.45cm of Aux LED Pattern from OFF right Lockout
+    extra node Breathing.north west,
     anchor=south west
 ]
 {
@@ -2958,6 +2972,7 @@ node[
     On brightness: 8H from Ramp, Strobes, etc. (9 steps)
 };
 
+% Change Aux LED Brightness extra node multiple
 \node (Change Aux LED Brightness extra node multiple)[
     advancedconfig,
     below left=0.75cm and 0.3cm of
@@ -3225,7 +3240,7 @@ at (current page text area.north east)[
 {
     \Huge\textbf{Andúril 2 UI\hspace*{0.15pt}}\\[8pt]
     % +0.15pt for more width than Aux LED Color for Voltage
-    \normalsize Release 2026-09-12\\[4pt]
+    \normalsize Release 2026-10-26\\[4pt]
     Diagram Release 01
     \spacingv
     https://github.com/dirtydancing/\\
