@@ -2,6 +2,10 @@
 
 ## Next
 
+## 2026-10-26.01 (Date: 2026-10-29)
+
+- Added aux LED breathing patterns
+
 ## 2026-09-12.01 (Date: 2026-10-08)
 
 - Added 8H Change Aux LED Brightness
